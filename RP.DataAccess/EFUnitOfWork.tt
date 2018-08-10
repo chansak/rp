@@ -1,0 +1,140 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ include file="EF.Utility.CS.ttinclude"#>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+
+<#@ output extension=".cs" #>
+<#
+string inputFile = @"..\RP.DataAccess\RP.edmx";
+
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+MetadataTools ef = new MetadataTools(this);
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+EntityContainer container = ItemCollection.GetItems<EntityContainer>().FirstOrDefault();
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+// Generate EFUnitOfWork.cs
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using RP.Interfaces;
+using System.Data.Entity;
+
+namespace <#= code.VsNamespaceSuggestion() #>
+{
+	public class EFUnitOfWork : IUnitOfWork
+	{
+		private DbContext context;
+        public EFUnitOfWork()
+        {
+            context = new RPContext();
+        }
+
+        public IUnitOfWork Create()
+        {
+            return new EFUnitOfWork();
+        }
+
+        public void Commit()
+        {
+            context.SaveChanges();
+        }
+
+        public void Rollback()
+        {
+
+        }
+
+        public string ConnectionString
+        {
+            get;
+            set;
+        }
+
+        public DateTime GetDBUtcDateTime()
+        {
+            return context.Database.SqlQuery<DateTime>("SELECT GETUTCDATE()").FirstOrDefault();
+        }
+
+		private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+<#
+foreach (var entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+{
+	string interfaceName = "I" + entity.Name + "Repository";
+	string privateName = "_" + entity.Name + "Repository";
+	string propertyName = entity.Name + "Repository";
+#>
+		<#= code.SpaceAfter(interfaceName) #><#= privateName #>;
+		public <#= code.SpaceAfter(interfaceName) #><#= propertyName #>
+		{
+			get
+			{
+				if (<#= privateName #> == null)
+					<#= privateName #> = new <#= propertyName#>(context);
+				
+				return <#= privateName #>;
+			}
+		}
+<#
+}
+#>
+	}
+}
+
+<# fileManager.Process(); #>
+
+<#+
+bool DoesFileExist(string filename)
+{			
+	return File.Exists(Path.Combine(GetCurrentDirectory(),filename));	
+}
+
+string OutputFile(string filename)
+{
+	using(StreamReader sr = new StreamReader(Path.Combine(GetCurrentDirectory(),filename)))
+	{
+		string contents = sr.ReadToEnd();
+		return contents;
+	}
+}
+
+string GetCurrentDirectory()
+{
+	string executingDirectoryName = "";
+	string stackTraceFileName = new StackTrace(true).GetFrame(0).GetFileName();
+	if (String.IsNullOrEmpty(stackTraceFileName))
+	{
+		throw new ArgumentException("No value was specified for the 'directoryName' configuration parameter" +
+			", and we could not figure out the file name from the stack trace (most likely because of running " +
+			"the template with debug='False' specified in the <\u0023@ template \u0023> directive.");
+	}
+	else
+	{		
+		executingDirectoryName = Path.GetDirectoryName(stackTraceFileName);
+	}	
+	return executingDirectoryName;
+}
+#>

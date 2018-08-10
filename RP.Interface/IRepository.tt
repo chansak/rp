@@ -1,0 +1,139 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ include file="EF.Utility.CS.ttinclude"#>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+
+<#@ output extension=".cs" #>
+<#
+
+string inputFile = @"..\RP.DataAccess\RP.edmx";
+
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+MetadataTools ef = new MetadataTools(this);
+
+// Generate IRepository.cs
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Linq.Expressions;
+
+namespace <#= code.VsNamespaceSuggestion() #>
+{
+    public interface IRepository<T>
+    {
+        IQueryable<T> All();
+        IQueryable<T> Where(Expression<Func<T, bool>> expression);
+        void Add(T entity);
+        void Delete(T entity);
+        T GetById(int id);
+        T GetById(long id);
+        T GetById(string id);
+        T GetById(Guid id);
+		DateTime GetDbUtcDateTime();
+    }
+}
+<#
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+EntityContainer container = ItemCollection.GetItems<EntityContainer>().FirstOrDefault();
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+// Create interfaces
+
+foreach (var entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+{
+	string fileName = "I" + entity.Name + "Repository.cs";
+	if (!DoesFileExist(fileName))
+	{
+		fileManager.StartNewFile(fileName);
+#>
+using System;
+
+using RP.Interfaces;
+using RP.Model;
+
+namespace <#= code.VsNamespaceSuggestion() #>
+{
+	<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>interface I<#=code.Escape(entity)#>Repository : IRepository<<#= "RP.Model." + code.Escape(entity)#>>
+	{
+
+	}
+}
+<#
+	}
+	else
+	{
+		fileManager.StartNewFile(fileName);
+		this.Write(OutputFile(fileName));
+	}
+} // End create interfaces
+
+// Create IUnitOfWork
+fileManager.StartNewFile("IUnitOfWork.cs");
+#>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace <#= code.VsNamespaceSuggestion() #>
+{
+	public interface IUnitOfWork : IDisposable
+	{
+		void Commit();
+        void Rollback();
+        string ConnectionString { get; set; }
+        IUnitOfWork Create();
+		DateTime GetDBUtcDateTime();
+<#
+foreach (var entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+{
+	string interfaceName = "I" + entity.Name + "Repository";
+	string repositoryName = entity.Name + "Repository";
+#>
+		<#= code.SpaceAfter(interfaceName) #><#= code.SpaceAfter(repositoryName) #> { get; }
+<#
+}
+#>
+
+	}
+}
+
+<# fileManager.Process(); #>
+
+<#+
+bool DoesFileExist(string filename)
+{			
+	return File.Exists(Path.Combine(GetCurrentDirectory(),filename));	
+}
+
+string OutputFile(string filename)
+{
+	using(StreamReader sr = new StreamReader(Path.Combine(GetCurrentDirectory(),filename)))
+	{
+		string contents = sr.ReadToEnd();
+		return contents;
+	}
+}
+
+string GetCurrentDirectory()
+{
+	string executingDirectoryName = "";
+	string stackTraceFileName = new StackTrace(true).GetFrame(0).GetFileName();
+	if (String.IsNullOrEmpty(stackTraceFileName))
+	{
+		throw new ArgumentException("No value was specified for the 'directoryName' configuration parameter" +
+			", and we could not figure out the file name from the stack trace (most likely because of running " +
+			"the template with debug='False' specified in the <\u0023@ template \u0023> directive.");
+	}
+	else
+	{		
+		executingDirectoryName = Path.GetDirectoryName(stackTraceFileName);
+	}	
+	return executingDirectoryName;
+}
+#>

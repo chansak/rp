@@ -1,0 +1,16 @@
+D:\Git\RP\RP\RP.Interface\obj\Debug\RP.Interfaces.csprojResolveAssemblyReference.cache
+D:\Git\RP\RP\RP.Interface\bin\Debug\RP.Interfaces.dll
+D:\Git\RP\RP\RP.Interface\bin\Debug\RP.Interfaces.pdb
+D:\Git\RP\RP\RP.Interface\bin\Debug\RP.Model.dll
+D:\Git\RP\RP\RP.Interface\bin\Debug\RP.Model.pdb
+D:\Git\RP\RP\RP.Interface\obj\Debug\RP.Interfaces.dll
+D:\Git\RP\RP\RP.Interface\obj\Debug\RP.Interfaces.pdb
+D:\Git\RP\RP\RP.Interface\bin\Debug\Common.Logging.Core.dll
+D:\Git\RP\RP\RP.Interface\bin\Debug\Common.Logging.dll
+D:\Git\RP\RP\RP.Interface\bin\Debug\Spring.Core.dll
+D:\Git\RP\RP\RP.Interface\bin\Debug\Common.Logging.pdb
+D:\Git\RP\RP\RP.Interface\bin\Debug\Common.Logging.xml
+D:\Git\RP\RP\RP.Interface\bin\Debug\Common.Logging.Core.pdb
+D:\Git\RP\RP\RP.Interface\bin\Debug\Common.Logging.Core.xml
+D:\Git\RP\RP\RP.Interface\bin\Debug\Spring.Core.pdb
+D:\Git\RP\RP\RP.Interface\bin\Debug\Spring.Core.xml

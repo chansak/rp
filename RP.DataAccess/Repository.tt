@@ -1,0 +1,89 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ include file="EF.Utility.CS.ttinclude"#>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+
+<#@ output extension=".cs" #>
+<#
+
+string inputFile = @"..\RP.DataAccess\RP.edmx";
+
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+MetadataTools ef = new MetadataTools(this);
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+EntityContainer container = ItemCollection.GetItems<EntityContainer>().FirstOrDefault();
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+// Create Repositories
+foreach (var entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+{
+	string fileName = entity.Name + "Repository.cs";
+	if (!DoesFileExist(fileName))
+	{
+		fileManager.StartNewFile(fileName);
+#>
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+
+using RP.Model;
+using RP.Interfaces;
+
+namespace <#= code.VsNamespaceSuggestion() #>
+{
+	<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>class <#=code.Escape(entity)#>Repository : EFRepository<<#= "RP.Model." + code.Escape(entity)#>>, I<#=code.Escape(entity)#>Repository
+	{
+		public <#=entity.Name#>Repository(DbContext context)
+            : base(context)
+		{
+		}
+	}
+}
+<#
+	}
+	else
+	{
+		fileManager.StartNewFile(fileName);
+		this.Write(OutputFile(fileName));
+	}
+}
+#>
+
+<# fileManager.Process(); #>
+
+<#+
+bool DoesFileExist(string filename)
+{			
+	return File.Exists(Path.Combine(GetCurrentDirectory(),filename));	
+}
+
+string OutputFile(string filename)
+{
+	using(StreamReader sr = new StreamReader(Path.Combine(GetCurrentDirectory(),filename)))
+	{
+		string contents = sr.ReadToEnd();
+		return contents;
+	}
+}
+
+string GetCurrentDirectory()
+{
+	string executingDirectoryName = "";
+	string stackTraceFileName = new StackTrace(true).GetFrame(0).GetFileName();
+	if (String.IsNullOrEmpty(stackTraceFileName))
+	{
+		throw new ArgumentException("No value was specified for the 'directoryName' configuration parameter" +
+			", and we could not figure out the file name from the stack trace (most likely because of running " +
+			"the template with debug='False' specified in the <\u0023@ template \u0023> directive.");
+	}
+	else
+	{		
+		executingDirectoryName = Path.GetDirectoryName(stackTraceFileName);
+	}	
+	return executingDirectoryName;
+}
+#>

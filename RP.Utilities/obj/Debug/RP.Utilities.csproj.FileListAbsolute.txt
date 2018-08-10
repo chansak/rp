@@ -1,0 +1,5 @@
+D:\Git\RP\RP\RP.Utilities\bin\Debug\RP.Utilities.dll
+D:\Git\RP\RP\RP.Utilities\bin\Debug\RP.Utilities.pdb
+D:\Git\RP\RP\RP.Utilities\obj\Debug\RP.Utilities.dll
+D:\Git\RP\RP\RP.Utilities\obj\Debug\RP.Utilities.pdb
+D:\Git\rp\RP\RP.Utilities\obj\Debug\RP.Utilities.csprojResolveAssemblyReference.cache

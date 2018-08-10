@@ -1,0 +1,2867 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RP.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BuEmailType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BUNotificationEmails" Relationship="Self.FK_BUNotificationEmail_BuEmailType" FromRole="BuEmailType" ToRole="BUNotificationEmail" />
+  </EntityType>
+  <EntityType Name="BUNotificationEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BuEmailTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BuEmailType" Relationship="Self.FK_BUNotificationEmail_BuEmailType" FromRole="BUNotificationEmail" ToRole="BuEmailType" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_BUNotificationEmail_BusinessUnit" FromRole="BUNotificationEmail" ToRole="BusinessUnit" />
+  </EntityType>
+  <EntityType Name="BusinessUnit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="TimezoneId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Handicap90" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Handicap80" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Handicap70" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Handicap60" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Handicap50" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="HandicapLessThan50" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="CostPerDay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="MaxCostPerDay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="LimitRealDateArrival" Type="Int32" />
+    <Property Name="IsDisplayDistanceOverMsg" Type="Boolean" />
+    <NavigationProperty Name="BUNotificationEmails" Relationship="Self.FK_BUNotificationEmail_BusinessUnit" FromRole="BusinessUnit" ToRole="BUNotificationEmail" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_BusinessUnit_Country" FromRole="BusinessUnit" ToRole="Country" />
+    <NavigationProperty Name="TimeZone" Relationship="Self.FK_BusinessUnit_TimeZone" FromRole="BusinessUnit" ToRole="TimeZone" />
+    <NavigationProperty Name="BuSuppliers" Relationship="Self.FK_BuSupplier_BusinessUnit" FromRole="BusinessUnit" ToRole="BuSupplier" />
+    <NavigationProperty Name="Routes" Relationship="Self.FK_Route_BusinessUnit" FromRole="BusinessUnit" ToRole="Route" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_BusinessUnit" FromRole="BusinessUnit" ToRole="Supplier" />
+    <NavigationProperty Name="Tariffs" Relationship="Self.FK_Tariff_BusinessUnit" FromRole="BusinessUnit" ToRole="Tariff" />
+    <NavigationProperty Name="Transports" Relationship="Self.FK_Transport_BusinessUnit" FromRole="BusinessUnit" ToRole="Transport" />
+    <NavigationProperty Name="TransportDrafts" Relationship="Self.FK_TransportDraft_BusinessUnit" FromRole="BusinessUnit" ToRole="TransportDraft" />
+    <NavigationProperty Name="TransportHistories" Relationship="Self.FK_TransportHistory_BusinessUnit" FromRole="BusinessUnit" ToRole="TransportHistory" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_BusinessUnit" FromRole="BusinessUnit" ToRole="User" />
+  </EntityType>
+  <EntityType Name="BuSupplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="HasDiscount" Type="Boolean" />
+    <Property Name="Discountpercentage" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_BuSupplier_BusinessUnit" FromRole="BuSupplier" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_BuSupplier_Supplier" FromRole="BuSupplier" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FlagIcon" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BusinessUnits" Relationship="Self.FK_BusinessUnit_Country" FromRole="Country" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Currency" Relationship="Self.FK_Country_Currency" FromRole="Country" ToRole="Currency" />
+    <NavigationProperty Name="Routes" Relationship="Self.FK_Route_DeliveryCountry" FromRole="Country" ToRole="Route" />
+    <NavigationProperty Name="Routes1" Relationship="Self.FK_Route_PickupCountry" FromRole="Country" ToRole="Route" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_Country" FromRole="Country" ToRole="Supplier" />
+    <NavigationProperty Name="TariffMinimumKmCountries" Relationship="Self.FK_TariffMinimumKmCountry_Country" FromRole="Country" ToRole="TariffMinimumKmCountry" />
+    <NavigationProperty Name="TariffSurchargeCountries" Relationship="Self.FK_TariffSurchargeCountry_Country" FromRole="Country" ToRole="TariffSurchargeCountry" />
+    <NavigationProperty Name="TransportLocations" Relationship="Self.FK_TransportLocation_Country" FromRole="Country" ToRole="TransportLocation" />
+    <NavigationProperty Name="TransportLocations1" Relationship="Self.FK_TransportLocation_Country1" FromRole="Country" ToRole="TransportLocation" />
+    <NavigationProperty Name="TransportLocationDrafts" Relationship="Self.FK_TransportLocationDraft_Country" FromRole="Country" ToRole="TransportLocationDraft" />
+    <NavigationProperty Name="TransportLocationDrafts1" Relationship="Self.FK_TransportLocationDraft_Country1" FromRole="Country" ToRole="TransportLocationDraft" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Symbol" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Countries" Relationship="Self.FK_Country_Currency" FromRole="Currency" ToRole="Country" />
+    <NavigationProperty Name="CurrencyRates" Relationship="Self.FK_CurrencyRate_Currency" FromRole="Currency" ToRole="CurrencyRate" />
+    <NavigationProperty Name="Quotes" Relationship="Self.FK_Quote_Currency" FromRole="Currency" ToRole="Quote" />
+    <NavigationProperty Name="TransportReferences" Relationship="Self.FK_TransportReference_Currency" FromRole="Currency" ToRole="TransportReference" />
+    <NavigationProperty Name="TransportReferenceDrafts" Relationship="Self.FK_TransportReferenceDraft_Currency" FromRole="Currency" ToRole="TransportReferenceDraft" />
+  </EntityType>
+  <EntityType Name="CurrencyRate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Currency" Relationship="Self.FK_CurrencyRate_Currency" FromRole="CurrencyRate" ToRole="Currency" />
+  </EntityType>
+  <EntityType Name="Quote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="QuoteAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+    <Property Name="CurrencyRate" Type="Decimal" Precision="12" Scale="7" Nullable="false" />
+    <Property Name="DeliveryDuration" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsRejected" Type="Boolean" Nullable="false" />
+    <Property Name="RejectedDate" Type="DateTime" Precision="3" />
+    <Property Name="ExpectedPickUpDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Currency" Relationship="Self.FK_Quote_Currency" FromRole="Quote" ToRole="Currency" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Quote_Supplier" FromRole="Quote" ToRole="Supplier" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_Quote_Transport" FromRole="Quote" ToRole="Transport" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Quote_User" FromRole="Quote" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Quote_User1" FromRole="Quote" ToRole="User" />
+    <NavigationProperty Name="QuoteHistories" Relationship="Self.FK_QuoteHistory_Quote" FromRole="Quote" ToRole="QuoteHistory" />
+    <NavigationProperty Name="TransportQuoteDeclineReasons" Relationship="Self.FK_TransportQuoteDeclineReason_Quote" FromRole="Quote" ToRole="TransportQuoteDeclineReason" />
+    <NavigationProperty Name="TransportQuotes" Relationship="Self.FK_TransportQuotes_Quote" FromRole="Quote" ToRole="TransportQuote" />
+  </EntityType>
+  <EntityType Name="QuoteHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuoteId" Type="Int32" Nullable="false" />
+    <Property Name="QuoteAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+    <Property Name="CurrencyRate" Type="Decimal" Precision="12" Scale="7" Nullable="false" />
+    <Property Name="DeliveryDuration" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpectedPickUpDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Quote" Relationship="Self.FK_QuoteHistory_Quote" FromRole="QuoteHistory" ToRole="Quote" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuId" Type="Int32" Nullable="false" />
+    <Property Name="PickupCountryId" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryCountryId" Type="Int32" Nullable="false" />
+    <Property Name="PreferredSupplierId" Type="Int32" Nullable="false" />
+    <Property Name="BackupSupplierId" Type="Int32" Nullable="false" />
+    <Property Name="ExpirationTime" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryTime" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpressDelivery" Type="Int32" />
+    <Property Name="MinimumKm" Type="Int32" Nullable="false" />
+    <Property Name="MaximumKm" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_Route_BusinessUnit" FromRole="Route" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Route_DeliveryCountry" FromRole="Route" ToRole="Country" />
+    <NavigationProperty Name="Country1" Relationship="Self.FK_Route_PickupCountry" FromRole="Route" ToRole="Country" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Route_BackupSupplier" FromRole="Route" ToRole="Supplier" />
+    <NavigationProperty Name="Supplier1" Relationship="Self.FK_Route_PreferredSupplier" FromRole="Route" ToRole="Supplier" />
+    <NavigationProperty Name="RouteSuppliers" Relationship="Self.FK_RouteSupplier_Route" FromRole="Route" ToRole="RouteSupplier" />
+  </EntityType>
+  <EntityType Name="RouteSupplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RouteId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Route" Relationship="Self.FK_RouteSupplier_Route" FromRole="RouteSupplier" ToRole="Route" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_RouteSupplier_Supplier" FromRole="RouteSupplier" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="RunningThread">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuId" Type="Int32" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="TimezoneId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SupplierTypeId" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SupAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="WorkingHourOpen" Type="DateTime" Precision="3" />
+    <Property Name="WorkingHourClose" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_Supplier_BusinessUnit" FromRole="Supplier" ToRole="BusinessUnit" />
+    <NavigationProperty Name="BuSuppliers" Relationship="Self.FK_BuSupplier_Supplier" FromRole="Supplier" ToRole="BuSupplier" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Supplier_Country" FromRole="Supplier" ToRole="Country" />
+    <NavigationProperty Name="Quotes" Relationship="Self.FK_Quote_Supplier" FromRole="Supplier" ToRole="Quote" />
+    <NavigationProperty Name="Routes" Relationship="Self.FK_Route_BackupSupplier" FromRole="Supplier" ToRole="Route" />
+    <NavigationProperty Name="Routes1" Relationship="Self.FK_Route_PreferredSupplier" FromRole="Supplier" ToRole="Route" />
+    <NavigationProperty Name="RouteSuppliers" Relationship="Self.FK_RouteSupplier_Supplier" FromRole="Supplier" ToRole="RouteSupplier" />
+    <NavigationProperty Name="SupplierType" Relationship="Self.FK_Supplier_SupplierType" FromRole="Supplier" ToRole="SupplierType" />
+    <NavigationProperty Name="TimeZone" Relationship="Self.FK_Supplier_TimeZone" FromRole="Supplier" ToRole="TimeZone" />
+    <NavigationProperty Name="SupplierEmails" Relationship="Self.FK_SupplierEmail_Supplier" FromRole="Supplier" ToRole="SupplierEmail" />
+    <NavigationProperty Name="Tariffs" Relationship="Self.FK_Tariff_Supplier" FromRole="Supplier" ToRole="Tariff" />
+    <NavigationProperty Name="Transports" Relationship="Self.FK_Transport_Supplier" FromRole="Supplier" ToRole="Transport" />
+    <NavigationProperty Name="TransportDrafts" Relationship="Self.FK_TransportDraft_Supplier" FromRole="Supplier" ToRole="TransportDraft" />
+    <NavigationProperty Name="TransportHistories" Relationship="Self.FK_TransportHistory_Supplier" FromRole="Supplier" ToRole="TransportHistory" />
+    <NavigationProperty Name="TransportSuppliers" Relationship="Self.FK_TransportSupplier_Supplier" FromRole="Supplier" ToRole="TransportSupplier" />
+    <NavigationProperty Name="Users" Relationship="Self.SupplierUser" FromRole="Supplier" ToRole="User" />
+  </EntityType>
+  <EntityType Name="SupplierEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SupplierEmailTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_SupplierEmail_Supplier" FromRole="SupplierEmail" ToRole="Supplier" />
+    <NavigationProperty Name="SupplierEmailType" Relationship="Self.FK_SupplierEmail_SupplierEmailType" FromRole="SupplierEmail" ToRole="SupplierEmailType" />
+  </EntityType>
+  <EntityType Name="SupplierEmailType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="SupplierEmails" Relationship="Self.FK_SupplierEmail_SupplierEmailType" FromRole="SupplierEmailType" ToRole="SupplierEmail" />
+  </EntityType>
+  <EntityType Name="SupplierType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_SupplierType" FromRole="SupplierType" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tariff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="BuId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="ExpressDeliveryPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Penalty" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_Tariff_BusinessUnit" FromRole="Tariff" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Tariff_Supplier" FromRole="Tariff" ToRole="Supplier" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Tariff_User" FromRole="Tariff" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Tariff_User1" FromRole="Tariff" ToRole="User" />
+    <NavigationProperty Name="TariffCategories" Relationship="Self.FK_TariffCategory_Tariff" FromRole="Tariff" ToRole="TariffCategory" />
+    <NavigationProperty Name="TariffExpressDeliveries" Relationship="Self.FK_TariffExpressDelivery_Tariff" FromRole="Tariff" ToRole="TariffExpressDelivery" />
+    <NavigationProperty Name="TariffMinimumKms" Relationship="Self.FK_TariffMinimumKm_Tariff" FromRole="Tariff" ToRole="TariffMinimumKm" />
+    <NavigationProperty Name="TariffSurcharges" Relationship="Self.FK_TariffSurcharge_Tariff" FromRole="Tariff" ToRole="TariffSurcharge" />
+  </EntityType>
+  <EntityType Name="TariffCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TariffId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="PricePerKm" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="MinimumPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Tariff" Relationship="Self.FK_TariffCategory_Tariff" FromRole="TariffCategory" ToRole="Tariff" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TariffCategory_User" FromRole="TariffCategory" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_TariffCategory_User1" FromRole="TariffCategory" ToRole="User" />
+    <NavigationProperty Name="TariffCategoryVehicleDimensions" Relationship="Self.FK_TariffCategoryVehicleDimension_TariffCategory" FromRole="TariffCategory" ToRole="TariffCategoryVehicleDimension" />
+    <NavigationProperty Name="TariffCategoryVehicleTypes" Relationship="Self.FK_TariffCategoryVehicleType_TariffCategory" FromRole="TariffCategory" ToRole="TariffCategoryVehicleType" />
+  </EntityType>
+  <EntityType Name="TariffCategoryVehicleDimension">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TariffCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleDimensionId" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TariffCategory" Relationship="Self.FK_TariffCategoryVehicleDimension_TariffCategory" FromRole="TariffCategoryVehicleDimension" ToRole="TariffCategory" />
+    <NavigationProperty Name="VehicleDimension" Relationship="Self.FK_TariffCategoryVehicleDimension_VehicleDimension" FromRole="TariffCategoryVehicleDimension" ToRole="VehicleDimension" />
+  </EntityType>
+  <EntityType Name="TariffCategoryVehicleType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TariffCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleTypeId" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TariffCategory" Relationship="Self.FK_TariffCategoryVehicleType_TariffCategory" FromRole="TariffCategoryVehicleType" ToRole="TariffCategory" />
+    <NavigationProperty Name="VehicleType" Relationship="Self.FK_TariffCategoryVehicleType_VehicleType" FromRole="TariffCategoryVehicleType" ToRole="VehicleType" />
+  </EntityType>
+  <EntityType Name="TariffExpressDelivery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TariffId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="PricePerKm5Days" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="PricePerKm7Days" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="PricePerKm10Days" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tariff" Relationship="Self.FK_TariffExpressDelivery_Tariff" FromRole="TariffExpressDelivery" ToRole="Tariff" />
+    <NavigationProperty Name="TariffExpressDeliveryVehicleDimensions" Relationship="Self.FK_TariffExpressDeliveryVehicleDimension_TariffExpressDelivery" FromRole="TariffExpressDelivery" ToRole="TariffExpressDeliveryVehicleDimension" />
+  </EntityType>
+  <EntityType Name="TariffExpressDeliveryVehicleDimension">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TariffExpressDeliveryId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleDimensionId" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TariffExpressDelivery" Relationship="Self.FK_TariffExpressDeliveryVehicleDimension_TariffExpressDelivery" FromRole="TariffExpressDeliveryVehicleDimension" ToRole="TariffExpressDelivery" />
+    <NavigationProperty Name="VehicleDimension" Relationship="Self.FK_TariffExpressDeliveryVehicleDimension_VehicleDimension" FromRole="TariffExpressDeliveryVehicleDimension" ToRole="VehicleDimension" />
+  </EntityType>
+  <EntityType Name="TariffMinimumKm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MinimumKm" Type="Int32" Nullable="false" />
+    <Property Name="TariffId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Tariff" Relationship="Self.FK_TariffMinimumKm_Tariff" FromRole="TariffMinimumKm" ToRole="Tariff" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TariffMinimumKm_User" FromRole="TariffMinimumKm" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_TariffMinimumKm_User1" FromRole="TariffMinimumKm" ToRole="User" />
+    <NavigationProperty Name="TariffMinimumKmCountries" Relationship="Self.FK_TariffMinimumKmCountry_TariffMinimumKm" FromRole="TariffMinimumKm" ToRole="TariffMinimumKmCountry" />
+  </EntityType>
+  <EntityType Name="TariffMinimumKmCountry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TariffMinimumKmId" Type="Int32" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_TariffMinimumKmCountry_Country" FromRole="TariffMinimumKmCountry" ToRole="Country" />
+    <NavigationProperty Name="TariffMinimumKm" Relationship="Self.FK_TariffMinimumKmCountry_TariffMinimumKm" FromRole="TariffMinimumKmCountry" ToRole="TariffMinimumKm" />
+  </EntityType>
+  <EntityType Name="TariffSurcharge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TariffId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surcharge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Tariff" Relationship="Self.FK_TariffSurcharge_Tariff" FromRole="TariffSurcharge" ToRole="Tariff" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TariffSurcharge_User" FromRole="TariffSurcharge" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_TariffSurcharge_User1" FromRole="TariffSurcharge" ToRole="User" />
+    <NavigationProperty Name="TariffSurchargeCountries" Relationship="Self.FK_TariffSurchargeCountry_TariffSurcharge" FromRole="TariffSurcharge" ToRole="TariffSurchargeCountry" />
+  </EntityType>
+  <EntityType Name="TariffSurchargeCountry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TariffSurchargeId" Type="Int32" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_TariffSurchargeCountry_Country" FromRole="TariffSurchargeCountry" ToRole="Country" />
+    <NavigationProperty Name="TariffSurcharge" Relationship="Self.FK_TariffSurchargeCountry_TariffSurcharge" FromRole="TariffSurchargeCountry" ToRole="TariffSurcharge" />
+  </EntityType>
+  <EntityType Name="Temp_Supplier_Confirmation">
+    <Key>
+      <PropertyRef Name="TransportId" />
+    </Key>
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="DelayTime" Type="Int32" Nullable="false" />
+    <Property Name="IsExpired" Type="Boolean" Nullable="false" />
+    <Property Name="HasQuote" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Temp_Transport">
+    <Key>
+      <PropertyRef Name="TransportId" />
+    </Key>
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="DelayTime" Type="Int32" Nullable="false" />
+    <Property Name="IsExpired" Type="Boolean" Nullable="false" />
+    <Property Name="HasQuote" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TimeZone">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TimeZone1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Display" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="TimePriority" Type="Decimal" Precision="5" Scale="2" />
+    <NavigationProperty Name="BusinessUnits" Relationship="Self.FK_BusinessUnit_TimeZone" FromRole="TimeZone" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_TimeZone" FromRole="TimeZone" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="Transport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuId" Type="Int32" Nullable="false" />
+    <Property Name="FileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerFirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerLastName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsBidding" Type="Boolean" Nullable="false" />
+    <Property Name="ExpirationTime" Type="Int32" Nullable="false" />
+    <Property Name="IsExpressDelivery" Type="Boolean" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EstimateDateArrival" Type="DateTime" Precision="3" />
+    <Property Name="RealDateArrival" Type="DateTime" Precision="3" />
+    <Property Name="TransportStatusId" Type="Int32" />
+    <Property Name="ConfirmedSupplierId" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="ExpirationHour" Type="Int32" />
+    <Property Name="ExpenditureId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExpressDeliveryTime" Type="Int32" />
+    <Property Name="IsExtendBuddingTime" Type="Boolean" />
+    <Property Name="ExtraTime" Type="Int32" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_Transport_BusinessUnit" FromRole="Transport" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Quotes" Relationship="Self.FK_Quote_Transport" FromRole="Transport" ToRole="Quote" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Transport_Supplier" FromRole="Transport" ToRole="Supplier" />
+    <NavigationProperty Name="TransportStatu" Relationship="Self.FK_Transport_TransportStatus" FromRole="Transport" ToRole="TransportStatus" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Transport_User" FromRole="Transport" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Transport_User1" FromRole="Transport" ToRole="User" />
+    <NavigationProperty Name="TransportAdditionalItem" Relationship="Self.FK_TransportAdditionalItem_Transport" FromRole="Transport" ToRole="TransportAdditionalItem" />
+    <NavigationProperty Name="TransportComments" Relationship="Self.FK_TransportComment_Transport" FromRole="Transport" ToRole="TransportComment" />
+    <NavigationProperty Name="TransportHistories" Relationship="Self.FK_TransportHistory_Transport" FromRole="Transport" ToRole="TransportHistory" />
+    <NavigationProperty Name="TransportLocation" Relationship="Self.FK_TransportLocation_Transport" FromRole="Transport" ToRole="TransportLocation" />
+    <NavigationProperty Name="TransportQuoteDeclineReasons" Relationship="Self.FK_TransportQuoteDeclineReason_Transport" FromRole="Transport" ToRole="TransportQuoteDeclineReason" />
+    <NavigationProperty Name="TransportQuotes" Relationship="Self.FK_TransportQuotes_Transport" FromRole="Transport" ToRole="TransportQuote" />
+    <NavigationProperty Name="TransportReference" Relationship="Self.FK_TransportReference_Transport" FromRole="Transport" ToRole="TransportReference" />
+    <NavigationProperty Name="TransportSuppliers" Relationship="Self.FK_TransportSupplier_Transport" FromRole="Transport" ToRole="TransportSupplier" />
+    <NavigationProperty Name="TransportVehicle" Relationship="Self.FK_TransportVehicle_Transport" FromRole="Transport" ToRole="TransportVehicle" />
+  </EntityType>
+  <EntityType Name="TransportAdditionalItem">
+    <Key>
+      <PropertyRef Name="TransportId" />
+    </Key>
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="HasRoofBox" Type="Boolean" Nullable="false" />
+    <Property Name="RoofBoxWidth" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="RoofBoxLength" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="RoofBoxHeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="RoofBoxWeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="RoofBoxKeyLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RoofBoxDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HasTrailer" Type="Boolean" Nullable="false" />
+    <Property Name="TrailerWidth" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="TrailerLength" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="TrailerHeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="TrailerWeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="TrailerDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HasBikeRack" Type="Boolean" Nullable="false" />
+    <Property Name="BikeRackWidth" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="BikeRackLength" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="BikeRackHeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="BikeRackWeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="BikeRackDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportAdditionalItem_Transport" FromRole="TransportAdditionalItem" ToRole="Transport" />
+  </EntityType>
+  <EntityType Name="TransportAdditionalItemDraft">
+    <Key>
+      <PropertyRef Name="TransportDraftId" />
+    </Key>
+    <Property Name="TransportDraftId" Type="Int32" Nullable="false" />
+    <Property Name="HasRoofBox" Type="Boolean" />
+    <Property Name="RoofBoxWidth" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="RoofBoxLength" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="RoofBoxHeight" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="RoofBoxWeight" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="RoofBoxKeyLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RoofBoxDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HasTrailer" Type="Boolean" />
+    <Property Name="TrailerWidth" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="TrailerLength" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="TrailerHeight" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="TrailerWeight" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="TrailerDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HasBikeRack" Type="Boolean" />
+    <Property Name="BikeRackWidth" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="BikeRackLength" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="BikeRackHeight" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="BikeRackWeight" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="BikeRackDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TransportDraft" Relationship="Self.FK_TransportAdditionalItemDraft_TransportDraft" FromRole="TransportAdditionalItemDraft" ToRole="TransportDraft" />
+  </EntityType>
+  <EntityType Name="TransportAssignedToSupplierCount">
+    <Key>
+      <PropertyRef Name="BuId" />
+      <PropertyRef Name="PickupCountryId" />
+      <PropertyRef Name="DeliveryCountryId" />
+      <PropertyRef Name="SupplierId" />
+    </Key>
+    <Property Name="BuId" Type="Int32" Nullable="false" />
+    <Property Name="PickupCountryId" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryCountryId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransportComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CommentBy" Type="Int32" />
+    <Property Name="CommentDate" Type="DateTime" Precision="3" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportComment_Transport" FromRole="TransportComment" ToRole="Transport" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TransportComment_User" FromRole="TransportComment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="TransportCount">
+    <Key>
+      <PropertyRef Name="BuId" />
+      <PropertyRef Name="PickupCountryId" />
+      <PropertyRef Name="DeliveryCountryId" />
+    </Key>
+    <Property Name="BuId" Type="Int32" Nullable="false" />
+    <Property Name="PickupCountryId" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryCountryId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransportDraft">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuId" Type="Int32" />
+    <Property Name="FileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerFirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerLastName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsBidding" Type="Boolean" />
+    <Property Name="ExpirationTime" Type="Int32" />
+    <Property Name="IsExpressDelivery" Type="Boolean" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EstimateDateArrival" Type="DateTime" Precision="3" />
+    <Property Name="RealDateArrival" Type="DateTime" Precision="3" />
+    <Property Name="TransportStatusId" Type="Int32" />
+    <Property Name="ConfirmedSupplierId" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="ExpirationHour" Type="Int32" />
+    <Property Name="ExpenditureId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_TransportDraft_BusinessUnit" FromRole="TransportDraft" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_TransportDraft_Supplier" FromRole="TransportDraft" ToRole="Supplier" />
+    <NavigationProperty Name="TransportAdditionalItemDraft" Relationship="Self.FK_TransportAdditionalItemDraft_TransportDraft" FromRole="TransportDraft" ToRole="TransportAdditionalItemDraft" />
+    <NavigationProperty Name="TransportStatu" Relationship="Self.FK_TransportDraft_TransportStatus" FromRole="TransportDraft" ToRole="TransportStatus" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TransportDraft_User" FromRole="TransportDraft" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_TransportDraft_User1" FromRole="TransportDraft" ToRole="User" />
+    <NavigationProperty Name="TransportLocationDraft" Relationship="Self.FK_TransportLocationDraft_TransportDraft" FromRole="TransportDraft" ToRole="TransportLocationDraft" />
+    <NavigationProperty Name="TransportReferenceDraft" Relationship="Self.FK_TransportReferenceDraft_TransportDraft" FromRole="TransportDraft" ToRole="TransportReferenceDraft" />
+    <NavigationProperty Name="TransportVehicleDraft" Relationship="Self.FK_TransportVehicleDraft_TransportDraft" FromRole="TransportDraft" ToRole="TransportVehicleDraft" />
+  </EntityType>
+  <EntityType Name="TransportFollowup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransportId" Type="Int32" />
+    <Property Name="FollowupStateId" Type="Int32" />
+    <Property Name="AlertDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TransportFollowupState">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TransportHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="BuId" Type="Int32" Nullable="false" />
+    <Property Name="FileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerFirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerLastName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsBidding" Type="Boolean" Nullable="false" />
+    <Property Name="ExpirationTime" Type="Int32" Nullable="false" />
+    <Property Name="IsExpressDelivery" Type="Boolean" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EstimateDateArrival" Type="DateTime" Precision="0" />
+    <Property Name="RealDateArrival" Type="DateTime" Precision="0" />
+    <Property Name="TransportStatusId" Type="Int32" />
+    <Property Name="ConfirmedSupplierId" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="Int32" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_TransportHistory_BusinessUnit" FromRole="TransportHistory" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_TransportHistory_Supplier" FromRole="TransportHistory" ToRole="Supplier" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportHistory_Transport" FromRole="TransportHistory" ToRole="Transport" />
+    <NavigationProperty Name="TransportStatu" Relationship="Self.FK_TransportHistory_TransportStatus" FromRole="TransportHistory" ToRole="TransportStatus" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TransportHistory_User" FromRole="TransportHistory" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_TransportHistory_User1" FromRole="TransportHistory" ToRole="User" />
+  </EntityType>
+  <EntityType Name="TransportLocation">
+    <Key>
+      <PropertyRef Name="TransportId" />
+    </Key>
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="PickupGarageName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PickupAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PickupZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PickupCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PickupCountryId" Type="Int32" Nullable="false" />
+    <Property Name="PickupLatitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="PickupLongitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="PickupPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PickupOpeningHourWeekday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PickupOpeningHourSat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PickupStorageCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PickupStorageStartDate" Type="DateTime" Precision="0" />
+    <Property Name="PickupTowingCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PickupRepairCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PickupOtherCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DeliveryGarageName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeliveryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeliveryZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeliveryCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeliveryCountryId" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryLatitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="DeliveryLongitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="DeliveryPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeliveryOpeningHourWeekday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Distance" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="PickupOpeningHourSun" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryOpeningHourSat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeliveryOpeningHourSun" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDifferentOrigin" Type="Boolean" Nullable="false" />
+    <Property Name="OriginCity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OriginCountry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OriginSupplierName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TcoDistance" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="PaymentType" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="WayPoints" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialInformation" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_TransportLocation_Country" FromRole="TransportLocation" ToRole="Country" />
+    <NavigationProperty Name="Country1" Relationship="Self.FK_TransportLocation_Country1" FromRole="TransportLocation" ToRole="Country" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportLocation_Transport" FromRole="TransportLocation" ToRole="Transport" />
+  </EntityType>
+  <EntityType Name="TransportLocationDraft">
+    <Key>
+      <PropertyRef Name="TransportDraftId" />
+    </Key>
+    <Property Name="TransportDraftId" Type="Int32" Nullable="false" />
+    <Property Name="PickupGarageName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="PickupAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PickupZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupCountryId" Type="Int32" />
+    <Property Name="PickupLatitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="PickupLongitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="PickupPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupOpeningHourWeekday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupOpeningHourSat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupStorageCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PickupStorageStartDate" Type="DateTime" Precision="0" />
+    <Property Name="PickupTowingCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PickupRepairCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="PickupOtherCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DeliveryGarageName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryCountryId" Type="Int32" />
+    <Property Name="DeliveryLatitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="DeliveryLongitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="DeliveryPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryOpeningHourWeekday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Distance" Type="Decimal" Precision="7" Scale="2" />
+    <Property Name="PickupOpeningHourSun" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryOpeningHourSat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryOpeningHourSun" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PickupState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDifferentOrigin" Type="Boolean" />
+    <Property Name="OriginCity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OriginCountry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OriginSupplierName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TcoDistance" Type="Decimal" Precision="7" Scale="2" />
+    <Property Name="PaymentType" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_TransportLocationDraft_Country" FromRole="TransportLocationDraft" ToRole="Country" />
+    <NavigationProperty Name="Country1" Relationship="Self.FK_TransportLocationDraft_Country1" FromRole="TransportLocationDraft" ToRole="Country" />
+    <NavigationProperty Name="TransportDraft" Relationship="Self.FK_TransportLocationDraft_TransportDraft" FromRole="TransportLocationDraft" ToRole="TransportDraft" />
+  </EntityType>
+  <EntityType Name="TransportQuote">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="QuoteId" Type="Int32" Nullable="false" />
+    <Property Name="TransportQuoteStatusId" Type="Int32" Nullable="false" />
+    <Property Name="SelectedBy" Type="Int32" />
+    <Property Name="SelectedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RejectedBy" Type="Int32" />
+    <Property Name="RejectedDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmedBy" Type="Int32" />
+    <Property Name="ConfirmedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsRegular" Type="Boolean" Nullable="false" />
+    <Property Name="DeclinedReason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeclinedComment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Quote" Relationship="Self.FK_TransportQuotes_Quote" FromRole="TransportQuote" ToRole="Quote" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportQuotes_Transport" FromRole="TransportQuote" ToRole="Transport" />
+    <NavigationProperty Name="TransportQuoteStatu" Relationship="Self.FK_TransportQuotes_TransportQuoteStatus" FromRole="TransportQuote" ToRole="TransportQuoteStatus" />
+  </EntityType>
+  <EntityType Name="TransportQuoteDeclineReason">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="QuoteId" Type="Int32" Nullable="false" />
+    <Property Name="TransportQuoteDeclineTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Quote" Relationship="Self.FK_TransportQuoteDeclineReason_Quote" FromRole="TransportQuoteDeclineReason" ToRole="Quote" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportQuoteDeclineReason_Transport" FromRole="TransportQuoteDeclineReason" ToRole="Transport" />
+    <NavigationProperty Name="TransportQuoteDeclineType" Relationship="Self.FK_TransportQuoteDeclineReason_TransportQuoteDeclineType" FromRole="TransportQuoteDeclineReason" ToRole="TransportQuoteDeclineType" />
+  </EntityType>
+  <EntityType Name="TransportQuoteDeclineType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TransportQuoteDeclineReasons" Relationship="Self.FK_TransportQuoteDeclineReason_TransportQuoteDeclineType" FromRole="TransportQuoteDeclineType" ToRole="TransportQuoteDeclineReason" />
+  </EntityType>
+  <EntityType Name="TransportQuoteStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TransportQuotes" Relationship="Self.FK_TransportQuotes_TransportQuoteStatus" FromRole="TransportQuoteStatus" ToRole="TransportQuote" />
+  </EntityType>
+  <EntityType Name="TransportReference">
+    <Key>
+      <PropertyRef Name="TransportId" />
+    </Key>
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="RefCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="RefDeliveryTime" Type="Int32" Nullable="false" />
+    <Property Name="RefCostPerDay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="RefMaxCostPerDay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="RefTco" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="RefCurrencyRate" Type="Decimal" Precision="12" Scale="7" Nullable="false" />
+    <Property Name="RefCurrencyId" Type="Int32" Nullable="false" />
+    <Property Name="RefHandicap" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="RefExpressDeliveryPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RefPenalty" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Currency" Relationship="Self.FK_TransportReference_Currency" FromRole="TransportReference" ToRole="Currency" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportReference_Transport" FromRole="TransportReference" ToRole="Transport" />
+  </EntityType>
+  <EntityType Name="TransportReferenceDraft">
+    <Key>
+      <PropertyRef Name="TransportDraftId" />
+    </Key>
+    <Property Name="TransportDraftId" Type="Int32" Nullable="false" />
+    <Property Name="RefCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RefDeliveryTime" Type="Int32" />
+    <Property Name="RefCostPerDay" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RefMaxCostPerDay" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RefTco" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RefCurrencyRate" Type="Decimal" Precision="12" Scale="7" />
+    <Property Name="RefCurrencyId" Type="Int32" />
+    <Property Name="RefHandicap" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="RefExpressDeliveryPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RefPenalty" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Currency" Relationship="Self.FK_TransportReferenceDraft_Currency" FromRole="TransportReferenceDraft" ToRole="Currency" />
+    <NavigationProperty Name="TransportDraft" Relationship="Self.FK_TransportReferenceDraft_TransportDraft" FromRole="TransportReferenceDraft" ToRole="TransportDraft" />
+  </EntityType>
+  <EntityType Name="TransportStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Transports" Relationship="Self.FK_Transport_TransportStatus" FromRole="TransportStatus" ToRole="Transport" />
+    <NavigationProperty Name="TransportDrafts" Relationship="Self.FK_TransportDraft_TransportStatus" FromRole="TransportStatus" ToRole="TransportDraft" />
+    <NavigationProperty Name="TransportHistories" Relationship="Self.FK_TransportHistory_TransportStatus" FromRole="TransportStatus" ToRole="TransportHistory" />
+  </EntityType>
+  <EntityType Name="TransportSupplier">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsAuto" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_TransportSupplier_Supplier" FromRole="TransportSupplier" ToRole="Supplier" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportSupplier_Transport" FromRole="TransportSupplier" ToRole="Transport" />
+  </EntityType>
+  <EntityType Name="TransportVehicle">
+    <Key>
+      <PropertyRef Name="TransportId" />
+    </Key>
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleLicensePlate" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleBrandId" Type="Int32" />
+    <Property Name="VehicleBrand" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleModelId" Type="Int32" />
+    <Property Name="VehicleModel" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleTypeId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleWidth" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="VehicleLength" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="VehicleHeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="VehicleWeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="VehicleKeyLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleDocumentLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleTransmission" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleConditionId" Type="Int32" Nullable="false" />
+    <Property Name="IsRollable" Type="Boolean" Nullable="false" />
+    <Property Name="HasLuggage" Type="Boolean" Nullable="false" />
+    <Property Name="LuggageDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PoliceReportLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OtherDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleDimensionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Transport" Relationship="Self.FK_TransportVehicle_Transport" FromRole="TransportVehicle" ToRole="Transport" />
+    <NavigationProperty Name="VehicleCondition" Relationship="Self.FK_TransportVehicle_VehicleCondition" FromRole="TransportVehicle" ToRole="VehicleCondition" />
+    <NavigationProperty Name="VehicleDimension" Relationship="Self.FK_TransportVehicle_VehicleDimension" FromRole="TransportVehicle" ToRole="VehicleDimension" />
+    <NavigationProperty Name="VehicleMake" Relationship="Self.FK_TransportVehicle_VehicleMake" FromRole="TransportVehicle" ToRole="VehicleMake" />
+    <NavigationProperty Name="VehicleModel1" Relationship="Self.FK_TransportVehicle_VehicleModel" FromRole="TransportVehicle" ToRole="VehicleModel" />
+    <NavigationProperty Name="VehicleType" Relationship="Self.FK_TransportVehicle_VehicleType" FromRole="TransportVehicle" ToRole="VehicleType" />
+  </EntityType>
+  <EntityType Name="TransportVehicleDraft">
+    <Key>
+      <PropertyRef Name="TransportDraftId" />
+    </Key>
+    <Property Name="TransportDraftId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleLicensePlate" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleBrandId" Type="Int32" />
+    <Property Name="VehicleBrand" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleModelId" Type="Int32" />
+    <Property Name="VehicleModel" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleTypeId" Type="Int32" />
+    <Property Name="VehicleWidth" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="VehicleLength" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="VehicleHeight" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="VehicleWeight" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="VehicleKeyLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleDocumentLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleTransmission" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleConditionId" Type="Int32" />
+    <Property Name="IsRollable" Type="Boolean" />
+    <Property Name="HasLuggage" Type="Boolean" />
+    <Property Name="LuggageDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PoliceReportLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OtherDocument" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleDimensionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TransportDraft" Relationship="Self.FK_TransportVehicleDraft_TransportDraft" FromRole="TransportVehicleDraft" ToRole="TransportDraft" />
+    <NavigationProperty Name="VehicleCondition" Relationship="Self.FK_TransportVehicleDraft_VehicleCondition" FromRole="TransportVehicleDraft" ToRole="VehicleCondition" />
+    <NavigationProperty Name="VehicleDimension" Relationship="Self.FK_TransportVehicleDraft_VehicleDimension" FromRole="TransportVehicleDraft" ToRole="VehicleDimension" />
+    <NavigationProperty Name="VehicleMake" Relationship="Self.FK_TransportVehicleDraft_VehicleMake" FromRole="TransportVehicleDraft" ToRole="VehicleMake" />
+    <NavigationProperty Name="VehicleModel1" Relationship="Self.FK_TransportVehicleDraft_VehicleModel" FromRole="TransportVehicleDraft" ToRole="VehicleModel" />
+    <NavigationProperty Name="VehicleType" Relationship="Self.FK_TransportVehicleDraft_VehicleType" FromRole="TransportVehicleDraft" ToRole="VehicleType" />
+  </EntityType>
+  <EntityType Name="UnityVehicleMapping">
+    <Key>
+      <PropertyRef Name="UnityEventId" />
+      <PropertyRef Name="BuCode" />
+    </Key>
+    <Property Name="UnityEventId" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BuCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ConditionId" Type="Int32" Nullable="false" />
+    <Property Name="TypeFile" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="VehicleCondition" Relationship="Self.FK_UnityVehicleMapping_VehicleCondition" FromRole="UnityVehicleMapping" ToRole="VehicleCondition" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuId" Type="Int32" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsFirstLogin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK_User_BusinessUnit" FromRole="User" ToRole="BusinessUnit" />
+    <NavigationProperty Name="Quotes" Relationship="Self.FK_Quote_User" FromRole="User" ToRole="Quote" />
+    <NavigationProperty Name="Quotes1" Relationship="Self.FK_Quote_User1" FromRole="User" ToRole="Quote" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Tariffs" Relationship="Self.FK_Tariff_User" FromRole="User" ToRole="Tariff" />
+    <NavigationProperty Name="Tariffs1" Relationship="Self.FK_Tariff_User1" FromRole="User" ToRole="Tariff" />
+    <NavigationProperty Name="TariffCategories" Relationship="Self.FK_TariffCategory_User" FromRole="User" ToRole="TariffCategory" />
+    <NavigationProperty Name="TariffCategories1" Relationship="Self.FK_TariffCategory_User1" FromRole="User" ToRole="TariffCategory" />
+    <NavigationProperty Name="TariffMinimumKms" Relationship="Self.FK_TariffMinimumKm_User" FromRole="User" ToRole="TariffMinimumKm" />
+    <NavigationProperty Name="TariffMinimumKms1" Relationship="Self.FK_TariffMinimumKm_User1" FromRole="User" ToRole="TariffMinimumKm" />
+    <NavigationProperty Name="TariffSurcharges" Relationship="Self.FK_TariffSurcharge_User" FromRole="User" ToRole="TariffSurcharge" />
+    <NavigationProperty Name="TariffSurcharges1" Relationship="Self.FK_TariffSurcharge_User1" FromRole="User" ToRole="TariffSurcharge" />
+    <NavigationProperty Name="Transports" Relationship="Self.FK_Transport_User" FromRole="User" ToRole="Transport" />
+    <NavigationProperty Name="Transports1" Relationship="Self.FK_Transport_User1" FromRole="User" ToRole="Transport" />
+    <NavigationProperty Name="TransportComments" Relationship="Self.FK_TransportComment_User" FromRole="User" ToRole="TransportComment" />
+    <NavigationProperty Name="TransportDrafts" Relationship="Self.FK_TransportDraft_User" FromRole="User" ToRole="TransportDraft" />
+    <NavigationProperty Name="TransportDrafts1" Relationship="Self.FK_TransportDraft_User1" FromRole="User" ToRole="TransportDraft" />
+    <NavigationProperty Name="TransportHistories" Relationship="Self.FK_TransportHistory_User" FromRole="User" ToRole="TransportHistory" />
+    <NavigationProperty Name="TransportHistories1" Relationship="Self.FK_TransportHistory_User1" FromRole="User" ToRole="TransportHistory" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.SupplierUser" FromRole="User" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="VehicleCondition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TransportVehicles" Relationship="Self.FK_TransportVehicle_VehicleCondition" FromRole="VehicleCondition" ToRole="TransportVehicle" />
+    <NavigationProperty Name="TransportVehicleDrafts" Relationship="Self.FK_TransportVehicleDraft_VehicleCondition" FromRole="VehicleCondition" ToRole="TransportVehicleDraft" />
+    <NavigationProperty Name="UnityVehicleMappings" Relationship="Self.FK_UnityVehicleMapping_VehicleCondition" FromRole="VehicleCondition" ToRole="UnityVehicleMapping" />
+  </EntityType>
+  <EntityType Name="VehicleDimension">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderNumber" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="TariffCategoryVehicleDimensions" Relationship="Self.FK_TariffCategoryVehicleDimension_VehicleDimension" FromRole="VehicleDimension" ToRole="TariffCategoryVehicleDimension" />
+    <NavigationProperty Name="TariffExpressDeliveryVehicleDimensions" Relationship="Self.FK_TariffExpressDeliveryVehicleDimension_VehicleDimension" FromRole="VehicleDimension" ToRole="TariffExpressDeliveryVehicleDimension" />
+    <NavigationProperty Name="TransportVehicles" Relationship="Self.FK_TransportVehicle_VehicleDimension" FromRole="VehicleDimension" ToRole="TransportVehicle" />
+    <NavigationProperty Name="TransportVehicleDrafts" Relationship="Self.FK_TransportVehicleDraft_VehicleDimension" FromRole="VehicleDimension" ToRole="TransportVehicleDraft" />
+  </EntityType>
+  <EntityType Name="VehicleMake">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TransportVehicles" Relationship="Self.FK_TransportVehicle_VehicleMake" FromRole="VehicleMake" ToRole="TransportVehicle" />
+    <NavigationProperty Name="TransportVehicleDrafts" Relationship="Self.FK_TransportVehicleDraft_VehicleMake" FromRole="VehicleMake" ToRole="TransportVehicleDraft" />
+    <NavigationProperty Name="VehicleModels" Relationship="Self.FK_VehicleModel_VehicleMake" FromRole="VehicleMake" ToRole="VehicleModel" />
+  </EntityType>
+  <EntityType Name="VehicleModel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleMakeId" Type="Int32" Nullable="false" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TransportVehicles" Relationship="Self.FK_TransportVehicle_VehicleModel" FromRole="VehicleModel" ToRole="TransportVehicle" />
+    <NavigationProperty Name="TransportVehicleDrafts" Relationship="Self.FK_TransportVehicleDraft_VehicleModel" FromRole="VehicleModel" ToRole="TransportVehicleDraft" />
+    <NavigationProperty Name="VehicleMake" Relationship="Self.FK_VehicleModel_VehicleMake" FromRole="VehicleModel" ToRole="VehicleMake" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderNumber" Type="Int32" />
+    <NavigationProperty Name="TariffCategoryVehicleTypes" Relationship="Self.FK_TariffCategoryVehicleType_VehicleType" FromRole="VehicleType" ToRole="TariffCategoryVehicleType" />
+    <NavigationProperty Name="TransportVehicles" Relationship="Self.FK_TransportVehicle_VehicleType" FromRole="VehicleType" ToRole="TransportVehicle" />
+    <NavigationProperty Name="TransportVehicleDrafts" Relationship="Self.FK_TransportVehicleDraft_VehicleType" FromRole="VehicleType" ToRole="TransportVehicleDraft" />
+  </EntityType>
+  <EntityType Name="SupplierNotification">
+    <Key>
+      <PropertyRef Name="TransportId" />
+      <PropertyRef Name="IsSend" />
+      <PropertyRef Name="IsBidding" />
+      <PropertyRef Name="IsExpired" />
+      <PropertyRef Name="IsHasQuote" />
+      <PropertyRef Name="InsertedDate" />
+    </Key>
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="BUId" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="BUEmailId" Type="Int32" />
+    <Property Name="BUEmail" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierEmailId" Type="Int32" />
+    <Property Name="SupplierEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="IsSend" Type="Boolean" Nullable="false" />
+    <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="IsBidding" Type="Boolean" Nullable="false" />
+    <Property Name="TransportStatusId" Type="Int32" />
+    <Property Name="IsExpired" Type="Boolean" Nullable="false" />
+    <Property Name="IsHasQuote" Type="Int32" Nullable="false" />
+    <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TransportNotification">
+    <Key>
+      <PropertyRef Name="TransportId" />
+      <PropertyRef Name="IsSend" />
+      <PropertyRef Name="IsBidding" />
+      <PropertyRef Name="IsExpired" />
+      <PropertyRef Name="IsHasQuote" />
+      <PropertyRef Name="InsertedDate" />
+    </Key>
+    <Property Name="TransportId" Type="Int32" Nullable="false" />
+    <Property Name="BUId" Type="Int32" />
+    <Property Name="SupplierId" Type="Int32" />
+    <Property Name="BUEmailId" Type="Int32" />
+    <Property Name="BUEmail" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierEmailId" Type="Int32" />
+    <Property Name="SupplierEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="IsSend" Type="Boolean" Nullable="false" />
+    <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="IsBidding" Type="Boolean" Nullable="false" />
+    <Property Name="TransportStatusId" Type="Int32" />
+    <Property Name="IsExpired" Type="Boolean" Nullable="false" />
+    <Property Name="IsHasQuote" Type="Int32" Nullable="false" />
+    <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_BUNotificationEmail_BuEmailType">
+    <End Role="BuEmailType" Type="Self.BuEmailType" Multiplicity="1" />
+    <End Role="BUNotificationEmail" Type="Self.BUNotificationEmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BuEmailType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BUNotificationEmail">
+        <PropertyRef Name="BuEmailTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BUNotificationEmail_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="BUNotificationEmail" Type="Self.BUNotificationEmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BUNotificationEmail">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessUnit_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessUnit">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessUnit_TimeZone">
+    <End Role="TimeZone" Type="Self.TimeZone" Multiplicity="0..1" />
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeZone">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessUnit">
+        <PropertyRef Name="TimezoneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BuSupplier_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="BuSupplier" Type="Self.BuSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BuSupplier">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Route_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="0..1" />
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Supplier">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tariff_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="Tariff" Type="Self.Tariff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tariff">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transport_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transport">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportDraft_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="0..1" />
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportDraft">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportHistory_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="TransportHistory" Type="Self.TransportHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportHistory">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_BusinessUnit">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="BuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BuSupplier_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="BuSupplier" Type="Self.BuSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BuSupplier">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Country_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="Country" Type="Self.Country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Country">
+        <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Route_DeliveryCountry">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="DeliveryCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Route_PickupCountry">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="PickupCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Supplier">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffMinimumKmCountry_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="TariffMinimumKmCountry" Type="Self.TariffMinimumKmCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffMinimumKmCountry">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffSurchargeCountry_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="TariffSurchargeCountry" Type="Self.TariffSurchargeCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffSurchargeCountry">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportLocation_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="TransportLocation" Type="Self.TransportLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportLocation">
+        <PropertyRef Name="DeliveryCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportLocation_Country1">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="TransportLocation" Type="Self.TransportLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportLocation">
+        <PropertyRef Name="PickupCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportLocationDraft_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="TransportLocationDraft" Type="Self.TransportLocationDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportLocationDraft">
+        <PropertyRef Name="DeliveryCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportLocationDraft_Country1">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="TransportLocationDraft" Type="Self.TransportLocationDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportLocationDraft">
+        <PropertyRef Name="PickupCountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CurrencyRate_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="CurrencyRate" Type="Self.CurrencyRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CurrencyRate">
+        <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quote_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportReference_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="TransportReference" Type="Self.TransportReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportReference">
+        <PropertyRef Name="RefCurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportReferenceDraft_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+    <End Role="TransportReferenceDraft" Type="Self.TransportReferenceDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportReferenceDraft">
+        <PropertyRef Name="RefCurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quote_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quote_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quote_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quote_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quote">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuoteHistory_Quote">
+    <End Role="Quote" Type="Self.Quote" Multiplicity="1" />
+    <End Role="QuoteHistory" Type="Self.QuoteHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quote">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuoteHistory">
+        <PropertyRef Name="QuoteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportQuoteDeclineReason_Quote">
+    <End Role="Quote" Type="Self.Quote" Multiplicity="1" />
+    <End Role="TransportQuoteDeclineReason" Type="Self.TransportQuoteDeclineReason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quote">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportQuoteDeclineReason">
+        <PropertyRef Name="QuoteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportQuotes_Quote">
+    <End Role="Quote" Type="Self.Quote" Multiplicity="1" />
+    <End Role="TransportQuote" Type="Self.TransportQuote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quote">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportQuote">
+        <PropertyRef Name="QuoteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Route_BackupSupplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="BackupSupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Route_PreferredSupplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="PreferredSupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RouteSupplier_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="1" />
+    <End Role="RouteSupplier" Type="Self.RouteSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RouteSupplier">
+        <PropertyRef Name="RouteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RouteSupplier_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="RouteSupplier" Type="Self.RouteSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RouteSupplier">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_SupplierType">
+    <End Role="SupplierType" Type="Self.SupplierType" Multiplicity="1" />
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupplierType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Supplier">
+        <PropertyRef Name="SupplierTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_TimeZone">
+    <End Role="TimeZone" Type="Self.TimeZone" Multiplicity="1" />
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeZone">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Supplier">
+        <PropertyRef Name="TimezoneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierEmail_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="SupplierEmail" Type="Self.SupplierEmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SupplierEmail">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tariff_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Tariff" Type="Self.Tariff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tariff">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transport_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transport">
+        <PropertyRef Name="ConfirmedSupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportDraft_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportDraft">
+        <PropertyRef Name="ConfirmedSupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportHistory_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+    <End Role="TransportHistory" Type="Self.TransportHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportHistory">
+        <PropertyRef Name="ConfirmedSupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportSupplier_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="TransportSupplier" Type="Self.TransportSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportSupplier">
+        <PropertyRef Name="SupplierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SupplierEmail_SupplierEmailType">
+    <End Role="SupplierEmailType" Type="Self.SupplierEmailType" Multiplicity="1" />
+    <End Role="SupplierEmail" Type="Self.SupplierEmail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SupplierEmailType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SupplierEmail">
+        <PropertyRef Name="SupplierEmailTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tariff_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Tariff" Type="Self.Tariff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tariff">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tariff_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Tariff" Type="Self.Tariff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tariff">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffCategory_Tariff">
+    <End Role="Tariff" Type="Self.Tariff" Multiplicity="1" />
+    <End Role="TariffCategory" Type="Self.TariffCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tariff">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffCategory">
+        <PropertyRef Name="TariffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffExpressDelivery_Tariff">
+    <End Role="Tariff" Type="Self.Tariff" Multiplicity="1" />
+    <End Role="TariffExpressDelivery" Type="Self.TariffExpressDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tariff">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffExpressDelivery">
+        <PropertyRef Name="TariffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffMinimumKm_Tariff">
+    <End Role="Tariff" Type="Self.Tariff" Multiplicity="1" />
+    <End Role="TariffMinimumKm" Type="Self.TariffMinimumKm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tariff">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffMinimumKm">
+        <PropertyRef Name="TariffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffSurcharge_Tariff">
+    <End Role="Tariff" Type="Self.Tariff" Multiplicity="1" />
+    <End Role="TariffSurcharge" Type="Self.TariffSurcharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tariff">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffSurcharge">
+        <PropertyRef Name="TariffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffCategory_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TariffCategory" Type="Self.TariffCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffCategory">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffCategory_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TariffCategory" Type="Self.TariffCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffCategory">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffCategoryVehicleDimension_TariffCategory">
+    <End Role="TariffCategory" Type="Self.TariffCategory" Multiplicity="1" />
+    <End Role="TariffCategoryVehicleDimension" Type="Self.TariffCategoryVehicleDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TariffCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffCategoryVehicleDimension">
+        <PropertyRef Name="TariffCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffCategoryVehicleType_TariffCategory">
+    <End Role="TariffCategory" Type="Self.TariffCategory" Multiplicity="1" />
+    <End Role="TariffCategoryVehicleType" Type="Self.TariffCategoryVehicleType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TariffCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffCategoryVehicleType">
+        <PropertyRef Name="TariffCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffCategoryVehicleDimension_VehicleDimension">
+    <End Role="VehicleDimension" Type="Self.VehicleDimension" Multiplicity="1" />
+    <End Role="TariffCategoryVehicleDimension" Type="Self.TariffCategoryVehicleDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDimension">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffCategoryVehicleDimension">
+        <PropertyRef Name="VehicleDimensionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffCategoryVehicleType_VehicleType">
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
+    <End Role="TariffCategoryVehicleType" Type="Self.TariffCategoryVehicleType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffCategoryVehicleType">
+        <PropertyRef Name="VehicleTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffExpressDeliveryVehicleDimension_TariffExpressDelivery">
+    <End Role="TariffExpressDelivery" Type="Self.TariffExpressDelivery" Multiplicity="1" />
+    <End Role="TariffExpressDeliveryVehicleDimension" Type="Self.TariffExpressDeliveryVehicleDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TariffExpressDelivery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffExpressDeliveryVehicleDimension">
+        <PropertyRef Name="TariffExpressDeliveryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffExpressDeliveryVehicleDimension_VehicleDimension">
+    <End Role="VehicleDimension" Type="Self.VehicleDimension" Multiplicity="1" />
+    <End Role="TariffExpressDeliveryVehicleDimension" Type="Self.TariffExpressDeliveryVehicleDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDimension">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffExpressDeliveryVehicleDimension">
+        <PropertyRef Name="VehicleDimensionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffMinimumKm_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TariffMinimumKm" Type="Self.TariffMinimumKm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffMinimumKm">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffMinimumKm_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TariffMinimumKm" Type="Self.TariffMinimumKm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffMinimumKm">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffMinimumKmCountry_TariffMinimumKm">
+    <End Role="TariffMinimumKm" Type="Self.TariffMinimumKm" Multiplicity="1" />
+    <End Role="TariffMinimumKmCountry" Type="Self.TariffMinimumKmCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TariffMinimumKm">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffMinimumKmCountry">
+        <PropertyRef Name="TariffMinimumKmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffSurcharge_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TariffSurcharge" Type="Self.TariffSurcharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffSurcharge">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffSurcharge_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TariffSurcharge" Type="Self.TariffSurcharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffSurcharge">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TariffSurchargeCountry_TariffSurcharge">
+    <End Role="TariffSurcharge" Type="Self.TariffSurcharge" Multiplicity="1" />
+    <End Role="TariffSurchargeCountry" Type="Self.TariffSurchargeCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TariffSurcharge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TariffSurchargeCountry">
+        <PropertyRef Name="TariffSurchargeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transport_TransportStatus">
+    <End Role="TransportStatus" Type="Self.TransportStatu" Multiplicity="0..1" />
+    <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transport">
+        <PropertyRef Name="TransportStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transport_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transport">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transport_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transport">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportAdditionalItem_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportAdditionalItem" Type="Self.TransportAdditionalItem" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportAdditionalItem">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportComment_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportComment" Type="Self.TransportComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportComment">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportHistory_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportHistory" Type="Self.TransportHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportHistory">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportLocation_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportLocation" Type="Self.TransportLocation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportLocation">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportQuoteDeclineReason_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportQuoteDeclineReason" Type="Self.TransportQuoteDeclineReason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportQuoteDeclineReason">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportQuotes_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportQuote" Type="Self.TransportQuote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportQuote">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportReference_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportReference" Type="Self.TransportReference" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportReference">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportSupplier_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportSupplier" Type="Self.TransportSupplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportSupplier">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicle_Transport">
+    <End Role="Transport" Type="Self.Transport" Multiplicity="1" />
+    <End Role="TransportVehicle" Type="Self.TransportVehicle" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Transport">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicle">
+        <PropertyRef Name="TransportId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportAdditionalItemDraft_TransportDraft">
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="1" />
+    <End Role="TransportAdditionalItemDraft" Type="Self.TransportAdditionalItemDraft" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TransportDraft">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportAdditionalItemDraft">
+        <PropertyRef Name="TransportDraftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportComment_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="TransportComment" Type="Self.TransportComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportComment">
+        <PropertyRef Name="CommentBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportDraft_TransportStatus">
+    <End Role="TransportStatus" Type="Self.TransportStatu" Multiplicity="0..1" />
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportDraft">
+        <PropertyRef Name="TransportStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportDraft_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportDraft">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportDraft_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportDraft">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportLocationDraft_TransportDraft">
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="1" />
+    <End Role="TransportLocationDraft" Type="Self.TransportLocationDraft" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TransportDraft">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportLocationDraft">
+        <PropertyRef Name="TransportDraftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportReferenceDraft_TransportDraft">
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="1" />
+    <End Role="TransportReferenceDraft" Type="Self.TransportReferenceDraft" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TransportDraft">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportReferenceDraft">
+        <PropertyRef Name="TransportDraftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicleDraft_TransportDraft">
+    <End Role="TransportDraft" Type="Self.TransportDraft" Multiplicity="1" />
+    <End Role="TransportVehicleDraft" Type="Self.TransportVehicleDraft" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TransportDraft">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicleDraft">
+        <PropertyRef Name="TransportDraftId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportHistory_TransportStatus">
+    <End Role="TransportStatus" Type="Self.TransportStatu" Multiplicity="0..1" />
+    <End Role="TransportHistory" Type="Self.TransportHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportHistory">
+        <PropertyRef Name="TransportStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportHistory_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="TransportHistory" Type="Self.TransportHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportHistory">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportHistory_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="TransportHistory" Type="Self.TransportHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportHistory">
+        <PropertyRef Name="LastUpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportQuotes_TransportQuoteStatus">
+    <End Role="TransportQuoteStatus" Type="Self.TransportQuoteStatu" Multiplicity="1" />
+    <End Role="TransportQuote" Type="Self.TransportQuote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportQuoteStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportQuote">
+        <PropertyRef Name="TransportQuoteStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportQuoteDeclineReason_TransportQuoteDeclineType">
+    <End Role="TransportQuoteDeclineType" Type="Self.TransportQuoteDeclineType" Multiplicity="1" />
+    <End Role="TransportQuoteDeclineReason" Type="Self.TransportQuoteDeclineReason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportQuoteDeclineType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportQuoteDeclineReason">
+        <PropertyRef Name="TransportQuoteDeclineTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicle_VehicleCondition">
+    <End Role="VehicleCondition" Type="Self.VehicleCondition" Multiplicity="1" />
+    <End Role="TransportVehicle" Type="Self.TransportVehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicle">
+        <PropertyRef Name="VehicleConditionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicle_VehicleDimension">
+    <End Role="VehicleDimension" Type="Self.VehicleDimension" Multiplicity="1" />
+    <End Role="TransportVehicle" Type="Self.TransportVehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDimension">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicle">
+        <PropertyRef Name="VehicleDimensionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicle_VehicleMake">
+    <End Role="VehicleMake" Type="Self.VehicleMake" Multiplicity="0..1" />
+    <End Role="TransportVehicle" Type="Self.TransportVehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMake">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicle">
+        <PropertyRef Name="VehicleBrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicle_VehicleModel">
+    <End Role="VehicleModel" Type="Self.VehicleModel" Multiplicity="0..1" />
+    <End Role="TransportVehicle" Type="Self.TransportVehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleModel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicle">
+        <PropertyRef Name="VehicleModelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicle_VehicleType">
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="1" />
+    <End Role="TransportVehicle" Type="Self.TransportVehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicle">
+        <PropertyRef Name="VehicleTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicleDraft_VehicleCondition">
+    <End Role="VehicleCondition" Type="Self.VehicleCondition" Multiplicity="0..1" />
+    <End Role="TransportVehicleDraft" Type="Self.TransportVehicleDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicleDraft">
+        <PropertyRef Name="VehicleConditionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicleDraft_VehicleDimension">
+    <End Role="VehicleDimension" Type="Self.VehicleDimension" Multiplicity="1" />
+    <End Role="TransportVehicleDraft" Type="Self.TransportVehicleDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleDimension">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicleDraft">
+        <PropertyRef Name="VehicleDimensionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicleDraft_VehicleMake">
+    <End Role="VehicleMake" Type="Self.VehicleMake" Multiplicity="0..1" />
+    <End Role="TransportVehicleDraft" Type="Self.TransportVehicleDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMake">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicleDraft">
+        <PropertyRef Name="VehicleBrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicleDraft_VehicleModel">
+    <End Role="VehicleModel" Type="Self.VehicleModel" Multiplicity="0..1" />
+    <End Role="TransportVehicleDraft" Type="Self.TransportVehicleDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleModel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicleDraft">
+        <PropertyRef Name="VehicleModelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportVehicleDraft_VehicleType">
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="0..1" />
+    <End Role="TransportVehicleDraft" Type="Self.TransportVehicleDraft" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportVehicleDraft">
+        <PropertyRef Name="VehicleTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UnityVehicleMapping_VehicleCondition">
+    <End Role="VehicleCondition" Type="Self.VehicleCondition" Multiplicity="1" />
+    <End Role="UnityVehicleMapping" Type="Self.UnityVehicleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UnityVehicleMapping">
+        <PropertyRef Name="ConditionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleModel_VehicleMake">
+    <End Role="VehicleMake" Type="Self.VehicleMake" Multiplicity="1" />
+    <End Role="VehicleModel" Type="Self.VehicleModel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleMake">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VehicleModel">
+        <PropertyRef Name="VehicleMakeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SupplierUser">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="RPContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BuEmailTypes" EntityType="Self.BuEmailType" />
+    <EntitySet Name="BUNotificationEmails" EntityType="Self.BUNotificationEmail" />
+    <EntitySet Name="BusinessUnits" EntityType="Self.BusinessUnit" />
+    <EntitySet Name="BuSuppliers" EntityType="Self.BuSupplier" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Currencies" EntityType="Self.Currency" />
+    <EntitySet Name="CurrencyRates" EntityType="Self.CurrencyRate" />
+    <EntitySet Name="Quotes" EntityType="Self.Quote" />
+    <EntitySet Name="QuoteHistories" EntityType="Self.QuoteHistory" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Routes" EntityType="Self.Route" />
+    <EntitySet Name="RouteSuppliers" EntityType="Self.RouteSupplier" />
+    <EntitySet Name="RunningThreads" EntityType="Self.RunningThread" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="SupplierEmails" EntityType="Self.SupplierEmail" />
+    <EntitySet Name="SupplierEmailTypes" EntityType="Self.SupplierEmailType" />
+    <EntitySet Name="SupplierTypes" EntityType="Self.SupplierType" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tariffs" EntityType="Self.Tariff" />
+    <EntitySet Name="TariffCategories" EntityType="Self.TariffCategory" />
+    <EntitySet Name="TariffCategoryVehicleDimensions" EntityType="Self.TariffCategoryVehicleDimension" />
+    <EntitySet Name="TariffCategoryVehicleTypes" EntityType="Self.TariffCategoryVehicleType" />
+    <EntitySet Name="TariffExpressDeliveries" EntityType="Self.TariffExpressDelivery" />
+    <EntitySet Name="TariffExpressDeliveryVehicleDimensions" EntityType="Self.TariffExpressDeliveryVehicleDimension" />
+    <EntitySet Name="TariffMinimumKms" EntityType="Self.TariffMinimumKm" />
+    <EntitySet Name="TariffMinimumKmCountries" EntityType="Self.TariffMinimumKmCountry" />
+    <EntitySet Name="TariffSurcharges" EntityType="Self.TariffSurcharge" />
+    <EntitySet Name="TariffSurchargeCountries" EntityType="Self.TariffSurchargeCountry" />
+    <EntitySet Name="Temp_Supplier_Confirmation" EntityType="Self.Temp_Supplier_Confirmation" />
+    <EntitySet Name="Temp_Transport" EntityType="Self.Temp_Transport" />
+    <EntitySet Name="TimeZones" EntityType="Self.TimeZone" />
+    <EntitySet Name="Transports" EntityType="Self.Transport" />
+    <EntitySet Name="TransportAdditionalItems" EntityType="Self.TransportAdditionalItem" />
+    <EntitySet Name="TransportAdditionalItemDrafts" EntityType="Self.TransportAdditionalItemDraft" />
+    <EntitySet Name="TransportAssignedToSupplierCounts" EntityType="Self.TransportAssignedToSupplierCount" />
+    <EntitySet Name="TransportComments" EntityType="Self.TransportComment" />
+    <EntitySet Name="TransportCounts" EntityType="Self.TransportCount" />
+    <EntitySet Name="TransportDrafts" EntityType="Self.TransportDraft" />
+    <EntitySet Name="TransportFollowups" EntityType="Self.TransportFollowup" />
+    <EntitySet Name="TransportFollowupStates" EntityType="Self.TransportFollowupState" />
+    <EntitySet Name="TransportHistories" EntityType="Self.TransportHistory" />
+    <EntitySet Name="TransportLocations" EntityType="Self.TransportLocation" />
+    <EntitySet Name="TransportLocationDrafts" EntityType="Self.TransportLocationDraft" />
+    <EntitySet Name="TransportQuotes" EntityType="Self.TransportQuote" />
+    <EntitySet Name="TransportQuoteDeclineReasons" EntityType="Self.TransportQuoteDeclineReason" />
+    <EntitySet Name="TransportQuoteDeclineTypes" EntityType="Self.TransportQuoteDeclineType" />
+    <EntitySet Name="TransportQuoteStatus" EntityType="Self.TransportQuoteStatu" />
+    <EntitySet Name="TransportReferences" EntityType="Self.TransportReference" />
+    <EntitySet Name="TransportReferenceDrafts" EntityType="Self.TransportReferenceDraft" />
+    <EntitySet Name="TransportStatus" EntityType="Self.TransportStatu" />
+    <EntitySet Name="TransportSuppliers" EntityType="Self.TransportSupplier" />
+    <EntitySet Name="TransportVehicles" EntityType="Self.TransportVehicle" />
+    <EntitySet Name="TransportVehicleDrafts" EntityType="Self.TransportVehicleDraft" />
+    <EntitySet Name="UnityVehicleMappings" EntityType="Self.UnityVehicleMapping" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="VehicleConditions" EntityType="Self.VehicleCondition" />
+    <EntitySet Name="VehicleDimensions" EntityType="Self.VehicleDimension" />
+    <EntitySet Name="VehicleMakes" EntityType="Self.VehicleMake" />
+    <EntitySet Name="VehicleModels" EntityType="Self.VehicleModel" />
+    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
+    <EntitySet Name="SupplierNotifications" EntityType="Self.SupplierNotification" />
+    <EntitySet Name="TransportNotifications" EntityType="Self.TransportNotification" />
+    <AssociationSet Name="FK_BUNotificationEmail_BuEmailType" Association="Self.FK_BUNotificationEmail_BuEmailType">
+      <End Role="BuEmailType" EntitySet="BuEmailTypes" />
+      <End Role="BUNotificationEmail" EntitySet="BUNotificationEmails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BUNotificationEmail_BusinessUnit" Association="Self.FK_BUNotificationEmail_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="BUNotificationEmail" EntitySet="BUNotificationEmails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessUnit_Country" Association="Self.FK_BusinessUnit_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessUnit_TimeZone" Association="Self.FK_BusinessUnit_TimeZone">
+      <End Role="TimeZone" EntitySet="TimeZones" />
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BuSupplier_BusinessUnit" Association="Self.FK_BuSupplier_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="BuSupplier" EntitySet="BuSuppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Route_BusinessUnit" Association="Self.FK_Route_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_BusinessUnit" Association="Self.FK_Supplier_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="Supplier" EntitySet="Suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tariff_BusinessUnit" Association="Self.FK_Tariff_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="Tariff" EntitySet="Tariffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transport_BusinessUnit" Association="Self.FK_Transport_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="Transport" EntitySet="Transports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportDraft_BusinessUnit" Association="Self.FK_TransportDraft_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportHistory_BusinessUnit" Association="Self.FK_TransportHistory_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="TransportHistory" EntitySet="TransportHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_BusinessUnit" Association="Self.FK_User_BusinessUnit">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BuSupplier_Supplier" Association="Self.FK_BuSupplier_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="BuSupplier" EntitySet="BuSuppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Country_Currency" Association="Self.FK_Country_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="Country" EntitySet="Countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Route_DeliveryCountry" Association="Self.FK_Route_DeliveryCountry">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Route_PickupCountry" Association="Self.FK_Route_PickupCountry">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Country" Association="Self.FK_Supplier_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Supplier" EntitySet="Suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffMinimumKmCountry_Country" Association="Self.FK_TariffMinimumKmCountry_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="TariffMinimumKmCountry" EntitySet="TariffMinimumKmCountries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffSurchargeCountry_Country" Association="Self.FK_TariffSurchargeCountry_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="TariffSurchargeCountry" EntitySet="TariffSurchargeCountries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportLocation_Country" Association="Self.FK_TransportLocation_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="TransportLocation" EntitySet="TransportLocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportLocation_Country1" Association="Self.FK_TransportLocation_Country1">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="TransportLocation" EntitySet="TransportLocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportLocationDraft_Country" Association="Self.FK_TransportLocationDraft_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="TransportLocationDraft" EntitySet="TransportLocationDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportLocationDraft_Country1" Association="Self.FK_TransportLocationDraft_Country1">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="TransportLocationDraft" EntitySet="TransportLocationDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CurrencyRate_Currency" Association="Self.FK_CurrencyRate_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="CurrencyRate" EntitySet="CurrencyRates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quote_Currency" Association="Self.FK_Quote_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportReference_Currency" Association="Self.FK_TransportReference_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="TransportReference" EntitySet="TransportReferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportReferenceDraft_Currency" Association="Self.FK_TransportReferenceDraft_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="TransportReferenceDraft" EntitySet="TransportReferenceDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quote_Supplier" Association="Self.FK_Quote_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quote_Transport" Association="Self.FK_Quote_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quote_User" Association="Self.FK_Quote_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quote_User1" Association="Self.FK_Quote_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Quote" EntitySet="Quotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuoteHistory_Quote" Association="Self.FK_QuoteHistory_Quote">
+      <End Role="Quote" EntitySet="Quotes" />
+      <End Role="QuoteHistory" EntitySet="QuoteHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportQuoteDeclineReason_Quote" Association="Self.FK_TransportQuoteDeclineReason_Quote">
+      <End Role="Quote" EntitySet="Quotes" />
+      <End Role="TransportQuoteDeclineReason" EntitySet="TransportQuoteDeclineReasons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportQuotes_Quote" Association="Self.FK_TransportQuotes_Quote">
+      <End Role="Quote" EntitySet="Quotes" />
+      <End Role="TransportQuote" EntitySet="TransportQuotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Route_BackupSupplier" Association="Self.FK_Route_BackupSupplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Route_PreferredSupplier" Association="Self.FK_Route_PreferredSupplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Route" EntitySet="Routes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RouteSupplier_Route" Association="Self.FK_RouteSupplier_Route">
+      <End Role="Route" EntitySet="Routes" />
+      <End Role="RouteSupplier" EntitySet="RouteSuppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RouteSupplier_Supplier" Association="Self.FK_RouteSupplier_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="RouteSupplier" EntitySet="RouteSuppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_SupplierType" Association="Self.FK_Supplier_SupplierType">
+      <End Role="SupplierType" EntitySet="SupplierTypes" />
+      <End Role="Supplier" EntitySet="Suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_TimeZone" Association="Self.FK_Supplier_TimeZone">
+      <End Role="TimeZone" EntitySet="TimeZones" />
+      <End Role="Supplier" EntitySet="Suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierEmail_Supplier" Association="Self.FK_SupplierEmail_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="SupplierEmail" EntitySet="SupplierEmails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tariff_Supplier" Association="Self.FK_Tariff_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Tariff" EntitySet="Tariffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transport_Supplier" Association="Self.FK_Transport_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Transport" EntitySet="Transports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportDraft_Supplier" Association="Self.FK_TransportDraft_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportHistory_Supplier" Association="Self.FK_TransportHistory_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="TransportHistory" EntitySet="TransportHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportSupplier_Supplier" Association="Self.FK_TransportSupplier_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="TransportSupplier" EntitySet="TransportSuppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SupplierEmail_SupplierEmailType" Association="Self.FK_SupplierEmail_SupplierEmailType">
+      <End Role="SupplierEmailType" EntitySet="SupplierEmailTypes" />
+      <End Role="SupplierEmail" EntitySet="SupplierEmails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tariff_User" Association="Self.FK_Tariff_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Tariff" EntitySet="Tariffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tariff_User1" Association="Self.FK_Tariff_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Tariff" EntitySet="Tariffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffCategory_Tariff" Association="Self.FK_TariffCategory_Tariff">
+      <End Role="Tariff" EntitySet="Tariffs" />
+      <End Role="TariffCategory" EntitySet="TariffCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffExpressDelivery_Tariff" Association="Self.FK_TariffExpressDelivery_Tariff">
+      <End Role="Tariff" EntitySet="Tariffs" />
+      <End Role="TariffExpressDelivery" EntitySet="TariffExpressDeliveries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffMinimumKm_Tariff" Association="Self.FK_TariffMinimumKm_Tariff">
+      <End Role="Tariff" EntitySet="Tariffs" />
+      <End Role="TariffMinimumKm" EntitySet="TariffMinimumKms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffSurcharge_Tariff" Association="Self.FK_TariffSurcharge_Tariff">
+      <End Role="Tariff" EntitySet="Tariffs" />
+      <End Role="TariffSurcharge" EntitySet="TariffSurcharges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffCategory_User" Association="Self.FK_TariffCategory_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TariffCategory" EntitySet="TariffCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffCategory_User1" Association="Self.FK_TariffCategory_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TariffCategory" EntitySet="TariffCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffCategoryVehicleDimension_TariffCategory" Association="Self.FK_TariffCategoryVehicleDimension_TariffCategory">
+      <End Role="TariffCategory" EntitySet="TariffCategories" />
+      <End Role="TariffCategoryVehicleDimension" EntitySet="TariffCategoryVehicleDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffCategoryVehicleType_TariffCategory" Association="Self.FK_TariffCategoryVehicleType_TariffCategory">
+      <End Role="TariffCategory" EntitySet="TariffCategories" />
+      <End Role="TariffCategoryVehicleType" EntitySet="TariffCategoryVehicleTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffCategoryVehicleDimension_VehicleDimension" Association="Self.FK_TariffCategoryVehicleDimension_VehicleDimension">
+      <End Role="VehicleDimension" EntitySet="VehicleDimensions" />
+      <End Role="TariffCategoryVehicleDimension" EntitySet="TariffCategoryVehicleDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffCategoryVehicleType_VehicleType" Association="Self.FK_TariffCategoryVehicleType_VehicleType">
+      <End Role="VehicleType" EntitySet="VehicleTypes" />
+      <End Role="TariffCategoryVehicleType" EntitySet="TariffCategoryVehicleTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffExpressDeliveryVehicleDimension_TariffExpressDelivery" Association="Self.FK_TariffExpressDeliveryVehicleDimension_TariffExpressDelivery">
+      <End Role="TariffExpressDelivery" EntitySet="TariffExpressDeliveries" />
+      <End Role="TariffExpressDeliveryVehicleDimension" EntitySet="TariffExpressDeliveryVehicleDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffExpressDeliveryVehicleDimension_VehicleDimension" Association="Self.FK_TariffExpressDeliveryVehicleDimension_VehicleDimension">
+      <End Role="VehicleDimension" EntitySet="VehicleDimensions" />
+      <End Role="TariffExpressDeliveryVehicleDimension" EntitySet="TariffExpressDeliveryVehicleDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffMinimumKm_User" Association="Self.FK_TariffMinimumKm_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TariffMinimumKm" EntitySet="TariffMinimumKms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffMinimumKm_User1" Association="Self.FK_TariffMinimumKm_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TariffMinimumKm" EntitySet="TariffMinimumKms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffMinimumKmCountry_TariffMinimumKm" Association="Self.FK_TariffMinimumKmCountry_TariffMinimumKm">
+      <End Role="TariffMinimumKm" EntitySet="TariffMinimumKms" />
+      <End Role="TariffMinimumKmCountry" EntitySet="TariffMinimumKmCountries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffSurcharge_User" Association="Self.FK_TariffSurcharge_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TariffSurcharge" EntitySet="TariffSurcharges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffSurcharge_User1" Association="Self.FK_TariffSurcharge_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TariffSurcharge" EntitySet="TariffSurcharges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TariffSurchargeCountry_TariffSurcharge" Association="Self.FK_TariffSurchargeCountry_TariffSurcharge">
+      <End Role="TariffSurcharge" EntitySet="TariffSurcharges" />
+      <End Role="TariffSurchargeCountry" EntitySet="TariffSurchargeCountries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transport_TransportStatus" Association="Self.FK_Transport_TransportStatus">
+      <End Role="TransportStatus" EntitySet="TransportStatus" />
+      <End Role="Transport" EntitySet="Transports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transport_User" Association="Self.FK_Transport_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Transport" EntitySet="Transports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transport_User1" Association="Self.FK_Transport_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Transport" EntitySet="Transports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportAdditionalItem_Transport" Association="Self.FK_TransportAdditionalItem_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportAdditionalItem" EntitySet="TransportAdditionalItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportComment_Transport" Association="Self.FK_TransportComment_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportComment" EntitySet="TransportComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportHistory_Transport" Association="Self.FK_TransportHistory_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportHistory" EntitySet="TransportHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportLocation_Transport" Association="Self.FK_TransportLocation_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportLocation" EntitySet="TransportLocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportQuoteDeclineReason_Transport" Association="Self.FK_TransportQuoteDeclineReason_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportQuoteDeclineReason" EntitySet="TransportQuoteDeclineReasons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportQuotes_Transport" Association="Self.FK_TransportQuotes_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportQuote" EntitySet="TransportQuotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportReference_Transport" Association="Self.FK_TransportReference_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportReference" EntitySet="TransportReferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportSupplier_Transport" Association="Self.FK_TransportSupplier_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportSupplier" EntitySet="TransportSuppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicle_Transport" Association="Self.FK_TransportVehicle_Transport">
+      <End Role="Transport" EntitySet="Transports" />
+      <End Role="TransportVehicle" EntitySet="TransportVehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportAdditionalItemDraft_TransportDraft" Association="Self.FK_TransportAdditionalItemDraft_TransportDraft">
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+      <End Role="TransportAdditionalItemDraft" EntitySet="TransportAdditionalItemDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportComment_User" Association="Self.FK_TransportComment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TransportComment" EntitySet="TransportComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportDraft_TransportStatus" Association="Self.FK_TransportDraft_TransportStatus">
+      <End Role="TransportStatus" EntitySet="TransportStatus" />
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportDraft_User" Association="Self.FK_TransportDraft_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportDraft_User1" Association="Self.FK_TransportDraft_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportLocationDraft_TransportDraft" Association="Self.FK_TransportLocationDraft_TransportDraft">
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+      <End Role="TransportLocationDraft" EntitySet="TransportLocationDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportReferenceDraft_TransportDraft" Association="Self.FK_TransportReferenceDraft_TransportDraft">
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+      <End Role="TransportReferenceDraft" EntitySet="TransportReferenceDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicleDraft_TransportDraft" Association="Self.FK_TransportVehicleDraft_TransportDraft">
+      <End Role="TransportDraft" EntitySet="TransportDrafts" />
+      <End Role="TransportVehicleDraft" EntitySet="TransportVehicleDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportHistory_TransportStatus" Association="Self.FK_TransportHistory_TransportStatus">
+      <End Role="TransportStatus" EntitySet="TransportStatus" />
+      <End Role="TransportHistory" EntitySet="TransportHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportHistory_User" Association="Self.FK_TransportHistory_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TransportHistory" EntitySet="TransportHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportHistory_User1" Association="Self.FK_TransportHistory_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TransportHistory" EntitySet="TransportHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportQuotes_TransportQuoteStatus" Association="Self.FK_TransportQuotes_TransportQuoteStatus">
+      <End Role="TransportQuoteStatus" EntitySet="TransportQuoteStatus" />
+      <End Role="TransportQuote" EntitySet="TransportQuotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportQuoteDeclineReason_TransportQuoteDeclineType" Association="Self.FK_TransportQuoteDeclineReason_TransportQuoteDeclineType">
+      <End Role="TransportQuoteDeclineType" EntitySet="TransportQuoteDeclineTypes" />
+      <End Role="TransportQuoteDeclineReason" EntitySet="TransportQuoteDeclineReasons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicle_VehicleCondition" Association="Self.FK_TransportVehicle_VehicleCondition">
+      <End Role="VehicleCondition" EntitySet="VehicleConditions" />
+      <End Role="TransportVehicle" EntitySet="TransportVehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicle_VehicleDimension" Association="Self.FK_TransportVehicle_VehicleDimension">
+      <End Role="VehicleDimension" EntitySet="VehicleDimensions" />
+      <End Role="TransportVehicle" EntitySet="TransportVehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicle_VehicleMake" Association="Self.FK_TransportVehicle_VehicleMake">
+      <End Role="VehicleMake" EntitySet="VehicleMakes" />
+      <End Role="TransportVehicle" EntitySet="TransportVehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicle_VehicleModel" Association="Self.FK_TransportVehicle_VehicleModel">
+      <End Role="VehicleModel" EntitySet="VehicleModels" />
+      <End Role="TransportVehicle" EntitySet="TransportVehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicle_VehicleType" Association="Self.FK_TransportVehicle_VehicleType">
+      <End Role="VehicleType" EntitySet="VehicleTypes" />
+      <End Role="TransportVehicle" EntitySet="TransportVehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicleDraft_VehicleCondition" Association="Self.FK_TransportVehicleDraft_VehicleCondition">
+      <End Role="VehicleCondition" EntitySet="VehicleConditions" />
+      <End Role="TransportVehicleDraft" EntitySet="TransportVehicleDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicleDraft_VehicleDimension" Association="Self.FK_TransportVehicleDraft_VehicleDimension">
+      <End Role="VehicleDimension" EntitySet="VehicleDimensions" />
+      <End Role="TransportVehicleDraft" EntitySet="TransportVehicleDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicleDraft_VehicleMake" Association="Self.FK_TransportVehicleDraft_VehicleMake">
+      <End Role="VehicleMake" EntitySet="VehicleMakes" />
+      <End Role="TransportVehicleDraft" EntitySet="TransportVehicleDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicleDraft_VehicleModel" Association="Self.FK_TransportVehicleDraft_VehicleModel">
+      <End Role="VehicleModel" EntitySet="VehicleModels" />
+      <End Role="TransportVehicleDraft" EntitySet="TransportVehicleDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportVehicleDraft_VehicleType" Association="Self.FK_TransportVehicleDraft_VehicleType">
+      <End Role="VehicleType" EntitySet="VehicleTypes" />
+      <End Role="TransportVehicleDraft" EntitySet="TransportVehicleDrafts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UnityVehicleMapping_VehicleCondition" Association="Self.FK_UnityVehicleMapping_VehicleCondition">
+      <End Role="VehicleCondition" EntitySet="VehicleConditions" />
+      <End Role="UnityVehicleMapping" EntitySet="UnityVehicleMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleModel_VehicleMake" Association="Self.FK_VehicleModel_VehicleMake">
+      <End Role="VehicleMake" EntitySet="VehicleMakes" />
+      <End Role="VehicleModel" EntitySet="VehicleModels" />
+    </AssociationSet>
+    <AssociationSet Name="SupplierUser" Association="Self.SupplierUser">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

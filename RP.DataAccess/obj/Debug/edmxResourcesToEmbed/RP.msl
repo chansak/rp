@@ -1,0 +1,959 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RPModelStoreContainer" CdmEntityContainer="RPContext">
+    <EntitySetMapping Name="BuEmailTypes">
+      <EntityTypeMapping TypeName="RP.Model.BuEmailType">
+        <MappingFragment StoreEntitySet="BuEmailType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BUNotificationEmails">
+      <EntityTypeMapping TypeName="RP.Model.BUNotificationEmail">
+        <MappingFragment StoreEntitySet="BUNotificationEmail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="BuEmailTypeId" ColumnName="BuEmailTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessUnits">
+      <EntityTypeMapping TypeName="RP.Model.BusinessUnit">
+        <MappingFragment StoreEntitySet="BusinessUnit">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="TimezoneId" ColumnName="TimezoneId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Handicap90" ColumnName="Handicap90" />
+          <ScalarProperty Name="Handicap80" ColumnName="Handicap80" />
+          <ScalarProperty Name="Handicap70" ColumnName="Handicap70" />
+          <ScalarProperty Name="Handicap60" ColumnName="Handicap60" />
+          <ScalarProperty Name="Handicap50" ColumnName="Handicap50" />
+          <ScalarProperty Name="HandicapLessThan50" ColumnName="HandicapLessThan50" />
+          <ScalarProperty Name="CostPerDay" ColumnName="CostPerDay" />
+          <ScalarProperty Name="MaxCostPerDay" ColumnName="MaxCostPerDay" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="LimitRealDateArrival" ColumnName="LimitRealDateArrival" />
+          <ScalarProperty Name="IsDisplayDistanceOverMsg" ColumnName="IsDisplayDistanceOverMsg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BuSuppliers">
+      <EntityTypeMapping TypeName="RP.Model.BuSupplier">
+        <MappingFragment StoreEntitySet="BuSupplier">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="HasDiscount" ColumnName="HasDiscount" />
+          <ScalarProperty Name="Discountpercentage" ColumnName="Discountpercentage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="RP.Model.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="FlagIcon" ColumnName="FlagIcon" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="RP.Model.Currency">
+        <MappingFragment StoreEntitySet="Currency">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CurrencyRates">
+      <EntityTypeMapping TypeName="RP.Model.CurrencyRate">
+        <MappingFragment StoreEntitySet="CurrencyRate">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quotes">
+      <EntityTypeMapping TypeName="RP.Model.Quote">
+        <MappingFragment StoreEntitySet="Quote">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="QuoteAmount" ColumnName="QuoteAmount" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+          <ScalarProperty Name="DeliveryDuration" ColumnName="DeliveryDuration" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="RejectedDate" ColumnName="RejectedDate" />
+          <ScalarProperty Name="ExpectedPickUpDate" ColumnName="ExpectedPickUpDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuoteHistories">
+      <EntityTypeMapping TypeName="RP.Model.QuoteHistory">
+        <MappingFragment StoreEntitySet="QuoteHistory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
+          <ScalarProperty Name="QuoteAmount" ColumnName="QuoteAmount" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+          <ScalarProperty Name="DeliveryDuration" ColumnName="DeliveryDuration" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="ExpectedPickUpDate" ColumnName="ExpectedPickUpDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="RP.Model.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Routes">
+      <EntityTypeMapping TypeName="RP.Model.Route">
+        <MappingFragment StoreEntitySet="Route">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="PickupCountryId" ColumnName="PickupCountryId" />
+          <ScalarProperty Name="DeliveryCountryId" ColumnName="DeliveryCountryId" />
+          <ScalarProperty Name="PreferredSupplierId" ColumnName="PreferredSupplierId" />
+          <ScalarProperty Name="BackupSupplierId" ColumnName="BackupSupplierId" />
+          <ScalarProperty Name="ExpirationTime" ColumnName="ExpirationTime" />
+          <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="ExpressDelivery" ColumnName="ExpressDelivery" />
+          <ScalarProperty Name="MinimumKm" ColumnName="MinimumKm" />
+          <ScalarProperty Name="MaximumKm" ColumnName="MaximumKm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RouteSuppliers">
+      <EntityTypeMapping TypeName="RP.Model.RouteSupplier">
+        <MappingFragment StoreEntitySet="RouteSupplier">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunningThreads">
+      <EntityTypeMapping TypeName="RP.Model.RunningThread">
+        <MappingFragment StoreEntitySet="RunningThread">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="RP.Model.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="TimezoneId" ColumnName="TimezoneId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SupplierTypeId" ColumnName="SupplierTypeId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="SupAddress" ColumnName="SupAddress" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="WorkingHourOpen" ColumnName="WorkingHourOpen" />
+          <ScalarProperty Name="WorkingHourClose" ColumnName="WorkingHourClose" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierEmails">
+      <EntityTypeMapping TypeName="RP.Model.SupplierEmail">
+        <MappingFragment StoreEntitySet="SupplierEmail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SupplierEmailTypeId" ColumnName="SupplierEmailTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierEmailTypes">
+      <EntityTypeMapping TypeName="RP.Model.SupplierEmailType">
+        <MappingFragment StoreEntitySet="SupplierEmailType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierTypes">
+      <EntityTypeMapping TypeName="RP.Model.SupplierType">
+        <MappingFragment StoreEntitySet="SupplierType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="RP.Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tariffs">
+      <EntityTypeMapping TypeName="RP.Model.Tariff">
+        <MappingFragment StoreEntitySet="Tariff">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="ExpressDeliveryPrice" ColumnName="ExpressDeliveryPrice" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Penalty" ColumnName="Penalty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffCategories">
+      <EntityTypeMapping TypeName="RP.Model.TariffCategory">
+        <MappingFragment StoreEntitySet="TariffCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TariffId" ColumnName="TariffId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="PricePerKm" ColumnName="PricePerKm" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffCategoryVehicleDimensions">
+      <EntityTypeMapping TypeName="RP.Model.TariffCategoryVehicleDimension">
+        <MappingFragment StoreEntitySet="TariffCategoryVehicleDimension">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TariffCategoryId" ColumnName="TariffCategoryId" />
+          <ScalarProperty Name="VehicleDimensionId" ColumnName="VehicleDimensionId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffCategoryVehicleTypes">
+      <EntityTypeMapping TypeName="RP.Model.TariffCategoryVehicleType">
+        <MappingFragment StoreEntitySet="TariffCategoryVehicleType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TariffCategoryId" ColumnName="TariffCategoryId" />
+          <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffExpressDeliveries">
+      <EntityTypeMapping TypeName="RP.Model.TariffExpressDelivery">
+        <MappingFragment StoreEntitySet="TariffExpressDelivery">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TariffId" ColumnName="TariffId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="PricePerKm5Days" ColumnName="PricePerKm5Days" />
+          <ScalarProperty Name="PricePerKm7Days" ColumnName="PricePerKm7Days" />
+          <ScalarProperty Name="PricePerKm10Days" ColumnName="PricePerKm10Days" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffExpressDeliveryVehicleDimensions">
+      <EntityTypeMapping TypeName="RP.Model.TariffExpressDeliveryVehicleDimension">
+        <MappingFragment StoreEntitySet="TariffExpressDeliveryVehicleDimension">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TariffExpressDeliveryId" ColumnName="TariffExpressDeliveryId" />
+          <ScalarProperty Name="VehicleDimensionId" ColumnName="VehicleDimensionId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffMinimumKms">
+      <EntityTypeMapping TypeName="RP.Model.TariffMinimumKm">
+        <MappingFragment StoreEntitySet="TariffMinimumKm">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MinimumKm" ColumnName="MinimumKm" />
+          <ScalarProperty Name="TariffId" ColumnName="TariffId" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffMinimumKmCountries">
+      <EntityTypeMapping TypeName="RP.Model.TariffMinimumKmCountry">
+        <MappingFragment StoreEntitySet="TariffMinimumKmCountry">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TariffMinimumKmId" ColumnName="TariffMinimumKmId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffSurcharges">
+      <EntityTypeMapping TypeName="RP.Model.TariffSurcharge">
+        <MappingFragment StoreEntitySet="TariffSurcharge">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TariffId" ColumnName="TariffId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Surcharge" ColumnName="Surcharge" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TariffSurchargeCountries">
+      <EntityTypeMapping TypeName="RP.Model.TariffSurchargeCountry">
+        <MappingFragment StoreEntitySet="TariffSurchargeCountry">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TariffSurchargeId" ColumnName="TariffSurchargeId" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temp_Supplier_Confirmation">
+      <EntityTypeMapping TypeName="RP.Model.Temp_Supplier_Confirmation">
+        <MappingFragment StoreEntitySet="Temp_Supplier_Confirmation">
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="DelayTime" ColumnName="DelayTime" />
+          <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+          <ScalarProperty Name="HasQuote" ColumnName="HasQuote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temp_Transport">
+      <EntityTypeMapping TypeName="RP.Model.Temp_Transport">
+        <MappingFragment StoreEntitySet="Temp_Transport">
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="DelayTime" ColumnName="DelayTime" />
+          <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+          <ScalarProperty Name="HasQuote" ColumnName="HasQuote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeZones">
+      <EntityTypeMapping TypeName="RP.Model.TimeZone">
+        <MappingFragment StoreEntitySet="TimeZone">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TimeZone1" ColumnName="TimeZone" />
+          <ScalarProperty Name="Display" ColumnName="Display" />
+          <ScalarProperty Name="TimePriority" ColumnName="TimePriority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transports">
+      <EntityTypeMapping TypeName="RP.Model.Transport">
+        <MappingFragment StoreEntitySet="Transport">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
+          <ScalarProperty Name="CustomerFirstName" ColumnName="CustomerFirstName" />
+          <ScalarProperty Name="CustomerLastName" ColumnName="CustomerLastName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="IsBidding" ColumnName="IsBidding" />
+          <ScalarProperty Name="ExpirationTime" ColumnName="ExpirationTime" />
+          <ScalarProperty Name="IsExpressDelivery" ColumnName="IsExpressDelivery" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="EstimateDateArrival" ColumnName="EstimateDateArrival" />
+          <ScalarProperty Name="RealDateArrival" ColumnName="RealDateArrival" />
+          <ScalarProperty Name="TransportStatusId" ColumnName="TransportStatusId" />
+          <ScalarProperty Name="ConfirmedSupplierId" ColumnName="ConfirmedSupplierId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="ExpirationHour" ColumnName="ExpirationHour" />
+          <ScalarProperty Name="ExpenditureId" ColumnName="ExpenditureId" />
+          <ScalarProperty Name="ExpressDeliveryTime" ColumnName="ExpressDeliveryTime" />
+          <ScalarProperty Name="IsExtendBuddingTime" ColumnName="IsExtendBuddingTime" />
+          <ScalarProperty Name="ExtraTime" ColumnName="ExtraTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportAdditionalItems">
+      <EntityTypeMapping TypeName="RP.Model.TransportAdditionalItem">
+        <MappingFragment StoreEntitySet="TransportAdditionalItem">
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="HasRoofBox" ColumnName="HasRoofBox" />
+          <ScalarProperty Name="RoofBoxWidth" ColumnName="RoofBoxWidth" />
+          <ScalarProperty Name="RoofBoxLength" ColumnName="RoofBoxLength" />
+          <ScalarProperty Name="RoofBoxHeight" ColumnName="RoofBoxHeight" />
+          <ScalarProperty Name="RoofBoxWeight" ColumnName="RoofBoxWeight" />
+          <ScalarProperty Name="RoofBoxKeyLocation" ColumnName="RoofBoxKeyLocation" />
+          <ScalarProperty Name="RoofBoxDescription" ColumnName="RoofBoxDescription" />
+          <ScalarProperty Name="HasTrailer" ColumnName="HasTrailer" />
+          <ScalarProperty Name="TrailerWidth" ColumnName="TrailerWidth" />
+          <ScalarProperty Name="TrailerLength" ColumnName="TrailerLength" />
+          <ScalarProperty Name="TrailerHeight" ColumnName="TrailerHeight" />
+          <ScalarProperty Name="TrailerWeight" ColumnName="TrailerWeight" />
+          <ScalarProperty Name="TrailerDescription" ColumnName="TrailerDescription" />
+          <ScalarProperty Name="HasBikeRack" ColumnName="HasBikeRack" />
+          <ScalarProperty Name="BikeRackWidth" ColumnName="BikeRackWidth" />
+          <ScalarProperty Name="BikeRackLength" ColumnName="BikeRackLength" />
+          <ScalarProperty Name="BikeRackHeight" ColumnName="BikeRackHeight" />
+          <ScalarProperty Name="BikeRackWeight" ColumnName="BikeRackWeight" />
+          <ScalarProperty Name="BikeRackDescription" ColumnName="BikeRackDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportAdditionalItemDrafts">
+      <EntityTypeMapping TypeName="RP.Model.TransportAdditionalItemDraft">
+        <MappingFragment StoreEntitySet="TransportAdditionalItemDraft">
+          <ScalarProperty Name="TransportDraftId" ColumnName="TransportDraftId" />
+          <ScalarProperty Name="HasRoofBox" ColumnName="HasRoofBox" />
+          <ScalarProperty Name="RoofBoxWidth" ColumnName="RoofBoxWidth" />
+          <ScalarProperty Name="RoofBoxLength" ColumnName="RoofBoxLength" />
+          <ScalarProperty Name="RoofBoxHeight" ColumnName="RoofBoxHeight" />
+          <ScalarProperty Name="RoofBoxWeight" ColumnName="RoofBoxWeight" />
+          <ScalarProperty Name="RoofBoxKeyLocation" ColumnName="RoofBoxKeyLocation" />
+          <ScalarProperty Name="RoofBoxDescription" ColumnName="RoofBoxDescription" />
+          <ScalarProperty Name="HasTrailer" ColumnName="HasTrailer" />
+          <ScalarProperty Name="TrailerWidth" ColumnName="TrailerWidth" />
+          <ScalarProperty Name="TrailerLength" ColumnName="TrailerLength" />
+          <ScalarProperty Name="TrailerHeight" ColumnName="TrailerHeight" />
+          <ScalarProperty Name="TrailerWeight" ColumnName="TrailerWeight" />
+          <ScalarProperty Name="TrailerDescription" ColumnName="TrailerDescription" />
+          <ScalarProperty Name="HasBikeRack" ColumnName="HasBikeRack" />
+          <ScalarProperty Name="BikeRackWidth" ColumnName="BikeRackWidth" />
+          <ScalarProperty Name="BikeRackLength" ColumnName="BikeRackLength" />
+          <ScalarProperty Name="BikeRackHeight" ColumnName="BikeRackHeight" />
+          <ScalarProperty Name="BikeRackWeight" ColumnName="BikeRackWeight" />
+          <ScalarProperty Name="BikeRackDescription" ColumnName="BikeRackDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportAssignedToSupplierCounts">
+      <EntityTypeMapping TypeName="RP.Model.TransportAssignedToSupplierCount">
+        <MappingFragment StoreEntitySet="TransportAssignedToSupplierCount">
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="PickupCountryId" ColumnName="PickupCountryId" />
+          <ScalarProperty Name="DeliveryCountryId" ColumnName="DeliveryCountryId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportComments">
+      <EntityTypeMapping TypeName="RP.Model.TransportComment">
+        <MappingFragment StoreEntitySet="TransportComment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="CommentBy" ColumnName="CommentBy" />
+          <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportCounts">
+      <EntityTypeMapping TypeName="RP.Model.TransportCount">
+        <MappingFragment StoreEntitySet="TransportCount">
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="PickupCountryId" ColumnName="PickupCountryId" />
+          <ScalarProperty Name="DeliveryCountryId" ColumnName="DeliveryCountryId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportDrafts">
+      <EntityTypeMapping TypeName="RP.Model.TransportDraft">
+        <MappingFragment StoreEntitySet="TransportDraft">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
+          <ScalarProperty Name="CustomerFirstName" ColumnName="CustomerFirstName" />
+          <ScalarProperty Name="CustomerLastName" ColumnName="CustomerLastName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="IsBidding" ColumnName="IsBidding" />
+          <ScalarProperty Name="ExpirationTime" ColumnName="ExpirationTime" />
+          <ScalarProperty Name="IsExpressDelivery" ColumnName="IsExpressDelivery" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="EstimateDateArrival" ColumnName="EstimateDateArrival" />
+          <ScalarProperty Name="RealDateArrival" ColumnName="RealDateArrival" />
+          <ScalarProperty Name="TransportStatusId" ColumnName="TransportStatusId" />
+          <ScalarProperty Name="ConfirmedSupplierId" ColumnName="ConfirmedSupplierId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="ExpirationHour" ColumnName="ExpirationHour" />
+          <ScalarProperty Name="ExpenditureId" ColumnName="ExpenditureId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportFollowups">
+      <EntityTypeMapping TypeName="RP.Model.TransportFollowup">
+        <MappingFragment StoreEntitySet="TransportFollowup">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="FollowupStateId" ColumnName="FollowupStateId" />
+          <ScalarProperty Name="AlertDate" ColumnName="AlertDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportFollowupStates">
+      <EntityTypeMapping TypeName="RP.Model.TransportFollowupState">
+        <MappingFragment StoreEntitySet="TransportFollowupState">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportHistories">
+      <EntityTypeMapping TypeName="RP.Model.TransportHistory">
+        <MappingFragment StoreEntitySet="TransportHistory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
+          <ScalarProperty Name="CustomerFirstName" ColumnName="CustomerFirstName" />
+          <ScalarProperty Name="CustomerLastName" ColumnName="CustomerLastName" />
+          <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+          <ScalarProperty Name="IsBidding" ColumnName="IsBidding" />
+          <ScalarProperty Name="ExpirationTime" ColumnName="ExpirationTime" />
+          <ScalarProperty Name="IsExpressDelivery" ColumnName="IsExpressDelivery" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="EstimateDateArrival" ColumnName="EstimateDateArrival" />
+          <ScalarProperty Name="RealDateArrival" ColumnName="RealDateArrival" />
+          <ScalarProperty Name="TransportStatusId" ColumnName="TransportStatusId" />
+          <ScalarProperty Name="ConfirmedSupplierId" ColumnName="ConfirmedSupplierId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportLocations">
+      <EntityTypeMapping TypeName="RP.Model.TransportLocation">
+        <MappingFragment StoreEntitySet="TransportLocation">
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="PickupGarageName" ColumnName="PickupGarageName" />
+          <ScalarProperty Name="PickupAddress" ColumnName="PickupAddress" />
+          <ScalarProperty Name="PickupZipCode" ColumnName="PickupZipCode" />
+          <ScalarProperty Name="PickupCity" ColumnName="PickupCity" />
+          <ScalarProperty Name="PickupCountryId" ColumnName="PickupCountryId" />
+          <ScalarProperty Name="PickupLatitude" ColumnName="PickupLatitude" />
+          <ScalarProperty Name="PickupLongitude" ColumnName="PickupLongitude" />
+          <ScalarProperty Name="PickupPhone" ColumnName="PickupPhone" />
+          <ScalarProperty Name="PickupOpeningHourWeekday" ColumnName="PickupOpeningHourWeekday" />
+          <ScalarProperty Name="PickupOpeningHourSat" ColumnName="PickupOpeningHourSat" />
+          <ScalarProperty Name="PickupStorageCost" ColumnName="PickupStorageCost" />
+          <ScalarProperty Name="PickupStorageStartDate" ColumnName="PickupStorageStartDate" />
+          <ScalarProperty Name="PickupTowingCost" ColumnName="PickupTowingCost" />
+          <ScalarProperty Name="PickupRepairCost" ColumnName="PickupRepairCost" />
+          <ScalarProperty Name="PickupOtherCost" ColumnName="PickupOtherCost" />
+          <ScalarProperty Name="DeliveryGarageName" ColumnName="DeliveryGarageName" />
+          <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+          <ScalarProperty Name="DeliveryZipCode" ColumnName="DeliveryZipCode" />
+          <ScalarProperty Name="DeliveryCity" ColumnName="DeliveryCity" />
+          <ScalarProperty Name="DeliveryCountryId" ColumnName="DeliveryCountryId" />
+          <ScalarProperty Name="DeliveryLatitude" ColumnName="DeliveryLatitude" />
+          <ScalarProperty Name="DeliveryLongitude" ColumnName="DeliveryLongitude" />
+          <ScalarProperty Name="DeliveryPhone" ColumnName="DeliveryPhone" />
+          <ScalarProperty Name="DeliveryOpeningHourWeekday" ColumnName="DeliveryOpeningHourWeekday" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="PickupOpeningHourSun" ColumnName="PickupOpeningHourSun" />
+          <ScalarProperty Name="DeliveryOpeningHourSat" ColumnName="DeliveryOpeningHourSat" />
+          <ScalarProperty Name="DeliveryOpeningHourSun" ColumnName="DeliveryOpeningHourSun" />
+          <ScalarProperty Name="PickupProvince" ColumnName="PickupProvince" />
+          <ScalarProperty Name="PickupState" ColumnName="PickupState" />
+          <ScalarProperty Name="DeliveryProvince" ColumnName="DeliveryProvince" />
+          <ScalarProperty Name="DeliveryState" ColumnName="DeliveryState" />
+          <ScalarProperty Name="IsDifferentOrigin" ColumnName="IsDifferentOrigin" />
+          <ScalarProperty Name="OriginCity" ColumnName="OriginCity" />
+          <ScalarProperty Name="OriginCountry" ColumnName="OriginCountry" />
+          <ScalarProperty Name="OriginSupplierName" ColumnName="OriginSupplierName" />
+          <ScalarProperty Name="TcoDistance" ColumnName="TcoDistance" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="WayPoints" ColumnName="WayPoints" />
+          <ScalarProperty Name="SpecialInformation" ColumnName="SpecialInformation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportLocationDrafts">
+      <EntityTypeMapping TypeName="RP.Model.TransportLocationDraft">
+        <MappingFragment StoreEntitySet="TransportLocationDraft">
+          <ScalarProperty Name="TransportDraftId" ColumnName="TransportDraftId" />
+          <ScalarProperty Name="PickupGarageName" ColumnName="PickupGarageName" />
+          <ScalarProperty Name="PickupAddress" ColumnName="PickupAddress" />
+          <ScalarProperty Name="PickupZipCode" ColumnName="PickupZipCode" />
+          <ScalarProperty Name="PickupCity" ColumnName="PickupCity" />
+          <ScalarProperty Name="PickupCountryId" ColumnName="PickupCountryId" />
+          <ScalarProperty Name="PickupLatitude" ColumnName="PickupLatitude" />
+          <ScalarProperty Name="PickupLongitude" ColumnName="PickupLongitude" />
+          <ScalarProperty Name="PickupPhone" ColumnName="PickupPhone" />
+          <ScalarProperty Name="PickupOpeningHourWeekday" ColumnName="PickupOpeningHourWeekday" />
+          <ScalarProperty Name="PickupOpeningHourSat" ColumnName="PickupOpeningHourSat" />
+          <ScalarProperty Name="PickupStorageCost" ColumnName="PickupStorageCost" />
+          <ScalarProperty Name="PickupStorageStartDate" ColumnName="PickupStorageStartDate" />
+          <ScalarProperty Name="PickupTowingCost" ColumnName="PickupTowingCost" />
+          <ScalarProperty Name="PickupRepairCost" ColumnName="PickupRepairCost" />
+          <ScalarProperty Name="PickupOtherCost" ColumnName="PickupOtherCost" />
+          <ScalarProperty Name="DeliveryGarageName" ColumnName="DeliveryGarageName" />
+          <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+          <ScalarProperty Name="DeliveryZipCode" ColumnName="DeliveryZipCode" />
+          <ScalarProperty Name="DeliveryCity" ColumnName="DeliveryCity" />
+          <ScalarProperty Name="DeliveryCountryId" ColumnName="DeliveryCountryId" />
+          <ScalarProperty Name="DeliveryLatitude" ColumnName="DeliveryLatitude" />
+          <ScalarProperty Name="DeliveryLongitude" ColumnName="DeliveryLongitude" />
+          <ScalarProperty Name="DeliveryPhone" ColumnName="DeliveryPhone" />
+          <ScalarProperty Name="DeliveryOpeningHourWeekday" ColumnName="DeliveryOpeningHourWeekday" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="PickupOpeningHourSun" ColumnName="PickupOpeningHourSun" />
+          <ScalarProperty Name="DeliveryOpeningHourSat" ColumnName="DeliveryOpeningHourSat" />
+          <ScalarProperty Name="DeliveryOpeningHourSun" ColumnName="DeliveryOpeningHourSun" />
+          <ScalarProperty Name="PickupProvince" ColumnName="PickupProvince" />
+          <ScalarProperty Name="PickupState" ColumnName="PickupState" />
+          <ScalarProperty Name="DeliveryProvince" ColumnName="DeliveryProvince" />
+          <ScalarProperty Name="DeliveryState" ColumnName="DeliveryState" />
+          <ScalarProperty Name="IsDifferentOrigin" ColumnName="IsDifferentOrigin" />
+          <ScalarProperty Name="OriginCity" ColumnName="OriginCity" />
+          <ScalarProperty Name="OriginCountry" ColumnName="OriginCountry" />
+          <ScalarProperty Name="OriginSupplierName" ColumnName="OriginSupplierName" />
+          <ScalarProperty Name="TcoDistance" ColumnName="TcoDistance" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportQuotes">
+      <EntityTypeMapping TypeName="RP.Model.TransportQuote">
+        <MappingFragment StoreEntitySet="TransportQuote">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
+          <ScalarProperty Name="TransportQuoteStatusId" ColumnName="TransportQuoteStatusId" />
+          <ScalarProperty Name="SelectedBy" ColumnName="SelectedBy" />
+          <ScalarProperty Name="SelectedDate" ColumnName="SelectedDate" />
+          <ScalarProperty Name="RejectedBy" ColumnName="RejectedBy" />
+          <ScalarProperty Name="RejectedDate" ColumnName="RejectedDate" />
+          <ScalarProperty Name="ConfirmedBy" ColumnName="ConfirmedBy" />
+          <ScalarProperty Name="ConfirmedDate" ColumnName="ConfirmedDate" />
+          <ScalarProperty Name="IsRegular" ColumnName="IsRegular" />
+          <ScalarProperty Name="DeclinedReason" ColumnName="DeclinedReason" />
+          <ScalarProperty Name="DeclinedComment" ColumnName="DeclinedComment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportQuoteDeclineReasons">
+      <EntityTypeMapping TypeName="RP.Model.TransportQuoteDeclineReason">
+        <MappingFragment StoreEntitySet="TransportQuoteDeclineReason">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
+          <ScalarProperty Name="TransportQuoteDeclineTypeId" ColumnName="TransportQuoteDeclineTypeId" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportQuoteDeclineTypes">
+      <EntityTypeMapping TypeName="RP.Model.TransportQuoteDeclineType">
+        <MappingFragment StoreEntitySet="TransportQuoteDeclineType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportQuoteStatus">
+      <EntityTypeMapping TypeName="RP.Model.TransportQuoteStatu">
+        <MappingFragment StoreEntitySet="TransportQuoteStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportReferences">
+      <EntityTypeMapping TypeName="RP.Model.TransportReference">
+        <MappingFragment StoreEntitySet="TransportReference">
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="RefCost" ColumnName="RefCost" />
+          <ScalarProperty Name="RefDeliveryTime" ColumnName="RefDeliveryTime" />
+          <ScalarProperty Name="RefCostPerDay" ColumnName="RefCostPerDay" />
+          <ScalarProperty Name="RefMaxCostPerDay" ColumnName="RefMaxCostPerDay" />
+          <ScalarProperty Name="RefTco" ColumnName="RefTco" />
+          <ScalarProperty Name="RefCurrencyRate" ColumnName="RefCurrencyRate" />
+          <ScalarProperty Name="RefCurrencyId" ColumnName="RefCurrencyId" />
+          <ScalarProperty Name="RefHandicap" ColumnName="RefHandicap" />
+          <ScalarProperty Name="RefExpressDeliveryPrice" ColumnName="RefExpressDeliveryPrice" />
+          <ScalarProperty Name="RefPenalty" ColumnName="RefPenalty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportReferenceDrafts">
+      <EntityTypeMapping TypeName="RP.Model.TransportReferenceDraft">
+        <MappingFragment StoreEntitySet="TransportReferenceDraft">
+          <ScalarProperty Name="TransportDraftId" ColumnName="TransportDraftId" />
+          <ScalarProperty Name="RefCost" ColumnName="RefCost" />
+          <ScalarProperty Name="RefDeliveryTime" ColumnName="RefDeliveryTime" />
+          <ScalarProperty Name="RefCostPerDay" ColumnName="RefCostPerDay" />
+          <ScalarProperty Name="RefMaxCostPerDay" ColumnName="RefMaxCostPerDay" />
+          <ScalarProperty Name="RefTco" ColumnName="RefTco" />
+          <ScalarProperty Name="RefCurrencyRate" ColumnName="RefCurrencyRate" />
+          <ScalarProperty Name="RefCurrencyId" ColumnName="RefCurrencyId" />
+          <ScalarProperty Name="RefHandicap" ColumnName="RefHandicap" />
+          <ScalarProperty Name="RefExpressDeliveryPrice" ColumnName="RefExpressDeliveryPrice" />
+          <ScalarProperty Name="RefPenalty" ColumnName="RefPenalty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportStatus">
+      <EntityTypeMapping TypeName="RP.Model.TransportStatu">
+        <MappingFragment StoreEntitySet="TransportStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportSuppliers">
+      <EntityTypeMapping TypeName="RP.Model.TransportSupplier">
+        <MappingFragment StoreEntitySet="TransportSupplier">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsAuto" ColumnName="IsAuto" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportVehicles">
+      <EntityTypeMapping TypeName="RP.Model.TransportVehicle">
+        <MappingFragment StoreEntitySet="TransportVehicle">
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="VehicleLicensePlate" ColumnName="VehicleLicensePlate" />
+          <ScalarProperty Name="VehicleBrandId" ColumnName="VehicleBrandId" />
+          <ScalarProperty Name="VehicleBrand" ColumnName="VehicleBrand" />
+          <ScalarProperty Name="VehicleModelId" ColumnName="VehicleModelId" />
+          <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+          <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+          <ScalarProperty Name="VehicleWidth" ColumnName="VehicleWidth" />
+          <ScalarProperty Name="VehicleLength" ColumnName="VehicleLength" />
+          <ScalarProperty Name="VehicleHeight" ColumnName="VehicleHeight" />
+          <ScalarProperty Name="VehicleWeight" ColumnName="VehicleWeight" />
+          <ScalarProperty Name="VehicleKeyLocation" ColumnName="VehicleKeyLocation" />
+          <ScalarProperty Name="VehicleDocumentLocation" ColumnName="VehicleDocumentLocation" />
+          <ScalarProperty Name="VehicleTransmission" ColumnName="VehicleTransmission" />
+          <ScalarProperty Name="VehicleConditionId" ColumnName="VehicleConditionId" />
+          <ScalarProperty Name="IsRollable" ColumnName="IsRollable" />
+          <ScalarProperty Name="HasLuggage" ColumnName="HasLuggage" />
+          <ScalarProperty Name="LuggageDescription" ColumnName="LuggageDescription" />
+          <ScalarProperty Name="PoliceReportLocation" ColumnName="PoliceReportLocation" />
+          <ScalarProperty Name="OtherDocument" ColumnName="OtherDocument" />
+          <ScalarProperty Name="VehicleDimensionId" ColumnName="VehicleDimensionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportVehicleDrafts">
+      <EntityTypeMapping TypeName="RP.Model.TransportVehicleDraft">
+        <MappingFragment StoreEntitySet="TransportVehicleDraft">
+          <ScalarProperty Name="TransportDraftId" ColumnName="TransportDraftId" />
+          <ScalarProperty Name="VehicleLicensePlate" ColumnName="VehicleLicensePlate" />
+          <ScalarProperty Name="VehicleBrandId" ColumnName="VehicleBrandId" />
+          <ScalarProperty Name="VehicleBrand" ColumnName="VehicleBrand" />
+          <ScalarProperty Name="VehicleModelId" ColumnName="VehicleModelId" />
+          <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+          <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+          <ScalarProperty Name="VehicleWidth" ColumnName="VehicleWidth" />
+          <ScalarProperty Name="VehicleLength" ColumnName="VehicleLength" />
+          <ScalarProperty Name="VehicleHeight" ColumnName="VehicleHeight" />
+          <ScalarProperty Name="VehicleWeight" ColumnName="VehicleWeight" />
+          <ScalarProperty Name="VehicleKeyLocation" ColumnName="VehicleKeyLocation" />
+          <ScalarProperty Name="VehicleDocumentLocation" ColumnName="VehicleDocumentLocation" />
+          <ScalarProperty Name="VehicleTransmission" ColumnName="VehicleTransmission" />
+          <ScalarProperty Name="VehicleConditionId" ColumnName="VehicleConditionId" />
+          <ScalarProperty Name="IsRollable" ColumnName="IsRollable" />
+          <ScalarProperty Name="HasLuggage" ColumnName="HasLuggage" />
+          <ScalarProperty Name="LuggageDescription" ColumnName="LuggageDescription" />
+          <ScalarProperty Name="PoliceReportLocation" ColumnName="PoliceReportLocation" />
+          <ScalarProperty Name="OtherDocument" ColumnName="OtherDocument" />
+          <ScalarProperty Name="VehicleDimensionId" ColumnName="VehicleDimensionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnityVehicleMappings">
+      <EntityTypeMapping TypeName="RP.Model.UnityVehicleMapping">
+        <MappingFragment StoreEntitySet="UnityVehicleMapping">
+          <ScalarProperty Name="UnityEventId" ColumnName="UnityEventId" />
+          <ScalarProperty Name="BuCode" ColumnName="BuCode" />
+          <ScalarProperty Name="ConditionId" ColumnName="ConditionId" />
+          <ScalarProperty Name="TypeFile" ColumnName="TypeFile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RP.Model.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BuId" ColumnName="BuId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsFirstLogin" ColumnName="IsFirstLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleConditions">
+      <EntityTypeMapping TypeName="RP.Model.VehicleCondition">
+        <MappingFragment StoreEntitySet="VehicleCondition">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleDimensions">
+      <EntityTypeMapping TypeName="RP.Model.VehicleDimension">
+        <MappingFragment StoreEntitySet="VehicleDimension">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleMakes">
+      <EntityTypeMapping TypeName="RP.Model.VehicleMake">
+        <MappingFragment StoreEntitySet="VehicleMake">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleModels">
+      <EntityTypeMapping TypeName="RP.Model.VehicleModel">
+        <MappingFragment StoreEntitySet="VehicleModel">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VehicleMakeId" ColumnName="VehicleMakeId" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleTypes">
+      <EntityTypeMapping TypeName="RP.Model.VehicleType">
+        <MappingFragment StoreEntitySet="VehicleType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupplierNotifications">
+      <EntityTypeMapping TypeName="RP.Model.SupplierNotification">
+        <MappingFragment StoreEntitySet="SupplierNotification">
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="BUId" ColumnName="BUId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="BUEmailId" ColumnName="BUEmailId" />
+          <ScalarProperty Name="BUEmail" ColumnName="BUEmail" />
+          <ScalarProperty Name="SupplierEmailId" ColumnName="SupplierEmailId" />
+          <ScalarProperty Name="SupplierEmail" ColumnName="SupplierEmail" />
+          <ScalarProperty Name="IsSend" ColumnName="IsSend" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="IsBidding" ColumnName="IsBidding" />
+          <ScalarProperty Name="TransportStatusId" ColumnName="TransportStatusId" />
+          <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+          <ScalarProperty Name="IsHasQuote" ColumnName="IsHasQuote" />
+          <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransportNotifications">
+      <EntityTypeMapping TypeName="RP.Model.TransportNotification">
+        <MappingFragment StoreEntitySet="TransportNotification">
+          <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+          <ScalarProperty Name="BUId" ColumnName="BUId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="BUEmailId" ColumnName="BUEmailId" />
+          <ScalarProperty Name="BUEmail" ColumnName="BUEmail" />
+          <ScalarProperty Name="SupplierEmailId" ColumnName="SupplierEmailId" />
+          <ScalarProperty Name="SupplierEmail" ColumnName="SupplierEmail" />
+          <ScalarProperty Name="IsSend" ColumnName="IsSend" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="IsBidding" ColumnName="IsBidding" />
+          <ScalarProperty Name="TransportStatusId" ColumnName="TransportStatusId" />
+          <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+          <ScalarProperty Name="IsHasQuote" ColumnName="IsHasQuote" />
+          <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SupplierUser" TypeName="RP.Model.SupplierUser" StoreEntitySet="SupplierUser">
+      <EndProperty Name="Supplier">
+        <ScalarProperty Name="Id" ColumnName="SupplierId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

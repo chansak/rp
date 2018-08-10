@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6B9A9963-C4E0-4C39-B778-883BB8F3A26B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RP.Model</RootNamespace>
+    <AssemblyName>RP.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BuEmailType.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BUNotificationEmail.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessUnit.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BuSupplier.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currency.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CurrencyRate.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quote.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuoteHistory.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Route.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RouteSupplier.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RPModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RunningThread.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierEmail.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierEmailType.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierNotification.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierType.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tariff.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffCategory.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffCategoryVehicleDimension.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffCategoryVehicleType.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffExpressDelivery.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffExpressDeliveryVehicleDimension.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffMinimumKm.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffMinimumKmCountry.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffSurcharge.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TariffSurchargeCountry.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Temp_Supplier_Confirmation.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Temp_Transport.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeZone.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transport.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportAdditionalItem.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportAdditionalItemDraft.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportAssignedToSupplierCount.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportComment.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportCount.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportDraft.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportFollowup.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportFollowupState.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportHistory.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportLocation.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportLocationDraft.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportNotification.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportQuote.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportQuoteDeclineReason.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportQuoteDeclineType.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportQuoteStatu.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportReference.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportReferenceDraft.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportStatu.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportSupplier.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportVehicle.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportVehicleDraft.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnityVehicleMapping.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleCondition.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleDimension.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleMake.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleModel.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleType.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Partial\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RPModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RPModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
