@@ -1087,6 +1087,7 @@
     <Content Include="Images\landing\iphone.jpg" />
     <Content Include="Images\landing\laptop.png" />
     <Content Include="Images\landing\perspective.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\off_canvas.jpg" />
     <Content Include="Images\p1.jpg" />
     <Content Include="Images\p2.jpg" />
@@ -1108,7 +1109,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="locales\en.json" />
-    <Content Include="locales\es.json" />
+    <Content Include="locales\th.json" />
     <Content Include="Scripts\api\typehead_collection.json" />
     <Content Include="Content\plugins\bootstrap-rtl\bootstrap-rtl.css.map" />
     <Content Include="Content\plugins\footable\fonts\footable.eot" />
@@ -1518,6 +1519,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1551,6 +1554,7 @@
     <Content Include="Scripts\plugins\diff_match_patch\COPYING" />
     <Content Include="Scripts\plugins\justified-gallery\README.md" />
     <Content Include="Scripts\plugins\topojson\LICENSE" />
+    <Content Include="Views\Quotation\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1560,6 +1564,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Delivery\" />
+    <Folder Include="Views\Order\" />
+    <Folder Include="Views\Production\" />
+    <Folder Include="Views\Report\" />
+    <Folder Include="Views\Sale\" />
+    <Folder Include="Views\Stock\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RP.Business\RP.Business.csproj">
