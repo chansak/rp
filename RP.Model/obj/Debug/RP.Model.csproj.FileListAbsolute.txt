@@ -8,3 +8,13 @@ D:\Git\RP\RP\RP.Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\Git\RP\RP\RP.Model\obj\Debug\RP.Model.dll
 D:\Git\RP\RP\RP.Model\obj\Debug\RP.Model.pdb
 D:\Git\RP\RP\RP.Model\obj\Debug\RP.Model.csprojResolveAssemblyReference.cache
+D:\Git\rp\RP.Model\bin\Debug\RP.Model.dll.config
+D:\Git\rp\RP.Model\bin\Debug\RP.Model.dll
+D:\Git\rp\RP.Model\bin\Debug\RP.Model.pdb
+D:\Git\rp\RP.Model\bin\Debug\EntityFramework.dll
+D:\Git\rp\RP.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\Git\rp\RP.Model\bin\Debug\EntityFramework.xml
+D:\Git\rp\RP.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\Git\rp\RP.Model\obj\Debug\RP.Model.dll
+D:\Git\rp\RP.Model\obj\Debug\RP.Model.pdb
+D:\Git\rp\RP.Model\obj\Debug\RP.Model.csprojResolveAssemblyReference.cache

@@ -130,3 +130,8 @@ D:\Git\RP\RP.Website\bin\EntityFramework.xml
 D:\Git\RP\RP.Website\obj\Debug\RP.Website.csprojResolveAssemblyReference.cache
 D:\Git\RP\RP.Website\obj\Debug\RP.Website.dll
 D:\Git\RP\RP.Website\obj\Debug\RP.Website.pdb
+D:\Git\rp\RP.Website\bin\Antlr3.Runtime.dll
+D:\Git\rp\RP.Website\bin\System.Web.Optimization.dll
+D:\Git\rp\RP.Website\bin\WebGrease.dll
+D:\Git\rp\RP.Website\bin\Antlr3.Runtime.pdb
+D:\Git\rp\RP.Website\bin\System.Web.Optimization.xml
