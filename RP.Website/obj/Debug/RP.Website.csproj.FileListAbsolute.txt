@@ -135,3 +135,5 @@ D:\Git\rp\RP.Website\bin\System.Web.Optimization.dll
 D:\Git\rp\RP.Website\bin\WebGrease.dll
 D:\Git\rp\RP.Website\bin\Antlr3.Runtime.pdb
 D:\Git\rp\RP.Website\bin\System.Web.Optimization.xml
+D:\Git\rp\RP.Website\bin\EntityFramework.SqlServer.dll
+D:\Git\rp\RP.Website\bin\EntityFramework.SqlServer.xml
