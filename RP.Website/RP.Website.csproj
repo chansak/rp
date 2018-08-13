@@ -1526,8 +1526,25 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
+    <Compile Include="Models\ApprovalStatus.cs" />
+    <Compile Include="Models\AttachFileViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\CustomerType.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\DeliveryType.cs" />
+    <Compile Include="Models\PaymentType.cs" />
+    <Compile Include="Models\PricePerUnit.cs" />
+    <Compile Include="Models\ProductImageViewModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\QuotationDeliveryViewModel.cs" />
+    <Compile Include="Models\QuotationItemViewModel.cs" />
+    <Compile Include="Models\QuotationStatus.cs" />
+    <Compile Include="Models\QuotationViewModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\TransportDetailViewModel.cs" />
+    <Compile Include="Models\UnitTypeViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\WinOrLostStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
