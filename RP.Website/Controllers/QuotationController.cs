@@ -13,5 +13,8 @@ namespace RP.Website.Controllers
         {
             return View();
         }
+        public ActionResult AddNewQuotation() {
+            return View();
+        }
     }
 }
