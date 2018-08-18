@@ -1580,7 +1580,7 @@
     <Content Include="Scripts\plugins\justified-gallery\README.md" />
     <Content Include="Scripts\plugins\topojson\LICENSE" />
     <Content Include="Views\Quotation\Index.cshtml" />
-    <Content Include="Views\Quotation\AddNewQuotation.cshtml" />
+    <Content Include="Views\Quotation\AddNew.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
