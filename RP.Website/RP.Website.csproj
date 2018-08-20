@@ -1527,6 +1527,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
+    <Compile Include="Controllers\QuotationApprovalController.cs" />
     <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
@@ -1581,6 +1582,7 @@
     <Content Include="Scripts\plugins\topojson\LICENSE" />
     <Content Include="Views\Quotation\Index.cshtml" />
     <Content Include="Views\Quotation\AddNew.cshtml" />
+    <Content Include="Views\QuotationApproval\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

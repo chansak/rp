@@ -5,13 +5,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>ใบเสนอราคา</h2>
+        <h2>ใบขอราคา</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="@Url.Action("Index", "Quotation")">หน้าแรก</a>
             </li>
             <li class="active">
-                <strong>รายการใบเสนอราคา</strong>
+                <strong>รายการใบขอราคา</strong>
             </li>
         </ol>
     </div>
@@ -28,7 +28,7 @@
                             <select class="form-control m-b" name="account">
                                 <option>รหัสลูกค้า</option>
                                 <option>ชื่อลูกค้า</option>
-                                <option>เลขที่ใบเสนอราคา</option>
+                                <option>เลขที่ใบขอราคา</option>
                             </select>
                         </div>
                         <div class="col-sm-8">
@@ -48,8 +48,8 @@
                                         <thead>
                                             <tr>
                                                 <th><div class="checkbox i-checks"><label> <input type="checkbox" value="" alt="ทั้งหมด"> <i></i></label></div></th>
-                                                <th>วันที่ใบเสนอราคา</th>
-                                                <th>เลขที่ใบเสนอราคา</th>
+                                                <th>วันที่ใบขอราคา</th>
+                                                <th>เลขที่ใบขอราคา</th>
                                                 <th>รหัสลูกค้า</th>
                                                 <th>ลูกค้า</th>
                                                 <th>จำนวนเงินทั้งสิ้น</th>
@@ -290,7 +290,7 @@
         <div class="col-sm-3">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5>จัดการใบเสนอราคา</h5>
+                    <h5>จัดการใบขอราคา</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -312,19 +312,19 @@
                     </div>
                 </div>
                 <div class="ibox-content float-e-margins">
-                    @Html.ActionLink("สร้างใบเสนอราคา", "AddNew",null,new { @class="btn btn-primary btn-xs" })
+                    @Html.ActionLink("สร้างใบขอราคา", "AddNew",null,new { @class="btn btn-primary btn-xs" })
                     <button type="button" class="btn btn-info btn-xs">แก้ไข</button>
-                    <button type="button" class="btn btn-xs">ลบ</button>
+                    <button type="button" class="btn btn-xs btnDelete">ลบ</button>
                     <button type="button" class="btn btn-xs">คัดลอก</button>
                     <button type="button" class="btn btn-xs">ยื่นขออนุมัติ</button>
                     <button type="button" class="btn btn-xs">มอบหมาย</button>
                     <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" aria-expanded="false">เปลี่ยนสถานะ</button>
                         <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 24px; left: 0px; will-change: top, left;">
-                            <li><a class="dropdown-item" href="#">เปิดใช้งานใบเสนอราคา</a></li>
-                            <li><a class="dropdown-item" href="#">ปิดใช้งานใบเสนอราคา</a></li>
-                            <li><a class="dropdown-item" href="#">พักใบเสนอราคา</a></li>
-                            <li><a class="dropdown-item" href="#">ยกเลิกใบเสนอราคา</a></li>
+                            <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>
+                            <li><a class="dropdown-item" href="#">ปิดใช้งานใบขอราคา</a></li>
+                            <li><a class="dropdown-item" href="#">พักใบขอราคา</a></li>
+                            <li><a class="dropdown-item" href="#">ยกเลิกใบขอราคา</a></li>
                         </ul>
                     </div>
                 </div>
@@ -406,10 +406,13 @@
 </div>
 @section Styles {
     @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
 }
 
 @section Scripts {
     @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/sweetAlert")
+
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -423,7 +426,28 @@
             // Add slimscroll to element
             $('.scroll_content').slimscroll({
                 height: '500px'
-            })
+            });
+
+            $('.btnDelete').click(function () {
+                swal({
+                    title: "ยืนยันการลบข้อมูล?",
+                    text: "คุณจะไม่สามารถกู้รายการนี้หลังจากลบไปแล้ว!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "ลบ!",
+                    cancelButtonText: "ยกเลิก!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success");
+                            } else {
+                                swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error");
+                            }
+                        });
+            });
         });
     </script>
 }

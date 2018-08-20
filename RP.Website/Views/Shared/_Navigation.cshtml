@@ -31,7 +31,7 @@
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">งานขาย</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Sale", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation")">ใบเสนอราคา</a></li>
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation")">รายการอนุมัติ <span class="label label-warning pull-right">16/24</span></a></li>
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "QuotationApproval")">รายการอนุมัติ <span class="label label-warning pull-right">16/24</span></a></li>
                     <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation")">รายการมอบหมาย</a></li>
                 </ul>
             </li>
