@@ -8,7 +8,7 @@
         <h2>ใบขอราคารออนุมัติ</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="@Url.Action("Index", "QuotationApprovalController")">หน้าแรก</a>
+                <a href="@Url.Action("Index", "QuotationApproval")">หน้าแรก</a>
             </li>
             <li class="active">
                 <strong>รายการใบขอราคารออนุมัติ</strong>
@@ -283,35 +283,31 @@
                 swal({
                     title: "อนุมัติเรียบร้อย!",
                     text: "กดปุ่ม OK เพื่อปิด!",
-                    type: "success"
+                    icon: "success"
                 });
             });
             $('.btnReject').click(function () {
                 swal({
                     title: "ยืนยันเพื่อไม่อนุมัติ?",
                     text: "",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "ไม่อนุมัติ!",
-                    cancelButtonText: "ยกเลิก!",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
-                },
-                        function (isConfirm) {
-                            if (isConfirm) {
-                                swal.close();
-                                $("#myModal").modal("show");
-                            } else {
-                                swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error");
-                            }
-                        });
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    buttons: ["ปิด", "ตกลง"]
+                }).then((isConfirm) => {
+                    if (isConfirm) {
+                        swal.close();
+                        $("#myModal").modal("show");
+                    } else {
+                        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error");
+                    }
+                });
             });
             $('.btnSaveReason').click(function () {
                 $('#myModal').modal('toggle');
                 swal("ไม่อนุมัติรายการเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success");
             });
-            
+
         });
     </script>
 }

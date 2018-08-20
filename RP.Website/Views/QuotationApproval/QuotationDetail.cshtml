@@ -5,13 +5,13 @@
     @Html.AntiForgeryToken()
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-sm-4">
-            <h2>สร้างใบขอราคา</h2>
+            <h2>ตรวจสอบใบขอราคา</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="@Url.Action("Index", "Quotation")">หน้าแรก</a>
+                    <a href="@Url.Action("Index", "QuotationApproval")">หน้าแรก</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Quotation")">ใบขอราคารออนุมัติ</a>
+                    <a href="@Url.Action("Index", "QuotationApproval")">ใบขอราคารออนุมัติ</a>
                 </li>
                 <li class="active">
                     <strong>ตรวจสอบใบขอราคา</strong>
@@ -44,7 +44,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เลขที่เอกสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
                                                 <span class="form-text">999-99-999-9999-9</span>
                                             </div>
                                         </div>
@@ -54,7 +54,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014">
+                                                <input type="text" class="form-control" value="03/04/2014" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_2">
@@ -63,7 +63,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014">
+                                                <input type="text" class="form-control" value="03/04/2014" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_2">
@@ -72,7 +72,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014">
+                                                <input type="text" class="form-control" value="03/04/2014" disabled>
                                             </div>
                                         </div>
                                         <h2>ข้อมูลลูกค้า</h2>
@@ -80,13 +80,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ลูกค้า</label>
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-address-book"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-address-book"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ประเภทลูกค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
+                                                <select class="form-control m-b" name="account" disabled>
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -98,28 +98,28 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">โทรสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ชื่อโรงพยาบาล</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
+                                                <select class="form-control m-b" name="account" disabled>
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -132,13 +132,13 @@
                                             <label class="col-sm-3 col-form-label">ผู้ติดต่อ</label>
 
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">หน่วยงาน</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
+                                                <select class="form-control m-b" name="account" disabled>
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -153,20 +153,20 @@
                                             <label class="col-sm-3 col-form-label">ผู้รับผิดชอบ</label>
 
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">รหัสพนักงาน</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" disabled="" placeholder="">
+                                                <input type="text" class="form-control" disabled="" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">หน่วยงาน</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
+                                                <select class="form-control m-b" name="account" disabled>
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -283,7 +283,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">วิธีการส่งของ</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
+                                                <select class="form-control m-b" name="account" disabled>
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -295,7 +295,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เงื่อนไขการส่งของ</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
+                                                <select class="form-control m-b" name="account" disabled>
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -310,7 +310,7 @@
                                             <label class="col-sm-3 col-form-label">ที่อยุ่ในเอกสาร</label>
                                             <div class="col-sm-9">
                                                 @*<input type="text" class="form-control" placeholder="">*@
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
                                                 <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                             </div>
                                         </div>
@@ -321,27 +321,27 @@
                                             <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
 
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">โทรสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="">
+                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
@@ -363,7 +363,7 @@
                                         <label class="col-sm-3 col-form-label">หมายเหตุ</label>
                                         <div class="col-sm-9">
                                             @*<input type="text" class="form-control" placeholder="">*@
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
                                             <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                         </div>
                                     </div>
@@ -371,7 +371,7 @@
                                         <label class="col-sm-3 col-form-label">คำอธิบายเพิ่มเติม</label>
                                         <div class="col-sm-9">
                                             @*<input type="text" class="form-control" placeholder="">*@
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
                                             <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                         </div>
                                     </div>
@@ -620,42 +620,42 @@
                 swal({
                     title: "บันทึกเรียบร้อย!",
                     text: "กดปุ่ม OK เพื่อปิด!",
-                    type: "success"
+                    icon: "success"
                 });
             });
             $('.btnApprove').click(function () {
                 swal({
                     title: "อนุมัติเรียบร้อย!",
                     text: "กดปุ่ม OK เพื่อปิด!",
-                    type: "success"
+                    icon: "success"
+                }).then(function () {
+                    utilities.RedirectToAction("/QuotationApproval/Index");
                 });
-                utilities.RedirectToAction("/QuotationApproval/Index");
             });
             $('.btnReject').click(function () {
                 swal({
                     title: "ยืนยันเพื่อไม่อนุมัติ?",
                     text: "",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "ไม่อนุมัติ!",
-                    cancelButtonText: "ยกเลิก!",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
-                },
-                        function (isConfirm) {
-                            if (isConfirm) {
-                                swal.close();
-                                $("#myModal").modal("show");
-                            } else {
-                                swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error");
-                            }
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    buttons: ["ปิด","ตกลง"]
+                }).then((isConfirm) => {
+                    if (isConfirm) {
+                        swal.close();
+                        $("#myModal").modal("show");
+                    } else {
+                        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                            utilities.RedirectToAction("/QuotationApproval/Index");
                         });
+                    }
+                });
             });
             $('.btnSaveReason').click(function () {
                 $('#myModal').modal('toggle');
-                swal("ไม่อนุมัติรายการเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success");
-                utilities.RedirectToAction("/QuotationApproval/Index");
+                swal("ไม่อนุมัติรายการเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success").then(function () {
+                    utilities.RedirectToAction("/QuotationApproval/Index");
+                });
             });
         });
     </script>

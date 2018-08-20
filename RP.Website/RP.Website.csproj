@@ -1532,6 +1532,7 @@
     <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\QuotationApprovalController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1585,6 +1586,8 @@
     <Content Include="Views\Quotation\Index.cshtml" />
     <Content Include="Views\Quotation\AddNew.cshtml" />
     <Content Include="Views\QuotationApproval\QuotationDetail.cshtml" />
+    <Content Include="Views\Setting\CustomerList.cshtml" />
+    <Content Include="Views\Setting\AddNewCustomer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
