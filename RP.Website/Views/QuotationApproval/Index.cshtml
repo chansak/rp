@@ -132,8 +132,11 @@
                     </div>
                 </div>
                 <div class="ibox-content float-e-margins">
-                    <button type="button" class="btn btn-primary btn-xs btnApprove">อนุมัติ</button>
-                    <button type="button" class="btn btn-danger btn-xs btnReject">ไม่อนุมัติ</button>
+                    <button type="button" class="btn btn-primary btnApprove">อนุมัติ</button>
+                    <button type="button" class="btn btn-danger btnReject">ไม่อนุมัติ</button>
+                    <a href='@Url.Action("QuotationDetail", "QuotationApproval")' class="btn btn-info">
+                        <i class="fa fa-search"></i> ตรวจสอบ
+                    </a>
                 </div>
                 <div class="ibox-footer">
                     <h5>ข้อมูลที่เกี่ยวข้อง </h5>
@@ -216,7 +219,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">เพิ่มเหตุผลการไม่อนุมัติรายการ</h4>
+                <h4 class="modal-title">เพิ่มเหตุผลของการไม่อนุมัติคำขอ</h4>
             </div>
             <div class="modal-body">
                 <div class="row">

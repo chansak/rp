@@ -6,14 +6,15 @@ using System.Web.Mvc;
 
 namespace RP.Website.Controllers
 {
-    public class QuotationController : Controller
+    public class QuotationApprovalController : Controller
     {
         // GET: Quotation
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult AddNew() {
+        public ActionResult QuotationDetail()
+        {
             return View();
         }
     }

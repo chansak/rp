@@ -11,10 +11,10 @@
                     <a href="@Url.Action("Index", "Quotation")">หน้าแรก</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Quotation")">รายการใบขอราคา</a>
+                    <a href="@Url.Action("Index", "Quotation")">ใบขอราคารออนุมัติ</a>
                 </li>
                 <li class="active">
-                    <strong>สร้างใบขอราคา</strong>
+                    <strong>ตรวจสอบใบขอราคา</strong>
                 </li>
             </ol>
         </div>
@@ -416,9 +416,8 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <button type="button" class="btn btn-primary btnSave">บันทึก</button>
-                        <button type="button" class="btn btn-danger">ยกเลิก</button>
-                        <button type="button" class="btn btn-info"><i class="fa fa-search"></i> ดูตัวอย่าง</button>
+                        <button type="button" class="btn btn-primary btnApprove">อนุมัติ</button>
+                        <button type="button" class="btn btn-danger btnReject">ไม่อนุมัติ</button>
                     </div>
                     <div class="ibox-footer">
                         @*<span class="pull-right">
@@ -529,6 +528,47 @@
         </div>
     </div>
 </div>
+<div class="modal inmodal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">เพิ่มเหตุผลของการไม่อนุมัติคำขอ</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">สาเหตุ</label>
+
+                            <div class="col-sm-9">
+                                <select class="form-control m-b" name="account">
+                                    <option>option 1</option>
+                                    <option>option 2</option>
+                                    <option>option 3</option>
+                                    <option>option 4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">คำอธิบาย</label>
+
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary btnSaveReason">บันทึก</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Styles {
     @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
     @Styles.Render("~/plugins/sweetAlertStyles")
@@ -576,13 +616,46 @@
                 autoclose: true
             });
 
-            $('.btnSave').click(function () {
+            $('.demo2').click(function () {
                 swal({
                     title: "บันทึกเรียบร้อย!",
                     text: "กดปุ่ม OK เพื่อปิด!",
                     type: "success"
                 });
-                utilities.RedirectToAction("/Quotation/Index");
+            });
+            $('.btnApprove').click(function () {
+                swal({
+                    title: "อนุมัติเรียบร้อย!",
+                    text: "กดปุ่ม OK เพื่อปิด!",
+                    type: "success"
+                });
+                utilities.RedirectToAction("/QuotationApproval/Index");
+            });
+            $('.btnReject').click(function () {
+                swal({
+                    title: "ยืนยันเพื่อไม่อนุมัติ?",
+                    text: "",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "ไม่อนุมัติ!",
+                    cancelButtonText: "ยกเลิก!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                swal.close();
+                                $("#myModal").modal("show");
+                            } else {
+                                swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error");
+                            }
+                        });
+            });
+            $('.btnSaveReason').click(function () {
+                $('#myModal').modal('toggle');
+                swal("ไม่อนุมัติรายการเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success");
+                utilities.RedirectToAction("/QuotationApproval/Index");
             });
         });
     </script>
