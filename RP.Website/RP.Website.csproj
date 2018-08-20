@@ -1516,6 +1516,7 @@
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
     <Content Include="Scripts\plugins\wow\wow.min.js" />
+    <Content Include="Views\QuotationApproval\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1582,7 +1583,6 @@
     <Content Include="Scripts\plugins\topojson\LICENSE" />
     <Content Include="Views\Quotation\Index.cshtml" />
     <Content Include="Views\Quotation\AddNew.cshtml" />
-    <Content Include="Views\QuotationApproval\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
