@@ -153,8 +153,6 @@
     <Content Include="Areas\Manager\Views\QuotationApproval\QuotationDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Manager\Views\web.config" />
-    <Content Include="Areas\Sale\Views\QuotationApproval\Index.cshtml" />
-    <Content Include="Areas\Sale\Views\QuotationApproval\QuotationDetail.cshtml" />
     <Content Include="Areas\Sale\Views\Quotation\AddNew.cshtml" />
     <Content Include="Areas\Sale\Views\Quotation\Index.cshtml" />
     <Content Include="Areas\Sale\Views\Shared\_Layout.cshtml" />
@@ -1545,7 +1543,6 @@
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Manager\Controllers\QuotationApprovalController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
-    <Compile Include="Areas\Sale\Controllers\QuotationApprovalController.cs" />
     <Compile Include="Areas\Sale\Controllers\QuotationController.cs" />
     <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
