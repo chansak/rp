@@ -145,6 +145,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Setting\AddNewCustomer.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\CustomerList.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Manager\Views\QuotationApproval\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\QuotationApproval\QuotationDetail.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Sale\Views\QuotationApproval\Index.cshtml" />
+    <Content Include="Areas\Sale\Views\QuotationApproval\QuotationDetail.cshtml" />
+    <Content Include="Areas\Sale\Views\Quotation\AddNew.cshtml" />
+    <Content Include="Areas\Sale\Views\Quotation\Index.cshtml" />
+    <Content Include="Areas\Sale\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Sale\Views\web.config" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -1166,20 +1180,6 @@
     <Content Include="fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="fonts\font-awesome\scss\_variables.scss" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Sale\Views\web.config" />
-    <Content Include="Areas\Manager\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Setting\AddNewCustomer.cshtml" />
-    <Content Include="Areas\Admin\Views\Setting\CustomerList.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Sale\Views\Quotation\AddNew.cshtml" />
-    <Content Include="Areas\Sale\Views\Quotation\Index.cshtml" />
-    <Content Include="Areas\Sale\Views\QuotationApproval\Index.cshtml" />
-    <Content Include="Areas\Sale\Views\QuotationApproval\QuotationDetail.cshtml" />
-    <Content Include="Areas\Sale\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Manager\Views\QuotationApproval\Index.cshtml" />
-    <Content Include="Areas\Manager\Views\QuotationApproval\QuotationDetail.cshtml" />
-    <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1545,11 +1545,11 @@
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Manager\Controllers\QuotationApprovalController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Areas\Sale\Controllers\QuotationApprovalController.cs" />
+    <Compile Include="Areas\Sale\Controllers\QuotationController.cs" />
     <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
-    <Compile Include="Areas\Sale\Controllers\QuotationController.cs" />
-    <Compile Include="Areas\Sale\Controllers\QuotationApprovalController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Global.asax.cs">
