@@ -32,7 +32,7 @@
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Sale", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation",new { area = "Sale" })">ใบเสนอราคา</a></li>
                     <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "QuotationApproval",new { area = "Manager" })">รายการอนุมัติ <span class="label label-warning pull-right">16/24</span></a></li>
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation",new { area = "Sale" })">รายการมอบหมาย</a></li>
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Assigment",new { area = "Sale" })">รายการมอบหมาย</a></li>
                 </ul>
             </li>
             <li class="@Html.IsSelected(controller: "Report")">
