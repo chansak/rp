@@ -15,5 +15,8 @@ namespace RP.Website.Areas.Sale.Controllers
         public ActionResult AddNew() {
             return View();
         }
+        public ActionResult Edit(string id) {
+            return View();
+        }
     }
 }
