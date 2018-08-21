@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RP.Website.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,10 +20,46 @@ namespace RP.Website
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ModelMapping.Configure();
 
-            //AreaRegistration.RegisterAllAreas();
-            //GlobalConfiguration.Configure(WebApiConfig.Register);
-            //RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //ModelMapping.Configure();
+        }
+        protected void Application_Error()
+        {
+            var exception = Server.GetLastError();
+            var httpException = exception as HttpException;
+            Response.Clear();
+            Server.ClearError();
+            var statusCode = 500;
+            if (httpException != null)
+            {
+                statusCode = httpException.GetHttpCode();
+                switch (statusCode)
+                {
+                    case 401:
+                        {
+                            Response.Redirect("/Error/Error");
+                            break;
+                        }
+                    case 403:
+                        {
+                            Response.Redirect("/Error/Error");
+                            break;
+                        }
+                    case 404:
+                        {
+                            Response.Redirect("/Error/Notfound");
+                            break;
+                        }
+                    case 503:
+                        {
+                            Response.Redirect("/Error/Error");
+                            break;
+                        }
+                    default:
+                        {
+                            Response.Redirect("/Error/Error");
+                            break;
+                        }
+                }
+            }
         }
     }
 }

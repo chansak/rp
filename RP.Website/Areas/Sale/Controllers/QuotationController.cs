@@ -8,7 +8,6 @@ namespace RP.Website.Areas.Sale.Controllers
 {
     public class QuotationController : Controller
     {
-        // GET: Quotation
         public ActionResult Index()
         {
             return View();

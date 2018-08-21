@@ -1545,6 +1545,7 @@
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Sale\Controllers\QuotationController.cs" />
     <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -1598,6 +1599,8 @@
     <Content Include="Scripts\plugins\diff_match_patch\COPYING" />
     <Content Include="Scripts\plugins\justified-gallery\README.md" />
     <Content Include="Scripts\plugins\topojson\LICENSE" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1610,6 +1613,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Manager\Models\" />
     <Folder Include="Areas\Sale\Models\" />
+    <Folder Include="Filter\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RP.Business\RP.Business.csproj">
