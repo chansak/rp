@@ -33,24 +33,9 @@ namespace RP.Website
                 statusCode = httpException.GetHttpCode();
                 switch (statusCode)
                 {
-                    case 401:
-                        {
-                            Response.Redirect("/Error/Error");
-                            break;
-                        }
-                    case 403:
-                        {
-                            Response.Redirect("/Error/Error");
-                            break;
-                        }
                     case 404:
                         {
                             Response.Redirect("/Error/Notfound");
-                            break;
-                        }
-                    case 503:
-                        {
-                            Response.Redirect("/Error/Error");
                             break;
                         }
                     default:

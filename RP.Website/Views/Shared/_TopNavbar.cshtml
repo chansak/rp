@@ -12,7 +12,7 @@
             <li>
                 <span class="m-r-sm text-muted welcome-message" data-i18n="topnav.welcometext"></span>
             </li>
-            <li class="dropdown">
+            @*<li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                     <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
                 </a>
@@ -64,17 +64,17 @@
                         </div>
                     </li>
                 </ul>
-            </li>
+            </li>*@
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                    <i class="fa fa-bell"></i>  <span class="label label-primary">4</span>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
                     <li>
                         <a href="#">
                             <div>
-                                <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                <i class="fa fa-check-square-o fa-fw"></i> QUO0517-002
+                                <span class="pull-right text-muted small">รพ. บำรุงราษฎร์</span>
                             </div>
                         </a>
                     </li>
@@ -82,8 +82,8 @@
                     <li>
                         <a href="#">
                             <div>
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small">12 minutes ago</span>
+                                <i class="fa fa-check-square-o fa-fw"></i> QUO0517-134
+                                <span class="pull-right text-muted small">รพ. กรุงเทพ</span>
                             </div>
                         </a>
                     </li>
@@ -91,18 +91,15 @@
                     <li>
                         <a href="#">
                             <div>
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                <i class="fa fa-check-square-o fa-fw"></i> QUO0517-357
+                                <span class="pull-right text-muted small">รพ. เปาโล</span>
                             </div>
                         </a>
                     </li>
                     <li class="divider"></li>
                     <li>
                         <div class="text-center link-block">
-                            <a href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
+                            <a href="@Url.Action("Index", "QuotationApproval",new { area = "Manager" })">ดูรายการขออนุุมัติทั้งหมด <i class="fa fa-angle-right"></i></a>
                         </div>
                     </li>
                 </ul>
@@ -112,11 +109,11 @@
                     <i class="fa fa-sign-out"></i> Log out
                 </a>
             </li>
-            <li>
+            @*<li>
                 <a class="right-sidebar-toggle">
                     <i class="fa fa-tasks"></i>
                 </a>
-            </li>
+            </li>*@
         </ul>
     </nav>
 </div>
