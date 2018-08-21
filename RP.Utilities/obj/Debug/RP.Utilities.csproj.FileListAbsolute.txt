@@ -7,4 +7,3 @@ D:\Git\rp\RP.Utilities\bin\Debug\RP.Utilities.dll
 D:\Git\rp\RP.Utilities\bin\Debug\RP.Utilities.pdb
 D:\Git\rp\RP.Utilities\obj\Debug\RP.Utilities.dll
 D:\Git\rp\RP.Utilities\obj\Debug\RP.Utilities.pdb
-D:\Git\rp\RP.Utilities\obj\Debug\RP.Utilities.csprojResolveAssemblyReference.cache

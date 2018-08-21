@@ -1166,6 +1166,20 @@
     <Content Include="fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="fonts\font-awesome\scss\_variables.scss" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Sale\Views\web.config" />
+    <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Setting\AddNewCustomer.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\CustomerList.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Sale\Views\Quotation\AddNew.cshtml" />
+    <Content Include="Areas\Sale\Views\Quotation\Index.cshtml" />
+    <Content Include="Areas\Sale\Views\QuotationApproval\Index.cshtml" />
+    <Content Include="Areas\Sale\Views\QuotationApproval\QuotationDetail.cshtml" />
+    <Content Include="Areas\Sale\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manager\Views\QuotationApproval\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\QuotationApproval\QuotationDetail.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1518,7 +1532,6 @@
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
     <Content Include="Scripts\plugins\wow\wow.min.js" />
-    <Content Include="Views\QuotationApproval\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1528,12 +1541,16 @@
     <Compile Include="App_Start\JsonCamelCaseResult.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Manager\Controllers\QuotationApprovalController.cs" />
+    <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
-    <Compile Include="Controllers\QuotationController.cs" />
-    <Compile Include="Controllers\QuotationApprovalController.cs" />
+    <Compile Include="Areas\Sale\Controllers\QuotationController.cs" />
+    <Compile Include="Areas\Sale\Controllers\QuotationApprovalController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1584,11 +1601,6 @@
     <Content Include="Scripts\plugins\diff_match_patch\COPYING" />
     <Content Include="Scripts\plugins\justified-gallery\README.md" />
     <Content Include="Scripts\plugins\topojson\LICENSE" />
-    <Content Include="Views\Quotation\Index.cshtml" />
-    <Content Include="Views\Quotation\AddNew.cshtml" />
-    <Content Include="Views\QuotationApproval\QuotationDetail.cshtml" />
-    <Content Include="Views\Setting\CustomerList.cshtml" />
-    <Content Include="Views\Setting\AddNewCustomer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1598,12 +1610,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Delivery\" />
-    <Folder Include="Views\Order\" />
-    <Folder Include="Views\Production\" />
-    <Folder Include="Views\Report\" />
-    <Folder Include="Views\Sale\" />
-    <Folder Include="Views\Stock\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Manager\Models\" />
+    <Folder Include="Areas\Sale\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RP.Business\RP.Business.csproj">

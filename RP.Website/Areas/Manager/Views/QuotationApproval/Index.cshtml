@@ -1,0 +1,313 @@
+﻿
+@{
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>ใบขอราคารออนุมัติ</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "QuotationApproval",new { area = "Manager" })">หน้าแรก</a>
+            </li>
+            <li class="active">
+                <strong>รายการใบขอราคารออนุมัติ</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span>
+                    <h2>&nbsp;</h2>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select class="form-control m-b" name="account">
+                                <option>รหัสลูกค้า</option>
+                                <option>ชื่อลูกค้า</option>
+                                <option>เลขที่ใบขอราคา</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" placeholder="ค้นหา" class="input form-control">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clients-list">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="full-height-scroll">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th><div class="checkbox i-checks"><label> <input type="checkbox" value="" alt="ทั้งหมด"> <i></i></label></div></th>
+                                                <th>วันที่ใบขอราคา</th>
+                                                <th>เลขที่ใบขอราคา</th>
+                                                <th>รหัสลูกค้า</th>
+                                                <th>ลูกค้า</th>
+                                                <th>จำนวนเงินทั้งสิ้น</th>
+                                                <th>สถานะ</th>
+                                                <th>มีผลถึงวันที่</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
+                                                <td>01/01/2018</td>
+                                                <td>QUO0517-002</td>
+                                                <td>ACC0385-001</td>
+                                                <td>บำรุงราษฎร์</td>
+                                                <td>1,250,000</td>
+                                                <td><span class="badge badge-primary">รออนุมัติ</span></td>
+                                                <td>15/01/2018</td>
+                                            </tr>
+                                            <tr>
+                                                <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
+                                                <td>01/01/2018</td>
+                                                <td>QUO0517-002</td>
+                                                <td>ACC0385-001</td>
+                                                <td>บำรุงราษฎร์</td>
+                                                <td>1,250,000</td>
+                                                <td><span class="badge badge-primary">รออนุมัติ</span></td>
+                                                <td>15/01/2018</td>
+                                            </tr>
+                                            <tr>
+                                                <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
+                                                <td>01/01/2018</td>
+                                                <td>QUO0517-002</td>
+                                                <td>ACC0385-001</td>
+                                                <td>บำรุงราษฎร์</td>
+                                                <td>1,250,000</td>
+                                                <td><span class="badge badge-primary">รออนุมัติ</span></td>
+                                                <td>15/01/2018</td>
+                                            </tr>
+                                            <tr>
+                                                <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
+                                                <td>01/01/2018</td>
+                                                <td>QUO0517-002</td>
+                                                <td>ACC0385-001</td>
+                                                <td>บำรุงราษฎร์</td>
+                                                <td>1,250,000</td>
+                                                <td><span class="badge badge-primary">รออนุมัติ</span></td>
+                                                <td>15/01/2018</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>จัดการใบขอราคา</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#">Config option 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>*@
+                    </div>
+                </div>
+                <div class="ibox-content float-e-margins">
+                    <button type="button" class="btn btn-primary btnApprove">อนุมัติ</button>
+                    <button type="button" class="btn btn-danger btnReject">ไม่อนุมัติ</button>
+                    <a href='@Url.Action("QuotationDetail", "QuotationApproval")' class="btn btn-info">
+                        <i class="fa fa-search"></i> ตรวจสอบ
+                    </a>
+                </div>
+                <div class="ibox-footer">
+                    <h5>ข้อมูลที่เกี่ยวข้อง </h5>
+                    <p>
+                        <ul>
+                            <li>ลูกค้า</li>
+                            <li>ผู้ติดต่อ</li>
+                            <li>เงื่อนไขการชำระเงิน</li>
+                            <li>กระบวนการจัดซื้อ</li>
+                            <li>วิธีการขนส่ง</li>
+                            <li>เงื่อนไขการขนส่ง</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="ibox collapsed">
+                <div class="ibox-title">
+                    <h5>ตัวกรองข้อมูลแบบละเอียด</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#">Config option 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>*@
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="scroll_content">
+                        <form role="form">
+                            <div class="form-group">
+                                <label>ประเภทลูกค้า</label>
+                                <input type="text" placeholder="ประเภทลูกค้า" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>ชื่อโรงพยาบาล</label>
+                                <input type="text" placeholder="ชื่อโรงพยาบาล" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>ปี</label>
+                                <input type="text" placeholder="ปี" data-mask="99/99/9999" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>ชื่อผู้ติดต่อ</label>
+                                <input type="text" placeholder="ชื่อผู้ติดต่อ" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>ราคาที่เคยเสนอ</label>
+                                <input type="text" placeholder="ราคาที่เคยเสนอ" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>ระบุคำค้นหา</label>
+                                <input type="text" placeholder="ระบุคำค้นหา" class="form-control">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-10">
+                                    <button class="btn btn-sm btn-primary" type="submit">ค้นหา</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">เพิ่มเหตุผลของการไม่อนุมัติคำขอ</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">สาเหตุ</label>
+
+                            <div class="col-sm-9">
+                                <select class="form-control m-b" name="account">
+                                    <option>option 1</option>
+                                    <option>option 2</option>
+                                    <option>option 3</option>
+                                    <option>option 4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">คำอธิบาย</label>
+
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary btnSaveReason">บันทึก</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/sweetAlert")
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //green checkbox
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+
+            // Add slimscroll to element
+            $('.scroll_content').slimscroll({
+                height: '500px'
+            });
+
+            $('.btnApprove').click(function () {
+                swal({
+                    title: "อนุมัติเรียบร้อย!",
+                    text: "กดปุ่ม OK เพื่อปิด!",
+                    icon: "success"
+                });
+            });
+            $('.btnReject').click(function () {
+                swal({
+                    title: "ยืนยันเพื่อไม่อนุมัติ?",
+                    text: "",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    buttons: ["ปิด", "ตกลง"]
+                }).then((isConfirm) => {
+                    if (isConfirm) {
+                        swal.close();
+                        $("#myModal").modal("show");
+                    } else {
+                        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error");
+                    }
+                });
+            });
+            $('.btnSaveReason').click(function () {
+                $('#myModal').modal('toggle');
+                swal("ไม่อนุมัติรายการเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success");
+            });
+
+        });
+    </script>
+}

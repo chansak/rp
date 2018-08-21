@@ -30,9 +30,9 @@
             <li class="@Html.IsSelected(controller: "Quotation")">
                 <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">งานขาย</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Sale", cssClass: "in")">
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation")">ใบเสนอราคา</a></li>
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "QuotationApproval")">รายการอนุมัติ <span class="label label-warning pull-right">16/24</span></a></li>
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation")">รายการมอบหมาย</a></li>
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation",new { area = "Sale" })">ใบเสนอราคา</a></li>
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "QuotationApproval",new { area = "Manager" })">รายการอนุมัติ <span class="label label-warning pull-right">16/24</span></a></li>
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Quotation",new { area = "Sale" })">รายการมอบหมาย</a></li>
                 </ul>
             </li>
             <li class="@Html.IsSelected(controller: "Report")">
@@ -83,7 +83,7 @@
                         <a href="#">ตั้งค่าข้อมูลลูกค้า <span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li>
-                                <a href="@Url.Action("CustomerList", "Setting")">รายการลูกค้า</a>
+                                <a href="@Url.Action("CustomerList", "Setting",new { area = "Admin" })">รายการลูกค้า</a>
                             </li>
                             @*<li>
                                 <a href="#">ประเภทลูกค้า</a>
