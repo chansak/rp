@@ -1,4 +1,4 @@
-﻿using RP.Model;
+﻿//using RP.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace RP.Interfaces
         #endregion
 
         #region Transport
-        Transport GetTransportById(int id);
+        //Transport GetTransportById(int id);
         #endregion
     }
 }

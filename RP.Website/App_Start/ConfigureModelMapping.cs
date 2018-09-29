@@ -12,10 +12,10 @@ namespace RP.Website
     {
         public static void Configure()
         {
-            Mapper.Initialize(cfg => {
-                cfg.CreateMap<RP.Model.Transport, TransportDetailViewModel>();
-                cfg.CreateMap<TransportDetailViewModel, RP.Model.Transport>();
-            });
+            //Mapper.Initialize(cfg => {
+            //    cfg.CreateMap<RP.Model.Transport, TransportDetailViewModel>();
+            //    cfg.CreateMap<TransportDetailViewModel, RP.Model.Transport>();
+            //});
         }
     }
 }

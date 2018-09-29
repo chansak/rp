@@ -34,3 +34,45 @@ D:\Git\rp\RP.Business\bin\Debug\Common.Logging.xml
 D:\Git\rp\RP.Business\obj\Debug\RP.Business.csprojResolveAssemblyReference.cache
 D:\Git\rp\RP.Business\obj\Debug\RP.Business.dll
 D:\Git\rp\RP.Business\obj\Debug\RP.Business.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Business.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Business.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Interfaces.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Model.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Spring.Core.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.Core.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Interfaces.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Model.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Model.dll.config
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Spring.Core.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Spring.Core.xml
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.Core.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.Core.xml
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.xml
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csprojAssemblyReference.cache
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CoreCompileInputs.cache
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CopyComplete
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csprojAssemblyReference.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CoreCompileInputs.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Business.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Business.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Interfaces.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Model.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Spring.Core.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.Core.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Interfaces.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Model.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Model.dll.config
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Spring.Core.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Spring.Core.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.Core.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.Core.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CopyComplete
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.pdb

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using RP.Interfaces;
-using RP.Model;
+//using RP.Model;
 using RP.Website.Models;
 using System;
 using System.Collections.Generic;
@@ -16,18 +16,18 @@ namespace RP.Website.Controllers
         {
             return View();
         }
-        [HttpGet]
-        [Route("/home/getTransportDetail/{id}")]
-        public ActionResult GetTransportDetail(int id)
-        {
-            var transport = GenericFactory.Business.GetTransportById(id);
-            return new JsonCamelCaseResult(transport.ToViewModel(), JsonRequestBehavior.AllowGet);
-        }
-        [HttpPost]
-        [Route("/home/postTest")]
-        public ActionResult PostTest(TestViewModel model) {
-            //Content-Type : application/json
-            return new JsonCamelCaseResult(null,JsonRequestBehavior.AllowGet);
-        }
+        //[HttpGet]
+        //[Route("/home/getTransportDetail/{id}")]
+        //public ActionResult GetTransportDetail(int id)
+        //{
+        //    var transport = GenericFactory.Business.GetTransportById(id);
+        //    return new JsonCamelCaseResult(transport.ToViewModel(), JsonRequestBehavior.AllowGet);
+        //}
+        //[HttpPost]
+        //[Route("/home/postTest")]
+        //public ActionResult PostTest(TestViewModel model) {
+        //    //Content-Type : application/json
+        //    return new JsonCamelCaseResult(null,JsonRequestBehavior.AllowGet);
+        //}
     }
 }

@@ -17,3 +17,25 @@ D:\Git\rp\RP.Model\bin\Debug\EntityFramework.xml
 D:\Git\rp\RP.Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\Git\rp\RP.Model\obj\Debug\RP.Model.dll
 D:\Git\rp\RP.Model\obj\Debug\RP.Model.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\RP.Model.dll.config
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\RP.Model.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\RP.Model.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.xml
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CoreCompileInputs.cache
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CopyComplete
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\RP.Model.dll.config
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\RP.Model.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\RP.Model.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CoreCompileInputs.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CopyComplete
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.pdb

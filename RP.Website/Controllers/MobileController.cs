@@ -13,10 +13,10 @@ namespace RP.Website.Controllers
 {
     public class MobileController : ApiController
     {
-        public TransportDetailViewModel Get(int id)
-        {
-            var transport = GenericFactory.Business.GetTransportById(1001);
-            return transport.ToViewModel();
-        }
+        //public TransportDetailViewModel Get(int id)
+        //{
+        //    var transport = GenericFactory.Business.GetTransportById(1001);
+        //    return transport.ToViewModel();
+        //}
     }
 }

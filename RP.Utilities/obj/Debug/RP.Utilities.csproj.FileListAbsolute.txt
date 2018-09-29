@@ -7,3 +7,13 @@ D:\Git\rp\RP.Utilities\bin\Debug\RP.Utilities.dll
 D:\Git\rp\RP.Utilities\bin\Debug\RP.Utilities.pdb
 D:\Git\rp\RP.Utilities\obj\Debug\RP.Utilities.dll
 D:\Git\rp\RP.Utilities\obj\Debug\RP.Utilities.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Utilities\bin\Debug\RP.Utilities.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Utilities\bin\Debug\RP.Utilities.pdb
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Utilities\obj\Debug\RP.Utilities.csproj.CoreCompileInputs.cache
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Utilities\obj\Debug\RP.Utilities.dll
+C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Utilities\obj\Debug\RP.Utilities.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Utilities\bin\Debug\RP.Utilities.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Utilities\bin\Debug\RP.Utilities.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Utilities\obj\Debug\RP.Utilities.csproj.CoreCompileInputs.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Utilities\obj\Debug\RP.Utilities.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Utilities\obj\Debug\RP.Utilities.pdb
