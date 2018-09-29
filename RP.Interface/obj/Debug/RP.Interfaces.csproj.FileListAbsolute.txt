@@ -49,8 +49,6 @@ C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.CopyComplete
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.dll
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.pdb
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csprojAssemblyReference.cache
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\RP.Interfaces.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\RP.Interfaces.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Common.Logging.Core.dll
@@ -65,6 +63,8 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Common.Logging.Core.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Common.Logging.Core.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Spring.Core.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Spring.Core.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csprojAssemblyReference.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.pdb

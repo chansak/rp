@@ -76,8 +76,6 @@ C:\1_MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csproj
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csproj.CopyComplete
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.dll
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.pdb
-C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csprojAssemblyReference.cache
-C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\RP.DataAccess.dll.config
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\RP.DataAccess.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\RP.DataAccess.pdb
@@ -101,6 +99,8 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\Common.Logging.Core.pd
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\Common.Logging.Core.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\Common.Logging.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\Common.Logging.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csprojAssemblyReference.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.pdb

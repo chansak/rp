@@ -21,5 +21,16 @@ _[Rr]e[Ss]harper.*/
 *.dotCover
 /RP.Website/App_Data
 /RP.Website/bin
+/RP.Website/obj
+/RP.Business/bin
+/RP.Business/obj
+/RP.DataAccess/bin
+/RP.DataAccess/obj
+/RP.Interface/bin
+/RP.Interface/obj
+/RP.Model/bin
+/RP.Model/obj
+/RP.Utilities/bin
+/RP.Utilities/obj
 /packages
 /.vs/rp/v15/Server/sqlite3

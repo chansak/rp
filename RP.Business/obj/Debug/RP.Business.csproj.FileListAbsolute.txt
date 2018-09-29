@@ -55,8 +55,6 @@ C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.Cor
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CopyComplete
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.dll
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.pdb
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csprojAssemblyReference.cache
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Business.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Business.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.Interfaces.dll
@@ -73,6 +71,8 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.Core.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.Core.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Common.Logging.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csprojAssemblyReference.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.pdb

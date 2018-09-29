@@ -212,8 +212,6 @@ C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.csproj.CopyC
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.dll
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.pdb
 C:\1_MY FILES\Public\Work\Git\rp\rp\RP.Website\bin\Microsoft.Web.Infrastructure.dll
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.csprojAssemblyReference.cache
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\bin\roslyn\csc.exe
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -284,6 +282,8 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\bin\Newtonsoft.Json.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\bin\System.Net.Http.Formatting.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\bin\System.Web.Http.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\bin\System.Web.Http.WebHost.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.csprojAssemblyReference.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Website\obj\Debug\RP.Website.pdb
