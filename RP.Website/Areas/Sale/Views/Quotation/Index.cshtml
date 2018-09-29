@@ -1,5 +1,6 @@
 ﻿@{
-    Layout = "~/Areas/Sale/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Areas/Sale/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -207,20 +208,6 @@
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                         </a>
-                        @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                            <li>
-                            <a href="#">Config option 1</a>
-                            </li>
-                            <li>
-                            <a href="#">Config option 2</a>
-                            </li>
-                            </ul>
-                            <a class="close-link">
-                            <i class="fa fa-times"></i>
-                            </a>*@
                     </div>
                 </div>
                 <div class="ibox-content float-e-margins">
@@ -261,20 +248,6 @@
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
                         </a>
-                        @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                            <li>
-                            <a href="#">Config option 1</a>
-                            </li>
-                            <li>
-                            <a href="#">Config option 2</a>
-                            </li>
-                            </ul>
-                            <a class="close-link">
-                            <i class="fa fa-times"></i>
-                            </a>*@
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -352,13 +325,13 @@
                     closeOnConfirm: false,
                     closeOnCancel: false
                 },
-                        function (isConfirm) {
-                            if (isConfirm) {
-                                swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success");
-                            } else {
-                                swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error");
-                            }
-                        });
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success");
+                        } else {
+                            swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error");
+                        }
+                    });
             });
         });
     </script>

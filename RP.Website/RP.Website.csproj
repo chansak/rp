@@ -25,6 +25,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -153,6 +154,7 @@
     <Content Include="Areas\Manager\Views\QuotationApproval\QuotationDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Sale\Script\QuotationList.js" />
     <Content Include="Areas\Sale\Views\Quotation\AddNew.cshtml" />
     <Content Include="Areas\Sale\Views\Quotation\Index.cshtml" />
     <Content Include="Areas\Sale\Views\Shared\_Layout.cshtml" />

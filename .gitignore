@@ -19,10 +19,7 @@ _[Rr]e[Ss]harper.*/
 *.tss
 
 *.dotCover
-Thumbs.db
-/src/.vs/
-
-package
-App_Data
-packages
+/RP.Website/App_Data
+/RP.Website/bin
+/packages
 /.vs/rp/v15/Server/sqlite3
