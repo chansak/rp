@@ -35,12 +35,13 @@ namespace RP.Website
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js"));
 
-            // Inspinia script
-            bundles.Add(new ScriptBundle("~/bundles/inspinia").Include(
+            // rp script
+            bundles.Add(new ScriptBundle("~/bundles/rp").Include(
                       "~/Scripts/plugins/metisMenu/metisMenu.min.js",
                       "~/Scripts/plugins/pace/pace.min.js",
                       "~/Scripts/app/inspinia.js",
-                      "~/Scripts/app/utilities.js"));
+                      "~/Scripts/app/utilities.js",
+                      "~/Areas/Sale/Script/quotationList.js"));
 
             // Inspinia skin config script
             bundles.Add(new ScriptBundle("~/bundles/skinConfig").Include(

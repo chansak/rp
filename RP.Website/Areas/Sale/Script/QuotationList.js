@@ -9,7 +9,6 @@
     //all services
     return {
         init: function () {
-            
         }
     }
 };
