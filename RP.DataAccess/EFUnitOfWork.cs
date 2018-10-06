@@ -63,6 +63,303 @@ namespace RP.DataAccess
             GC.SuppressFinalize(this);
         }
 
+		IColorRepository _ColorRepository;
+		public IColorRepository ColorRepository
+		{
+			get
+			{
+				if (_ColorRepository == null)
+					_ColorRepository = new ColorRepository(context);
+				
+				return _ColorRepository;
+			}
+		}
+		ICompanyRepository _CompanyRepository;
+		public ICompanyRepository CompanyRepository
+		{
+			get
+			{
+				if (_CompanyRepository == null)
+					_CompanyRepository = new CompanyRepository(context);
+				
+				return _CompanyRepository;
+			}
+		}
+		ICustomerRepository _CustomerRepository;
+		public ICustomerRepository CustomerRepository
+		{
+			get
+			{
+				if (_CustomerRepository == null)
+					_CustomerRepository = new CustomerRepository(context);
+				
+				return _CustomerRepository;
+			}
+		}
+		ICustomerAddressRepository _CustomerAddressRepository;
+		public ICustomerAddressRepository CustomerAddressRepository
+		{
+			get
+			{
+				if (_CustomerAddressRepository == null)
+					_CustomerAddressRepository = new CustomerAddressRepository(context);
+				
+				return _CustomerAddressRepository;
+			}
+		}
+		ICustomerContactRepository _CustomerContactRepository;
+		public ICustomerContactRepository CustomerContactRepository
+		{
+			get
+			{
+				if (_CustomerContactRepository == null)
+					_CustomerContactRepository = new CustomerContactRepository(context);
+				
+				return _CustomerContactRepository;
+			}
+		}
+		ICustomerTypeRepository _CustomerTypeRepository;
+		public ICustomerTypeRepository CustomerTypeRepository
+		{
+			get
+			{
+				if (_CustomerTypeRepository == null)
+					_CustomerTypeRepository = new CustomerTypeRepository(context);
+				
+				return _CustomerTypeRepository;
+			}
+		}
+		IDeliveryConditionRepository _DeliveryConditionRepository;
+		public IDeliveryConditionRepository DeliveryConditionRepository
+		{
+			get
+			{
+				if (_DeliveryConditionRepository == null)
+					_DeliveryConditionRepository = new DeliveryConditionRepository(context);
+				
+				return _DeliveryConditionRepository;
+			}
+		}
+		IDeliveryContactRepository _DeliveryContactRepository;
+		public IDeliveryContactRepository DeliveryContactRepository
+		{
+			get
+			{
+				if (_DeliveryContactRepository == null)
+					_DeliveryContactRepository = new DeliveryContactRepository(context);
+				
+				return _DeliveryContactRepository;
+			}
+		}
+		IDocumentRepository _DocumentRepository;
+		public IDocumentRepository DocumentRepository
+		{
+			get
+			{
+				if (_DocumentRepository == null)
+					_DocumentRepository = new DocumentRepository(context);
+				
+				return _DocumentRepository;
+			}
+		}
+		IDocumentAttachmentRepository _DocumentAttachmentRepository;
+		public IDocumentAttachmentRepository DocumentAttachmentRepository
+		{
+			get
+			{
+				if (_DocumentAttachmentRepository == null)
+					_DocumentAttachmentRepository = new DocumentAttachmentRepository(context);
+				
+				return _DocumentAttachmentRepository;
+			}
+		}
+		IDocumentDeliveryRepository _DocumentDeliveryRepository;
+		public IDocumentDeliveryRepository DocumentDeliveryRepository
+		{
+			get
+			{
+				if (_DocumentDeliveryRepository == null)
+					_DocumentDeliveryRepository = new DocumentDeliveryRepository(context);
+				
+				return _DocumentDeliveryRepository;
+			}
+		}
+		IDocumentProducItemRepository _DocumentProducItemRepository;
+		public IDocumentProducItemRepository DocumentProducItemRepository
+		{
+			get
+			{
+				if (_DocumentProducItemRepository == null)
+					_DocumentProducItemRepository = new DocumentProducItemRepository(context);
+				
+				return _DocumentProducItemRepository;
+			}
+		}
+		IMaterialRepository _MaterialRepository;
+		public IMaterialRepository MaterialRepository
+		{
+			get
+			{
+				if (_MaterialRepository == null)
+					_MaterialRepository = new MaterialRepository(context);
+				
+				return _MaterialRepository;
+			}
+		}
+		IMaterialTypeRepository _MaterialTypeRepository;
+		public IMaterialTypeRepository MaterialTypeRepository
+		{
+			get
+			{
+				if (_MaterialTypeRepository == null)
+					_MaterialTypeRepository = new MaterialTypeRepository(context);
+				
+				return _MaterialTypeRepository;
+			}
+		}
+		IMaterialUnitRepository _MaterialUnitRepository;
+		public IMaterialUnitRepository MaterialUnitRepository
+		{
+			get
+			{
+				if (_MaterialUnitRepository == null)
+					_MaterialUnitRepository = new MaterialUnitRepository(context);
+				
+				return _MaterialUnitRepository;
+			}
+		}
+		IPatternPositionRepository _PatternPositionRepository;
+		public IPatternPositionRepository PatternPositionRepository
+		{
+			get
+			{
+				if (_PatternPositionRepository == null)
+					_PatternPositionRepository = new PatternPositionRepository(context);
+				
+				return _PatternPositionRepository;
+			}
+		}
+		IProductRepository _ProductRepository;
+		public IProductRepository ProductRepository
+		{
+			get
+			{
+				if (_ProductRepository == null)
+					_ProductRepository = new ProductRepository(context);
+				
+				return _ProductRepository;
+			}
+		}
+		IProductItemAttachmentRepository _ProductItemAttachmentRepository;
+		public IProductItemAttachmentRepository ProductItemAttachmentRepository
+		{
+			get
+			{
+				if (_ProductItemAttachmentRepository == null)
+					_ProductItemAttachmentRepository = new ProductItemAttachmentRepository(context);
+				
+				return _ProductItemAttachmentRepository;
+			}
+		}
+		IProductItemPrintOptionalRepository _ProductItemPrintOptionalRepository;
+		public IProductItemPrintOptionalRepository ProductItemPrintOptionalRepository
+		{
+			get
+			{
+				if (_ProductItemPrintOptionalRepository == null)
+					_ProductItemPrintOptionalRepository = new ProductItemPrintOptionalRepository(context);
+				
+				return _ProductItemPrintOptionalRepository;
+			}
+		}
+		IProductItemScreenOptionalRepository _ProductItemScreenOptionalRepository;
+		public IProductItemScreenOptionalRepository ProductItemScreenOptionalRepository
+		{
+			get
+			{
+				if (_ProductItemScreenOptionalRepository == null)
+					_ProductItemScreenOptionalRepository = new ProductItemScreenOptionalRepository(context);
+				
+				return _ProductItemScreenOptionalRepository;
+			}
+		}
+		IProductItemSewOptionalRepository _ProductItemSewOptionalRepository;
+		public IProductItemSewOptionalRepository ProductItemSewOptionalRepository
+		{
+			get
+			{
+				if (_ProductItemSewOptionalRepository == null)
+					_ProductItemSewOptionalRepository = new ProductItemSewOptionalRepository(context);
+				
+				return _ProductItemSewOptionalRepository;
+			}
+		}
+		IProductMaterialUsageRepository _ProductMaterialUsageRepository;
+		public IProductMaterialUsageRepository ProductMaterialUsageRepository
+		{
+			get
+			{
+				if (_ProductMaterialUsageRepository == null)
+					_ProductMaterialUsageRepository = new ProductMaterialUsageRepository(context);
+				
+				return _ProductMaterialUsageRepository;
+			}
+		}
+		IProductPriceRepository _ProductPriceRepository;
+		public IProductPriceRepository ProductPriceRepository
+		{
+			get
+			{
+				if (_ProductPriceRepository == null)
+					_ProductPriceRepository = new ProductPriceRepository(context);
+				
+				return _ProductPriceRepository;
+			}
+		}
+		IProductUnitRepository _ProductUnitRepository;
+		public IProductUnitRepository ProductUnitRepository
+		{
+			get
+			{
+				if (_ProductUnitRepository == null)
+					_ProductUnitRepository = new ProductUnitRepository(context);
+				
+				return _ProductUnitRepository;
+			}
+		}
+		IStockRepository _StockRepository;
+		public IStockRepository StockRepository
+		{
+			get
+			{
+				if (_StockRepository == null)
+					_StockRepository = new StockRepository(context);
+				
+				return _StockRepository;
+			}
+		}
+		ITransportationTypeRepository _TransportationTypeRepository;
+		public ITransportationTypeRepository TransportationTypeRepository
+		{
+			get
+			{
+				if (_TransportationTypeRepository == null)
+					_TransportationTypeRepository = new TransportationTypeRepository(context);
+				
+				return _TransportationTypeRepository;
+			}
+		}
+		IWarehouseRepository _WarehouseRepository;
+		public IWarehouseRepository WarehouseRepository
+		{
+			get
+			{
+				if (_WarehouseRepository == null)
+					_WarehouseRepository = new WarehouseRepository(context);
+				
+				return _WarehouseRepository;
+			}
+		}
 	}
 }
 

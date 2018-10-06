@@ -51,11 +51,155 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Color.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ColorRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerAddress.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerAddressRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerContact.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerContactRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerType.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerTypeRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryCondition.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryConditionRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryContact.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryContactRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentAttachment.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentAttachmentRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentDelivery.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentDeliveryRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentProducItem.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentProducItemRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="EFRepository.cs" />
     <Compile Include="EFUnitOfWork.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EFUnitOfWork.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Material.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialType.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialTypeRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialUnit.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialUnitRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatternPosition.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatternPositionRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductItemAttachment.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductItemAttachmentRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductItemPrintOptional.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductItemPrintOptionalRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductItemScreenOptional.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductItemScreenOptionalRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductItemSewOptional.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductItemSewOptionalRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductMaterialUsage.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductMaterialUsageRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPrice.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPriceRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductUnit.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductUnitRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs">
@@ -77,6 +221,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StockRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportationType.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportationTypeRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
