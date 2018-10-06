@@ -1,4 +1,781 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="RP.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="RPModelStoreContainer" />
+<Schema Namespace="RP.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ColorCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="CompanyId" Type="uniqueidentifier" />
+    <Property Name="CustomerTypeId" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CustomerAddress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar(max)" />
+    <Property Name="Address2" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CustomerContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="CustomerId" Type="uniqueidentifier" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CustomerType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CustomerTypeName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DeliveryCondition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ConditionName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DeliveryContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DocumentId" Type="uniqueidentifier" />
+    <Property Name="DeliveryContactId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="IssueDate" Type="date" />
+    <Property Name="ExpiryDate" Type="date" />
+    <Property Name="ExpectedDeliveryDate" Type="date" />
+    <Property Name="CustomerId" Type="uniqueidentifier" />
+    <Property Name="ContactId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="DocumentStatusId" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DocumentAttachment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DocumentId" Type="uniqueidentifier" />
+    <Property Name="AttachmentFilePath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DocumentDelivery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DocumentId" Type="uniqueidentifier" />
+    <Property Name="Address1" Type="nvarchar(max)" />
+    <Property Name="Address2" Type="nvarchar(max)" />
+    <Property Name="TransportationTypeId" Type="uniqueidentifier" />
+    <Property Name="ConditionId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="DocumentProductItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DocumentId" Type="uniqueidentifier" />
+    <Property Name="ProductId" Type="uniqueidentifier" />
+    <Property Name="ProductUnitId" Type="uniqueidentifier" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="PricePerUnit" Type="money" />
+    <Property Name="DiscountAmount" Type="money" />
+    <Property Name="DiscountPercentage" Type="int" />
+    <Property Name="TotalPrice" Type="money" />
+    <Property Name="FromWarehouseId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Material">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaterialTypeId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="MaterialType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="MaterialUnit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PatternImage">
+          <Property Name="Id" Type="uniqueidentifier" />
+          <Property Name="PatternName" Type="nvarchar" MaxLength="250" />
+          <Property Name="PatternImagePath" Type="nvarchar(max)" />
+        </EntityType>-->
+  <EntityType Name="PatternPosition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PositionName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="ProductItemAttachment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductItemId" Type="uniqueidentifier" />
+    <Property Name="AttachmentPath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ProductItemPrintOptional">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductItemId" Type="uniqueidentifier" />
+    <Property Name="PatternImagePath" Type="nvarchar(max)" />
+    <Property Name="ColorCodeId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="ProductItemScreenOptional">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductItemId" Type="uniqueidentifier" />
+    <Property Name="PatternImagePath" Type="nvarchar(max)" />
+    <Property Name="ColorCodeId" Type="uniqueidentifier" />
+    <Property Name="PatternPositionId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="ProductItemSewOptional">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductItemId" Type="uniqueidentifier" />
+    <Property Name="PatternImagePath" Type="nvarchar(max)" />
+    <Property Name="PatternPositionId" Type="uniqueidentifier" />
+    <Property Name="Remark" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ProductMaterialUsage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductId" Type="uniqueidentifier" />
+    <Property Name="MaterialId" Type="uniqueidentifier" />
+    <Property Name="MaterialUnit" Type="uniqueidentifier" />
+    <Property Name="Amount" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductPrice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductId" Type="uniqueidentifier" />
+    <Property Name="PricePerUnit" Type="money" />
+    <Property Name="ProductUnitId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="ProductUnit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="WarehouseId" Type="uniqueidentifier" />
+    <Property Name="MaterialId" Type="uniqueidentifier" />
+    <Property Name="MaterialUnitId" Type="uniqueidentifier" />
+    <Property Name="Amount" Type="int" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TransportationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Customer_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_CustomerType">
+    <End Role="CustomerType" Type="Self.CustomerType" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CustomerTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerContact_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="CustomerContact" Type="Self.CustomerContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerContact">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryContact_CustomerContact">
+    <End Role="CustomerContact" Type="Self.CustomerContact" Multiplicity="0..1" />
+    <End Role="DeliveryContact" Type="Self.DeliveryContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerContact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeliveryContact">
+        <PropertyRef Name="DeliveryContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeliveryContact_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="0..1" />
+    <End Role="DeliveryContact" Type="Self.DeliveryContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DeliveryContact">
+        <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_CustomerContact">
+    <End Role="CustomerContact" Type="Self.CustomerContact" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerContact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentAttachment_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="0..1" />
+    <End Role="DocumentAttachment" Type="Self.DocumentAttachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentAttachment">
+        <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentDelivery_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="0..1" />
+    <End Role="DocumentDelivery" Type="Self.DocumentDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentDelivery">
+        <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentDelivery_TransportationType">
+    <End Role="TransportationType" Type="Self.TransportationType" Multiplicity="0..1" />
+    <End Role="DocumentDelivery" Type="Self.DocumentDelivery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentDelivery">
+        <PropertyRef Name="TransportationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentProductItems_Document">
+    <End Role="Document" Type="Self.Document" Multiplicity="0..1" />
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentProductItems">
+        <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentProductItems_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentProductItems">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentProductItems_ProductUnit">
+    <End Role="ProductUnit" Type="Self.ProductUnit" Multiplicity="0..1" />
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentProductItems">
+        <PropertyRef Name="ProductUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentProductItems_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentProductItems">
+        <PropertyRef Name="FromWarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Material_MaterialType">
+    <End Role="MaterialType" Type="Self.MaterialType" Multiplicity="0..1" />
+    <End Role="Material" Type="Self.Material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaterialType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Material">
+        <PropertyRef Name="MaterialTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemAttachment_DocumentProductItems">
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="0..1" />
+    <End Role="ProductItemAttachment" Type="Self.ProductItemAttachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentProductItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemAttachment">
+        <PropertyRef Name="ProductItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemPrintOptional_DocumentProductItems">
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="0..1" />
+    <End Role="ProductItemPrintOptional" Type="Self.ProductItemPrintOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentProductItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemPrintOptional">
+        <PropertyRef Name="ProductItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemScreenOptional_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+    <End Role="ProductItemScreenOptional" Type="Self.ProductItemScreenOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemScreenOptional">
+        <PropertyRef Name="ColorCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemScreenOptional_DocumentProductItems">
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="0..1" />
+    <End Role="ProductItemScreenOptional" Type="Self.ProductItemScreenOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentProductItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemScreenOptional">
+        <PropertyRef Name="ProductItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemScreenOptional_PatternPosition">
+    <End Role="PatternPosition" Type="Self.PatternPosition" Multiplicity="0..1" />
+    <End Role="ProductItemScreenOptional" Type="Self.ProductItemScreenOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatternPosition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemScreenOptional">
+        <PropertyRef Name="PatternPositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemSewOptional_DocumentProductItems">
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="0..1" />
+    <End Role="ProductItemSewOptional" Type="Self.ProductItemSewOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentProductItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemSewOptional">
+        <PropertyRef Name="ProductItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemSewOptional_PatternPosition">
+    <End Role="PatternPosition" Type="Self.PatternPosition" Multiplicity="0..1" />
+    <End Role="ProductItemSewOptional" Type="Self.ProductItemSewOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PatternPosition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemSewOptional">
+        <PropertyRef Name="PatternPositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterialUsage_Material">
+    <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+    <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductMaterialUsage">
+        <PropertyRef Name="MaterialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterialUsage_MaterialUnit">
+    <End Role="MaterialUnit" Type="Self.MaterialUnit" Multiplicity="0..1" />
+    <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaterialUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductMaterialUsage">
+        <PropertyRef Name="MaterialUnit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterialUsage_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductMaterialUsage">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPrice_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProductPrice" Type="Self.ProductPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductPrice">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPrice_ProductUnit">
+    <End Role="ProductUnit" Type="Self.ProductUnit" Multiplicity="0..1" />
+    <End Role="ProductPrice" Type="Self.ProductPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductPrice">
+        <PropertyRef Name="ProductUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Material">
+    <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="MaterialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_MaterialUnit">
+    <End Role="MaterialUnit" Type="Self.MaterialUnit" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaterialUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="MaterialUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RPModelStoreContainer">
+    <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerAddress" EntityType="Self.CustomerAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerContact" EntityType="Self.CustomerContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeliveryCondition" EntityType="Self.DeliveryCondition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeliveryContact" EntityType="Self.DeliveryContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentAttachment" EntityType="Self.DocumentAttachment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentDelivery" EntityType="Self.DocumentDelivery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentProductItems" EntityType="Self.DocumentProductItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MaterialType" EntityType="Self.MaterialType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MaterialUnit" EntityType="Self.MaterialUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatternPosition" EntityType="Self.PatternPosition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductItemAttachment" EntityType="Self.ProductItemAttachment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductItemPrintOptional" EntityType="Self.ProductItemPrintOptional" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductItemScreenOptional" EntityType="Self.ProductItemScreenOptional" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductItemSewOptional" EntityType="Self.ProductItemSewOptional" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductMaterialUsage" EntityType="Self.ProductMaterialUsage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransportationType" EntityType="Self.TransportationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Customer_Company" Association="Self.FK_Customer_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_CustomerType" Association="Self.FK_Customer_CustomerType">
+      <End Role="CustomerType" EntitySet="CustomerType" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerContact_Customer" Association="Self.FK_CustomerContact_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerContact" EntitySet="CustomerContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryContact_CustomerContact" Association="Self.FK_DeliveryContact_CustomerContact">
+      <End Role="CustomerContact" EntitySet="CustomerContact" />
+      <End Role="DeliveryContact" EntitySet="DeliveryContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeliveryContact_Document" Association="Self.FK_DeliveryContact_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="DeliveryContact" EntitySet="DeliveryContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_Customer" Association="Self.FK_Document_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_CustomerContact" Association="Self.FK_Document_CustomerContact">
+      <End Role="CustomerContact" EntitySet="CustomerContact" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentAttachment_Document" Association="Self.FK_DocumentAttachment_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="DocumentAttachment" EntitySet="DocumentAttachment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentDelivery_Document" Association="Self.FK_DocumentDelivery_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="DocumentDelivery" EntitySet="DocumentDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentDelivery_TransportationType" Association="Self.FK_DocumentDelivery_TransportationType">
+      <End Role="TransportationType" EntitySet="TransportationType" />
+      <End Role="DocumentDelivery" EntitySet="DocumentDelivery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentProductItems_Document" Association="Self.FK_DocumentProductItems_Document">
+      <End Role="Document" EntitySet="Document" />
+      <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentProductItems_Product" Association="Self.FK_DocumentProductItems_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentProductItems_ProductUnit" Association="Self.FK_DocumentProductItems_ProductUnit">
+      <End Role="ProductUnit" EntitySet="ProductUnit" />
+      <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentProductItems_Warehouse" Association="Self.FK_DocumentProductItems_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Material_MaterialType" Association="Self.FK_Material_MaterialType">
+      <End Role="MaterialType" EntitySet="MaterialType" />
+      <End Role="Material" EntitySet="Material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemAttachment_DocumentProductItems" Association="Self.FK_ProductItemAttachment_DocumentProductItems">
+      <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+      <End Role="ProductItemAttachment" EntitySet="ProductItemAttachment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemPrintOptional_DocumentProductItems" Association="Self.FK_ProductItemPrintOptional_DocumentProductItems">
+      <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+      <End Role="ProductItemPrintOptional" EntitySet="ProductItemPrintOptional" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemScreenOptional_Color" Association="Self.FK_ProductItemScreenOptional_Color">
+      <End Role="Color" EntitySet="Color" />
+      <End Role="ProductItemScreenOptional" EntitySet="ProductItemScreenOptional" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemScreenOptional_DocumentProductItems" Association="Self.FK_ProductItemScreenOptional_DocumentProductItems">
+      <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+      <End Role="ProductItemScreenOptional" EntitySet="ProductItemScreenOptional" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemScreenOptional_PatternPosition" Association="Self.FK_ProductItemScreenOptional_PatternPosition">
+      <End Role="PatternPosition" EntitySet="PatternPosition" />
+      <End Role="ProductItemScreenOptional" EntitySet="ProductItemScreenOptional" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemSewOptional_DocumentProductItems" Association="Self.FK_ProductItemSewOptional_DocumentProductItems">
+      <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+      <End Role="ProductItemSewOptional" EntitySet="ProductItemSewOptional" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemSewOptional_PatternPosition" Association="Self.FK_ProductItemSewOptional_PatternPosition">
+      <End Role="PatternPosition" EntitySet="PatternPosition" />
+      <End Role="ProductItemSewOptional" EntitySet="ProductItemSewOptional" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterialUsage_Material" Association="Self.FK_ProductMaterialUsage_Material">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterialUsage_MaterialUnit" Association="Self.FK_ProductMaterialUsage_MaterialUnit">
+      <End Role="MaterialUnit" EntitySet="MaterialUnit" />
+      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterialUsage_Product" Association="Self.FK_ProductMaterialUsage_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPrice_Product" Association="Self.FK_ProductPrice_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductPrice" EntitySet="ProductPrice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPrice_ProductUnit" Association="Self.FK_ProductPrice_ProductUnit">
+      <End Role="ProductUnit" EntitySet="ProductUnit" />
+      <End Role="ProductPrice" EntitySet="ProductPrice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Material" Association="Self.FK_Stock_Material">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_MaterialUnit" Association="Self.FK_Stock_MaterialUnit">
+      <End Role="MaterialUnit" EntitySet="MaterialUnit" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Warehouse" Association="Self.FK_Stock_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

@@ -24,7 +24,7 @@ namespace RP.Interfaces
 		IDocumentRepository DocumentRepository  { get; }
 		IDocumentAttachmentRepository DocumentAttachmentRepository  { get; }
 		IDocumentDeliveryRepository DocumentDeliveryRepository  { get; }
-		IDocumentProducItemRepository DocumentProducItemRepository  { get; }
+		IDocumentProductItemRepository DocumentProductItemRepository  { get; }
 		IMaterialRepository MaterialRepository  { get; }
 		IMaterialTypeRepository MaterialTypeRepository  { get; }
 		IMaterialUnitRepository MaterialUnitRepository  { get; }

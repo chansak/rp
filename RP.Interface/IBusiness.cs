@@ -1,4 +1,5 @@
 ﻿//using RP.Model;
+using RP.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,9 @@ namespace RP.Interfaces
         DateTime GetDBUtcDateTime();
         #endregion
 
-        #region Transport
-        //Transport GetTransportById(int id);
+        #region Documents
+        IList<Document> GetDocumentsList();
+        Document GetDocument(string id);
         #endregion
     }
 }

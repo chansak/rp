@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
+using RP.DataAccess;
 using RP.Website.Models;
-//using EntityModel = RP.Model;
-using ViewModel = RP.Website.Models;
 namespace RP.Website
 {
     public static class EntityExtension
@@ -14,5 +13,15 @@ namespace RP.Website
         //{
         //    return Mapper.Map<EntityModel.Transport, ViewModel.TransportDetailViewModel>(entity);
         //}
+        public static Document ToEntity(this QuotationViewModel viewmodel)
+        {
+            return new Document { };
+        }
+        public static QuotationViewModel ToViewModel(this Document entity)
+        {
+            return new QuotationViewModel {
+                QuotationCode = entity.FileNumber
+            };
+        }
     }
 }

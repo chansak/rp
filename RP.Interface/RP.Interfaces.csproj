@@ -84,7 +84,7 @@
     <Compile Include="IDocumentDeliveryRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="IDocumentProducItemRepository.cs">
+    <Compile Include="IDocumentProductItemRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="IDocumentRepository.cs">

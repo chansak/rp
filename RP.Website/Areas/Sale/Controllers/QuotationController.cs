@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RP.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,12 +11,14 @@ namespace RP.Website.Areas.Sale.Controllers
     {
         public ActionResult Index()
         {
+            var documents = GenericFactory.Business.GetDocumentsList();
             return View();
         }
         public ActionResult AddNew() {
             return View();
         }
         public ActionResult Edit(string id) {
+            var document = GenericFactory.Business.GetDocument(id);
             return View();
         }
     }
