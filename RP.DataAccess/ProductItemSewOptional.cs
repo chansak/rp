@@ -20,7 +20,7 @@ namespace RP.DataAccess
         public Nullable<System.Guid> PatternPositionId { get; set; }
         public string Remark { get; set; }
     
-        public virtual DocumentProducItem DocumentProducItem { get; set; }
+        public virtual DocumentProductItem DocumentProductItem { get; set; }
         public virtual PatternPosition PatternPosition { get; set; }
     }
 }

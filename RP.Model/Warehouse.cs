@@ -16,14 +16,14 @@ namespace RP.Model
     {
         public Warehouse()
         {
-            this.DocumentProducItems = new HashSet<DocumentProducItem>();
+            this.DocumentProductItems = new HashSet<DocumentProductItem>();
             this.Stocks = new HashSet<Stock>();
         }
     
         public System.Guid Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<DocumentProducItem> DocumentProducItems { get; set; }
+        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual ICollection<Stock> Stocks { get; set; }
     }
     

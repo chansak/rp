@@ -20,7 +20,7 @@ namespace RP.DataAccess
             this.DeliveryContacts = new HashSet<DeliveryContact>();
             this.DocumentAttachments = new HashSet<DocumentAttachment>();
             this.DocumentDeliveries = new HashSet<DocumentDelivery>();
-            this.DocumentProducItems = new HashSet<DocumentProducItem>();
+            this.DocumentProductItems = new HashSet<DocumentProductItem>();
         }
     
         public System.Guid Id { get; set; }
@@ -47,6 +47,6 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentDelivery> DocumentDeliveries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentProducItem> DocumentProducItems { get; set; }
+        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
     }
 }

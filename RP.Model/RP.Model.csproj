@@ -82,7 +82,7 @@
     <Compile Include="DocumentDelivery.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DocumentProducItem.cs">
+    <Compile Include="DocumentProductItem.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Material.cs">

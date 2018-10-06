@@ -19,6 +19,6 @@ namespace RP.DataAccess
         public string PatternImagePath { get; set; }
         public Nullable<System.Guid> ColorCodeId { get; set; }
     
-        public virtual DocumentProducItem DocumentProducItem { get; set; }
+        public virtual DocumentProductItem DocumentProductItem { get; set; }
     }
 }

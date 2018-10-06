@@ -18,7 +18,7 @@ namespace RP.Model
         public Nullable<System.Guid> ProductItemId { get; set; }
         public string AttachmentPath { get; set; }
     
-        public virtual DocumentProducItem DocumentProducItem { get; set; }
+        public virtual DocumentProductItem DocumentProductItem { get; set; }
     }
     
 }

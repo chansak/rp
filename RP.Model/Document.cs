@@ -19,7 +19,7 @@ namespace RP.Model
             this.DeliveryContacts = new HashSet<DeliveryContact>();
             this.DocumentAttachments = new HashSet<DocumentAttachment>();
             this.DocumentDeliveries = new HashSet<DocumentDelivery>();
-            this.DocumentProducItems = new HashSet<DocumentProducItem>();
+            this.DocumentProductItems = new HashSet<DocumentProductItem>();
         }
     
         public System.Guid Id { get; set; }
@@ -42,7 +42,7 @@ namespace RP.Model
         public virtual ICollection<DeliveryContact> DeliveryContacts { get; set; }
         public virtual ICollection<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual ICollection<DocumentDelivery> DocumentDeliveries { get; set; }
-        public virtual ICollection<DocumentProducItem> DocumentProducItems { get; set; }
+        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
     }
     
 }

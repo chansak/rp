@@ -114,10 +114,10 @@
     <Compile Include="DocumentDeliveryRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
-    <Compile Include="DocumentProducItem.cs">
+    <Compile Include="DocumentProductItem.cs">
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>
-    <Compile Include="DocumentProducItemRepository.cs">
+    <Compile Include="DocumentProductItemRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
     <Compile Include="DocumentRepository.cs">

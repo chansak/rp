@@ -36,7 +36,7 @@ namespace RP.DataAccess
         public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual DbSet<DocumentDelivery> DocumentDeliveries { get; set; }
-        public virtual DbSet<DocumentProducItem> DocumentProducItems { get; set; }
+        public virtual DbSet<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<MaterialType> MaterialTypes { get; set; }
         public virtual DbSet<MaterialUnit> MaterialUnits { get; set; }

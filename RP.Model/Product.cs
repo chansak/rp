@@ -16,7 +16,7 @@ namespace RP.Model
     {
         public Product()
         {
-            this.DocumentProducItems = new HashSet<DocumentProducItem>();
+            this.DocumentProductItems = new HashSet<DocumentProductItem>();
             this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
             this.ProductPrices = new HashSet<ProductPrice>();
         }
@@ -25,7 +25,7 @@ namespace RP.Model
         public string ProductCode { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<DocumentProducItem> DocumentProducItems { get; set; }
+        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
     }

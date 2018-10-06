@@ -9,9 +9,9 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class DocumentProducItemRepository : EFRepository<RP.Model.DocumentProducItem>, IDocumentProducItemRepository
+	public class DocumentProductItemRepository : EFRepository<RP.Model.DocumentProductItem>, IDocumentProductItemRepository
 	{
-		public DocumentProducItemRepository(DbContext context)
+		public DocumentProductItemRepository(DbContext context)
             : base(context)
 		{
 		}

@@ -184,15 +184,15 @@ namespace RP.DataAccess
 				return _DocumentDeliveryRepository;
 			}
 		}
-		IDocumentProducItemRepository _DocumentProducItemRepository;
-		public IDocumentProducItemRepository DocumentProducItemRepository
+		IDocumentProductItemRepository _DocumentProductItemRepository;
+		public IDocumentProductItemRepository DocumentProductItemRepository
 		{
 			get
 			{
-				if (_DocumentProducItemRepository == null)
-					_DocumentProducItemRepository = new DocumentProducItemRepository(context);
+				if (_DocumentProductItemRepository == null)
+					_DocumentProductItemRepository = new DocumentProductItemRepository(context);
 				
-				return _DocumentProducItemRepository;
+				return _DocumentProductItemRepository;
 			}
 		}
 		IMaterialRepository _MaterialRepository;
