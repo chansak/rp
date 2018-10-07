@@ -79,18 +79,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DeliveryContacts">
-      <EntityTypeMapping TypeName="RP.Model.DeliveryContact">
-        <MappingFragment StoreEntitySet="DeliveryContact">
-          <ScalarProperty Name="DeliveryContactId" ColumnName="DeliveryContactId" />
-          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Documents">
       <EntityTypeMapping TypeName="RP.Model.Document">
         <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="DeliveryContactId" ColumnName="DeliveryContactId" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />

@@ -17,7 +17,6 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Document()
         {
-            this.DeliveryContacts = new HashSet<DeliveryContact>();
             this.DocumentAttachments = new HashSet<DocumentAttachment>();
             this.DocumentDeliveries = new HashSet<DocumentDelivery>();
             this.DocumentProductItems = new HashSet<DocumentProductItem>();
@@ -37,11 +36,11 @@ namespace RP.DataAccess
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
+        public Nullable<System.Guid> DeliveryContactId { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveryContact> DeliveryContacts { get; set; }
+        public virtual CustomerContact CustomerContact1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentAttachment> DocumentAttachments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

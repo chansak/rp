@@ -8,7 +8,6 @@
     <EntitySet Name="CustomerContacts" EntityType="RP.Model.CustomerContact" />
     <EntitySet Name="CustomerTypes" EntityType="RP.Model.CustomerType" />
     <EntitySet Name="DeliveryConditions" EntityType="RP.Model.DeliveryCondition" />
-    <EntitySet Name="DeliveryContacts" EntityType="RP.Model.DeliveryContact" />
     <EntitySet Name="Documents" EntityType="RP.Model.Document" />
     <EntitySet Name="DocumentAttachments" EntityType="RP.Model.DocumentAttachment" />
     <EntitySet Name="DocumentDeliveries" EntityType="RP.Model.DocumentDelivery" />
@@ -48,17 +47,13 @@
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Document" EntitySet="Documents" />
     </AssociationSet>
-    <AssociationSet Name="FK_DeliveryContact_CustomerContact" Association="RP.Model.FK_DeliveryContact_CustomerContact">
-      <End Role="CustomerContact" EntitySet="CustomerContacts" />
-      <End Role="DeliveryContact" EntitySet="DeliveryContacts" />
-    </AssociationSet>
     <AssociationSet Name="FK_Document_CustomerContact" Association="RP.Model.FK_Document_CustomerContact">
       <End Role="CustomerContact" EntitySet="CustomerContacts" />
       <End Role="Document" EntitySet="Documents" />
     </AssociationSet>
-    <AssociationSet Name="FK_DeliveryContact_Document" Association="RP.Model.FK_DeliveryContact_Document">
+    <AssociationSet Name="FK_Document_DeliveryCustomerContact" Association="RP.Model.FK_Document_DeliveryCustomerContact">
+      <End Role="CustomerContact" EntitySet="CustomerContacts" />
       <End Role="Document" EntitySet="Documents" />
-      <End Role="DeliveryContact" EntitySet="DeliveryContacts" />
     </AssociationSet>
     <AssociationSet Name="FK_DocumentAttachment_Document" Association="RP.Model.FK_DocumentAttachment_Document">
       <End Role="Document" EntitySet="Documents" />
@@ -212,8 +207,8 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
     <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Customer" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="CustomerContact" ToRole="Customer" />
-    <NavigationProperty Name="DeliveryContacts" Relationship="RP.Model.FK_DeliveryContact_CustomerContact" FromRole="CustomerContact" ToRole="DeliveryContact" />
     <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="CustomerContact" ToRole="Document" />
+    <NavigationProperty Name="Documents1" Relationship="RP.Model.FK_Document_DeliveryCustomerContact" FromRole="CustomerContact" ToRole="Document" />
   </EntityType>
   <EntityType Name="CustomerType">
     <Key>
@@ -229,16 +224,6 @@
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="ConditionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="DeliveryContact">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="DocumentId" Type="Guid" />
-    <Property Name="DeliveryContactId" Type="Guid" />
-    <NavigationProperty Name="CustomerContact" Relationship="RP.Model.FK_DeliveryContact_CustomerContact" FromRole="DeliveryContact" ToRole="CustomerContact" />
-    <NavigationProperty Name="Document" Relationship="RP.Model.FK_DeliveryContact_Document" FromRole="DeliveryContact" ToRole="Document" />
   </EntityType>
   <EntityType Name="Document">
     <Key>
@@ -258,9 +243,10 @@
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
     <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryContactId" Type="Guid" />
     <NavigationProperty Name="Customer" Relationship="RP.Model.FK_Document_Customer" FromRole="Document" ToRole="Customer" />
     <NavigationProperty Name="CustomerContact" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="Document" ToRole="CustomerContact" />
-    <NavigationProperty Name="DeliveryContacts" Relationship="RP.Model.FK_DeliveryContact_Document" FromRole="Document" ToRole="DeliveryContact" />
+    <NavigationProperty Name="CustomerContact1" Relationship="RP.Model.FK_Document_DeliveryCustomerContact" FromRole="Document" ToRole="CustomerContact" />
     <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
     <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
@@ -531,18 +517,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DeliveryContact_CustomerContact">
-    <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="0..1" />
-    <End Type="RP.Model.DeliveryContact" Role="DeliveryContact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CustomerContact">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DeliveryContact">
-        <PropertyRef Name="DeliveryContactId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Document_CustomerContact">
     <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="0..1" />
     <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
@@ -555,15 +529,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DeliveryContact_Document">
-    <End Type="RP.Model.Document" Role="Document" Multiplicity="0..1" />
-    <End Type="RP.Model.DeliveryContact" Role="DeliveryContact" Multiplicity="*" />
+  <Association Name="FK_Document_DeliveryCustomerContact">
+    <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="0..1" />
+    <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Document">
+      <Principal Role="CustomerContact">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="DeliveryContact">
-        <PropertyRef Name="DocumentId" />
+      <Dependent Role="Document">
+        <PropertyRef Name="DeliveryContactId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

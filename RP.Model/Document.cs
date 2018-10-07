@@ -16,7 +16,6 @@ namespace RP.Model
     {
         public Document()
         {
-            this.DeliveryContacts = new HashSet<DeliveryContact>();
             this.DocumentAttachments = new HashSet<DocumentAttachment>();
             this.DocumentDeliveries = new HashSet<DocumentDelivery>();
             this.DocumentProductItems = new HashSet<DocumentProductItem>();
@@ -36,10 +35,11 @@ namespace RP.Model
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
+        public Nullable<System.Guid> DeliveryContactId { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }
-        public virtual ICollection<DeliveryContact> DeliveryContacts { get; set; }
+        public virtual CustomerContact DeliveryContact { get; set; }
         public virtual ICollection<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual ICollection<DocumentDelivery> DocumentDeliveries { get; set; }
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }

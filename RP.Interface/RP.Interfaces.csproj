@@ -75,9 +75,6 @@
     <Compile Include="IDeliveryConditionRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="IDeliveryContactRepository.cs">
-      <DependentUpon>IRepository.tt</DependentUpon>
-    </Compile>
     <Compile Include="IDocumentAttachmentRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>

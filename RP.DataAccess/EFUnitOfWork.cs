@@ -140,17 +140,6 @@ namespace RP.DataAccess
 				return _DeliveryConditionRepository;
 			}
 		}
-		IDeliveryContactRepository _DeliveryContactRepository;
-		public IDeliveryContactRepository DeliveryContactRepository
-		{
-			get
-			{
-				if (_DeliveryContactRepository == null)
-					_DeliveryContactRepository = new DeliveryContactRepository(context);
-				
-				return _DeliveryContactRepository;
-			}
-		}
 		IDocumentRepository _DocumentRepository;
 		public IDocumentRepository DocumentRepository
 		{

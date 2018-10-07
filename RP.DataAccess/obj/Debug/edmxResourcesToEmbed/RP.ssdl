@@ -71,14 +71,6 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ConditionName" Type="nvarchar(max)" />
   </EntityType>
-  <EntityType Name="DeliveryContact">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="DocumentId" Type="uniqueidentifier" />
-    <Property Name="DeliveryContactId" Type="uniqueidentifier" />
-  </EntityType>
   <EntityType Name="Document">
     <Key>
       <PropertyRef Name="Id" />
@@ -97,6 +89,7 @@
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="UpdatedDate" Type="date" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeliveryContactId" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="DocumentAttachment">
     <Key>
@@ -305,30 +298,6 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DeliveryContact_CustomerContact">
-    <End Role="CustomerContact" Type="Self.CustomerContact" Multiplicity="0..1" />
-    <End Role="DeliveryContact" Type="Self.DeliveryContact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CustomerContact">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DeliveryContact">
-        <PropertyRef Name="DeliveryContactId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DeliveryContact_Document">
-    <End Role="Document" Type="Self.Document" Multiplicity="0..1" />
-    <End Role="DeliveryContact" Type="Self.DeliveryContact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Document">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DeliveryContact">
-        <PropertyRef Name="DocumentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Document_Customer">
     <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Document" Type="Self.Document" Multiplicity="*" />
@@ -350,6 +319,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       </Principal>
       <Dependent Role="Document">
         <PropertyRef Name="ContactId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_DeliveryCustomerContact">
+    <End Role="CustomerContact" Type="Self.CustomerContact" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerContact">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="DeliveryContactId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -637,7 +618,6 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <EntitySet Name="CustomerContact" EntityType="Self.CustomerContact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DeliveryCondition" EntityType="Self.DeliveryCondition" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DeliveryContact" EntityType="Self.DeliveryContact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DocumentAttachment" EntityType="Self.DocumentAttachment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DocumentDelivery" EntityType="Self.DocumentDelivery" Schema="dbo" store:Type="Tables" />
@@ -669,19 +649,15 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       <End Role="Customer" EntitySet="Customer" />
       <End Role="CustomerContact" EntitySet="CustomerContact" />
     </AssociationSet>
-    <AssociationSet Name="FK_DeliveryContact_CustomerContact" Association="Self.FK_DeliveryContact_CustomerContact">
-      <End Role="CustomerContact" EntitySet="CustomerContact" />
-      <End Role="DeliveryContact" EntitySet="DeliveryContact" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DeliveryContact_Document" Association="Self.FK_DeliveryContact_Document">
-      <End Role="Document" EntitySet="Document" />
-      <End Role="DeliveryContact" EntitySet="DeliveryContact" />
-    </AssociationSet>
     <AssociationSet Name="FK_Document_Customer" Association="Self.FK_Document_Customer">
       <End Role="Customer" EntitySet="Customer" />
       <End Role="Document" EntitySet="Document" />
     </AssociationSet>
     <AssociationSet Name="FK_Document_CustomerContact" Association="Self.FK_Document_CustomerContact">
+      <End Role="CustomerContact" EntitySet="CustomerContact" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_DeliveryCustomerContact" Association="Self.FK_Document_DeliveryCustomerContact">
       <End Role="CustomerContact" EntitySet="CustomerContact" />
       <End Role="Document" EntitySet="Document" />
     </AssociationSet>

@@ -20,7 +20,6 @@ namespace RP.Interfaces
 		ICustomerContactRepository CustomerContactRepository  { get; }
 		ICustomerTypeRepository CustomerTypeRepository  { get; }
 		IDeliveryConditionRepository DeliveryConditionRepository  { get; }
-		IDeliveryContactRepository DeliveryContactRepository  { get; }
 		IDocumentRepository DocumentRepository  { get; }
 		IDocumentAttachmentRepository DocumentAttachmentRepository  { get; }
 		IDocumentDeliveryRepository DocumentDeliveryRepository  { get; }

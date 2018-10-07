@@ -32,7 +32,6 @@ namespace RP.DataAccess
         public virtual DbSet<CustomerContact> CustomerContacts { get; set; }
         public virtual DbSet<CustomerType> CustomerTypes { get; set; }
         public virtual DbSet<DeliveryCondition> DeliveryConditions { get; set; }
-        public virtual DbSet<DeliveryContact> DeliveryContacts { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual DbSet<DocumentDelivery> DocumentDeliveries { get; set; }
