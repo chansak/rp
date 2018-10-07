@@ -154,9 +154,9 @@
     <Content Include="Areas\Manager\Views\QuotationApproval\QuotationDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Manager\Views\web.config" />
-    <Content Include="Areas\Sale\Script\quotationList.js" />
-    <Content Include="Areas\Sale\Views\Quotation\AddNew.cshtml" />
-    <Content Include="Areas\Sale\Views\Quotation\Index.cshtml" />
+    <Content Include="Areas\Sale\Script\documentList.js" />
+    <Content Include="Areas\Sale\Views\Document\AddNew.cshtml" />
+    <Content Include="Areas\Sale\Views\Document\Index.cshtml" />
     <Content Include="Areas\Sale\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Sale\Views\web.config" />
     <Content Include="Content\animate.css" />
@@ -1127,6 +1127,7 @@
     <Content Include="Images\p_big3.jpg" />
     <Content Include="Images\zender_logo.png" />
     <Content Include="Scripts\app\inspinia.js" />
+    <Content Include="Scripts\app\rp.services.js" />
     <Content Include="Scripts\app\skin.config.min.js" />
     <Content Include="Scripts\app\utilities.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1181,7 +1182,7 @@
     <Content Include="fonts\font-awesome\scss\_variables.scss" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Sale\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Sale\Views\Quotation\Edit.cshtml" />
+    <Content Include="Areas\Sale\Views\Document\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1547,7 +1548,8 @@
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Manager\Controllers\QuotationApprovalController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
-    <Compile Include="Areas\Sale\Controllers\QuotationController.cs" />
+    <Compile Include="Areas\Sale\Controllers\DocumentController.cs" />
+    <Compile Include="Areas\Sale\Models\DocumentListItemViewModel.cs" />
     <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1558,12 +1560,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
+    <Compile Include="Helpers\PaginatedList.cs" />
     <Compile Include="Models\ApprovalStatus.cs" />
     <Compile Include="Models\AttachFileViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\CustomerType.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\DeliveryType.cs" />
+    <Compile Include="Models\ListViewModel.cs" />
     <Compile Include="Models\PaymentType.cs" />
     <Compile Include="Models\PricePerUnit.cs" />
     <Compile Include="Models\ProductImageViewModel.cs" />
@@ -1616,7 +1620,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Manager\Models\" />
-    <Folder Include="Areas\Sale\Models\" />
     <Folder Include="Filter\" />
   </ItemGroup>
   <ItemGroup>

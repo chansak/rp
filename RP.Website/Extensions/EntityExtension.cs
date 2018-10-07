@@ -13,15 +13,5 @@ namespace RP.Website
         //{
         //    return Mapper.Map<EntityModel.Transport, ViewModel.TransportDetailViewModel>(entity);
         //}
-        public static Document ToEntity(this QuotationViewModel viewmodel)
-        {
-            return new Document { };
-        }
-        public static QuotationViewModel ToViewModel(this Document entity)
-        {
-            return new QuotationViewModel {
-                QuotationCode = entity.FileNumber
-            };
-        }
     }
 }

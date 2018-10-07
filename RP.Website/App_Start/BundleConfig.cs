@@ -41,7 +41,8 @@ namespace RP.Website
                       "~/Scripts/plugins/pace/pace.min.js",
                       "~/Scripts/app/inspinia.js",
                       "~/Scripts/app/utilities.js",
-                      "~/Areas/Sale/Script/quotationList.js"));
+                      "~/Scripts/app/rp.services.js",
+                      "~/Areas/Sale/Script/documentList.js"));
 
             // Inspinia skin config script
             bundles.Add(new ScriptBundle("~/bundles/skinConfig").Include(

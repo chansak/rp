@@ -8,16 +8,16 @@
     @Html.AntiForgeryToken()
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-sm-4">
-            <h2>แก้ไขใบขอราคา</h2>
+            <h2>สร้างใบขอราคา</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="@Url.Action("Index", "Quotation",new { area = "Sale" })">หน้าแรก</a>
+                    <a href="@Url.Action("Index", "Document",new { area = "Sale" })">หน้าแรก</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Quotation",new { area = "Sale" })">รายการใบขอราคา</a>
+                    <a href="@Url.Action("Index", "Document",new { area = "Sale" })">รายการใบขอราคา</a>
                 </li>
                 <li class="active">
-                    <strong>แก้ไขใบขอราคา</strong>
+                    <strong>สร้างใบขอราคา</strong>
                 </li>
             </ol>
         </div>
@@ -31,7 +31,6 @@
                         <li class=""><a data-toggle="tab" href="#tab-2">สินค้า</a></li>
                         <li class=""><a data-toggle="tab" href="#tab-3">ข้อมูลการจัดส่ง</a></li>
                         <li class=""><a data-toggle="tab" href="#tab-4">คำอธิบาย</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab-5">ประวัติ</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane active">
@@ -48,7 +47,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เลขที่เอกสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" placeholder="">
                                                 <span class="form-text">999-99-999-9999-9</span>
                                             </div>
                                         </div>
@@ -58,7 +57,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014" disabled>
+                                                <input type="text" class="form-control" value="03/04/2014">
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_2">
@@ -67,7 +66,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014" disabled>
+                                                <input type="text" class="form-control" value="03/04/2014">
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_2">
@@ -76,7 +75,7 @@
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014" disabled>
+                                                <input type="text" class="form-control" value="03/04/2014">
                                             </div>
                                         </div>
                                         <h2>ข้อมูลลูกค้า</h2>
@@ -84,13 +83,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ลูกค้า</label>
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-address-book"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-address-book"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ประเภทลูกค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
+                                                <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -102,28 +101,28 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" placeholder="">
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">โทรสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" placeholder="">
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" placeholder="">
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ชื่อโรงพยาบาล</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
+                                                <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -136,13 +135,13 @@
                                             <label class="col-sm-3 col-form-label">ผู้ติดต่อ</label>
 
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">หน่วยงาน</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
+                                                <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -157,20 +156,20 @@
                                             <label class="col-sm-3 col-form-label">ผู้รับผิดชอบ</label>
 
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">รหัสพนักงาน</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" disabled="" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" disabled="" placeholder="">
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">หน่วยงาน</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
+                                                <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -191,6 +190,7 @@
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
                                             <a href="" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal5">เพิ่มสินค้า</a>
+                                            <a href="" class="btn btn-default btn-xs">แก้ไข</a>
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
@@ -287,7 +287,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">วิธีการส่งของ</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
+                                                <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -299,7 +299,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เงื่อนไขการส่งของ</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
+                                                <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
                                                     <option>option 2</option>
                                                     <option>option 3</option>
@@ -314,7 +314,7 @@
                                             <label class="col-sm-3 col-form-label">ที่อยุ่ในเอกสาร</label>
                                             <div class="col-sm-9">
                                                 @*<input type="text" class="form-control" placeholder="">*@
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                             </div>
                                         </div>
@@ -325,27 +325,27 @@
                                             <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
 
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" placeholder="">
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">โทรสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" placeholder="">
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" placeholder="">
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
@@ -367,7 +367,7 @@
                                         <label class="col-sm-3 col-form-label">หมายเหตุ</label>
                                         <div class="col-sm-9">
                                             @*<input type="text" class="form-control" placeholder="">*@
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                             <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                         </div>
                                     </div>
@@ -375,7 +375,7 @@
                                         <label class="col-sm-3 col-form-label">คำอธิบายเพิ่มเติม</label>
                                         <div class="col-sm-9">
                                             @*<input type="text" class="form-control" placeholder="">*@
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                             <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                         </div>
                                     </div>
@@ -386,107 +386,6 @@
                                                 <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
                                                 <span class="fileinput-filename"></span>
                                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="tab-5" class="tab-pane">
-                            <div class="panel-body">
-                                <div class="ibox-title no-borders">
-                                    <h2>ประวัติการทำรายการ</h2>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="ibox-tools">
-                                        @*<a href="" class="btn btn-primary btn-xs">เพิ่มสินค้า</a>*@
-                                    </div>
-                                </div>
-                                <div class="ibox-content no-borders">
-                                    <div class="form-group row">
-                                        <div class="ibox chat-view">
-                                            <div class="ibox-content">
-                                                <div class="row">
-                                                    <div class="col-md-12 ">
-                                                        <div class="chat-discussion">
-                                                            <div class="full-height-scroll">
-                                                                <div class="table-responsive">
-                                                                    <div class="chat-message left">
-                                                                        <img class="message-avatar" src="~/Images/a1.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Michael Smith (Sale)</a>
-                                                                            <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
-                                                                            <span class="message-content">
-                                                                                สร้างแบบร่างใบขอราคา
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message right">
-                                                                        <img class="message-avatar" src="~/Images/a4.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Karl Jordan (Officer)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                แก้ไขรายละเอียดสินค้า โดยเพิ่มสินค้าเข้าไปในใบขอราคา 1 รายการ
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message right">
-                                                                        <img class="message-avatar" src="~/Images/a4.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Karl Jordan (Officer)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                แก้ไขที่อยู่การจัดส่ง
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message right">
-                                                                        <img class="message-avatar" src="~/Images/a4.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Karl Jordan (Officer)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                บันทึกใบขอราคาเตรียมรอขออนุมัติ
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message right">
-                                                                        <img class="message-avatar" src="~/Images/a4.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Karl Jordan (Officer)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                ยื่นขออนุมัติ
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message left">
-                                                                        <img class="message-avatar" src="~/Images/a5.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Alice Jordan (Manager)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                อนุมัติใบขอราคา
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="chat-message-form">
-
-                                                            <div class="form-group">
-
-                                                                <textarea class="form-control message-input" name="message" placeholder="Enter message text"></textarea>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -522,7 +421,6 @@
                     </div>
                     <div class="ibox-content">
                         <button type="button" class="btn btn-primary btnSave">บันทึก</button>
-                        <button type="button" class="btn btn-primary btnShowHistory">บันทึกและเพิ่มประวัติ</button>
                         <button type="button" class="btn btn-danger">ยกเลิก</button>
                         <button type="button" class="btn btn-info"><i class="fa fa-search"></i> ดูตัวอย่าง</button>
                     </div>
@@ -607,7 +505,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">จำนวน</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="" disabled />
+                                <input type="text" class="form-control" placeholder="" />
                                 <span class="form-text"></span>
                             </div>
                         </div>
@@ -639,35 +537,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
                 <button type="button" class="btn btn-primary">เพิ่มสินค้า</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal inmodal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">บันทึกการแก้ไขและเพิ่มประวัติ</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">คำอธิบาย</label>
-
-                            <div class="col-sm-9">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary btnSaveHistory">บันทึก</button>
             </div>
         </div>
     </div>
@@ -725,32 +594,6 @@
                     text: "กดปุ่ม OK เพื่อปิด!",
                     icon: "success"
                 }).then((value) => {
-                    utilities.RedirectToAction("/Sale/Quotation/Index");
-                });
-            });
-
-            $('.btnShowHistory').click(function () {
-                swal({
-                    title: "ยืนยันการบันทึกการแก้ไขและเพิ่มประวัติ?",
-                    text: "",
-                    icon: "info",
-                    buttons: true,
-                    dangerMode: true,
-                    buttons: ["ปิด", "ตกลง"]
-                }).then((isConfirm) => {
-                    if (isConfirm) {
-                        swal.close();
-                        $("#myModal").modal("show");
-                    } else {
-                        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
-                            utilities.RedirectToAction("/Sale/Quotation/Index");
-                        });
-                    }
-                });
-            });
-            $('.btnSaveHistory').click(function () {
-                $('#myModal').modal('toggle');
-                swal("บันทึกเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success").then(function () {
                     utilities.RedirectToAction("/Sale/Quotation/Index");
                 });
             });
