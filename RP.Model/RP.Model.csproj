@@ -91,6 +91,7 @@
     <Compile Include="MaterialUnit.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partial\Document.cs" />
     <Compile Include="PatternPosition.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -134,9 +135,7 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Partial\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -39,3 +39,4 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CoreCompile
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csprojAssemblyReference.cache

@@ -14,10 +14,12 @@ namespace RP.Website.Areas.Sale.Controllers
             var documents = GenericFactory.Business.GetDocumentsList();
             return View();
         }
-        public ActionResult AddNew() {
+        public ActionResult AddNew()
+        {
             return View();
         }
-        public ActionResult Edit(string id) {
+        public ActionResult Edit(string id)
+        {
             var document = GenericFactory.Business.GetDocument(id);
             return View();
         }

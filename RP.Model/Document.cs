@@ -39,7 +39,7 @@ namespace RP.Model
     
         public virtual Customer Customer { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }
-        public virtual CustomerContact DeliveryContact { get; set; }
+        public virtual CustomerContact CustomerContact1 { get; set; }
         public virtual ICollection<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual ICollection<DocumentDelivery> DocumentDeliveries { get; set; }
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
