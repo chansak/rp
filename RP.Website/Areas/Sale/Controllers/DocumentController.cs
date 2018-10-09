@@ -60,7 +60,10 @@ namespace RP.Website.Areas.Sale.Controllers
         public ActionResult Edit(string id)
         {
             var document = GenericFactory.Business.GetDocument(id);
-            return View();
+            var viewModel = new QuotationViewModel {
+                DocumentCode = document.FileNumber
+            };
+            return View(viewModel);
         }
     }
 }

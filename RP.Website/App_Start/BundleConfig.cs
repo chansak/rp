@@ -42,7 +42,8 @@ namespace RP.Website
                       "~/Scripts/app/inspinia.js",
                       "~/Scripts/app/utilities.js",
                       "~/Scripts/app/rp.services.js",
-                      "~/Areas/Sale/Script/documentList.js"));
+                      "~/Areas/Sale/Script/documentList.js",
+                      "~/Areas/Sale/Script/documentEditor.js"));
 
             // Inspinia skin config script
             bundles.Add(new ScriptBundle("~/bundles/skinConfig").Include(

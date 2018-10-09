@@ -154,6 +154,7 @@
     <Content Include="Areas\Manager\Views\QuotationApproval\QuotationDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Sale\Script\documentEditor.js" />
     <Content Include="Areas\Sale\Script\documentList.js" />
     <Content Include="Areas\Sale\Views\Document\AddNew.cshtml" />
     <Content Include="Areas\Sale\Views\Document\Index.cshtml" />

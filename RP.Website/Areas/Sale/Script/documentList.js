@@ -13,13 +13,6 @@
             console.log("Selected items is invalid")
         }
         if (itemId != 0) {
-            //var success = function (data, textStatus, jqXHR) {
-
-            //}
-            //var failure = function (jqXHR, textStatus, errorThrown) {
-
-            //}
-            //var xhr = RPService.GetDocumentDetail(itemId, success, failure);
             window.location.href = 'Document/Edit/' + itemId;
         }
     };
@@ -30,6 +23,6 @@
         },
         edit: function () {
             _edit();
-        }
+        },
     }
 };

@@ -8,7 +8,7 @@ namespace RP.Website.Models
     public class QuotationViewModel
     {
         public string Id { get; set; }
-        public string QuotationCode { get; set; }
+        public string DocumentCode { get; set; }
         public DateTime QuotationDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public CustomerViewModel Customer { get; set; }

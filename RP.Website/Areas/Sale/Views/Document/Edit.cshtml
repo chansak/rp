@@ -48,7 +48,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เลขที่เอกสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                @*<input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>*@
+                                                @Html.TextBox("DocumentCode", null, new { @class = "form-control" })
                                                 <span class="form-text">999-99-999-9999-9</span>
                                             </div>
                                         </div>
@@ -184,13 +185,13 @@
                             </div>
                         </div>
                         <div id="tab-2" class="tab-pane">
-                            <div class="panel-body">
+                            <div class="panel-body" id="productList">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title no-borders">
                                         <h2>ข้อมูลสินค้า</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
-                                            <a href="" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal5">เพิ่มสินค้า</a>
+                                            <input type="button" id="btnAddItem" class="btn btn-primary btn-xs" value="เพิ่มสินค้า" />
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
@@ -199,7 +200,7 @@
                                                 <table class="table table-striped table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th><div class="checkbox i-checks"><label> <input type="checkbox" value="" alt="ทั้งหมด"> <i></i></label></div></th>
+                                                            @*<th><div class="checkbox i-checks"><label> <input type="checkbox" value="" alt="ทั้งหมด"> <i></i></label></div></th>*@
                                                             <th>รหัสสินค้า</th>
                                                             <th>ชื่อสินค้า</th>
                                                             <th>หน่วยนับ</th>
@@ -209,7 +210,8 @@
                                                             <th>รวม</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="productItems"></tbody>
+                                                    @*<tbody>
                                                         <tr>
                                                             <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
                                                             <td>ITEM001</td>
@@ -221,7 +223,7 @@
                                                             <td>200,000</td>
                                                         </tr>
                                                         <tr></tr>
-                                                    </tbody>
+                                                    </tbody>*@
                                                 </table>
                                             </div>
                                         </div>
@@ -267,7 +269,25 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="panel-body" id="productCreator">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title no-borders">
+                                        <h2>สร้างรายการสินค้า</h2>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="ibox-tools" style="float:left">
+                                            <input type="button" id="btnBack" class="btn btn-xs" value="กลับ" />
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content no-borders">
 
+                                    </div>
+                                    <div class="ibox-footer no-borders">
+                                        <div class="pull-right">
+                                            <input type="button" id="btnSaveAndBack" class="btn btn-primary" value="เพิ่มสินค้า" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -754,6 +774,17 @@
                     utilities.RedirectToAction("/Sale/Quotation/Index");
                 });
             });
+
+            $("#btnAddItem").click(function () {
+                documentEditor.nextForAddItem();
+            });
+            $("#btnBack").click(function () {
+                documentEditor.back();
+            });
+            $("#btnSaveAndBack").click(function () {
+                documentEditor.saveItemAndBack();
+            });
+            documentEditor.init();
         });
     </script>
 }
