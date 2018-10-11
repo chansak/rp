@@ -101,6 +101,27 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">ชื่อโรงพยาบาล</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control m-b" name="account" disabled>
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+                                                <span class="form-text">&nbsp;</span>
+                                            </div>
+                                        </div>
+                                        <h2>ข้อมูลผู้ติดต่อ</h2>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">ผู้ติดต่อ</label>
+
+                                            <div class="col-sm-9">
+                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
@@ -121,37 +142,7 @@
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ชื่อโรงพยาบาล</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
-                                                </select>
-                                                <span class="form-text">&nbsp;</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ผู้ติดต่อ</label>
 
-                                            <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">หน่วยงาน</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
-                                                </select>
-                                                <span class="form-text">&nbsp;</span>
-                                            </div>
-                                        </div>
                                         <h2>ข้อมูลการขาย</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
@@ -206,7 +197,7 @@
                                                             <th>หน่วยนับ</th>
                                                             <th>จำนวน</th>
                                                             <th>ราคาต่อหน่วย</th>
-                                                            <th>ส่วนลด</th>
+                                                            @*<th>ส่วนลด</th>*@
                                                             <th>รวม</th>
                                                         </tr>
                                                     </thead>
@@ -302,7 +293,7 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
-                                        <h2>ข้อมูลส่งของ</h2>
+                                        @*<h2>ข้อมูลส่งของ</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">วิธีการส่งของ</label>
@@ -327,7 +318,7 @@
                                                 </select>
                                                 <span class="form-text">&nbsp;</span>
                                             </div>
-                                        </div>
+                                        </div>*@
                                         <h2>ข้อมูลจัดส่ง</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
@@ -587,7 +578,7 @@
                                 <div class="panel-body">
                                     <div class="ibox">
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ประเภทการสั่งซื้อ</label>
+                                            <label class="col-sm-3 col-form-label">ประเภทสินค้า</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
@@ -598,7 +589,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">รายละเอียด Order 1</label>
+                                            <label class="col-sm-3 col-form-label">สินค้า</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
@@ -609,7 +600,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">รายละเอียด Order 2</label>
+                                            <label class="col-sm-3 col-form-label">รายละเอียด</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control m-b" name="account">
                                                     <option>option 1</option>
@@ -639,7 +630,11 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">แนบไฟล์</label>
                                             <div class="col-sm-9">
-                                                <input type="file">
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                                    <span class="fileinput-filename"></span>
+                                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -650,6 +645,39 @@
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <h3>จำนวนผ้าที่ใช้</h3>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>รหัสผ้า</label>
+                                                <select class="form-control m-b" name="account">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>จำนวนผ้าในสต๊อค</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>ผ้าที่ต้องใช้</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label>ผ้าคงเหลือ</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -667,23 +695,42 @@
                                                         <input type="radio" id="print-optional3" name="print-optional"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
                                                     </div>
                                                 </div>
-                                                <div class="form-group row" id="print-option1-section" style="display:none">
-                                                    <label class="col-sm-2 col-form-label">ลาย</label>
-                                                    <div class="col-sm-3">
-                                                        <select class="form-control m-b" name="account">
-                                                            <option>option 1</option>
-                                                            <option>option 2</option>
-                                                            <option>option 3</option>
-                                                            <option>option 4</option>
-                                                        </select>
+                                                <div id="print-option1-section" style="display:none">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">ลาย</label>
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control m-b" name="account">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                                <option>option 3</option>
+                                                                <option>option 4</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" id="print-option2-section" style="display:block">
                                                 </div>
-                                                <div class="form-group row" id="print-option3-section" style="display:none">
-                                                    <label class="col-sm-2 col-form-label">แนบไฟล์</label>
-                                                    <div class="col-sm-3">
-                                                        <input type="file">
+                                                <div id="print-option3-section" style="display:none">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">แนบไฟล์</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                                                <span class="fileinput-filename"></span>
+                                                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">สีที่พิมพ์</label>
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control m-b" name="account">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                                <option>option 3</option>
+                                                                <option>option 4</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -700,23 +747,53 @@
                                                         <input type="radio" id="screen-optional3" name="screen-optional"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
                                                     </div>
                                                 </div>
-                                                <div class="form-group row" id="screen-option1-section" style="display:none">
-                                                    <label class="col-sm-2 col-form-label">ลาย</label>
-                                                    <div class="col-sm-3">
-                                                        <select class="form-control m-b" name="account">
-                                                            <option>option 1</option>
-                                                            <option>option 2</option>
-                                                            <option>option 3</option>
-                                                            <option>option 4</option>
-                                                        </select>
+                                                <div id="screen-option1-section" style="display:none">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">ลาย</label>
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control m-b" name="account">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                                <option>option 3</option>
+                                                                <option>option 4</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" id="screen-option2-section" style="display:block">
                                                 </div>
-                                                <div class="form-group row" id="screen-option3-section" style="display:none">
-                                                    <label class="col-sm-2 col-form-label">แนบไฟล์</label>
-                                                    <div class="col-sm-3">
-                                                        <input type="file">
+                                                <div id="screen-option3-section" style="display:none">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">แนบไฟล์</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                                                <span class="fileinput-filename"></span>
+                                                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">สีที่พิมพ์</label>
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control m-b" name="account">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                                <option>option 3</option>
+                                                                <option>option 4</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">ตำแหน่ง</label>
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control m-b" name="account">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                                <option>option 3</option>
+                                                                <option>option 4</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -733,23 +810,50 @@
                                                         <input type="radio" id="sew-optional3" name="sew-optional"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
                                                     </div>
                                                 </div>
-                                                <div class="form-group row" id="sew-option1-section" style="display:none">
-                                                    <label class="col-sm-2 col-form-label">ลาย</label>
-                                                    <div class="col-sm-3">
-                                                        <select class="form-control m-b" name="account">
-                                                            <option>option 1</option>
-                                                            <option>option 2</option>
-                                                            <option>option 3</option>
-                                                            <option>option 4</option>
-                                                        </select>
+                                                <div id="sew-option1-section" style="display:none">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">ลาย</label>
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control m-b" name="account">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                                <option>option 3</option>
+                                                                <option>option 4</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" id="sew-option2-section" style="display:block">
                                                 </div>
-                                                <div class="form-group row" id="sew-option3-section" style="display:none">
-                                                    <label class="col-sm-2 col-form-label">แนบไฟล์</label>
-                                                    <div class="col-sm-3">
-                                                        <input type="file">
+                                                <div id="sew-option3-section" style="display:none">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">แนบไฟล์</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                                                <span class="fileinput-filename"></span>
+                                                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">ตำแหน่ง</label>
+                                                        <div class="col-sm-3">
+                                                            <select class="form-control m-b" name="account">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                                <option>option 3</option>
+                                                                <option>option 4</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">รายละเอียดเพิ่มเติม</label>
+                                                        <div class="col-sm-5">
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                            <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

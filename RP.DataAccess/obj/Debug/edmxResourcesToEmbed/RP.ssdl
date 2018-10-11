@@ -169,6 +169,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProductCode" Type="nvarchar" MaxLength="50" />
     <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="ProductCategoryId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="ProductItemAttachment">
     <Key>
@@ -216,6 +224,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <Property Name="MaterialId" Type="uniqueidentifier" />
     <Property Name="MaterialUnit" Type="uniqueidentifier" />
     <Property Name="Amount" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductOption">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OptionName" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="ProductPrice">
     <Key>
@@ -430,6 +446,30 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Option_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOption">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductCategory">
+    <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ProductItemAttachment_DocumentProductItems">
     <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="0..1" />
     <End Role="ProductItemAttachment" Type="Self.ProductItemAttachment" Multiplicity="*" />
@@ -627,11 +667,13 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <EntitySet Name="MaterialUnit" EntityType="Self.MaterialUnit" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatternPosition" EntityType="Self.PatternPosition" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductItemAttachment" EntityType="Self.ProductItemAttachment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductItemPrintOptional" EntityType="Self.ProductItemPrintOptional" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductItemScreenOptional" EntityType="Self.ProductItemScreenOptional" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductItemSewOptional" EntityType="Self.ProductItemSewOptional" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductMaterialUsage" EntityType="Self.ProductMaterialUsage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
@@ -692,6 +734,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <AssociationSet Name="FK_Material_MaterialType" Association="Self.FK_Material_MaterialType">
       <End Role="MaterialType" EntitySet="MaterialType" />
       <End Role="Material" EntitySet="Material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Option_Product" Association="Self.FK_Option_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductOption" EntitySet="ProductOption" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductCategory" Association="Self.FK_Product_ProductCategory">
+      <End Role="ProductCategory" EntitySet="ProductCategory" />
+      <End Role="Product" EntitySet="Product" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductItemAttachment_DocumentProductItems" Association="Self.FK_ProductItemAttachment_DocumentProductItems">
       <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />

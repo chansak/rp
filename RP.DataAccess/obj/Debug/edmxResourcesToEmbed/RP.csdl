@@ -143,6 +143,16 @@
       <End Role="Warehouse" EntitySet="Warehouses" />
       <End Role="Stock" EntitySet="Stocks" />
     </AssociationSet>
+    <EntitySet Name="ProductCategories" EntityType="RP.Model.ProductCategory" />
+    <EntitySet Name="ProductOptions" EntityType="RP.Model.ProductOption" />
+    <AssociationSet Name="FK_Option_Product" Association="RP.Model.FK_Option_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductOption" EntitySet="ProductOptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductCategory" Association="RP.Model.FK_Product_ProductCategory">
+      <End Role="ProductCategory" EntitySet="ProductCategories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Color">
     <Key>
@@ -344,6 +354,9 @@
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="Product" ToRole="DocumentProductItem" />
     <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
     <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
+    <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="ProductOptions" Relationship="RP.Model.FK_Option_Product" FromRole="Product" ToRole="ProductOption" />
+    <NavigationProperty Name="ProductCategory" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
   </EntityType>
   <EntityType Name="ProductItemAttachment">
     <Key>
@@ -802,6 +815,47 @@
       </Principal>
       <Dependent Role="Stock">
         <PropertyRef Name="WarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProductCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductOption">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Guid" Nullable="false" />
+    <Property Name="OptionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="RP.Model.FK_Option_Product" FromRole="ProductOption" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Option_Product">
+    <End Type="RP.Model.Product" Role="Product" Multiplicity="1" />
+    <End Type="RP.Model.ProductOption" Role="ProductOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOption">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductCategory">
+    <End Type="RP.Model.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+    <End Type="RP.Model.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductCategoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
