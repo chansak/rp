@@ -60,6 +60,10 @@
         <AssociationConnector Association="RP.Model.FK_ProductPrice_Product" />
         <AssociationConnector Association="RP.Model.FK_ProductPrice_ProductUnit" />
         <AssociationConnector Association="RP.Model.FK_Stock_Warehouse" />
+        <EntityTypeShape EntityType="RP.Model.ProductCategory" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="RP.Model.ProductOption" Width="1.5" PointX="3" PointY="37" />
+        <AssociationConnector Association="RP.Model.FK_Option_Product" />
+        <AssociationConnector Association="RP.Model.FK_Product_ProductCategory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

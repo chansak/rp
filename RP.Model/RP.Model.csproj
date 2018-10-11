@@ -98,6 +98,9 @@
     <Compile Include="Product.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductCategory.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductItemAttachment.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -111,6 +114,9 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductMaterialUsage.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductOption.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductPrice.cs">

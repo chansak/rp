@@ -99,6 +99,9 @@
     <Compile Include="IPatternPositionRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="IProductCategoryRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="IProductItemAttachmentRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
@@ -112,6 +115,9 @@
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="IProductMaterialUsageRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IProductOptionRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="IProductPriceRepository.cs">

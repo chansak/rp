@@ -150,6 +150,12 @@
     <Compile Include="Product.cs">
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductCategory.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCategoryRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductItemAttachment.cs">
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>
@@ -178,6 +184,12 @@
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductMaterialUsageRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductOption.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductOptionRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductPrice.cs">

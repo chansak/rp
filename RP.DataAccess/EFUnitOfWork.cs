@@ -239,6 +239,17 @@ namespace RP.DataAccess
 				return _ProductRepository;
 			}
 		}
+		IProductCategoryRepository _ProductCategoryRepository;
+		public IProductCategoryRepository ProductCategoryRepository
+		{
+			get
+			{
+				if (_ProductCategoryRepository == null)
+					_ProductCategoryRepository = new ProductCategoryRepository(context);
+				
+				return _ProductCategoryRepository;
+			}
+		}
 		IProductItemAttachmentRepository _ProductItemAttachmentRepository;
 		public IProductItemAttachmentRepository ProductItemAttachmentRepository
 		{
@@ -292,6 +303,17 @@ namespace RP.DataAccess
 					_ProductMaterialUsageRepository = new ProductMaterialUsageRepository(context);
 				
 				return _ProductMaterialUsageRepository;
+			}
+		}
+		IProductOptionRepository _ProductOptionRepository;
+		public IProductOptionRepository ProductOptionRepository
+		{
+			get
+			{
+				if (_ProductOptionRepository == null)
+					_ProductOptionRepository = new ProductOptionRepository(context);
+				
+				return _ProductOptionRepository;
 			}
 		}
 		IProductPriceRepository _ProductPriceRepository;

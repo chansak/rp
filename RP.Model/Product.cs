@@ -19,15 +19,19 @@ namespace RP.Model
             this.DocumentProductItems = new HashSet<DocumentProductItem>();
             this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
             this.ProductPrices = new HashSet<ProductPrice>();
+            this.ProductOptions = new HashSet<ProductOption>();
         }
     
         public System.Guid Id { get; set; }
         public string ProductCode { get; set; }
         public string Name { get; set; }
+        public System.Guid ProductCategoryId { get; set; }
     
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
+        public virtual ICollection<ProductOption> ProductOptions { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
     }
     
 }

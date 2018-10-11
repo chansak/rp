@@ -51,5 +51,7 @@ namespace RP.DataAccess
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<TransportationType> TransportationTypes { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+        public virtual DbSet<ProductOption> ProductOptions { get; set; }
     }
 }

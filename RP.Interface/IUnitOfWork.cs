@@ -29,11 +29,13 @@ namespace RP.Interfaces
 		IMaterialUnitRepository MaterialUnitRepository  { get; }
 		IPatternPositionRepository PatternPositionRepository  { get; }
 		IProductRepository ProductRepository  { get; }
+		IProductCategoryRepository ProductCategoryRepository  { get; }
 		IProductItemAttachmentRepository ProductItemAttachmentRepository  { get; }
 		IProductItemPrintOptionalRepository ProductItemPrintOptionalRepository  { get; }
 		IProductItemScreenOptionalRepository ProductItemScreenOptionalRepository  { get; }
 		IProductItemSewOptionalRepository ProductItemSewOptionalRepository  { get; }
 		IProductMaterialUsageRepository ProductMaterialUsageRepository  { get; }
+		IProductOptionRepository ProductOptionRepository  { get; }
 		IProductPriceRepository ProductPriceRepository  { get; }
 		IProductUnitRepository ProductUnitRepository  { get; }
 		IStockRepository StockRepository  { get; }

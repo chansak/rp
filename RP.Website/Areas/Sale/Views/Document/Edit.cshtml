@@ -191,7 +191,7 @@
                                         <h2>ข้อมูลสินค้า</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
-                                            <input type="button" id="btnAddItem" class="btn btn-primary btn-xs" value="เพิ่มสินค้า" />
+                                            <input type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal5" value="เพิ่มสินค้า" />
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
@@ -212,63 +212,63 @@
                                                     </thead>
                                                     <tbody id="productItems"></tbody>
                                                     @*<tbody>
-                                                        <tr>
-                                                            <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                            <td>ITEM001</td>
-                                                            <td>LG TV SE2345</td>
-                                                            <td>เครื่อง</td>
-                                                            <td>10</td>
-                                                            <td>25,000</td>
-                                                            <td>25,000</td>
-                                                            <td>200,000</td>
-                                                        </tr>
-                                                        <tr></tr>
-                                                    </tbody>*@
+                                                            <tr>
+                                                                <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
+                                                                <td>ITEM001</td>
+                                                                <td>LG TV SE2345</td>
+                                                                <td>เครื่อง</td>
+                                                                <td>10</td>
+                                                                <td>25,000</td>
+                                                                <td>25,000</td>
+                                                                <td>200,000</td>
+                                                            </tr>
+                                                            <tr></tr>
+                                                        </tbody>*@
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ibox-footer no-borders">
-                                        <h2>สรุปราคา</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="pull-right">
-                                            <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label">รวมเงิน</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" class="form-control" placeholder="" value="250,000" disabled />
-                                                    <span class="form-text"></span>
+                                    @*<div class="ibox-footer no-borders">
+                                            <h2>สรุปราคา</h2>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="pull-right">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">รวมเงิน</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="" value="250,000" disabled />
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">ส่วนลด</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="" value="25,000" disabled>
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">เงินหลังหักลด</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="" value="225,000" disabled>
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">ภาษีมูลค่าเพิ่ม</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="" value="7%" disabled>
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-5 col-form-label">จำนวนเงินทั้งสิ้น</label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="" value="240,750" disabled>
+                                                        <span class="form-text"></span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label">ส่วนลด</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" class="form-control" placeholder="" value="25,000" disabled>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label">เงินหลังหักลด</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" class="form-control" placeholder="" value="225,000" disabled>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label">ภาษีมูลค่าเพิ่ม</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" class="form-control" placeholder="" value="7%" disabled>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label">จำนวนเงินทั้งสิ้น</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" class="form-control" placeholder="" value="240,750" disabled>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </div>*@
                                 </div>
                             </div>
                             <div class="panel-body" id="productCreator">
@@ -440,7 +440,7 @@
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="chat-message right">
+                                                                    <div class="chat-message left">
                                                                         <img class="message-avatar" src="~/Images/a4.jpg" alt="">
                                                                         <div class="message">
                                                                             <a class="message-author" href="#"> Karl Jordan (Officer)</a>
@@ -450,7 +450,7 @@
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="chat-message right">
+                                                                    <div class="chat-message left">
                                                                         <img class="message-avatar" src="~/Images/a4.jpg" alt="">
                                                                         <div class="message">
                                                                             <a class="message-author" href="#"> Karl Jordan (Officer)</a>
@@ -460,7 +460,7 @@
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="chat-message right">
+                                                                    <div class="chat-message left">
                                                                         <img class="message-avatar" src="~/Images/a4.jpg" alt="">
                                                                         <div class="message">
                                                                             <a class="message-author" href="#"> Karl Jordan (Officer)</a>
@@ -470,7 +470,7 @@
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="chat-message right">
+                                                                    <div class="chat-message left">
                                                                         <img class="message-avatar" src="~/Images/a4.jpg" alt="">
                                                                         <div class="message">
                                                                             <a class="message-author" href="#"> Karl Jordan (Officer)</a>
@@ -577,85 +577,191 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-sm-4">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" data-src="holder.js/100px180/?text=Image cap" alt="Image cap [100%x180]" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1653c1d43f8%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1653c1d43f8%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2299.125%22%20y%3D%2296.3%22%3EImage%20cap%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="height: 180px; width: 100%; display: block;">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    LG 43UJ632T 108 cm (43 inches) Smart 4K Ultra HD LED TV Black
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">รหัสสินค้า</label>
+                    <div class="tabs-container">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#product-tab-1">ข้อมูลสินค้า</a></li>
+                            <li class=""><a data-toggle="tab" href="#product-tab-2">เพิ่มเติม</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="product-tab-1" class="tab-pane active">
+                                <div class="panel-body">
+                                    <div class="ibox">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">ประเภทการสั่งซื้อ</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control m-b" name="account">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">รายละเอียด Order 1</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control m-b" name="account">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">รายละเอียด Order 2</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control m-b" name="account">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">จำนวน</label>
+                                            <div class="col-sm-3">
+                                                <input type="number" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">หน่วย</label>
+                                            <div class="col-sm-3">
+                                                <select class="form-control m-b" name="account">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                    <option>option 3</option>
+                                                    <option>option 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">แนบไฟล์</label>
+                                            <div class="col-sm-9">
+                                                <input type="file">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">หมายเหตุ</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
+                                            </div>
+                                        </div>
 
-                            <div class="col-sm-9">
-                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-barcode"></i></span></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">หน่วยนับสินค้า</label>
-
-                            <div class="col-sm-9">
-                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-tachometer"></i></span></div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">คลังเก็บสินค้า</label>
-
-                            <div class="col-sm-9">
-                                <div class="input-group m-b"><input type="text" class="form-control"> <span class="input-group-addon"><i class="fa fa-truck"></i></span></div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
-                                <span class="fileinput-filename"></span>
-                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">ราคาต่อหน่วย</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="" disabled />
-                                <span class="form-text"></span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">จำนวน</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="" disabled />
-                                <span class="form-text"></span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">ส่วนลด %</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="" disabled />
-                                <span class="form-text"></span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">จำนวนเงินส่วนลด</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="" disabled />
-                                <span class="form-text"></span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">รวมทั้งสิ้น</label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="" disabled />
-                                <span class="form-text"></span>
+                            <div id="product-tab-2" class="tab-pane">
+                                <div class="panel-body">
+                                    <div class="ibox">
+                                        <div class="ibox-title no-borders">
+                                            <h3>พิมพ์</h3>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <div class="checkbox i-checks">
+                                                        <input type="radio" id="print-optional1" name="print-optional"><label>มี&nbsp;</label>&nbsp;&nbsp;
+                                                        <input type="radio" id="print-optional2" name="print-optional" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
+                                                        <input type="radio" id="print-optional3" name="print-optional"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" id="print-option1-section" style="display:none">
+                                                    <label class="col-sm-2 col-form-label">ลาย</label>
+                                                    <div class="col-sm-3">
+                                                        <select class="form-control m-b" name="account">
+                                                            <option>option 1</option>
+                                                            <option>option 2</option>
+                                                            <option>option 3</option>
+                                                            <option>option 4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" id="print-option2-section" style="display:block">
+                                                </div>
+                                                <div class="form-group row" id="print-option3-section" style="display:none">
+                                                    <label class="col-sm-2 col-form-label">แนบไฟล์</label>
+                                                    <div class="col-sm-3">
+                                                        <input type="file">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4"></div>
+                                        </div>
+                                        <div class="ibox-title no-borders">
+                                            <h3>สกรีน</h3>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <div class="checkbox i-checks">
+                                                        <input type="radio" id="screen-optional1" name="screen-optional"><label>มี&nbsp;</label>&nbsp;&nbsp;
+                                                        <input type="radio" id="screen-optional2" name="screen-optional" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
+                                                        <input type="radio" id="screen-optional3" name="screen-optional"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" id="screen-option1-section" style="display:none">
+                                                    <label class="col-sm-2 col-form-label">ลาย</label>
+                                                    <div class="col-sm-3">
+                                                        <select class="form-control m-b" name="account">
+                                                            <option>option 1</option>
+                                                            <option>option 2</option>
+                                                            <option>option 3</option>
+                                                            <option>option 4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" id="screen-option2-section" style="display:block">
+                                                </div>
+                                                <div class="form-group row" id="screen-option3-section" style="display:none">
+                                                    <label class="col-sm-2 col-form-label">แนบไฟล์</label>
+                                                    <div class="col-sm-3">
+                                                        <input type="file">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4"></div>
+                                        </div>
+                                        <div class="ibox-title no-borders">
+                                            <h3>ปัก</h3>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <div class="checkbox i-checks">
+                                                        <input type="radio" id="sew-optional1" name="sew-optional"><label>มี&nbsp;</label>&nbsp;&nbsp;
+                                                        <input type="radio" id="sew-optional2" name="sew-optional" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
+                                                        <input type="radio" id="sew-optional3" name="sew-optional"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" id="sew-option1-section" style="display:none">
+                                                    <label class="col-sm-2 col-form-label">ลาย</label>
+                                                    <div class="col-sm-3">
+                                                        <select class="form-control m-b" name="account">
+                                                            <option>option 1</option>
+                                                            <option>option 2</option>
+                                                            <option>option 3</option>
+                                                            <option>option 4</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" id="sew-option2-section" style="display:block">
+                                                </div>
+                                                <div class="form-group row" id="sew-option3-section" style="display:none">
+                                                    <label class="col-sm-2 col-form-label">แนบไฟล์</label>
+                                                    <div class="col-sm-3">
+                                                        <input type="file">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
                 <button type="button" class="btn btn-primary">เพิ่มสินค้า</button>
@@ -699,6 +805,7 @@
     @Styles.Render("~/plugins/jasnyBootstrapStyles")
     @Styles.Render("~/plugins/codeEditorStyles")
     @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/toastrStyles")
 }
 
 @section Scripts {
@@ -709,6 +816,7 @@
     @Scripts.Render("~/plugins/jasnyBootstrap")
     @Scripts.Render("~/plugins/codeEditor")
     @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/toastr")
     <script type="text/javascript">
         $(document).ready(function () {
             //green checkbox
@@ -783,6 +891,75 @@
             });
             $("#btnSaveAndBack").click(function () {
                 documentEditor.saveItemAndBack();
+            });
+
+            $(".iCheck-helper").click(function () {
+                var id = $(this).prev().prop("id");
+                switch (id) {
+                    case "print-optional1":
+                        {
+                            $("#print-option1-section").show();
+                            $("#print-option2-section").hide();
+                            $("#print-option3-section").hide();
+                            break;
+                        }
+                    case "print-optional2":
+                        {
+                            $("#print-option1-section").hide();
+                            $("#print-option2-section").show();
+                            $("#print-option3-section").hide();
+                            break;
+                        }
+                    case "print-optional3":
+                        {
+                            $("#print-option1-section").hide();
+                            $("#print-option2-section").hide();
+                            $("#print-option3-section").show();
+                            break;
+                        }
+                    case "screen-optional1":
+                        {
+                            $("#screen-option1-section").show();
+                            $("#screen-option2-section").hide();
+                            $("#screen-option3-section").hide();
+                            break;
+                        }
+                    case "screen-optional2":
+                        {
+                            $("#screen-option1-section").hide();
+                            $("#screen-option2-section").show();
+                            $("#screen-option3-section").hide();
+                            break;
+                        }
+                    case "screen-optional3":
+                        {
+                            $("#screen-option1-section").hide();
+                            $("#screen-option2-section").hide();
+                            $("#screen-option3-section").show();
+                            break;
+                        }
+                    case "sew-optional1":
+                        {
+                            $("#sew-option1-section").show();
+                            $("#sew-option2-section").hide();
+                            $("#sew-option3-section").hide();
+                            break;
+                        }
+                    case "sew-optional2":
+                        {
+                            $("#sew-option1-section").hide();
+                            $("#sew-option2-section").show();
+                            $("#sew-option3-section").hide();
+                            break;
+                        }
+                    case "sew-optional3":
+                        {
+                            $("#sew-option1-section").hide();
+                            $("#sew-option2-section").hide();
+                            $("#sew-option3-section").show();
+                            break;
+                        }
+                }
             });
             documentEditor.init();
         });
