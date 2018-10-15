@@ -1,4 +1,4 @@
-﻿@model RP.Website.Models.QuotationViewModel
+﻿@*@model RP.Website.Models.QuotationViewModel*@
 @{
     //Layout = "~/Areas/Sale/Views/Shared/_Layout.cshtml";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -28,9 +28,10 @@
                 <div class="tabs-container">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#tab-1">ข้อมูลทั่วไป</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab-2">สินค้า</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab-3">ข้อมูลการจัดส่ง</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab-4">คำอธิบาย</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2">ข้อมูลลูกค้า</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-3">สินค้า</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-4">ข้อมูลการจัดส่ง</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-5">คำอธิบาย</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane active">
@@ -47,68 +48,87 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เลขที่เอกสาร</label>
                                             <div class="col-sm-9">
-                                                @*<input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>*@
-                                                @Html.TextBox("DocumentCode", null, new { @class = "form-control" })
-                                                <span class="form-text">999-99-999-9999-9</span>
+                                                @Html.TextBox("DocumentCode", "SR256100001", new { @class = "form-control", disabled = "disabled" })
+                                                @*<span class="form-text">SR256100001</span>*@
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_1">
                                             <label class="col-sm-3 col-form-label">วันที่ออกใบเสนอราคา</label>
-                                            <div class="input-group date col-sm-4">
+                                            <div class="input-group date col-sm-4" style="padding-left: 15px;">
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014" disabled>
+                                                <input type="text" class="form-control" value="03/04/2014">
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_2">
                                             <label class="col-sm-3 col-form-label">มีผลถึงวันที่</label>
-                                            <div class="input-group date col-sm-4">
+                                            <div class="input-group date col-sm-4" style="padding-left: 15px;">
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014" disabled>
+                                                <input type="text" class="form-control" value="03/04/2014">
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_2">
                                             <label class="col-sm-3 col-form-label">วันที่ส่งของ</label>
-                                            <div class="input-group date col-sm-4">
+                                            <div class="input-group date col-sm-4" style="padding-left: 15px;">
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" class="form-control" value="03/04/2014" disabled>
+                                                <input type="text" class="form-control" value="03/04/2014">
                                             </div>
                                         </div>
+                                        <h2>ข้อมูลการขาย</h2>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">ผู้รับผิดชอบ</label>
+
+                                            <div class="col-sm-9">
+                                                <div class="input-group m-b"><input type="text" id="auto_saleName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <input type="hidden" id="auto_saleId" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">รหัสพนักงาน</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="auto_saleCode" disabled="" placeholder="" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">หน่วยงาน</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="auto_saleBranch" disabled="" placeholder="" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="ibox">
+                                    <div class="ibox-content no-borders">
                                         <h2>ข้อมูลลูกค้า</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ลูกค้า</label>
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-address-book"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" id="auto_customerName" class="form-control" > <span class="input-group-addon"><i class="fa fa-address-book"></i></span></div>
+                                                <input type="hidden" id="auto_customerId" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ประเภทลูกค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
-                                                </select>
-                                                <span class="form-text">&nbsp;</span>
+                                                <input type="text" class="form-control" id="auto_customerType" disabled="" placeholder="" disabled>
+
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ชื่อโรงพยาบาล</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
-                                                </select>
-                                                <span class="form-text">&nbsp;</span>
+                                                <input type="text" class="form-control" id="auto_customerHospitalName" disabled="" placeholder="" disabled>
                                             </div>
                                         </div>
                                         <h2>ข้อมูลผู้ติดต่อ</h2>
@@ -117,64 +137,35 @@
                                             <label class="col-sm-3 col-form-label">ผู้ติดต่อ</label>
 
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" id="auto_contactName" class="form-control" > <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" id="auto_contactPhone" placeholder="" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">โทรสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" id="auto_contactFax" placeholder="" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" id="auto_contactMobile" placeholder="" disabled>
                                                 <span class="form-text"></span>
-                                            </div>
-                                        </div>
-
-                                        <h2>ข้อมูลการขาย</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ผู้รับผิดชอบ</label>
-
-                                            <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">รหัสพนักงาน</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" disabled="" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
-                                                <span class="form-text"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">หน่วยงาน</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
-                                                </select>
-                                                <span class="form-text">&nbsp;</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="tab-2" class="tab-pane">
+                        <div id="tab-3" class="tab-pane">
                             <div class="panel-body">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title no-borders">
@@ -262,7 +253,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="tab-3" class="tab-pane">
+                        <div id="tab-4" class="tab-pane">
                             <div class="panel-body">
                                 <div class="ibox">
                                     <div class="ibox-title no-borders">
@@ -344,7 +335,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="tab-4" class="tab-pane">
+                        <div id="tab-5" class="tab-pane">
                             <div class="panel-body">
                                 <div class="ibox-title no-borders">
                                     <h2>คำอธิบาย</h2>
@@ -357,29 +348,27 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">หมายเหตุ</label>
                                         <div class="col-sm-9">
-                                            @*<input type="text" class="form-control" placeholder="">*@
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
-                                            <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
+                                            <span class="form-text">ราคาที่อ้างอิงราคาเดิมหรือใบที่ขายล่าสุด โดยระบุวันที่และราคา (กรอกข้อมูลได้สูงสุด 200 ตัวอักษร)</span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">คำอธิบายเพิ่มเติม</label>
-                                        <div class="col-sm-9">
-                                            @*<input type="text" class="form-control" placeholder="">*@
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
-                                            <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">แนบไฟล์</label>
-                                        <div class="col-sm-9">
-                                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
-                                                <span class="fileinput-filename"></span>
-                                                <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                                    @*<div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">คำอธิบายเพิ่มเติม</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
+                                                <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">แนบไฟล์</label>
+                                            <div class="col-sm-9">
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                                    <span class="fileinput-filename"></span>
+                                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+                                                </div>
+                                            </div>
+                                        </div>*@
                                 </div>
                             </div>
                         </div>
@@ -797,6 +786,7 @@
     @Scripts.Render("~/plugins/jasnyBootstrap")
     @Scripts.Render("~/plugins/codeEditor")
     @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/typehead")
     <script type="text/javascript">
         $(document).ready(function () {
             //green checkbox
@@ -904,6 +894,7 @@
                         }
                 }
             });
+            documentCreator.init();
         });
     </script>
 }

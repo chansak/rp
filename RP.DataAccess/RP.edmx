@@ -85,6 +85,13 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ConditionName" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="Document">
           <Key>
             <PropertyRef Name="Id" />
@@ -304,6 +311,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
           <Property Name="RoleId" Type="int" />
+          <Property Name="DepartmentId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -696,6 +704,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -717,6 +737,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <EntitySet Name="CustomerContactBranch" EntityType="Self.CustomerContactBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryCondition" EntityType="Self.DeliveryCondition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentAttachment" EntityType="Self.DocumentAttachment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentDelivery" EntityType="Self.DocumentDelivery" Schema="dbo" store:Type="Tables" />
@@ -867,6 +888,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <AssociationSet Name="FK_Stock_Warehouse" Association="Self.FK_Stock_Warehouse">
             <End Role="Warehouse" EntitySet="Warehouse" />
             <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -1039,6 +1064,11 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <EntitySet Name="Users" EntityType="RP.Model.User" />
           <AssociationSet Name="FK_User_Role" Association="RP.Model.FK_User_Role">
             <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Departments" EntityType="RP.Model.Department" />
+          <AssociationSet Name="FK_User_Department" Association="RP.Model.FK_User_Department">
+            <End Role="Department" EntitySet="Departments" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
@@ -1791,6 +1821,8 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="RP.Model.FK_User_Role" FromRole="User" ToRole="Role" />
+          <Property Name="DepartmentId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="RP.Model.FK_User_Department" FromRole="User" ToRole="Department" />
         </EntityType>
         <Association Name="FK_User_Role">
           <End Type="RP.Model.Role" Role="Role" Multiplicity="0..1" />
@@ -1801,6 +1833,26 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="RP.Model.FK_User_Department" FromRole="Department" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_User_Department">
+          <End Type="RP.Model.Department" Role="Department" Multiplicity="1" />
+          <End Type="RP.Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2134,9 +2186,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="RP.Model.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="RP.Model.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

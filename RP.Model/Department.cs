@@ -12,16 +12,17 @@ using System.Collections.Generic;
 
 namespace RP.Model
 {
-    public partial class User
+    public partial class Department
     {
-        public System.Guid Id { get; set; }
-        public string UserName { get; set; }
-        public string DisplayName { get; set; }
-        public Nullable<int> RoleId { get; set; }
-        public System.Guid DepartmentId { get; set; }
+        public Department()
+        {
+            this.Users = new HashSet<User>();
+        }
     
-        public virtual Role Role { get; set; }
-        public virtual Department Department { get; set; }
+        public System.Guid Id { get; set; }
+        public string DepartmentName { get; set; }
+    
+        public virtual ICollection<User> Users { get; set; }
     }
     
 }

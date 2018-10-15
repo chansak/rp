@@ -1,12 +1,12 @@
 ﻿namespace RP.Website.Models
 {
-    public enum QuotationStatus
-    {
-        undefined,
-        Active,
-        Inactive,
-        Hold,
-        Cancel,
-        Close
-    }
+    //public enum QuotationStatus
+    //{
+    //    undefined,
+    //    Active,
+    //    Inactive,
+    //    Hold,
+    //    Cancel,
+    //    Close
+    //}
 }

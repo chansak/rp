@@ -19,5 +19,11 @@ namespace RP.Interfaces
         IList<Document> GetDocumentsList();
         Document GetDocument(string id);
         #endregion
+
+        #region Common
+        IList<User> GetSaleUsersList();
+        IList<Customer> GetCustomersList();
+        IList<CustomerContact> GetContactByCustomerId(string id);
+        #endregion
     }
 }

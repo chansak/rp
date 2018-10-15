@@ -80,6 +80,13 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ConditionName" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
   <EntityType Name="Document">
     <Key>
       <PropertyRef Name="Id" />
@@ -299,6 +306,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <Property Name="UserName" Type="nvarchar" MaxLength="50" />
     <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
     <Property Name="RoleId" Type="int" />
+    <Property Name="DepartmentId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="Warehouse">
     <Key>
@@ -691,6 +699,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_Role">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -712,6 +732,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <EntitySet Name="CustomerContactBranch" EntityType="Self.CustomerContactBranch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DeliveryCondition" EntityType="Self.DeliveryCondition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DocumentAttachment" EntityType="Self.DocumentAttachment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DocumentDelivery" EntityType="Self.DocumentDelivery" Schema="dbo" store:Type="Tables" />
@@ -862,6 +883,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <AssociationSet Name="FK_Stock_Warehouse" Association="Self.FK_Stock_Warehouse">
       <End Role="Warehouse" EntitySet="Warehouse" />
       <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
     <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
       <End Role="Role" EntitySet="Role" />

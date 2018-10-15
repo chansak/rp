@@ -151,6 +151,17 @@ namespace RP.DataAccess
 				return _DeliveryConditionRepository;
 			}
 		}
+		IDepartmentRepository _DepartmentRepository;
+		public IDepartmentRepository DepartmentRepository
+		{
+			get
+			{
+				if (_DepartmentRepository == null)
+					_DepartmentRepository = new DepartmentRepository(context);
+				
+				return _DepartmentRepository;
+			}
+		}
 		IDocumentRepository _DocumentRepository;
 		public IDocumentRepository DocumentRepository
 		{

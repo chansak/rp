@@ -73,6 +73,9 @@
     <Compile Include="DeliveryCondition.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Document.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>

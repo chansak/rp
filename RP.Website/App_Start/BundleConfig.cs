@@ -43,6 +43,7 @@ namespace RP.Website
                       "~/Scripts/app/utilities.js",
                       "~/Scripts/app/rp.services.js",
                       "~/Areas/Sale/Script/documentList.js",
+                      "~/Areas/Sale/Script/documentCreator.js",
                       "~/Areas/Sale/Script/documentEditor.js"));
 
             // Inspinia skin config script

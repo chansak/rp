@@ -99,6 +99,12 @@
     <Compile Include="DeliveryConditionRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="Document.cs">
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>

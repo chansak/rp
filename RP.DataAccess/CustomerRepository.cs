@@ -15,5 +15,12 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+        public override IQueryable<Model.Customer> All()
+        {
+            return ObjectSet.
+                Include(i => i.Company).
+                Include(i=>i.CustomerType)
+                .AsQueryable();
+        }
+    }
 }

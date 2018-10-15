@@ -164,6 +164,11 @@
       <End Role="Role" EntitySet="Roles" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Departments" EntityType="RP.Model.Department" />
+    <AssociationSet Name="FK_User_Department" Association="RP.Model.FK_User_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Color">
     <Key>
@@ -914,6 +919,8 @@
     <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="RoleId" Type="Int32" />
     <NavigationProperty Name="Role" Relationship="RP.Model.FK_User_Role" FromRole="User" ToRole="Role" />
+    <Property Name="DepartmentId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="RP.Model.FK_User_Department" FromRole="User" ToRole="Department" />
   </EntityType>
   <Association Name="FK_User_Role">
     <End Type="RP.Model.Role" Role="Role" Multiplicity="0..1" />
@@ -924,6 +931,26 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="RP.Model.FK_User_Department" FromRole="Department" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_User_Department">
+    <End Type="RP.Model.Department" Role="Department" Multiplicity="1" />
+    <End Type="RP.Model.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DepartmentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -69,6 +69,8 @@
         <EntityTypeShape EntityType="RP.Model.Role" Width="1.5" PointX="10.375" PointY="6.125" />
         <EntityTypeShape EntityType="RP.Model.User" Width="1.5" PointX="12.625" PointY="5.875" />
         <AssociationConnector Association="RP.Model.FK_User_Role" />
+        <EntityTypeShape EntityType="RP.Model.Department" Width="1.5" PointX="10.375" PointY="9.875" />
+        <AssociationConnector Association="RP.Model.FK_User_Department" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
