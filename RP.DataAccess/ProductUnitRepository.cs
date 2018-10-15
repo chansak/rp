@@ -15,5 +15,11 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+        public override IQueryable<Model.ProductUnit> All()
+        {
+            return ObjectSet.
+                Include(i => i.Unit)
+                .AsQueryable();
+        }
+    }
 }

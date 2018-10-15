@@ -41,6 +41,7 @@
                 if (selectedProductId != '') {
                     _bindingProductOptions(selectedProductId);
                     _bindingProductUnits(selectedProductId);
+                    _materialStockCheck(selectedProductId);
                 } else {
                     $("#productOptions").find('option').remove().end();
                 }

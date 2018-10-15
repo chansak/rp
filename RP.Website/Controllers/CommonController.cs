@@ -96,9 +96,9 @@ namespace RP.Website.Controllers
         public ActionResult GetUnitsByProductId(string id)
         {
             var result = new AjaxResultModel();
-            var products = GenericFactory.Business.GetUnitsByProductId(id);
+            var units = GenericFactory.Business.GetUnitsByProductId(id);
             var data = new List<UnitViewModel>();
-            data.AddRange(products.Select(u => new UnitViewModel
+            data.AddRange(units.Select(u => new UnitViewModel
             {
                 Id = u.Id.ToString(),
                 UnitName = u.Unit.UnitName
@@ -110,7 +110,7 @@ namespace RP.Website.Controllers
             var result = new AjaxResultModel();
             var materials = GenericFactory.Business.GetMaterialUsageByProductId(id);
             foreach (var material in materials) {
-                var stock = GenericFactory.Business.GetStockCheck(AppSettingHelper.GetDefaultWarehouseId, material.Id.ToString(),"");
+                var stock = GenericFactory.Business.GetStockCheck(AppSettingHelper.GetDefaultWarehouseId, material.Id.ToString(),material.MaterialUnit.ToString());
             }
             var data = new List<StockCheckViewModel>();
             //data.AddRange(products.Select(u => new UnitViewModel
