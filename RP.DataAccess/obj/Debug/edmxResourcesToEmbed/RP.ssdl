@@ -6,6 +6,7 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ColorCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ColorName" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Company">
     <Key>
@@ -168,13 +169,14 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="PatternImage">
-          <Property Name="Id" Type="uniqueidentifier" />
-          <Property Name="PatternName" Type="nvarchar" MaxLength="250" />
-          <Property Name="PatternImagePath" Type="nvarchar(max)" />
-        </EntityType>-->
+  <EntityType Name="PatternImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PatternName" Type="nvarchar" MaxLength="250" />
+    <Property Name="PatternImagePath" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="PatternPosition">
     <Key>
       <PropertyRef Name="Id" />
@@ -760,6 +762,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MaterialType" EntityType="Self.MaterialType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MaterialUnit" EntityType="Self.MaterialUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PatternImage" EntityType="Self.PatternImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PatternPosition" EntityType="Self.PatternPosition" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />

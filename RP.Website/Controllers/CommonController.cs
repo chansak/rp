@@ -119,13 +119,51 @@ namespace RP.Website.Controllers
                 {
                     data.Add(new StockCheckViewModel
                     {
-                        MaterialName = string.Format("{0} ({1})",stock.Material.Name,stock.Material.MaterialCode),
+                        MaterialName = string.Format("{0} ({1})", stock.Material.Name, stock.Material.MaterialCode),
                         MaterialInStock = totalAmount,
                         MaterialUsaged = usageAmount,
                         MaterialInStockAfterWithdraw = (totalAmount - usageAmount)
                     });
                 }
             }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetPatternImages()
+        {
+            var result = new AjaxResultModel();
+            var images = GenericFactory.Business.GetPatternImage();
+            var data = new List<PatternImageViewModel>();
+            data.AddRange(images.Select(p => new PatternImageViewModel
+            {
+                Id = p.Id.ToString(),
+                PatternName = p.PatternName,
+                ImagePath = p.PatternImagePath
+            }));
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetPatternPosition()
+        {
+            var result = new AjaxResultModel();
+            var positions = GenericFactory.Business.GetPatternPosition();
+            var data = new List<PatternPositionViewModel>();
+            data.AddRange(positions.Select(p => new PatternPositionViewModel
+            {
+                Id = p.Id.ToString(),
+                PositionName = p.PositionName
+            }));
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetPatternColors()
+        {
+            var result = new AjaxResultModel();
+            var positions = GenericFactory.Business.GetPatternColor();
+            var data = new List<PatternColorViewModel>();
+            data.AddRange(positions.Select(p => new PatternColorViewModel
+            {
+                Id = p.Id.ToString(),
+                ColorCode = p.ColorCode,
+                ColorName = p.ColorName
+            }));
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
     }

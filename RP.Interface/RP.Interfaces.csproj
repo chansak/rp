@@ -102,6 +102,9 @@
     <Compile Include="IMaterialUnitRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="IPatternImageRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="IPatternPositionRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>

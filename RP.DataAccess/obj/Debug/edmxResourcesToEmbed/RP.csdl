@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="RP.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="RPContext" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Colors" EntityType="RP.Model.Color" />
     <EntitySet Name="Companies" EntityType="RP.Model.Company" />
     <EntitySet Name="Customers" EntityType="RP.Model.Customer" />
     <EntitySet Name="CustomerAddresses" EntityType="RP.Model.CustomerAddress" />
@@ -33,10 +32,6 @@
     <EntitySet Name="Units" EntityType="RP.Model.Unit" />
     <EntitySet Name="Users" EntityType="RP.Model.User" />
     <EntitySet Name="Warehouses" EntityType="RP.Model.Warehouse" />
-    <AssociationSet Name="FK_ProductItemScreenOptional_Color" Association="RP.Model.FK_ProductItemScreenOptional_Color">
-      <End Role="Color" EntitySet="Colors" />
-      <End Role="ProductItemScreenOptional" EntitySet="ProductItemScreenOptionals" />
-    </AssociationSet>
     <AssociationSet Name="FK_Customer_Company" Association="RP.Model.FK_Customer_Company">
       <End Role="Company" EntitySet="Companies" />
       <End Role="Customer" EntitySet="Customers" />
@@ -174,15 +169,13 @@
       <End Role="Product" EntitySet="Products" />
       <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
     </AssociationSet>
+    <EntitySet Name="PatternImages" EntityType="RP.Model.PatternImage" />
+    <EntitySet Name="Colors" EntityType="RP.Model.Color" />
+    <AssociationSet Name="FK_ProductItemScreenOptional_Color" Association="RP.Model.FK_ProductItemScreenOptional_Color">
+      <End Role="Color" EntitySet="Colors" />
+      <End Role="ProductItemScreenOptional" EntitySet="ProductItemScreenOptionals" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Color">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="ColorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ProductItemScreenOptionals" Relationship="RP.Model.FK_ProductItemScreenOptional_Color" FromRole="Color" ToRole="ProductItemScreenOptional" />
-  </EntityType>
   <EntityType Name="Company">
     <Key>
       <PropertyRef Name="Id" />
@@ -438,9 +431,9 @@
     <Property Name="PatternImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ColorCodeId" Type="Guid" />
     <Property Name="PatternPositionId" Type="Guid" />
-    <NavigationProperty Name="Color" Relationship="RP.Model.FK_ProductItemScreenOptional_Color" FromRole="ProductItemScreenOptional" ToRole="Color" />
     <NavigationProperty Name="DocumentProductItem" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="ProductItemScreenOptional" ToRole="DocumentProductItem" />
     <NavigationProperty Name="PatternPosition" Relationship="RP.Model.FK_ProductItemScreenOptional_PatternPosition" FromRole="ProductItemScreenOptional" ToRole="PatternPosition" />
+    <NavigationProperty Name="Color" Relationship="RP.Model.FK_ProductItemScreenOptional_Color" FromRole="ProductItemScreenOptional" ToRole="Color" />
   </EntityType>
   <EntityType Name="ProductItemSewOptional">
     <Key>
@@ -548,18 +541,6 @@
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Warehouse" FromRole="Warehouse" ToRole="DocumentProductItem" />
     <NavigationProperty Name="Stocks" Relationship="RP.Model.FK_Stock_Warehouse" FromRole="Warehouse" ToRole="Stock" />
   </EntityType>
-  <Association Name="FK_ProductItemScreenOptional_Color">
-    <End Type="RP.Model.Color" Role="Color" Multiplicity="0..1" />
-    <End Type="RP.Model.ProductItemScreenOptional" Role="ProductItemScreenOptional" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Color">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductItemScreenOptional">
-        <PropertyRef Name="ColorCodeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Customer_Company">
     <End Type="RP.Model.Company" Role="Company" Multiplicity="0..1" />
     <End Type="RP.Model.Customer" Role="Customer" Multiplicity="*" />
@@ -978,6 +959,35 @@
       </Principal>
       <Dependent Role="ProductMaterialUsage">
         <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PatternImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="PatternName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PatternImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ColorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ColorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductItemScreenOptionals" Relationship="RP.Model.FK_ProductItemScreenOptional_Color" FromRole="Color" ToRole="ProductItemScreenOptional" />
+  </EntityType>
+  <Association Name="FK_ProductItemScreenOptional_Color">
+    <End Type="RP.Model.Color" Role="Color" Multiplicity="0..1" />
+    <End Type="RP.Model.ProductItemScreenOptional" Role="ProductItemScreenOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemScreenOptional">
+        <PropertyRef Name="ColorCodeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

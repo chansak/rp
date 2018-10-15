@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="RPModelStoreContainer" CdmEntityContainer="RPContext">
-    <EntitySetMapping Name="Colors">
-      <EntityTypeMapping TypeName="RP.Model.Color">
-        <MappingFragment StoreEntitySet="Color">
-          <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Companies">
       <EntityTypeMapping TypeName="RP.Model.Company">
         <MappingFragment StoreEntitySet="Company">
@@ -346,6 +338,24 @@
           <ScalarProperty Name="MaterialUnitId" ColumnName="MaterialUnitId" />
           <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatternImages">
+      <EntityTypeMapping TypeName="RP.Model.PatternImage">
+        <MappingFragment StoreEntitySet="PatternImage">
+          <ScalarProperty Name="PatternImagePath" ColumnName="PatternImagePath" />
+          <ScalarProperty Name="PatternName" ColumnName="PatternName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Colors">
+      <EntityTypeMapping TypeName="RP.Model.Color">
+        <MappingFragment StoreEntitySet="Color">
+          <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+          <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

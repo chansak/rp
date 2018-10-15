@@ -29,6 +29,7 @@ namespace RP.Interfaces
 		IMaterialRepository MaterialRepository  { get; }
 		IMaterialTypeRepository MaterialTypeRepository  { get; }
 		IMaterialUnitRepository MaterialUnitRepository  { get; }
+		IPatternImageRepository PatternImageRepository  { get; }
 		IPatternPositionRepository PatternPositionRepository  { get; }
 		IProductRepository ProductRepository  { get; }
 		IProductCategoryRepository ProductCategoryRepository  { get; }

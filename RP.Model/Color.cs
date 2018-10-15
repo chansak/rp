@@ -21,6 +21,7 @@ namespace RP.Model
     
         public System.Guid Id { get; set; }
         public string ColorCode { get; set; }
+        public string ColorName { get; set; }
     
         public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
     }

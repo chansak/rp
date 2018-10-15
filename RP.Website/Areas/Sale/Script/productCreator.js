@@ -1,5 +1,6 @@
 ﻿var productCreator = new function () {
     //variables
+    var images = [];
 
     var _bindingProductCategories = function () {
         var success = function (data, textStatus, jqXHR) {
@@ -128,6 +129,107 @@
         }
         var xhr = RPService.GetMaterialStockCheck(id, success, failure);
     }
+    var _bindingPatternImage = function () {
+        var success = function (data, textStatus, jqXHR) {
+            $(data).each(function (index, item) {
+                images.push(item);
+                $('#print-pattern').append($('<option>', {
+                    value: item.id,
+                    text: item.patternName
+                }));
+                $('#screen-pattern').append($('<option>', {
+                    value: item.id,
+                    text: item.patternName
+                }));
+                $('#sew-pattern').append($('<option>', {
+                    value: item.id,
+                    text: item.patternName
+                }));
+
+                $("#print-pattern").change(function () {
+                    var selectedImageId = $('#print-pattern').val();
+                    var image = findObjectByKey(images, 'id', selectedImageId);
+                    $("#print-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' />");
+                });
+                $("#screen-pattern").change(function () {
+                    var selectedImageId = $('#screen-pattern').val();
+                    var image = findObjectByKey(images, 'id', selectedImageId);
+                    $("#screen-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' />");
+                });
+                $("#sew-pattern").change(function () {
+                    var selectedImageId = $('#sew-pattern').val();
+                    var image = findObjectByKey(images, 'id', selectedImageId);
+                    $("#sew-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' />");
+                });
+            });
+            $("#print-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            $("#screen-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            $("#sew-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetPatternImages(success, failure);
+    };
+    var _bindingPatternPosition = function () {
+        var success = function (data, textStatus, jqXHR) {
+            $(data).each(function (index, item) {
+                $('#print-position').append($('<option>', {
+                    value: item.id,
+                    text: item.positionName
+                }));
+                $('#screen-position').append($('<option>', {
+                    value: item.id,
+                    text: item.positionName
+                }));
+                $('#sew-position').append($('<option>', {
+                    value: item.id,
+                    text: item.positionName
+                }));
+            });
+            $("#print-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
+            $("#screen-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
+            $("#sew-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetPatternPosition(success, failure);
+    };
+    var _bindingPatternColor = function () {
+        var success = function (data, textStatus, jqXHR) {
+            $(data).each(function (index, item) {
+                $('#sew-color').append($('<option>', {
+                    value: item.id,
+                    text: item.colorName
+                }));
+                $('#screen-color').append($('<option>', {
+                    value: item.id,
+                    text: item.colorName
+                }));
+                $('#sew-color').append($('<option>', {
+                    value: item.id,
+                    text: item.colorName
+                }));
+            });
+            $("#print-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
+            $("#screen-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
+            $("#sew-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetPatternPosition(success, failure);
+    };
+
+    function findObjectByKey(array, key, value) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i][key] === value) {
+                return array[i];
+            }
+        }
+        return null;
+    }
     //all services
     return {
         init: function () {
@@ -135,6 +237,9 @@
             $("#products").find('option').remove().end();
             $("#productOptions").find('option').remove().end();
             _bindingProductCategories();
+            _bindingPatternImage();
+            _bindingPatternPosition();
+            _bindingPatternColor();
         },
     }
 };

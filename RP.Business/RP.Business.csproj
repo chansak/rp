@@ -41,9 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBusiness.cs" />
+    <Compile Include="ColorBusiness.cs" />
     <Compile Include="ContactBusiness.cs" />
     <Compile Include="CustomerBusiness.cs" />
     <Compile Include="DocumentBusiness.cs" />
+    <Compile Include="PatternImageBusiness.cs" />
+    <Compile Include="PatternPositionBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />
     <Compile Include="ProductCategoryBusiness.cs" />
     <Compile Include="ProductMaterialUsageBusiness.cs" />

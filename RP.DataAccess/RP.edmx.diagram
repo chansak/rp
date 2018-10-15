@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f6c9ef7f48bf4ebdab2c30102ffa10be" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="RP.Model.Color" Width="1.5" PointX="3" PointY="5.625" />
         <EntityTypeShape EntityType="RP.Model.Company" Width="1.5" PointX="1.5" PointY="43.5" />
         <EntityTypeShape EntityType="RP.Model.Customer" Width="1.5" PointX="1.5" PointY="38.625" />
         <EntityTypeShape EntityType="RP.Model.CustomerAddress" Width="1.5" PointX="10.75" PointY="7.25" />
@@ -37,7 +36,6 @@
         <EntityTypeShape EntityType="RP.Model.Unit" Width="1.5" PointX="1.5" PointY="18.75" />
         <EntityTypeShape EntityType="RP.Model.User" Width="1.5" PointX="10" PointY="3.5" />
         <EntityTypeShape EntityType="RP.Model.Warehouse" Width="1.5" PointX="0.75" PointY="10.75" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemScreenOptional_Color" />
         <AssociationConnector Association="RP.Model.FK_Customer_Company" />
         <AssociationConnector Association="RP.Model.FK_Customer_CustomerType" />
         <AssociationConnector Association="RP.Model.FK_CustomerContact_Customer" />
@@ -74,6 +72,8 @@
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_MaterialUnit" />
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Product" />
         <EntityTypeShape EntityType="RP.Model.PatternImage" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RP.Model.Color" Width="1.5" PointX="12.375" PointY="0.875" />
+        <AssociationConnector Association="RP.Model.FK_ProductItemScreenOptional_Color" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -33,5 +33,12 @@ namespace RP.Interfaces
         IList<Stock> GetStockCheck(string warehouseId, string materialId, string materialUnitId);
         #endregion
 
+        #region Pattern
+        IList<PatternImage> GetPatternImage();
+        IList<PatternPosition> GetPatternPosition();
+        IList<Color> GetPatternColor();
+
+        #endregion
+
     }
 }

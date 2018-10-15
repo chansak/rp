@@ -183,4 +183,65 @@
         });
         return XHR;
     },
+    GetPatternImages: function (successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/common/GetPatternImages",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+
+        return XHR;
+    },
+    GetPatternPosition: function (successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/common/GetPatternPosition",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+
+        return XHR;
+    },
+    GetPatternColors: function (successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/common/GetPatternColors",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+
+        return XHR;
+    },
+
 }

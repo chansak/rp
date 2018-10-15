@@ -20,8 +20,8 @@ namespace RP.DataAccess
         public Nullable<System.Guid> ColorCodeId { get; set; }
         public Nullable<System.Guid> PatternPositionId { get; set; }
     
-        public virtual Color Color { get; set; }
         public virtual DocumentProductItem DocumentProductItem { get; set; }
         public virtual PatternPosition PatternPosition { get; set; }
+        public virtual Color Color { get; set; }
     }
 }

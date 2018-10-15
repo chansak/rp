@@ -25,7 +25,6 @@ namespace RP.DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
@@ -59,5 +58,6 @@ namespace RP.DataAccess
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         public virtual DbSet<PatternImage> PatternImages { get; set; }
+        public virtual DbSet<Color> Colors { get; set; }
     }
 }
