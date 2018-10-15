@@ -239,6 +239,17 @@ namespace RP.DataAccess
 				return _MaterialUnitRepository;
 			}
 		}
+		IPatternImageRepository _PatternImageRepository;
+		public IPatternImageRepository PatternImageRepository
+		{
+			get
+			{
+				if (_PatternImageRepository == null)
+					_PatternImageRepository = new PatternImageRepository(context);
+				
+				return _PatternImageRepository;
+			}
+		}
 		IPatternPositionRepository _PatternPositionRepository;
 		public IPatternPositionRepository PatternPositionRepository
 		{

@@ -9,17 +9,11 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class WarehouseRepository : EFRepository<RP.Model.Warehouse>, IWarehouseRepository
+	public class PatternImageRepository : EFRepository<RP.Model.PatternImage>, IPatternImageRepository
 	{
-		public WarehouseRepository(DbContext context)
+		public PatternImageRepository(DbContext context)
             : base(context)
 		{
 		}
 	}
 }
-
-
-
-
-
-

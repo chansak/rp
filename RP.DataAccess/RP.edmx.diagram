@@ -73,6 +73,7 @@
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Material" />
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_MaterialUnit" />
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Product" />
+        <EntityTypeShape EntityType="RP.Model.PatternImage" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

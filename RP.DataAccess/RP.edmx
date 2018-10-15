@@ -173,13 +173,14 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="PatternImage">
-          <Property Name="Id" Type="uniqueidentifier" />
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PatternName" Type="nvarchar" MaxLength="250" />
           <Property Name="PatternImagePath" Type="nvarchar(max)" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="PatternPosition">
           <Key>
             <PropertyRef Name="Id" />
@@ -765,6 +766,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaterialType" EntityType="Self.MaterialType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaterialUnit" EntityType="Self.MaterialUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatternImage" EntityType="Self.PatternImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatternPosition" EntityType="Self.PatternPosition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
@@ -1101,6 +1103,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
           </AssociationSet>
+          <EntitySet Name="PatternImages" EntityType="RP.Model.PatternImage" />
         </EntityContainer>
         <EntityType Name="Color">
           <Key>
@@ -1908,6 +1911,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PatternImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PatternName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PatternImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2259,6 +2270,15 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
                 <ScalarProperty Name="MaterialUnitId" ColumnName="MaterialUnitId" />
                 <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatternImages">
+            <EntityTypeMapping TypeName="RP.Model.PatternImage">
+              <MappingFragment StoreEntitySet="PatternImage">
+                <ScalarProperty Name="PatternImagePath" ColumnName="PatternImagePath" />
+                <ScalarProperty Name="PatternName" ColumnName="PatternName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

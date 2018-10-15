@@ -58,5 +58,6 @@ namespace RP.DataAccess
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<ProductMaterialUsage> ProductMaterialUsages { get; set; }
+        public virtual DbSet<PatternImage> PatternImages { get; set; }
     }
 }

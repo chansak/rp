@@ -153,6 +153,12 @@
     <Compile Include="MaterialUnitRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatternImage.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatternImageRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatternPosition.cs">
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>

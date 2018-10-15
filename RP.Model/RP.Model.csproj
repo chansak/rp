@@ -101,6 +101,9 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Partial\Document.cs" />
+    <Compile Include="PatternImage.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatternPosition.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
