@@ -242,7 +242,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="MaterialId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="MaterialUnit" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MaterialUnitId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Amount" Type="int" />
   </EntityType>
   <EntityType Name="ProductOption">
@@ -631,7 +631,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ProductMaterialUsage">
-        <PropertyRef Name="MaterialUnit" />
+        <PropertyRef Name="MaterialUnitId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

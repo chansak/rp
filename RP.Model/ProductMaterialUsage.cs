@@ -17,11 +17,11 @@ namespace RP.Model
         public System.Guid Id { get; set; }
         public System.Guid ProductId { get; set; }
         public System.Guid MaterialId { get; set; }
-        public System.Guid MaterialUnit { get; set; }
+        public System.Guid MaterialUnitId { get; set; }
         public Nullable<int> Amount { get; set; }
     
         public virtual Material Material { get; set; }
-        public virtual MaterialUnit MaterialUnit1 { get; set; }
+        public virtual MaterialUnit MaterialUnit { get; set; }
         public virtual Product Product { get; set; }
     }
     

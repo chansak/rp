@@ -15,5 +15,12 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+        public override IQueryable<Model.Stock> All()
+        {
+            return ObjectSet.
+                Include(i=>i.Material).
+                Include(i => i.MaterialUnit)
+                .AsQueryable();
+        }
+    }
 }

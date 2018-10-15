@@ -18,8 +18,8 @@ namespace RP.Model
         {
             this.DocumentProductItems = new HashSet<DocumentProductItem>();
             this.ProductOptions = new HashSet<ProductOption>();
-            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
             this.ProductPrices = new HashSet<ProductPrice>();
+            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
         }
     
         public System.Guid Id { get; set; }
@@ -30,8 +30,8 @@ namespace RP.Model
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual ICollection<ProductOption> ProductOptions { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
-        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
+        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
     }
     
 }
