@@ -14,8 +14,15 @@ namespace RP.Model
 {
     public partial class Unit
     {
+        public Unit()
+        {
+            this.ProductUnits = new HashSet<ProductUnit>();
+        }
+    
         public System.Guid Id { get; set; }
         public string UnitName { get; set; }
+    
+        public virtual ICollection<ProductUnit> ProductUnits { get; set; }
     }
     
 }

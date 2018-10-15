@@ -1,4 +1,5 @@
 ﻿using RP.Interfaces;
+using RP.Utilities;
 using RP.Website.Enum;
 using RP.Website.Models;
 using System;
@@ -53,6 +54,70 @@ namespace RP.Website.Controllers
                 Fax = c.Fax,
                 Mobile = c.Mobile
             }));
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetProductCategories()
+        {
+            var result = new AjaxResultModel();
+            var categories = GenericFactory.Business.GetProductCategories();
+            var data = new List<ProductCategoryViewModel>();
+            data.AddRange(categories.Select(c => new ProductCategoryViewModel
+            {
+                Id = c.Id.ToString(),
+                CategoryName = c.CategoryName
+            }));
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetProductsByCategoryId(string id)
+        {
+            var result = new AjaxResultModel();
+            var products = GenericFactory.Business.GetProductsByCategoryId(id);
+            var data = new List<ProductViewModel>();
+            data.AddRange(products.Select(p => new ProductViewModel
+            {
+                Id = p.Id.ToString(),
+                ProductCode = p.ProductCode,
+                ProductName = p.Name
+            }));
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetOptionsByProductId(string id)
+        {
+            var result = new AjaxResultModel();
+            var products = GenericFactory.Business.GetOptionsByProductId(id);
+            var data = new List<ProductOptionViewModel>();
+            data.AddRange(products.Select(o => new ProductOptionViewModel
+            {
+                Id = o.Id.ToString(),
+                OptionName = o.OptionName
+            }));
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetUnitsByProductId(string id)
+        {
+            var result = new AjaxResultModel();
+            var products = GenericFactory.Business.GetUnitsByProductId(id);
+            var data = new List<UnitViewModel>();
+            data.AddRange(products.Select(u => new UnitViewModel
+            {
+                Id = u.Id.ToString(),
+                UnitName = u.Unit.UnitName
+            }));
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetMaterialStockCheck(string id)
+        {
+            var result = new AjaxResultModel();
+            var materials = GenericFactory.Business.GetMaterialUsageByProductId(id);
+            foreach (var material in materials) {
+                var stock = GenericFactory.Business.GetStockCheck(AppSettingHelper.GetDefaultWarehouseId, material.Id.ToString(),"");
+            }
+            var data = new List<StockCheckViewModel>();
+            //data.AddRange(products.Select(u => new UnitViewModel
+            //{
+            //    Id = u.Id.ToString(),
+            //    UnitName = u.Unit.UnitName
+            //}));
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
     }

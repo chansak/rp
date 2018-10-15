@@ -65,6 +65,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CustomerContactBranches">
+      <EntityTypeMapping TypeName="RP.Model.CustomerContactBranch">
+        <MappingFragment StoreEntitySet="CustomerContactBranch">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CustomerTypes">
       <EntityTypeMapping TypeName="RP.Model.CustomerType">
         <MappingFragment StoreEntitySet="CustomerType">
@@ -77,6 +85,14 @@
       <EntityTypeMapping TypeName="RP.Model.DeliveryCondition">
         <MappingFragment StoreEntitySet="DeliveryCondition">
           <ScalarProperty Name="ConditionName" ColumnName="ConditionName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="RP.Model.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -187,6 +203,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ProductCategories">
+      <EntityTypeMapping TypeName="RP.Model.ProductCategory">
+        <MappingFragment StoreEntitySet="ProductCategory">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ProductItemAttachments">
       <EntityTypeMapping TypeName="RP.Model.ProductItemAttachment">
         <MappingFragment StoreEntitySet="ProductItemAttachment">
@@ -239,6 +263,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ProductOptions">
+      <EntityTypeMapping TypeName="RP.Model.ProductOption">
+        <MappingFragment StoreEntitySet="ProductOption">
+          <ScalarProperty Name="OptionName" ColumnName="OptionName" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ProductPrices">
       <EntityTypeMapping TypeName="RP.Model.ProductPrice">
         <MappingFragment StoreEntitySet="ProductPrice">
@@ -254,6 +287,14 @@
         <MappingFragment StoreEntitySet="ProductUnit">
           <ScalarProperty Name="UnitId" ColumnName="UnitId" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="RP.Model.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -282,43 +323,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Warehouses">
-      <EntityTypeMapping TypeName="RP.Model.Warehouse">
-        <MappingFragment StoreEntitySet="Warehouse">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProductCategories">
-      <EntityTypeMapping TypeName="RP.Model.ProductCategory">
-        <MappingFragment StoreEntitySet="ProductCategory">
-          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProductOptions">
-      <EntityTypeMapping TypeName="RP.Model.ProductOption">
-        <MappingFragment StoreEntitySet="ProductOption">
-          <ScalarProperty Name="OptionName" ColumnName="OptionName" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CustomerContactBranches">
-      <EntityTypeMapping TypeName="RP.Model.CustomerContactBranch">
-        <MappingFragment StoreEntitySet="CustomerContactBranch">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="RP.Model.Role">
-        <MappingFragment StoreEntitySet="Role">
-          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="RP.Model.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -334,18 +342,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Departments">
-      <EntityTypeMapping TypeName="RP.Model.Department">
-        <MappingFragment StoreEntitySet="Department">
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Units">
-      <EntityTypeMapping TypeName="RP.Model.Unit">
-        <MappingFragment StoreEntitySet="Unit">
-          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+    <EntitySetMapping Name="Warehouses">
+      <EntityTypeMapping TypeName="RP.Model.Warehouse">
+        <MappingFragment StoreEntitySet="Warehouse">
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

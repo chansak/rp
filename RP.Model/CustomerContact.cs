@@ -35,9 +35,9 @@ namespace RP.Model
         public System.Guid BranchId { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual CustomerContactBranch CustomerContactBranch { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<Document> Documents1 { get; set; }
-        public virtual CustomerContactBranch CustomerContactBranch { get; set; }
     }
     
 }

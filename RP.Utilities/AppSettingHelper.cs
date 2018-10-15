@@ -44,5 +44,13 @@ namespace RP.Utilities
                 return pageDirection;
             }
         }
+
+        public static string GetDefaultWarehouseId
+        {
+            get
+            {
+                return "46EE6B5A-5E68-4CF8-844B-F3095878C8B2";
+            }
+        }
     }
 }

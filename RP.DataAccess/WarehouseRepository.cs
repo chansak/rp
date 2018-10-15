@@ -19,19 +19,3 @@ namespace RP.DataAccess
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -157,6 +157,7 @@
     <Content Include="Areas\Sale\Script\documentCreator.js" />
     <Content Include="Areas\Sale\Script\documentEditor.js" />
     <Content Include="Areas\Sale\Script\documentList.js" />
+    <Content Include="Areas\Sale\Script\productCreator.js" />
     <Content Include="Areas\Sale\Views\Document\AddNew.cshtml" />
     <Content Include="Areas\Sale\Views\Document\Index.cshtml" />
     <Content Include="Areas\Sale\Views\Shared\_Layout.cshtml" />
@@ -1570,8 +1571,13 @@
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\ListViewModel.cs" />
+    <Compile Include="Models\ProductCategoryViewModel.cs" />
+    <Compile Include="Models\ProductOptionViewModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\SaleUserViewModel.cs" />
+    <Compile Include="Models\StockCheckViewModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
+    <Compile Include="Models\UnitViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

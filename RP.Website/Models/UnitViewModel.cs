@@ -1,8 +1,8 @@
 ﻿namespace RP.Website.Models
 {
-    public class UnitTypeViewModel
+    public class UnitViewModel
     {
         public string Id { get; set; }
-        public string Name { get; set; }
+        public string UnitName { get; set; }
     }
 }

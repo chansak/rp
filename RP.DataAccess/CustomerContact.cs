@@ -36,10 +36,10 @@ namespace RP.DataAccess
         public System.Guid BranchId { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual CustomerContactBranch CustomerContactBranch { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Document> Documents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Document> Documents1 { get; set; }
-        public virtual CustomerContactBranch CustomerContactBranch { get; set; }
     }
 }

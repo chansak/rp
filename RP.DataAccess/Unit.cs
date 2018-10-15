@@ -14,7 +14,16 @@ namespace RP.DataAccess
     
     public partial class Unit
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Unit()
+        {
+            this.ProductUnits = new HashSet<ProductUnit>();
+        }
+    
         public System.Guid Id { get; set; }
         public string UnitName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductUnit> ProductUnits { get; set; }
     }
 }

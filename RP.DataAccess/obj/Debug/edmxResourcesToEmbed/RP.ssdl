@@ -240,9 +240,9 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ProductId" Type="uniqueidentifier" />
-    <Property Name="MaterialId" Type="uniqueidentifier" />
-    <Property Name="MaterialUnit" Type="uniqueidentifier" />
+    <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MaterialId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MaterialUnit" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Amount" Type="int" />
   </EntityType>
   <EntityType Name="ProductOption">
@@ -612,7 +612,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductMaterialUsage_Material">
-    <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+    <End Role="Material" Type="Self.Material" Multiplicity="1" />
     <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Material">
@@ -624,7 +624,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductMaterialUsage_MaterialUnit">
-    <End Role="MaterialUnit" Type="Self.MaterialUnit" Multiplicity="0..1" />
+    <End Role="MaterialUnit" Type="Self.MaterialUnit" Multiplicity="1" />
     <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MaterialUnit">
@@ -636,7 +636,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductMaterialUsage_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
@@ -668,6 +668,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       </Principal>
       <Dependent Role="ProductPrice">
         <PropertyRef Name="ProductUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductUnit_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+    <End Role="ProductUnit" Type="Self.ProductUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductUnit">
+        <PropertyRef Name="UnitId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -880,6 +892,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <AssociationSet Name="FK_ProductPrice_ProductUnit" Association="Self.FK_ProductPrice_ProductUnit">
       <End Role="ProductUnit" EntitySet="ProductUnit" />
       <End Role="ProductPrice" EntitySet="ProductPrice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductUnit_Unit" Association="Self.FK_ProductUnit_Unit">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="ProductUnit" EntitySet="ProductUnit" />
     </AssociationSet>
     <AssociationSet Name="FK_Stock_Material" Association="Self.FK_Stock_Material">
       <End Role="Material" EntitySet="Material" />

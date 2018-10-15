@@ -172,7 +172,8 @@
                                         <h2>ข้อมูลสินค้า</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
-                                            <input type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal5" value="เพิ่มสินค้า" />
+                                            @*<input type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal5" value="เพิ่มสินค้า" />*@
+                                            <input type="button" id="btnAddNewProduct" class="btn btn-primary btn-xs" value="เพิ่มสินค้า" />
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
@@ -426,7 +427,7 @@
     </div>
 }
 @*Modal Dialog*@
-<div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal inmodal fade" id="addProductModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -447,33 +448,21 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ประเภทสินค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
+                                                <select class="form-control m-b" id="productCategories" name="account">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">สินค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
+                                                <select class="form-control m-b" id="products" name="account">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">รายละเอียด</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account">
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
+                                                <select class="form-control m-b" id="productOptions" name="account">
                                                 </select>
                                             </div>
                                         </div>
@@ -486,11 +475,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">หน่วย</label>
                                             <div class="col-sm-3">
-                                                <select class="form-control m-b" name="account">
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
+                                                <select class="form-control m-b" id="productsUnit" name="account">
                                                 </select>
                                             </div>
                                         </div>
@@ -515,37 +500,33 @@
                                     </div>
                                     <div class="hr-line-dashed"></div>
                                     <h3>จำนวนผ้าที่ใช้</h3>
-                                    <div class="row">
+                                    <div id="materialStockCheck"></div>
+                                    @*<div class="row">
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>รหัสผ้า</label>
-                                                <select class="form-control m-b" name="account">
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
-                                                </select>
+                                                <input type="text" id="materialName" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>จำนวนผ้าในสต๊อค</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" id="materialInStock" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>ผ้าที่ต้องใช้</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" id="materialUsaged" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label>ผ้าคงเหลือ</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" id="materialInStockAfterWithdraw" class="form-control">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
                             <div id="product-tab-2" class="tab-pane">
@@ -893,6 +874,11 @@
                             break;
                         }
                 }
+            });
+
+            $("#btnAddNewProduct").click(function () {
+                $("#addProductModal").modal({ backdrop: "static" });
+                productCreator.init();
             });
             documentCreator.init();
         });

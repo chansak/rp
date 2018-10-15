@@ -18,9 +18,9 @@ namespace RP.DataAccess
         public Product()
         {
             this.DocumentProductItems = new HashSet<DocumentProductItem>();
+            this.ProductOptions = new HashSet<ProductOption>();
             this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
             this.ProductPrices = new HashSet<ProductPrice>();
-            this.ProductOptions = new HashSet<ProductOption>();
         }
     
         public System.Guid Id { get; set; }
@@ -31,11 +31,11 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductOption> ProductOptions { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductOption> ProductOptions { get; set; }
-        public virtual ProductCategory ProductCategory { get; set; }
     }
 }

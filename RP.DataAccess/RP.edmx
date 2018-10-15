@@ -245,9 +245,9 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ProductId" Type="uniqueidentifier" />
-          <Property Name="MaterialId" Type="uniqueidentifier" />
-          <Property Name="MaterialUnit" Type="uniqueidentifier" />
+          <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MaterialId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MaterialUnit" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Amount" Type="int" />
         </EntityType>
         <EntityType Name="ProductOption">
@@ -617,7 +617,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductMaterialUsage_Material">
-          <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
           <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
@@ -629,7 +629,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductMaterialUsage_MaterialUnit">
-          <End Role="MaterialUnit" Type="Self.MaterialUnit" Multiplicity="0..1" />
+          <End Role="MaterialUnit" Type="Self.MaterialUnit" Multiplicity="1" />
           <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MaterialUnit">
@@ -641,7 +641,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductMaterialUsage_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -673,6 +673,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Principal>
             <Dependent Role="ProductPrice">
               <PropertyRef Name="ProductUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductUnit_Unit">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="ProductUnit" Type="Self.ProductUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductUnit">
+              <PropertyRef Name="UnitId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -886,6 +898,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <End Role="ProductUnit" EntitySet="ProductUnit" />
             <End Role="ProductPrice" EntitySet="ProductPrice" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductUnit_Unit" Association="Self.FK_ProductUnit_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="ProductUnit" EntitySet="ProductUnit" />
+          </AssociationSet>
           <AssociationSet Name="FK_Stock_Material" Association="Self.FK_Stock_Material">
             <End Role="Material" EntitySet="Material" />
             <End Role="Stock" EntitySet="Stock" />
@@ -917,8 +933,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <EntitySet Name="Customers" EntityType="RP.Model.Customer" />
           <EntitySet Name="CustomerAddresses" EntityType="RP.Model.CustomerAddress" />
           <EntitySet Name="CustomerContacts" EntityType="RP.Model.CustomerContact" />
+          <EntitySet Name="CustomerContactBranches" EntityType="RP.Model.CustomerContactBranch" />
           <EntitySet Name="CustomerTypes" EntityType="RP.Model.CustomerType" />
           <EntitySet Name="DeliveryConditions" EntityType="RP.Model.DeliveryCondition" />
+          <EntitySet Name="Departments" EntityType="RP.Model.Department" />
           <EntitySet Name="Documents" EntityType="RP.Model.Document" />
           <EntitySet Name="DocumentAttachments" EntityType="RP.Model.DocumentAttachment" />
           <EntitySet Name="DocumentDeliveries" EntityType="RP.Model.DocumentDelivery" />
@@ -928,15 +946,20 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <EntitySet Name="MaterialUnits" EntityType="RP.Model.MaterialUnit" />
           <EntitySet Name="PatternPositions" EntityType="RP.Model.PatternPosition" />
           <EntitySet Name="Products" EntityType="RP.Model.Product" />
+          <EntitySet Name="ProductCategories" EntityType="RP.Model.ProductCategory" />
           <EntitySet Name="ProductItemAttachments" EntityType="RP.Model.ProductItemAttachment" />
           <EntitySet Name="ProductItemPrintOptionals" EntityType="RP.Model.ProductItemPrintOptional" />
           <EntitySet Name="ProductItemScreenOptionals" EntityType="RP.Model.ProductItemScreenOptional" />
           <EntitySet Name="ProductItemSewOptionals" EntityType="RP.Model.ProductItemSewOptional" />
           <EntitySet Name="ProductMaterialUsages" EntityType="RP.Model.ProductMaterialUsage" />
+          <EntitySet Name="ProductOptions" EntityType="RP.Model.ProductOption" />
           <EntitySet Name="ProductPrices" EntityType="RP.Model.ProductPrice" />
           <EntitySet Name="ProductUnits" EntityType="RP.Model.ProductUnit" />
+          <EntitySet Name="Roles" EntityType="RP.Model.Role" />
           <EntitySet Name="Stocks" EntityType="RP.Model.Stock" />
           <EntitySet Name="TransportationTypes" EntityType="RP.Model.TransportationType" />
+          <EntitySet Name="Units" EntityType="RP.Model.Unit" />
+          <EntitySet Name="Users" EntityType="RP.Model.User" />
           <EntitySet Name="Warehouses" EntityType="RP.Model.Warehouse" />
           <AssociationSet Name="FK_ProductItemScreenOptional_Color" Association="RP.Model.FK_ProductItemScreenOptional_Color">
             <End Role="Color" EntitySet="Colors" />
@@ -958,6 +981,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Document" EntitySet="Documents" />
           </AssociationSet>
+          <AssociationSet Name="FK_CustomerContact_CustomerContactBranch" Association="RP.Model.FK_CustomerContact_CustomerContactBranch">
+            <End Role="CustomerContactBranch" EntitySet="CustomerContactBranches" />
+            <End Role="CustomerContact" EntitySet="CustomerContacts" />
+          </AssociationSet>
           <AssociationSet Name="FK_Document_CustomerContact" Association="RP.Model.FK_Document_CustomerContact">
             <End Role="CustomerContact" EntitySet="CustomerContacts" />
             <End Role="Document" EntitySet="Documents" />
@@ -965,6 +992,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <AssociationSet Name="FK_Document_DeliveryCustomerContact" Association="RP.Model.FK_Document_DeliveryCustomerContact">
             <End Role="CustomerContact" EntitySet="CustomerContacts" />
             <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="RP.Model.FK_User_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentAttachment_Document" Association="RP.Model.FK_DocumentAttachment_Document">
             <End Role="Document" EntitySet="Documents" />
@@ -1038,6 +1069,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <End Role="PatternPosition" EntitySet="PatternPositions" />
             <End Role="ProductItemSewOptional" EntitySet="ProductItemSewOptionals" />
           </AssociationSet>
+          <AssociationSet Name="FK_Option_Product" Association="RP.Model.FK_Option_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductOption" EntitySet="ProductOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductCategory" Association="RP.Model.FK_Product_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductMaterialUsage_Product" Association="RP.Model.FK_ProductMaterialUsage_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
@@ -1050,37 +1089,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <End Role="ProductUnit" EntitySet="ProductUnits" />
             <End Role="ProductPrice" EntitySet="ProductPrices" />
           </AssociationSet>
-          <AssociationSet Name="FK_Stock_Warehouse" Association="RP.Model.FK_Stock_Warehouse">
-            <End Role="Warehouse" EntitySet="Warehouses" />
-            <End Role="Stock" EntitySet="Stocks" />
+          <AssociationSet Name="FK_ProductUnit_Unit" Association="RP.Model.FK_ProductUnit_Unit">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="ProductUnit" EntitySet="ProductUnits" />
           </AssociationSet>
-          <EntitySet Name="ProductCategories" EntityType="RP.Model.ProductCategory" />
-          <EntitySet Name="ProductOptions" EntityType="RP.Model.ProductOption" />
-          <AssociationSet Name="FK_Option_Product" Association="RP.Model.FK_Option_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProductOption" EntitySet="ProductOptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_ProductCategory" Association="RP.Model.FK_Product_ProductCategory">
-            <End Role="ProductCategory" EntitySet="ProductCategories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <EntitySet Name="CustomerContactBranches" EntityType="RP.Model.CustomerContactBranch" />
-          <AssociationSet Name="FK_CustomerContact_CustomerContactBranch" Association="RP.Model.FK_CustomerContact_CustomerContactBranch">
-            <End Role="CustomerContactBranch" EntitySet="CustomerContactBranches" />
-            <End Role="CustomerContact" EntitySet="CustomerContacts" />
-          </AssociationSet>
-          <EntitySet Name="Roles" EntityType="RP.Model.Role" />
-          <EntitySet Name="Users" EntityType="RP.Model.User" />
           <AssociationSet Name="FK_User_Role" Association="RP.Model.FK_User_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="Departments" EntityType="RP.Model.Department" />
-          <AssociationSet Name="FK_User_Department" Association="RP.Model.FK_User_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="User" EntitySet="Users" />
+          <AssociationSet Name="FK_Stock_Warehouse" Association="RP.Model.FK_Stock_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
-          <EntitySet Name="Units" EntityType="RP.Model.Unit" />
         </EntityContainer>
         <EntityType Name="Color">
           <Key>
@@ -1145,11 +1165,19 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="CustomerContact" ToRole="Customer" />
+          <NavigationProperty Name="CustomerContactBranch" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContact" ToRole="CustomerContactBranch" />
           <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="CustomerContact" ToRole="Document" />
           <NavigationProperty Name="Documents1" Relationship="RP.Model.FK_Document_DeliveryCustomerContact" FromRole="CustomerContact" ToRole="Document" />
-          <Property Name="BranchId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="CustomerContactBranch" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContact" ToRole="CustomerContactBranch" />
+        </EntityType>
+        <EntityType Name="CustomerContactBranch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContactBranch" ToRole="CustomerContact" />
         </EntityType>
         <EntityType Name="CustomerType">
           <Key>
@@ -1165,6 +1193,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="ConditionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="RP.Model.FK_User_Department" FromRole="Department" ToRole="User" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -1185,16 +1221,16 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DeliveryContactId" Type="Guid" />
+          <Property Name="BiddingStatusId" Type="Int32" />
+          <Property Name="ConfirmedPriceDays" Type="Int32" />
+          <Property Name="DocumentType" Type="Int32" />
+          <Property Name="RefPriceAndRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customer" Relationship="RP.Model.FK_Document_Customer" FromRole="Document" ToRole="Customer" />
           <NavigationProperty Name="CustomerContact" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="Document" ToRole="CustomerContact" />
           <NavigationProperty Name="CustomerContact1" Relationship="RP.Model.FK_Document_DeliveryCustomerContact" FromRole="Document" ToRole="CustomerContact" />
           <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
           <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
           <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
-          <Property Name="BiddingStatusId" Type="Int32" />
-          <Property Name="ConfirmedPriceDays" Type="Int32" />
-          <Property Name="DocumentType" Type="Int32" />
-          <Property Name="RefPriceAndRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DocumentAttachment">
           <Key>
@@ -1286,12 +1322,20 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="ProductCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="Product" ToRole="DocumentProductItem" />
-          <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
-          <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
           <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="Product" ToRole="DocumentProductItem" />
           <NavigationProperty Name="ProductOptions" Relationship="RP.Model.FK_Option_Product" FromRole="Product" ToRole="ProductOption" />
           <NavigationProperty Name="ProductCategory" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
+          <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
+          <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
         </EntityType>
         <EntityType Name="ProductItemAttachment">
           <Key>
@@ -1342,13 +1386,22 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="ProductId" Type="Guid" />
-          <Property Name="MaterialId" Type="Guid" />
-          <Property Name="MaterialUnit" Type="Guid" />
+          <Property Name="ProductId" Type="Guid" Nullable="false" />
+          <Property Name="MaterialId" Type="Guid" Nullable="false" />
+          <Property Name="MaterialUnit" Type="Guid" Nullable="false" />
           <Property Name="Amount" Type="Int32" />
           <NavigationProperty Name="Material" Relationship="RP.Model.FK_ProductMaterialUsage_Material" FromRole="ProductMaterialUsage" ToRole="Material" />
           <NavigationProperty Name="MaterialUnit1" Relationship="RP.Model.FK_ProductMaterialUsage_MaterialUnit" FromRole="ProductMaterialUsage" ToRole="MaterialUnit" />
           <NavigationProperty Name="Product" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="ProductMaterialUsage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProductId" Type="Guid" Nullable="false" />
+          <Property Name="OptionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="RP.Model.FK_Option_Product" FromRole="ProductOption" ToRole="Product" />
         </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
@@ -1366,10 +1419,19 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_ProductUnit" FromRole="ProductUnit" ToRole="DocumentProductItem" />
-          <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_ProductUnit" FromRole="ProductUnit" ToRole="ProductPrice" />
           <Property Name="ProductId" Type="Guid" />
           <Property Name="UnitId" Type="Guid" />
+          <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_ProductUnit" FromRole="ProductUnit" ToRole="DocumentProductItem" />
+          <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_ProductUnit" FromRole="ProductUnit" ToRole="ProductPrice" />
+          <NavigationProperty Name="Unit" Relationship="RP.Model.FK_ProductUnit_Unit" FromRole="ProductUnit" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="RP.Model.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -1396,6 +1458,26 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_TransportationType" FromRole="TransportationType" ToRole="DocumentDelivery" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UnitName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductUnits" Relationship="RP.Model.FK_ProductUnit_Unit" FromRole="Unit" ToRole="ProductUnit" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="RP.Model.FK_User_Department" FromRole="User" ToRole="Department" />
+          <NavigationProperty Name="Role" Relationship="RP.Model.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -1466,6 +1548,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CustomerContact_CustomerContactBranch">
+          <End Type="RP.Model.CustomerContactBranch" Role="CustomerContactBranch" Multiplicity="1" />
+          <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerContactBranch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerContact">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Document_CustomerContact">
           <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="0..1" />
           <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
@@ -1487,6 +1581,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="DeliveryContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department">
+          <End Type="RP.Model.Department" Role="Department" Multiplicity="1" />
+          <End Type="RP.Model.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1635,7 +1741,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductMaterialUsage_Material">
-          <End Type="RP.Model.Material" Role="Material" Multiplicity="0..1" />
+          <End Type="RP.Model.Material" Role="Material" Multiplicity="1" />
           <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
@@ -1659,7 +1765,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductMaterialUsage_MaterialUnit">
-          <End Type="RP.Model.MaterialUnit" Role="MaterialUnit" Multiplicity="0..1" />
+          <End Type="RP.Model.MaterialUnit" Role="MaterialUnit" Multiplicity="1" />
           <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MaterialUnit">
@@ -1706,8 +1812,32 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Option_Product">
+          <End Type="RP.Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="RP.Model.ProductOption" Role="ProductOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductOption">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductCategory">
+          <End Type="RP.Model.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+          <End Type="RP.Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductMaterialUsage_Product">
-          <End Type="RP.Model.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="RP.Model.Product" Role="Product" Multiplicity="1" />
           <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -1742,99 +1872,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Stock_Warehouse">
-          <End Type="RP.Model.Warehouse" Role="Warehouse" Multiplicity="0..1" />
-          <End Type="RP.Model.Stock" Role="Stock" Multiplicity="*" />
+        <Association Name="FK_ProductUnit_Unit">
+          <End Type="RP.Model.Unit" Role="Unit" Multiplicity="0..1" />
+          <End Type="RP.Model.ProductUnit" Role="ProductUnit" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Warehouse">
+            <Principal Role="Unit">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Stock">
-              <PropertyRef Name="WarehouseId" />
+            <Dependent Role="ProductUnit">
+              <PropertyRef Name="UnitId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ProductCategory">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="CategoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="ProductOption">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="ProductId" Type="Guid" Nullable="false" />
-          <Property Name="OptionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="RP.Model.FK_Option_Product" FromRole="ProductOption" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK_Option_Product">
-          <End Type="RP.Model.Product" Role="Product" Multiplicity="1" />
-          <End Type="RP.Model.ProductOption" Role="ProductOption" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductOption">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_ProductCategory">
-          <End Type="RP.Model.ProductCategory" Role="ProductCategory" Multiplicity="1" />
-          <End Type="RP.Model.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductCategory">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CustomerContactBranch">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContactBranch" ToRole="CustomerContact" />
-        </EntityType>
-        <Association Name="FK_CustomerContact_CustomerContactBranch">
-          <End Type="RP.Model.CustomerContactBranch" Role="CustomerContactBranch" Multiplicity="1" />
-          <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomerContactBranch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerContact">
-              <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="RP.Model.FK_User_Role" FromRole="Role" ToRole="User" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="Int32" />
-          <NavigationProperty Name="Role" Relationship="RP.Model.FK_User_Role" FromRole="User" ToRole="Role" />
-          <Property Name="DepartmentId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Department" Relationship="RP.Model.FK_User_Department" FromRole="User" ToRole="Department" />
-        </EntityType>
         <Association Name="FK_User_Role">
           <End Type="RP.Model.Role" Role="Role" Multiplicity="0..1" />
           <End Type="RP.Model.User" Role="User" Multiplicity="*" />
@@ -1847,33 +1896,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Department">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="RP.Model.FK_User_Department" FromRole="Department" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_User_Department">
-          <End Type="RP.Model.Department" Role="Department" Multiplicity="1" />
-          <End Type="RP.Model.User" Role="User" Multiplicity="*" />
+        <Association Name="FK_Stock_Warehouse">
+          <End Type="RP.Model.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="RP.Model.Stock" Role="Stock" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Department">
+            <Principal Role="Warehouse">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="DepartmentId" />
+            <Dependent Role="Stock">
+              <PropertyRef Name="WarehouseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Unit">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="UnitName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1944,6 +1978,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CustomerContactBranches">
+            <EntityTypeMapping TypeName="RP.Model.CustomerContactBranch">
+              <MappingFragment StoreEntitySet="CustomerContactBranch">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CustomerTypes">
             <EntityTypeMapping TypeName="RP.Model.CustomerType">
               <MappingFragment StoreEntitySet="CustomerType">
@@ -1956,6 +1998,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <EntityTypeMapping TypeName="RP.Model.DeliveryCondition">
               <MappingFragment StoreEntitySet="DeliveryCondition">
                 <ScalarProperty Name="ConditionName" ColumnName="ConditionName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="RP.Model.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2066,6 +2116,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="RP.Model.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ProductItemAttachments">
             <EntityTypeMapping TypeName="RP.Model.ProductItemAttachment">
               <MappingFragment StoreEntitySet="ProductItemAttachment">
@@ -2118,6 +2176,15 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProductOptions">
+            <EntityTypeMapping TypeName="RP.Model.ProductOption">
+              <MappingFragment StoreEntitySet="ProductOption">
+                <ScalarProperty Name="OptionName" ColumnName="OptionName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ProductPrices">
             <EntityTypeMapping TypeName="RP.Model.ProductPrice">
               <MappingFragment StoreEntitySet="ProductPrice">
@@ -2133,6 +2200,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
               <MappingFragment StoreEntitySet="ProductUnit">
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="RP.Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2161,43 +2236,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Warehouses">
-            <EntityTypeMapping TypeName="RP.Model.Warehouse">
-              <MappingFragment StoreEntitySet="Warehouse">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductCategories">
-            <EntityTypeMapping TypeName="RP.Model.ProductCategory">
-              <MappingFragment StoreEntitySet="ProductCategory">
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductOptions">
-            <EntityTypeMapping TypeName="RP.Model.ProductOption">
-              <MappingFragment StoreEntitySet="ProductOption">
-                <ScalarProperty Name="OptionName" ColumnName="OptionName" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerContactBranches">
-            <EntityTypeMapping TypeName="RP.Model.CustomerContactBranch">
-              <MappingFragment StoreEntitySet="CustomerContactBranch">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="RP.Model.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="RP.Model.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2213,18 +2255,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="RP.Model.Department">
-              <MappingFragment StoreEntitySet="Department">
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Units">
-            <EntityTypeMapping TypeName="RP.Model.Unit">
-              <MappingFragment StoreEntitySet="Unit">
-                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="RP.Model.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

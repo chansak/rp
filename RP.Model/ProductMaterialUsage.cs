@@ -15,9 +15,9 @@ namespace RP.Model
     public partial class ProductMaterialUsage
     {
         public System.Guid Id { get; set; }
-        public Nullable<System.Guid> ProductId { get; set; }
-        public Nullable<System.Guid> MaterialId { get; set; }
-        public Nullable<System.Guid> MaterialUnit { get; set; }
+        public System.Guid ProductId { get; set; }
+        public System.Guid MaterialId { get; set; }
+        public System.Guid MaterialUnit { get; set; }
         public Nullable<int> Amount { get; set; }
     
         public virtual Material Material { get; set; }

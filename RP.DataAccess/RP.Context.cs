@@ -30,8 +30,10 @@ namespace RP.DataAccess
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
         public virtual DbSet<CustomerContact> CustomerContacts { get; set; }
+        public virtual DbSet<CustomerContactBranch> CustomerContactBranches { get; set; }
         public virtual DbSet<CustomerType> CustomerTypes { get; set; }
         public virtual DbSet<DeliveryCondition> DeliveryConditions { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual DbSet<DocumentDelivery> DocumentDeliveries { get; set; }
@@ -41,22 +43,20 @@ namespace RP.DataAccess
         public virtual DbSet<MaterialUnit> MaterialUnits { get; set; }
         public virtual DbSet<PatternPosition> PatternPositions { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<ProductItemAttachment> ProductItemAttachments { get; set; }
         public virtual DbSet<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
         public virtual DbSet<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
         public virtual DbSet<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
         public virtual DbSet<ProductMaterialUsage> ProductMaterialUsages { get; set; }
+        public virtual DbSet<ProductOption> ProductOptions { get; set; }
         public virtual DbSet<ProductPrice> ProductPrices { get; set; }
         public virtual DbSet<ProductUnit> ProductUnits { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<TransportationType> TransportationTypes { get; set; }
-        public virtual DbSet<Warehouse> Warehouses { get; set; }
-        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
-        public virtual DbSet<ProductOption> ProductOptions { get; set; }
-        public virtual DbSet<CustomerContactBranch> CustomerContactBranches { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Warehouse> Warehouses { get; set; }
     }
 }

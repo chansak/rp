@@ -19,7 +19,7 @@ namespace RP.DataAccess
         {
             return ObjectSet.
                 Include(i => i.Company).
-                Include(i=>i.CustomerType)
+                Include(i => i.CustomerType)
                 .AsQueryable();
         }
     }
