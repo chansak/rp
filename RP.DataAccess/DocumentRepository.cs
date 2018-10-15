@@ -18,7 +18,8 @@ namespace RP.DataAccess
         public override IQueryable<Model.Document> All()
         {
             return ObjectSet.
-                Include(i => i.Customer)
+                Include(i => i.Customer).
+                Include(i=>i.Customer.CustomerType)
                 .AsQueryable();
         }
         public override Model.Document GetById(string id)

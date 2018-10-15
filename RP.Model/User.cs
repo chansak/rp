@@ -12,16 +12,14 @@ using System.Collections.Generic;
 
 namespace RP.Model
 {
-    public partial class CustomerAddress
+    public partial class User
     {
         public System.Guid Id { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Mobile { get; set; }
-        public System.Guid CustomerId { get; set; }
+        public string UserName { get; set; }
+        public string DisplayName { get; set; }
+        public Nullable<int> RoleId { get; set; }
+    
+        public virtual Role Role { get; set; }
     }
     
 }

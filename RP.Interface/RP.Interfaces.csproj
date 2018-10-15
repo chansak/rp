@@ -63,6 +63,9 @@
     <Compile Include="ICustomerAddressRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="ICustomerContactBranchRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="ICustomerContactRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
@@ -134,6 +137,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="IRoleRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="IStockRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
@@ -141,6 +147,9 @@
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="IUnitOfWork.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IUserRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="IWarehouseRepository.cs">

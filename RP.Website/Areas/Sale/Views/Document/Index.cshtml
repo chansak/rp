@@ -28,7 +28,7 @@
                             <select class="form-control m-b" name="account">
                                 <option>รหัสลูกค้า</option>
                                 <option>ชื่อลูกค้า</option>
-                                <option>เลขที่ใบขอราคา</option>
+                                <option>เลขที่เอกสาร</option>
                             </select>
                         </div>
                         <div class="col-sm-8">
@@ -49,13 +49,12 @@
                                             <tr>
                                                 <th><div class="checkbox i-checks"><label> <input type="checkbox" value="" alt="ทั้งหมด"> <i></i></label></div></th>
                                                 <th>ความสำคัญ</th>
-                                                <th>วันที่ใบขอราคา</th>
-                                                <th>เลขที่ใบขอราคา</th>
-                                                <th>รหัสลูกค้า</th>
-                                                <th>ลูกค้า</th>
-                                                <th>จำนวนเงินทั้งสิ้น</th>
-                                                <th>สถานะ</th>
-                                                <th>มีผลถึงวันที่</th>
+                                                <th>ประเภทลูกค้า</th>
+                                                <th>ชื่อโรงพยาบาล</th>
+                                                <th>เลขที่เอกสาร</th>
+                                                <th>ชื่อผู้เสนอขาย</th>
+                                                <th>สถานะเวิร์คโฟล์</th>
+                                                <th>สถานะการสั่งซื้อ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -64,150 +63,15 @@
                                                 <tr>
                                                     <td><div class="checkbox i-checks"><label> <input type="checkbox" name="documentId" value='@Html.Raw(item.Id)'> <i></i></label></div></td>
                                                     <td><button type="button" class="btn btn-primary btn-circle"></button></td>
-                                                    <td>@Html.Raw(item.IssueDate)</td>
-                                                    <td>@Html.Raw(item.DocumentCode)</td>
-                                                    <td>@Html.Raw(item.CustomerCode)</td>
+                                                    <td>@Html.Raw(item.CustomerType)</td>
                                                     <td>@Html.Raw(item.CustomerName)</td>
-                                                    <td>@Html.Raw(item.TotalAmount)</td>
-                                                    <td><span class="badge badge-primary">แบบร่าง</span></td>
-                                                    <td>@Html.Raw(item.ExpiryDate)</td>
+                                                    <td>@Html.Raw(item.DocumentCode)</td>
+                                                    <td>@Html.Raw(item.SaleUserName)</td>
+                                                    <td>@Html.Raw(item.WorkflowStatusName)</td>
+                                                    <td><span class="badge badge-primary">@Html.Raw(item.BiddingStatusName)</span></td>
                                                 </tr>
                                             }
                                         </tbody>
-                                        @*<tbody>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-primary btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-primary">แบบร่าง</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-primary btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-primary">แบบร่าง</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-danger btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-danger">ไม่อนุมัติ</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-warning btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-info">รออนุมัติ</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-default btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-inverse">ปิด</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-primary btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-primary">แบบร่าง</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-warning btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-info">รออนุมัติ</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-default btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-danger">ยกเลิก</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-primary btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-primary">แบบร่าง</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-warning btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-info">รออนุมัติ</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-warning btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-info">รออนุมัติ</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-primary btn-circle"></button></td>
-                                                    <td>01/01/2018</td>
-                                                    <td>QUO0517-002</td>
-                                                    <td>ACC0385-001</td>
-                                                    <td>บำรุงราษฎร์</td>
-                                                    <td>1,250,000</td>
-                                                    <td><span class="badge badge-primary">แบบร่าง</span></td>
-                                                    <td>15/01/2018</td>
-                                                </tr>
-                                            </tbody>*@
                                     </table>
                                     <div id="pager_quotation"></div>
                                 </div>
@@ -229,12 +93,12 @@
                 </div>
                 <div class="ibox-content float-e-margins">
                     @Html.ActionLink("สร้างใบขอราคา", "AddNew", null, new { @class = "btn btn-primary btn-xs" })
-                    <button type="button" id="btnEdit" class="btn btn-primary btn-xs">แก้ไข</button>
+                    <button type="button" id="btnEdit" class="btn btn-white btn-xs">แก้ไข</button>
                     @*@Html.ActionLink("แก้ไข", "Edit", new { id = "5F9C2528-F951-4AA4-9CF4-234C4CE56772" }, new { @class = "btn btn-primary btn-xs" })*@
-                    <button type="button" class="btn btn-xs btnDelete">ลบ</button>
-                    <button type="button" class="btn btn-xs">คัดลอก</button>
-                    <button type="button" class="btn btn-xs">ยื่นขออนุมัติ</button>
-                    <button type="button" class="btn btn-xs">มอบหมาย</button>
+                    <button type="button" class="btn btn-white btn-xs btnDelete">ลบ</button>
+                    <button type="button" class="btn btn-white btn-xs">คัดลอก</button>
+                    <button type="button" class="btn btn-white btn-xs">ยื่นขออนุมัติ</button>
+                    <button type="button" class="btn btn-white btn-xs">มอบหมาย</button>
                     <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" aria-expanded="false">เปลี่ยนสถานะ</button>
                         <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 24px; left: 0px; will-change: top, left;">
@@ -245,7 +109,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="ibox-footer">
+                @*<div class="ibox-footer">
                     <h5>ข้อมูลที่เกี่ยวข้อง </h5>
                     <p>
                         <ul>
@@ -257,7 +121,7 @@
                             <li>เงื่อนไขการขนส่ง</li>
                         </ul>
                     </p>
-                </div>
+                </div>*@
             </div>
             <div class="ibox collapsed">
                 <div class="ibox-title">

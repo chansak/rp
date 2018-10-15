@@ -53,5 +53,8 @@ namespace RP.DataAccess
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<ProductOption> ProductOptions { get; set; }
+        public virtual DbSet<CustomerContactBranch> CustomerContactBranches { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

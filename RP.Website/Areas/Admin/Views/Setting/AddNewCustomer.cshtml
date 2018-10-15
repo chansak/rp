@@ -283,6 +283,10 @@
     @Scripts.Render("~/plugins/dataPicker")
     <script type="text/javascript">
         $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
             $('.btnSave').click(function () {
                 swal({
                     title: "บันทึกเรียบร้อย!",

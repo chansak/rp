@@ -12,15 +12,18 @@ namespace RP.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerAddress
+    public partial class CustomerContactBranch
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CustomerContactBranch()
+        {
+            this.CustomerContacts = new HashSet<CustomerContact>();
+        }
+    
         public System.Guid Id { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Mobile { get; set; }
-        public System.Guid CustomerId { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerContact> CustomerContacts { get; set; }
     }
 }

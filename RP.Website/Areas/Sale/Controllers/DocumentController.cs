@@ -15,7 +15,6 @@ namespace RP.Website.Areas.Sale.Controllers
     {
         public ActionResult Index(string searchBy, string keyword, string sortBy, string direction, int? page)
         {
-            int totalCount = 100;
             int pageSize = AppSettingHelper.PageSize;
             if (!string.IsNullOrWhiteSpace(keyword))
             {
@@ -23,17 +22,21 @@ namespace RP.Website.Areas.Sale.Controllers
             }
 
             var documents = GenericFactory.Business.GetDocumentsList();
+            int totalCount = documents.Count;
             var result = new List<DocumentListItemViewModel>();
-            result.AddRange(documents.Select(t => new DocumentListItemViewModel
+            result.AddRange(documents.Select(d => new DocumentListItemViewModel
             {
-                Id = t.Id.ToString(),
-                IssueDate = t.IssueDate.Value,
-                DocumentCode = t.FileNumber,
-                CustomerCode = t.Customer.Name,
-                CustomerName = t.Customer.Name,
-                TotalAmount = 0,
-                DocumentStatusName = 0,
-                ExpiryDate = t.ExpiryDate.Value
+                Id = d.Id.ToString(),
+                IssueDate = d.IssueDate.Value,
+                CustomerType = d.Customer.CustomerType.CustomerTypeName,
+                CustomerName = d.Customer.Name,
+                DocumentCode = d.FileNumber,
+                SaleUserName = "ชาญศักดิ์ คชเสน",
+                WorkflowStatus = 1,
+                WorkflowStatusName = "ลูกค้าเสนอราคา",
+                BiddingStatus = 1,
+                BiddingStatusName = "รอยืนยัน",
+                ExpiryDate = d.ExpiryDate.Value
             }));
 
 
@@ -60,7 +63,8 @@ namespace RP.Website.Areas.Sale.Controllers
         public ActionResult Edit(string id)
         {
             var document = GenericFactory.Business.GetDocument(id);
-            var viewModel = new QuotationViewModel {
+            var viewModel = new QuotationViewModel
+            {
                 DocumentCode = document.FileNumber
             };
             return View(viewModel);

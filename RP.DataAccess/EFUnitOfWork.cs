@@ -118,6 +118,17 @@ namespace RP.DataAccess
 				return _CustomerContactRepository;
 			}
 		}
+		ICustomerContactBranchRepository _CustomerContactBranchRepository;
+		public ICustomerContactBranchRepository CustomerContactBranchRepository
+		{
+			get
+			{
+				if (_CustomerContactBranchRepository == null)
+					_CustomerContactBranchRepository = new CustomerContactBranchRepository(context);
+				
+				return _CustomerContactBranchRepository;
+			}
+		}
 		ICustomerTypeRepository _CustomerTypeRepository;
 		public ICustomerTypeRepository CustomerTypeRepository
 		{
@@ -338,6 +349,17 @@ namespace RP.DataAccess
 				return _ProductUnitRepository;
 			}
 		}
+		IRoleRepository _RoleRepository;
+		public IRoleRepository RoleRepository
+		{
+			get
+			{
+				if (_RoleRepository == null)
+					_RoleRepository = new RoleRepository(context);
+				
+				return _RoleRepository;
+			}
+		}
 		IStockRepository _StockRepository;
 		public IStockRepository StockRepository
 		{
@@ -358,6 +380,17 @@ namespace RP.DataAccess
 					_TransportationTypeRepository = new TransportationTypeRepository(context);
 				
 				return _TransportationTypeRepository;
+			}
+		}
+		IUserRepository _UserRepository;
+		public IUserRepository UserRepository
+		{
+			get
+			{
+				if (_UserRepository == null)
+					_UserRepository = new UserRepository(context);
+				
+				return _UserRepository;
 			}
 		}
 		IWarehouseRepository _WarehouseRepository;

@@ -18,6 +18,7 @@ namespace RP.Interfaces
 		ICustomerRepository CustomerRepository  { get; }
 		ICustomerAddressRepository CustomerAddressRepository  { get; }
 		ICustomerContactRepository CustomerContactRepository  { get; }
+		ICustomerContactBranchRepository CustomerContactBranchRepository  { get; }
 		ICustomerTypeRepository CustomerTypeRepository  { get; }
 		IDeliveryConditionRepository DeliveryConditionRepository  { get; }
 		IDocumentRepository DocumentRepository  { get; }
@@ -38,8 +39,10 @@ namespace RP.Interfaces
 		IProductOptionRepository ProductOptionRepository  { get; }
 		IProductPriceRepository ProductPriceRepository  { get; }
 		IProductUnitRepository ProductUnitRepository  { get; }
+		IRoleRepository RoleRepository  { get; }
 		IStockRepository StockRepository  { get; }
 		ITransportationTypeRepository TransportationTypeRepository  { get; }
+		IUserRepository UserRepository  { get; }
 		IWarehouseRepository WarehouseRepository  { get; }
 
 	}

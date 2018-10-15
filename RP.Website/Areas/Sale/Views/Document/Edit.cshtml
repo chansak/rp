@@ -176,13 +176,14 @@
                             </div>
                         </div>
                         <div id="tab-2" class="tab-pane">
-                            <div class="panel-body" id="productList">
+                            <div class="panel-body">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title no-borders">
                                         <h2>ข้อมูลสินค้า</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
                                             <input type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal5" value="เพิ่มสินค้า" />
+                                            <input type="button" class="btn btn-xs" value="แก้ไข" />
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
@@ -202,19 +203,19 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody id="productItems"></tbody>
-                                                    @*<tbody>
-                                                            <tr>
-                                                                <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                                <td>ITEM001</td>
-                                                                <td>LG TV SE2345</td>
-                                                                <td>เครื่อง</td>
-                                                                <td>10</td>
-                                                                <td>25,000</td>
-                                                                <td>25,000</td>
-                                                                <td>200,000</td>
-                                                            </tr>
-                                                            <tr></tr>
-                                                        </tbody>*@
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
+                                                            <td>ITEM001</td>
+                                                            <td>LG TV SE2345</td>
+                                                            <td>เครื่อง</td>
+                                                            <td>10</td>
+                                                            <td>25,000</td>
+                                                            <td>25,000</td>
+                                                            <td>200,000</td>
+                                                        </tr>
+                                                        <tr></tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -262,25 +263,7 @@
                                         </div>*@
                                 </div>
                             </div>
-                            <div class="panel-body" id="productCreator">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-title no-borders">
-                                        <h2>สร้างรายการสินค้า</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="ibox-tools" style="float:left">
-                                            <input type="button" id="btnBack" class="btn btn-xs" value="กลับ" />
-                                        </div>
-                                    </div>
-                                    <div class="ibox-content no-borders">
 
-                                    </div>
-                                    <div class="ibox-footer no-borders">
-                                        <div class="pull-right">
-                                            <input type="button" id="btnSaveAndBack" class="btn btn-primary" value="เพิ่มสินค้า" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div id="tab-3" class="tab-pane">
                             <div class="panel-body">
@@ -294,31 +277,31 @@
                                     </div>
                                     <div class="ibox-content no-borders">
                                         @*<h2>ข้อมูลส่งของ</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">วิธีการส่งของ</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
-                                                </select>
-                                                <span class="form-text">&nbsp;</span>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">วิธีการส่งของ</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control m-b" name="account" disabled>
+                                                        <option>option 1</option>
+                                                        <option>option 2</option>
+                                                        <option>option 3</option>
+                                                        <option>option 4</option>
+                                                    </select>
+                                                    <span class="form-text">&nbsp;</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">เงื่อนไขการส่งของ</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control m-b" name="account" disabled>
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-                                                    <option>option 3</option>
-                                                    <option>option 4</option>
-                                                </select>
-                                                <span class="form-text">&nbsp;</span>
-                                            </div>
-                                        </div>*@
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">เงื่อนไขการส่งของ</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control m-b" name="account" disabled>
+                                                        <option>option 1</option>
+                                                        <option>option 2</option>
+                                                        <option>option 3</option>
+                                                        <option>option 4</option>
+                                                    </select>
+                                                    <span class="form-text">&nbsp;</span>
+                                                </div>
+                                            </div>*@
                                         <h2>ข้อมูลจัดส่ง</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
@@ -330,7 +313,7 @@
                                             </div>
                                         </div>
 
-                                        <h2>ข้อมูลสำหรับติดต่อ</h2>
+                                        <h2>ข้อมูลผู้ติดต่อสำหรับจัดส่ง</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
@@ -408,14 +391,11 @@
                                 <div class="ibox-title no-borders">
                                     <h2>ประวัติการทำรายการ</h2>
                                     <div class="hr-line-dashed"></div>
-                                    <div class="ibox-tools">
-                                        @*<a href="" class="btn btn-primary btn-xs">เพิ่มสินค้า</a>*@
-                                    </div>
                                 </div>
                                 <div class="ibox-content no-borders">
                                     <div class="form-group row">
                                         <div class="ibox chat-view">
-                                            <div class="ibox-content">
+                                            @*<div class="ibox-content">*@
                                                 <div class="row">
                                                     <div class="col-md-12 ">
                                                         <div class="chat-discussion">
@@ -498,7 +478,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @*</div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -534,8 +514,8 @@
                     <div class="ibox-content">
                         <button type="button" class="btn btn-primary btnSave">บันทึก</button>
                         <button type="button" class="btn btn-primary btnShowHistory">บันทึกและเพิ่มประวัติ</button>
-                        <button type="button" class="btn btn-danger">ยกเลิก</button>
-                        <button type="button" class="btn btn-info"><i class="fa fa-search"></i> ดูตัวอย่าง</button>
+                        <button type="button" class="btn btn-white">ยกเลิก</button>
+                        @*<button type="button" class="btn btn-white"><i class="fa fa-search"></i> ดูตัวอย่าง</button>*@
                     </div>
                     <div class="ibox-footer">
                         @*<span class="pull-right">
@@ -985,16 +965,6 @@
                 swal("บันทึกเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success").then(function () {
                     utilities.RedirectToAction("/Sale/Quotation/Index");
                 });
-            });
-
-            $("#btnAddItem").click(function () {
-                documentEditor.nextForAddItem();
-            });
-            $("#btnBack").click(function () {
-                documentEditor.back();
-            });
-            $("#btnSaveAndBack").click(function () {
-                documentEditor.saveItemAndBack();
             });
 
             $(".iCheck-helper").click(function () {

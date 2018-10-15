@@ -75,6 +75,12 @@
     <Compile Include="CustomerContact.cs">
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomerContactBranch.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerContactBranchRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="CustomerContactRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
@@ -213,6 +219,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoleRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="RP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -238,6 +250,12 @@
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>
     <Compile Include="TransportationTypeRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
     <Compile Include="Warehouse.cs">

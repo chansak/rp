@@ -12,16 +12,17 @@ using System.Collections.Generic;
 
 namespace RP.Model
 {
-    public partial class CustomerAddress
+    public partial class Role
     {
-        public System.Guid Id { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
-        public string Mobile { get; set; }
-        public System.Guid CustomerId { get; set; }
+        public Role()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
+        public int Id { get; set; }
+        public string RoleName { get; set; }
+    
+        public virtual ICollection<User> Users { get; set; }
     }
     
 }

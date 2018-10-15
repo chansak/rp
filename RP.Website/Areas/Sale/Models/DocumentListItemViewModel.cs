@@ -11,10 +11,13 @@ namespace RP.Website.Models
         public int Priority { get; set; }
         public DateTime IssueDate { get; set; }
         public string DocumentCode { get; set; }
-        public string CustomerCode { get; set; }
         public string CustomerName { get; set; }
-        public decimal TotalAmount { get; set; }
-        public int DocumentStatusName { get; set; }
+        public string CustomerType { get; set; }
+        public string SaleUserName { get; set; }
+        public int WorkflowStatus { get; set; }
+        public string WorkflowStatusName { get; set; }
+        public int BiddingStatus { get; set; }
+        public string BiddingStatusName { get; set; }
         public DateTime ExpiryDate { get; set; }
     }
 }

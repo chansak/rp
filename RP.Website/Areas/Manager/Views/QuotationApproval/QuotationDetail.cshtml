@@ -635,23 +635,24 @@
                 });
             });
             $('.btnReject').click(function () {
-                swal({
-                    title: "ยืนยันเพื่อไม่อนุมัติ?",
-                    text: "",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                    buttons: ["ปิด","ตกลง"]
-                }).then((isConfirm) => {
-                    if (isConfirm) {
-                        swal.close();
-                        $("#myModal").modal("show");
-                    } else {
-                        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
-                            utilities.RedirectToAction("/Manager/QuotationApproval/Index");
-                        });
-                    }
-                });
+                //swal({
+                //    title: "ยืนยันเพื่อไม่อนุมัติ?",
+                //    text: "",
+                //    icon: "warning",
+                //    buttons: true,
+                //    dangerMode: true,
+                //    buttons: ["ปิด","ตกลง"]
+                //}).then((isConfirm) => {
+                //    if (isConfirm) {
+                //        swal.close();
+                //        $("#myModal").modal("show");
+                //    } else {
+                //        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                //            utilities.RedirectToAction("/Manager/QuotationApproval/Index");
+                //        });
+                //    }
+                //});
+                $("#myModal").modal("show");
             });
             $('.btnSaveReason').click(function () {
                 $('#myModal').modal('toggle');

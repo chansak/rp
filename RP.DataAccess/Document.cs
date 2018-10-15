@@ -37,6 +37,10 @@ namespace RP.DataAccess
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.Guid> DeliveryContactId { get; set; }
+        public Nullable<int> BiddingStatusId { get; set; }
+        public Nullable<int> ConfirmedPriceDays { get; set; }
+        public Nullable<int> DocumentType { get; set; }
+        public string RefPriceAndRemark { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }

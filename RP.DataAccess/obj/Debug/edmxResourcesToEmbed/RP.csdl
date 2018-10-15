@@ -153,6 +153,17 @@
       <End Role="ProductCategory" EntitySet="ProductCategories" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
+    <EntitySet Name="CustomerContactBranches" EntityType="RP.Model.CustomerContactBranch" />
+    <AssociationSet Name="FK_CustomerContact_CustomerContactBranch" Association="RP.Model.FK_CustomerContact_CustomerContactBranch">
+      <End Role="CustomerContactBranch" EntitySet="CustomerContactBranches" />
+      <End Role="CustomerContact" EntitySet="CustomerContacts" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="RP.Model.Role" />
+    <EntitySet Name="Users" EntityType="RP.Model.User" />
+    <AssociationSet Name="FK_User_Role" Association="RP.Model.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Color">
     <Key>
@@ -199,6 +210,7 @@
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
   </EntityType>
   <EntityType Name="CustomerContact">
     <Key>
@@ -219,6 +231,8 @@
     <NavigationProperty Name="Customer" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="CustomerContact" ToRole="Customer" />
     <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="CustomerContact" ToRole="Document" />
     <NavigationProperty Name="Documents1" Relationship="RP.Model.FK_Document_DeliveryCustomerContact" FromRole="CustomerContact" ToRole="Document" />
+    <Property Name="BranchId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="CustomerContactBranch" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContact" ToRole="CustomerContactBranch" />
   </EntityType>
   <EntityType Name="CustomerType">
     <Key>
@@ -260,6 +274,10 @@
     <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
     <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
+    <Property Name="BiddingStatusId" Type="Int32" />
+    <Property Name="ConfirmedPriceDays" Type="Int32" />
+    <Property Name="DocumentType" Type="Int32" />
+    <Property Name="RefPriceAndRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="DocumentAttachment">
     <Key>
@@ -856,6 +874,56 @@
       </Principal>
       <Dependent Role="Product">
         <PropertyRef Name="ProductCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CustomerContactBranch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContactBranch" ToRole="CustomerContact" />
+  </EntityType>
+  <Association Name="FK_CustomerContact_CustomerContactBranch">
+    <End Type="RP.Model.CustomerContactBranch" Role="CustomerContactBranch" Multiplicity="1" />
+    <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerContactBranch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerContact">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="RP.Model.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="RP.Model.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_User_Role">
+    <End Type="RP.Model.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="RP.Model.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

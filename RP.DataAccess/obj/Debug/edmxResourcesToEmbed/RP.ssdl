@@ -39,6 +39,7 @@
     <Property Name="Phone" Type="nvarchar" MaxLength="50" />
     <Property Name="Fax" Type="nvarchar" MaxLength="50" />
     <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="CustomerContact">
     <Key>
@@ -56,6 +57,14 @@
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="UpdatedDate" Type="date" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerContactBranch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="CustomerType">
     <Key>
@@ -90,6 +99,10 @@
     <Property Name="UpdatedDate" Type="date" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="DeliveryContactId" Type="uniqueidentifier" />
+    <Property Name="BiddingStatusId" Type="int" />
+    <Property Name="ConfirmedPriceDays" Type="int" />
+    <Property Name="DocumentType" Type="int" />
+    <Property Name="RefPriceAndRemark" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="DocumentAttachment">
     <Key>
@@ -249,6 +262,13 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Stock">
     <Key>
       <PropertyRef Name="Id" />
@@ -270,6 +290,15 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoleId" Type="int" />
   </EntityType>
   <EntityType Name="Warehouse">
     <Key>
@@ -311,6 +340,18 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       </Principal>
       <Dependent Role="CustomerContact">
         <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerContact_CustomerContactBranch">
+    <End Role="CustomerContactBranch" Type="Self.CustomerContactBranch" Multiplicity="1" />
+    <End Role="CustomerContact" Type="Self.CustomerContact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerContactBranch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerContact">
+        <PropertyRef Name="BranchId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -650,12 +691,25 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="RPModelStoreContainer">
     <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerAddress" EntityType="Self.CustomerAddress" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerContact" EntityType="Self.CustomerContact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerContactBranch" EntityType="Self.CustomerContactBranch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DeliveryCondition" EntityType="Self.DeliveryCondition" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
@@ -676,8 +730,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransportationType" EntityType="Self.TransportationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Customer_Company" Association="Self.FK_Customer_Company">
       <End Role="Company" EntitySet="Company" />
@@ -689,6 +745,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     </AssociationSet>
     <AssociationSet Name="FK_CustomerContact_Customer" Association="Self.FK_CustomerContact_Customer">
       <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerContact" EntitySet="CustomerContact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerContact_CustomerContactBranch" Association="Self.FK_CustomerContact_CustomerContactBranch">
+      <End Role="CustomerContactBranch" EntitySet="CustomerContactBranch" />
       <End Role="CustomerContact" EntitySet="CustomerContact" />
     </AssociationSet>
     <AssociationSet Name="FK_Document_Customer" Association="Self.FK_Document_Customer">
@@ -802,6 +862,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <AssociationSet Name="FK_Stock_Warehouse" Association="Self.FK_Stock_Warehouse">
       <End Role="Warehouse" EntitySet="Warehouse" />
       <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -64,6 +64,11 @@
         <EntityTypeShape EntityType="RP.Model.ProductOption" Width="1.5" PointX="3" PointY="37" />
         <AssociationConnector Association="RP.Model.FK_Option_Product" />
         <AssociationConnector Association="RP.Model.FK_Product_ProductCategory" />
+        <EntityTypeShape EntityType="RP.Model.CustomerContactBranch" Width="1.5" PointX="0.75" PointY="23.625" />
+        <AssociationConnector Association="RP.Model.FK_CustomerContact_CustomerContactBranch" />
+        <EntityTypeShape EntityType="RP.Model.Role" Width="1.5" PointX="10.375" PointY="6.125" />
+        <EntityTypeShape EntityType="RP.Model.User" Width="1.5" PointX="12.625" PointY="5.875" />
+        <AssociationConnector Association="RP.Model.FK_User_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
