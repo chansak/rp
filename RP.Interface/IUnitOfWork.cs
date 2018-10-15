@@ -43,6 +43,7 @@ namespace RP.Interfaces
 		IRoleRepository RoleRepository  { get; }
 		IStockRepository StockRepository  { get; }
 		ITransportationTypeRepository TransportationTypeRepository  { get; }
+		IUnitRepository UnitRepository  { get; }
 		IUserRepository UserRepository  { get; }
 		IWarehouseRepository WarehouseRepository  { get; }
 

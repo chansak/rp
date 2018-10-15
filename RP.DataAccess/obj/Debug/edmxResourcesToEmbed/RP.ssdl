@@ -267,7 +267,8 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="ProductId" Type="uniqueidentifier" />
+    <Property Name="UnitId" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -297,6 +298,13 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UnitName" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -754,6 +762,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransportationType" EntityType="Self.TransportationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Customer_Company" Association="Self.FK_Customer_Company">

@@ -169,6 +169,7 @@
       <End Role="Department" EntitySet="Departments" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Units" EntityType="RP.Model.Unit" />
   </EntityContainer>
   <EntityType Name="Color">
     <Key>
@@ -454,9 +455,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_ProductUnit" FromRole="ProductUnit" ToRole="DocumentProductItem" />
     <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_ProductUnit" FromRole="ProductUnit" ToRole="ProductPrice" />
+    <Property Name="ProductId" Type="Guid" />
+    <Property Name="UnitId" Type="Guid" />
   </EntityType>
   <EntityType Name="Stock">
     <Key>
@@ -954,4 +956,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

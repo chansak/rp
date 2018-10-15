@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6c9ef7f48bf4ebdab2c30102ffa10be" Name="Diagram1">
+      <Diagram DiagramId="f6c9ef7f48bf4ebdab2c30102ffa10be" Name="Diagram1" ZoomLevel="65">
         <EntityTypeShape EntityType="RP.Model.Color" Width="1.5" PointX="6" PointY="0.75" />
         <EntityTypeShape EntityType="RP.Model.Company" Width="1.5" PointX="1.5" PointY="34.25" />
         <EntityTypeShape EntityType="RP.Model.Customer" Width="1.5" PointX="1.5" PointY="27.125" />
@@ -71,6 +71,7 @@
         <AssociationConnector Association="RP.Model.FK_User_Role" />
         <EntityTypeShape EntityType="RP.Model.Department" Width="1.5" PointX="10.375" PointY="9.875" />
         <AssociationConnector Association="RP.Model.FK_User_Department" />
+        <EntityTypeShape EntityType="RP.Model.Unit" Width="1.5" PointX="12.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

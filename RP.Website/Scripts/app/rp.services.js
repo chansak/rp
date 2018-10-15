@@ -59,6 +59,89 @@
         });
         return XHR;
     },
+    GetProductCategories: function (successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/common/GetProductCategories",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+
+        return XHR;
+    },
+    GetProductsByCategoryId: function (id,successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/common/GetProducts",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+
+        return XHR;
+    },
+    GetOptionsByProductId: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/common/GetOptions",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+
+        return XHR;
+    },
+    GetUnitsByProductId: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/common/GetProductUnits",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+
+        return XHR;
+    },
     GetDocumentDetail: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",

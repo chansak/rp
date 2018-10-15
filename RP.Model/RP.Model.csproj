@@ -149,6 +149,9 @@
     <Compile Include="TransportationType.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Unit.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>

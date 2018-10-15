@@ -12,20 +12,10 @@ using System.Collections.Generic;
 
 namespace RP.Model
 {
-    public partial class ProductUnit
+    public partial class Unit
     {
-        public ProductUnit()
-        {
-            this.DocumentProductItems = new HashSet<DocumentProductItem>();
-            this.ProductPrices = new HashSet<ProductPrice>();
-        }
-    
         public System.Guid Id { get; set; }
-        public Nullable<System.Guid> ProductId { get; set; }
-        public Nullable<System.Guid> UnitId { get; set; }
-    
-        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
-        public virtual ICollection<ProductPrice> ProductPrices { get; set; }
+        public string UnitName { get; set; }
     }
     
 }

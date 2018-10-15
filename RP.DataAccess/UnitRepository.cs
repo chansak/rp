@@ -9,29 +9,11 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class WarehouseRepository : EFRepository<RP.Model.Warehouse>, IWarehouseRepository
+	public class UnitRepository : EFRepository<RP.Model.Unit>, IUnitRepository
 	{
-		public WarehouseRepository(DbContext context)
+		public UnitRepository(DbContext context)
             : base(context)
 		{
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

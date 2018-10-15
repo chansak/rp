@@ -152,6 +152,9 @@
     <Compile Include="IUnitOfWork.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="IUnitRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="IUserRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>

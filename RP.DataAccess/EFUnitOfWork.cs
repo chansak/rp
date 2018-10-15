@@ -393,6 +393,17 @@ namespace RP.DataAccess
 				return _TransportationTypeRepository;
 			}
 		}
+		IUnitRepository _UnitRepository;
+		public IUnitRepository UnitRepository
+		{
+			get
+			{
+				if (_UnitRepository == null)
+					_UnitRepository = new UnitRepository(context);
+				
+				return _UnitRepository;
+			}
+		}
 		IUserRepository _UserRepository;
 		public IUserRepository UserRepository
 		{

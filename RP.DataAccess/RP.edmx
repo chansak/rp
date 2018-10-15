@@ -272,7 +272,8 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProductId" Type="uniqueidentifier" />
+          <Property Name="UnitId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -302,6 +303,13 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UnitName" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -759,6 +767,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransportationType" EntityType="Self.TransportationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Customer_Company" Association="Self.FK_Customer_Company">
@@ -1071,6 +1080,7 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <End Role="Department" EntitySet="Departments" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Units" EntityType="RP.Model.Unit" />
         </EntityContainer>
         <EntityType Name="Color">
           <Key>
@@ -1356,9 +1366,10 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_ProductUnit" FromRole="ProductUnit" ToRole="DocumentProductItem" />
           <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_ProductUnit" FromRole="ProductUnit" ToRole="ProductPrice" />
+          <Property Name="ProductId" Type="Guid" />
+          <Property Name="UnitId" Type="Guid" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -1856,6 +1867,13 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UnitName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2113,7 +2131,8 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
           <EntitySetMapping Name="ProductUnits">
             <EntityTypeMapping TypeName="RP.Model.ProductUnit">
               <MappingFragment StoreEntitySet="ProductUnit">
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2198,6 +2217,14 @@ warning 6013: The table/view 'RP.dbo.PatternImage' does not have a primary key d
             <EntityTypeMapping TypeName="RP.Model.Department">
               <MappingFragment StoreEntitySet="Department">
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="RP.Model.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
