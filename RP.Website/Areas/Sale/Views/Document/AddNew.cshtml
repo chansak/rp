@@ -138,6 +138,7 @@
 
                                             <div class="col-sm-9">
                                                 <div class="input-group m-b"><input type="text" id="auto_contactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <input type="hidden" id="auto_contactId" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -172,7 +173,6 @@
                                         <h2>ข้อมูลสินค้า</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
-                                            @*<input type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal5" value="เพิ่มสินค้า" />*@
                                             <input type="button" id="btnAddNewProduct" class="btn btn-primary btn-xs" value="เพิ่มสินค้า" />
                                         </div>
                                     </div>
@@ -182,75 +182,18 @@
                                                 <table class="table table-striped table-hover">
                                                     <thead>
                                                         <tr>
-                                                            @*<th><div class="checkbox i-checks"><label> <input type="checkbox" value="" alt="ทั้งหมด"> <i></i></label></div></th>*@
-                                                            <th>รหัสสินค้า</th>
                                                             <th>ชื่อสินค้า</th>
                                                             <th>หน่วยนับ</th>
                                                             <th>จำนวน</th>
                                                             <th>ราคาต่อหน่วย</th>
-                                                            @*<th>ส่วนลด</th>*@
                                                             <th>รวม</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="productItems"></tbody>
-                                                    @*<tbody>
-                                                            <tr>
-                                                                <td><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></td>
-                                                                <td>ITEM001</td>
-                                                                <td>LG TV SE2345</td>
-                                                                <td>เครื่อง</td>
-                                                                <td>10</td>
-                                                                <td>25,000</td>
-                                                                <td>25,000</td>
-                                                                <td>200,000</td>
-                                                            </tr>
-                                                            <tr></tr>
-                                                        </tbody>*@
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
-                                    @*<div class="ibox-footer no-borders">
-                                            <h2>สรุปราคา</h2>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="pull-right">
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">รวมเงิน</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control" placeholder="" value="250,000" disabled />
-                                                        <span class="form-text"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">ส่วนลด</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control" placeholder="" value="25,000" disabled>
-                                                        <span class="form-text"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">เงินหลังหักลด</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control" placeholder="" value="225,000" disabled>
-                                                        <span class="form-text"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">ภาษีมูลค่าเพิ่ม</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control" placeholder="" value="7%" disabled>
-                                                        <span class="form-text"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">จำนวนเงินทั้งสิ้น</label>
-                                                    <div class="col-sm-7">
-                                                        <input type="text" class="form-control" placeholder="" value="240,750" disabled>
-                                                        <span class="form-text"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>*@
                                 </div>
                             </div>
                         </div>
@@ -261,43 +204,15 @@
                                         <h2>ข้อมูลส่งของ</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
-                                            @*<a href="" class="btn btn-primary btn-xs">เพิ่มสินค้า</a>*@
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
-                                        @*<h2>ข้อมูลส่งของ</h2>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">วิธีการส่งของ</label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-control m-b" name="account" disabled>
-                                                        <option>option 1</option>
-                                                        <option>option 2</option>
-                                                        <option>option 3</option>
-                                                        <option>option 4</option>
-                                                    </select>
-                                                    <span class="form-text">&nbsp;</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">เงื่อนไขการส่งของ</label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-control m-b" name="account" disabled>
-                                                        <option>option 1</option>
-                                                        <option>option 2</option>
-                                                        <option>option 3</option>
-                                                        <option>option 4</option>
-                                                    </select>
-                                                    <span class="form-text">&nbsp;</span>
-                                                </div>
-                                            </div>*@
                                         <h2>ข้อมูลจัดส่ง</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ที่อยุ่ในเอกสาร</label>
                                             <div class="col-sm-9">
-                                                @*<input type="text" class="form-control" placeholder="">*@
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
+                                                <textarea class="form-control" id="deliveryAddress" rows="3"></textarea>
                                                 <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                             </div>
                                         </div>
@@ -308,27 +223,28 @@
                                             <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
 
                                             <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" class="form-control" value="Lorem ipsum dolor sit amet, consectetur" disabled> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <input type="hidden" id="auto_deliveryContactId" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">โทรสาร</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" value="Lorem ipsum dolor sit amet, consectetur" disabled>
+                                                <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
                                                 <span class="form-text"></span>
                                             </div>
                                         </div>
@@ -342,34 +258,16 @@
                                     <h2>คำอธิบาย</h2>
                                     <div class="hr-line-dashed"></div>
                                     <div class="ibox-tools">
-                                        @*<a href="" class="btn btn-primary btn-xs">เพิ่มสินค้า</a>*@
                                     </div>
                                 </div>
                                 <div class="ibox-content no-borders">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">หมายเหตุ</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
+                                            <textarea class="form-control" id="documentRemark" rows="3"></textarea>
                                             <span class="form-text">ราคาที่อ้างอิงราคาเดิมหรือใบที่ขายล่าสุด โดยระบุวันที่และราคา (กรอกข้อมูลได้สูงสุด 200 ตัวอักษร)</span>
                                         </div>
                                     </div>
-                                    @*<div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">คำอธิบายเพิ่มเติม</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>Lorem ipsum dolor sit amet, consectetur</textarea>
-                                                <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">แนบไฟล์</label>
-                                            <div class="col-sm-9">
-                                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
-                                                    <span class="fileinput-filename"></span>
-                                                    <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
-                                                </div>
-                                            </div>
-                                        </div>*@
                                 </div>
                             </div>
                         </div>
@@ -384,31 +282,13 @@
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
                             </a>
-                            @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li>
-                                        <a href="#">Config option 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>*@
                         </div>
                     </div>
                     <div class="ibox-content">
                         <button type="button" class="btn btn-primary btnSave">บันทึก</button>
                         <button type="button" class="btn btn-white">ยกเลิก</button>
-                        @*<button type="button" class="btn btn-info"><i class="fa fa-search"></i> ดูตัวอย่าง</button>*@
                     </div>
                     <div class="ibox-footer">
-                        @*<span class="pull-right">
-                                The righ side of the footer
-                            </span>*@
                         <h5>ข้อมูลที่เกี่ยวข้อง </h5>
                         <p>
                             <ul>
@@ -448,19 +328,19 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ประเภทสินค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="productCategories" name="account"></select>
+                                                <select class="form-control m-b" id="productCategories" ></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">สินค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="products" name="account"></select>
+                                                <select class="form-control m-b" id="products" ></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">รายละเอียด</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="productOptions" name="account"></select>
+                                                <select class="form-control m-b" id="productOptions" ></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -476,6 +356,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">ราคาต่อหน่วย</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="productPricePerUnit" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">แนบไฟล์</label>
                                             <div class="col-sm-9">
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -488,7 +374,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">หมายเหตุ</label>
                                             <div class="col-sm-9">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <textarea class="form-control" id="productRemark" rows="3"></textarea>
                                                 <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                             </div>
                                         </div>
@@ -497,32 +383,6 @@
                                     <div class="hr-line-dashed"></div>
                                     <h3>จำนวนผ้าที่ใช้</h3>
                                     <div id="materialStockCheck"></div>
-                                    @*<div class="row">
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label>รหัสผ้า</label>
-                                                    <input type="text" id="materialName" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label>จำนวนผ้าในสต๊อค</label>
-                                                    <input type="text" id="materialInStock" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label>ผ้าที่ต้องใช้</label>
-                                                    <input type="text" id="materialUsaged" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label>ผ้าคงเหลือ</label>
-                                                    <input type="text" id="materialInStockAfterWithdraw" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>*@
                                 </div>
                             </div>
                             <div id="product-tab-2" class="tab-pane">
@@ -544,7 +404,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="print-pattern" name="account"></select>
+                                                                <select class="form-control m-b" id="print-pattern" ></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -564,7 +424,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">สีที่พิมพ์</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="print-color" name="account"></select>
+                                                                <select class="form-control m-b" id="print-color" ></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -591,7 +451,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="screen-pattern" name="account"></select>
+                                                                <select class="form-control m-b" id="screen-pattern" ></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -611,13 +471,13 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">สีที่พิมพ์</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="screen-color" name="account"></select>
+                                                                <select class="form-control m-b" id="screen-color" ></select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ตำแหน่ง</label>
                                                             <div class="col-sm-3">
-                                                                <select class="form-control m-b" id="screen-position" name="account"></select>
+                                                                <select class="form-control m-b" id="screen-position" ></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -643,7 +503,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="sew-pattern" name="account"></select>
+                                                                <select class="form-control m-b" id="sew-pattern" ></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -663,7 +523,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ตำแหน่ง</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="sew-position" name="account"></select>
+                                                                <select class="form-control m-b" id="sew-position" ></select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -690,36 +550,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary">เพิ่มสินค้า</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal inmodal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">บันทึกการแก้ไขและเพิ่มประวัติ</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">คำอธิบาย</label>
-
-                            <div class="col-sm-9">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary btnSaveHistory">บันทึก</button>
+                <button type="button" id="btnAddNewItem" class="btn btn-primary">เพิ่มสินค้า</button>
             </div>
         </div>
     </div>
@@ -866,10 +697,16 @@
                 $("#addProductModal").modal({ backdrop: "static" });
                 productCreator.init();
             });
+            $("#btnAddNewItem").click(function () {
+                $("#addProductModal").modal("hide");
+                productCreator.AddNewItem();
+                documentCreator.RenderProducts();
+            });
 
             $("#productNumberOfProducts").change(function () {
                 productCreator.MaterialStockCheck();
             });
+
             documentCreator.init();
         });
     </script>

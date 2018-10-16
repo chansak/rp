@@ -1,6 +1,7 @@
 ﻿var productCreator = new function () {
     //variables
     var images = [];
+    var items = [];
 
     var _bindingProductCategories = function () {
         var success = function (data, textStatus, jqXHR) {
@@ -249,6 +250,8 @@
             $("#productCategories").find('option').remove().end();
             $("#products").find('option').remove().end();
             $("#productOptions").find('option').remove().end();
+            $("#productsUnit").find('option').remove().end();
+
             _bindingProductCategories();
             _bindingPatternImage();
             _bindingPatternPosition();
@@ -257,6 +260,56 @@
         MaterialStockCheck: function () {
             var selectedProductId = $('#products').val();
             _materialStockCheck(selectedProductId);
+        },
+        AddNewItem: function () {
+            var item = {
+                productId: $("#products option:selected").val(),
+                productName: $("#products option:selected").text(),
+                productUnitId: $("#productsUnit option:selected").val(),
+                productUnitName: $("#productsUnit option:selected").text(),
+                amount: parseFloat($("#productNumberOfProducts").val()),
+                pricePerUnit: parseFloat($("#productPricePerUnit").val()),
+                file: null,
+                remark: $("#productRemark").val(),
+                print: {
+                    //1=yes,2=no,3=pattern
+                    status: 2,
+                    options: {
+                        patternId: "",
+                        patternName: "",
+                        file: null,
+                        colorId: "",
+                        colorName:""
+                    }
+                },
+                screen: {
+                    status: 2,
+                    options: {
+                        patternId: "",
+                        patternName: "",
+                        file: null,
+                        colorId: "",
+                        colorName: "",
+                        positionId: "",
+                        positionName:""
+                    }
+                },
+                sew: {
+                    status: 2,
+                    options: {
+                        patternId: "",
+                        patternName: "",
+                        file: null,
+                        positionId: "",
+                        positionName: "",
+                        remark:""
+                    }
+                }
+            };
+            items.push(item);
+        },
+        GetItems: function () {
+            return items;
         }
     }
 };
