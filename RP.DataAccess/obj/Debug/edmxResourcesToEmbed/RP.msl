@@ -331,17 +331,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProductMaterialUsages">
-      <EntityTypeMapping TypeName="RP.Model.ProductMaterialUsage">
-        <MappingFragment StoreEntitySet="ProductMaterialUsage">
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="MaterialUnitId" ColumnName="MaterialUnitId" />
-          <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PatternImages">
       <EntityTypeMapping TypeName="RP.Model.PatternImage">
         <MappingFragment StoreEntitySet="PatternImage">
@@ -356,6 +345,18 @@
         <MappingFragment StoreEntitySet="Color">
           <ScalarProperty Name="ColorName" ColumnName="ColorName" />
           <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductMaterialUsages">
+      <EntityTypeMapping TypeName="RP.Model.ProductMaterialUsage">
+        <MappingFragment StoreEntitySet="ProductMaterialUsage">
+          <ScalarProperty Name="ProductUnitId" ColumnName="ProductUnitId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="MaterialUnitId" ColumnName="MaterialUnitId" />
+          <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

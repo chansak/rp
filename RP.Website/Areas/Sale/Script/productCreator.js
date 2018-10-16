@@ -13,7 +13,8 @@
             $("#productCategories").prepend("<option value='' selected='selected'>เลือกประเภทสินค้า</option>");
             $("#productCategories").unbind();
             $("#productCategories").change(function () {
-                var selectedCategoryId = $('#productCategories').val();
+                var selectedCategoryId = '';
+                selectedCategoryId = $('#productCategories').val();
                 if (selectedCategoryId != '') {
                     _bindingProducts(selectedCategoryId);
                 } else {
@@ -38,13 +39,15 @@
             $("#products").prepend("<option value='' selected='selected'>เลือกสินค้า</option>");
             $("#products").unbind();
             $("#products").change(function () {
-                var selectedProductId = $('#products').val();
+                var selectedProductId = '';
+                selectedProductId = $('#products').val();
                 if (selectedProductId != '') {
                     _bindingProductOptions(selectedProductId);
                     _bindingProductUnits(selectedProductId);
                     _materialStockCheck(selectedProductId);
                 } else {
                     $("#productOptions").find('option').remove().end();
+                    $("#productsUnit").find('option').remove().end();
                 }
             });
         }
@@ -64,7 +67,10 @@
             $("#productsUnit").prepend("<option value='' selected='selected'>เลือกหน่วยนับ</option>");
             $("#productsUnit").unbind();
             $("#productsUnit").change(function () {
-                var selectedProductId = $('#productsUnit').val();
+                if (id != '') {
+                    _materialStockCheck(id);
+                }
+
             });
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
@@ -83,7 +89,8 @@
             $("#productOptions").prepend("<option value='' selected='selected'>เลือกรายละเอียด</option>");
             $("#productOptions").unbind();
             $("#productOptions").change(function () {
-                var selectedProductOptionsId = $('#productOptions').val();
+                var selectedProductOptionsId = '';
+                selectedProductOptionsId = $('#productOptions').val();
             });
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
@@ -99,25 +106,25 @@
                 html += '   <div class="col-sm-3">';
                 html += '       <div class="form-group">';
                 html += '           <label>รหัสผ้า</label>';
-                html += '           <input type="text" id="materialName" class="form-control" disabled value="' + item.materialName +'">';
+                html += '           <input type="text" id="materialName" class="form-control" disabled value="' + item.materialName + '">';
                 html += '       </div>';
                 html += '   </div>';
                 html += '   <div class="col-sm-3">';
                 html += '       <div class="form-group">';
                 html += '           <label>จำนวนผ้าในสต๊อค</label>';
-                html += '           <input type="text" id="materialInStock" class="form-control" disabled value="' + item.materialInStock +'">';
+                html += '           <input type="text" id="materialInStock" class="form-control" disabled value="' + item.materialInStock + '">';
                 html += '       </div>';
                 html += '   </div>';
                 html += '   <div class="col-sm-3">';
                 html += '       <div class="form-group">';
                 html += '           <label>ผ้าที่ต้องใช้</label>';
-                html += '           <input type="text" id="materialUsaged" class="form-control" disabled value="' + item.materialUsaged +'">';
+                html += '           <input type="text" id="materialUsaged" class="form-control" disabled value="' + item.materialUsaged + '">';
                 html += '       </div>';
                 html += '   </div>';
                 html += '   <div class="col-sm-3">';
                 html += '       <div class="form-group">';
                 html += '           <label>ผ้าคงเหลือ</label>';
-                html += '           <input type="text" id="materialInStockAfterWithdraw" class="form-control" disabled value="' + item.materialInStockAfterWithdraw +'">';
+                html += '           <input type="text" id="materialInStockAfterWithdraw" class="form-control" disabled value="' + item.materialInStockAfterWithdraw + '">';
                 html += '       </div>';
                 html += '   </div>';
                 html += '</div>';
@@ -127,7 +134,13 @@
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetMaterialStockCheck(id, success, failure);
+        var amount = parseInt($("#productNumberOfProducts").val());
+        var productUnitId = '';
+        productUnitId = $('#productsUnit').val();
+        if (amount < 0) { amount = 0; }
+        if (productUnitId != '') {
+            var xhr = RPService.GetMaterialStockCheck(id, productUnitId, amount, success, failure);
+        }
     }
     var _bindingPatternImage = function () {
         var success = function (data, textStatus, jqXHR) {
@@ -241,5 +254,9 @@
             _bindingPatternPosition();
             _bindingPatternColor();
         },
+        MaterialStockCheck: function () {
+            var selectedProductId = $('#products').val();
+            _materialStockCheck(selectedProductId);
+        }
     }
 };

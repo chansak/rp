@@ -29,7 +29,7 @@ namespace RP.Interfaces
         IList<ProductOption> GetOptionsByProductId(string id);
         IList<ProductUnit> GetUnitsByProductId(string id);
         Product GetProductsById(string id);
-        IList<ProductMaterialUsage> GetMaterialUsageByProductId(string id);
+        IList<ProductMaterialUsage> GetMaterialUsageByProductId(string id,string productUnitId);
         IList<Stock> GetStockCheck(string warehouseId, string materialId, string materialUnitId);
         #endregion
 

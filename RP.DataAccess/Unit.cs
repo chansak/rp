@@ -18,6 +18,7 @@ namespace RP.DataAccess
         public Unit()
         {
             this.ProductUnits = new HashSet<ProductUnit>();
+            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
         }
     
         public System.Guid Id { get; set; }
@@ -25,5 +26,7 @@ namespace RP.DataAccess
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductUnit> ProductUnits { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
     }
 }

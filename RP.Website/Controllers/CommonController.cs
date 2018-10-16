@@ -100,16 +100,16 @@ namespace RP.Website.Controllers
             var data = new List<UnitViewModel>();
             data.AddRange(units.Select(u => new UnitViewModel
             {
-                Id = u.Id.ToString(),
+                Id = u.UnitId.ToString(),
                 UnitName = u.Unit.UnitName
             }));
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetMaterialStockCheck(string id)
+        public ActionResult GetMaterialStockCheck(string id ,string productUnitId , int amount)
         {
             var result = new AjaxResultModel();
             var data = new List<StockCheckViewModel>();
-            var materials = GenericFactory.Business.GetMaterialUsageByProductId(id);
+            var materials = GenericFactory.Business.GetMaterialUsageByProductId(id,productUnitId);
             foreach (var material in materials)
             {
                 var stocks = GenericFactory.Business.GetStockCheck(AppSettingHelper.GetDefaultWarehouseId, material.MaterialId.ToString(), material.MaterialUnitId.ToString());
@@ -121,8 +121,8 @@ namespace RP.Website.Controllers
                     {
                         MaterialName = string.Format("{0} ({1})", stock.Material.Name, stock.Material.MaterialCode),
                         MaterialInStock = totalAmount,
-                        MaterialUsaged = usageAmount,
-                        MaterialInStockAfterWithdraw = (totalAmount - usageAmount)
+                        MaterialUsaged = (usageAmount*amount),
+                        MaterialInStockAfterWithdraw = (totalAmount - (usageAmount*amount))
                     });
                 }
             }

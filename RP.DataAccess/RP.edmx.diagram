@@ -67,13 +67,14 @@
         <AssociationConnector Association="RP.Model.FK_ProductUnit_Unit" />
         <AssociationConnector Association="RP.Model.FK_User_Role" />
         <AssociationConnector Association="RP.Model.FK_Stock_Warehouse" />
-        <EntityTypeShape EntityType="RP.Model.ProductMaterialUsage" Width="1.5" PointX="6" PointY="26.25" />
-        <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Material" />
-        <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_MaterialUnit" />
-        <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Product" />
         <EntityTypeShape EntityType="RP.Model.PatternImage" Width="1.5" PointX="8.375" PointY="0.75" />
         <EntityTypeShape EntityType="RP.Model.Color" Width="1.5" PointX="12.375" PointY="0.875" />
         <AssociationConnector Association="RP.Model.FK_ProductItemScreenOptional_Color" />
+        <EntityTypeShape EntityType="RP.Model.ProductMaterialUsage" Width="1.5" PointX="6" PointY="26.125" />
+        <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Material" />
+        <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_MaterialUnit" />
+        <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Product" />
+        <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Unit" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -10,11 +10,13 @@ namespace RP.Business
 {
     partial class Business : BaseBusiness, IBusiness
     {
-        public  IList<ProductMaterialUsage> GetMaterialUsageByProductId(string id)
+        public  IList<ProductMaterialUsage> GetMaterialUsageByProductId(string id, string productUnitId)
         {
             using (var uow = UnitOfWork.Create())
             {
-                return uow.ProductMaterialUsageRepository.All().Where(i => i.ProductId.ToString() == id).ToList();
+                return uow.ProductMaterialUsageRepository.All().Where(i => 
+                    i.ProductId.ToString() == id &&
+                    i.ProductUnitId.ToString() == productUnitId).ToList();
             }
         }
     }

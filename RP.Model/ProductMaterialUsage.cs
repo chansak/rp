@@ -19,10 +19,12 @@ namespace RP.Model
         public System.Guid MaterialId { get; set; }
         public System.Guid MaterialUnitId { get; set; }
         public Nullable<int> Amount { get; set; }
+        public System.Guid ProductUnitId { get; set; }
     
         public virtual Material Material { get; set; }
         public virtual MaterialUnit MaterialUnit { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Unit Unit { get; set; }
     }
     
 }

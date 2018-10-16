@@ -17,12 +17,14 @@ namespace RP.Model
         public Unit()
         {
             this.ProductUnits = new HashSet<ProductUnit>();
+            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
         }
     
         public System.Guid Id { get; set; }
         public string UnitName { get; set; }
     
         public virtual ICollection<ProductUnit> ProductUnits { get; set; }
+        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
     }
     
 }

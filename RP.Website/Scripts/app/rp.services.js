@@ -121,11 +121,11 @@
 
         return XHR;
     },
-    GetMaterialStockCheck: function (id, successCallback, errorCallback) {
+    GetMaterialStockCheck: function (id, productUnitId,amount, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
             url: "/common/GetMaterialStockCheck",
-            data: JSON.stringify({ id: id }),
+            data: JSON.stringify({ id: id, productUnitId: productUnitId,amount:amount }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data, textStatus, jqXHR) {

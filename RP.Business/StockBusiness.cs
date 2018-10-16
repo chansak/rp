@@ -15,7 +15,10 @@ namespace RP.Business
             using (var uow = UnitOfWork.Create())
             {
                 return uow.StockRepository.All()
-                    .Where(i => i.WarehouseId.ToString() == warehouseId && i.MaterialId.ToString() == materialId && i.MaterialUnitId.ToString() == materialUnitId)
+                    .Where(i => 
+                        i.WarehouseId.ToString() == warehouseId &&
+                        i.MaterialId.ToString() == materialId && 
+                        i.MaterialUnitId.ToString() == materialUnitId)
                     .ToList();
             }
         }
