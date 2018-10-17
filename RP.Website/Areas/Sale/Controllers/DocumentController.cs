@@ -1,4 +1,6 @@
-﻿using RP.Interfaces;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using RP.Interfaces;
 using RP.Utilities;
 using RP.Website.Helpers;
 using RP.Website.Models;
@@ -68,6 +70,22 @@ namespace RP.Website.Areas.Sale.Controllers
                 DocumentCode = document.FileNumber
             };
             return View(viewModel);
+        }
+        [HttpPost]
+        public JsonResult CreateDocument(FormCollection formCollection)
+        {
+            try
+            {
+                var json = formCollection["document"].ToString().Replace(@"\", "");
+                var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                var document = model.ToEntity();
+                GenericFactory.Business.CreateDocument(document);
+                return Json(null);
+            }
+            catch (Exception ex) {
+                var msg = ex.Message;
+            }
+            return Json(null);
         }
     }
 }

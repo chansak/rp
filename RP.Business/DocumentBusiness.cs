@@ -21,5 +21,12 @@ namespace RP.Business
                 return uow.DocumentRepository.GetById(id);
             }
         }
+        public void CreateDocument(Document document) {
+            using (var uow = UnitOfWork.Create())
+            {
+                uow.DocumentRepository.Add(document);
+                uow.Commit();
+            }
+        }
     }
 }

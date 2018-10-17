@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,5 +9,15 @@ namespace RP.Website.Models
     public class DocumentViewModel
     {
         public string DocumentCode { get; set; }
+        public DateTime IssuedDate { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public DateTime ExpectedDeliveryDate { get; set; }
+        public string SaleUserId { get; set; }
+        public string CustomerId { get; set; }
+        public string ContactId { get; set; }
+        public List<ProductItem> Items { get; set; }
+        public string DeliveryAddress { get; set; }
+        public string DeliveryContactId { get; set; }
+        public string Remark { get; set; }
     }
 }

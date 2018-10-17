@@ -4,6 +4,7 @@
     var customers = [];
     var contacts = [];
     var items = [];
+    var files = [];
     var _bindingSale = function () {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, value) {
@@ -87,14 +88,52 @@
         $(items).each(function (index, item) {
             var total = parseFloat((item.amount * item.pricePerUnit));
             html += '<tr>';
-            html += '   <td>' + item.productName +'</td>';
-            html += '   <td>' + item.productUnitName +'</td>';
-            html += '   <td>' + item.amount +'</td>';
-            html += '   <td>' + item.pricePerUnit +'</td>';
-            html += '   <td>' + currency(total).format() +'</td>';
+            html += '   <td>' + item.productName + '</td>';
+            html += '   <td>' + item.productUnitName + '</td>';
+            html += '   <td>' + item.amount + '</td>';
+            html += '   <td>' + item.pricePerUnit + '</td>';
+            html += '   <td>' + currency(total).format() + '</td>';
             html += '<tr>';
         });
         $("#productItems").empty().html(html);
+    };
+    var _save = function (callback) {
+        var allItems = [];
+        var formData = new FormData();
+
+        $(items).each(function (index, item) {
+            allItems.push(
+                {
+                    productId: item.productId,
+                    productUnitId: item.productUnitId,
+                    amount: item.amount,
+                    pricePerUnit: item.pricePerUnit,
+                }
+            );
+        });
+        var document = {
+            documentCode: $("#DocumentCode").val(),
+            issuedDate: $("#issuedDate").val(),//Date.parse($("#issuedDate").val()),
+            expirationDate: $("#expirationDate").val(),//Date.parse($("#expirationDate").val()),
+            expectedDeliveryDate: $("#expectedDeliveryDate").val(),//Date.parse($("#expectedDeliveryDate").val()),
+            saleUserId: $("#auto_saleId").val(),
+            customerId: $("#auto_customerId").val(),
+            contactId: $("#auto_contactId").val(),
+            items: allItems,
+            deliveryAddress: $("#deliveryAddress").val(),
+            deliveryContactId: $("#auto_deliveryContactId").val(),
+            remark: $("#documentRemark").val()
+        };
+        formData.append("document", JSON.stringify(document));
+        //for (var i = 0; i < files.length; i++) {
+        //    formData.append(files[i].name, files[i]);
+        //}
+        var success = function (data, textStatus, jqXHR) {
+            callback();
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.CreateDocument(formData, success, failure);
     };
     //all services
     return {
@@ -107,5 +146,8 @@
             items = productCreator.GetItems();
             _render(items);
         },
+        SaveDocument: function (callback) {
+            _save(callback);
+        }
     }
 };
