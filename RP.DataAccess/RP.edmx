@@ -107,7 +107,7 @@
           <Property Name="UserId" Type="uniqueidentifier" />
           <Property Name="DocumentStatusId" Type="int" />
           <Property Name="IsDelete" Type="bit" />
-          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CreatedDate" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedDate" Type="date" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
@@ -1237,7 +1237,7 @@
           <Property Name="UserId" Type="Guid" />
           <Property Name="DocumentStatusId" Type="Int32" />
           <Property Name="IsDelete" Type="Boolean" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
