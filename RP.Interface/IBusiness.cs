@@ -18,7 +18,7 @@ namespace RP.Interfaces
         #region Documents
         IList<Document> GetDocumentsList();
         Document GetDocument(string id);
-        void CreateDocument(Document document);
+        void CreateDocument(Document document,string customerCode);
         #endregion
 
         #region Common

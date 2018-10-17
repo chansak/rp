@@ -112,7 +112,7 @@
             );
         });
         var document = {
-            documentCode: $("#DocumentCode").val(),
+            //documentCode: $("#DocumentCode").val(),
             issuedDate: $("#issuedDate").val(),//Date.parse($("#issuedDate").val()),
             expirationDate: $("#expirationDate").val(),//Date.parse($("#expirationDate").val()),
             expectedDeliveryDate: $("#expectedDeliveryDate").val(),//Date.parse($("#expectedDeliveryDate").val()),

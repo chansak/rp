@@ -23,7 +23,9 @@ namespace RP.Website.Areas.Sale.Controllers
                 keyword = keyword.Trim();
             }
 
-            var documents = GenericFactory.Business.GetDocumentsList();
+            var documents = GenericFactory.Business.GetDocumentsList()
+                .OrderByDescending(i=>i.CreatedDate)
+                .ToList();
             int totalCount = documents.Count;
             var result = new List<DocumentListItemViewModel>();
             result.AddRange(documents.Select(d => new DocumentListItemViewModel
@@ -79,8 +81,8 @@ namespace RP.Website.Areas.Sale.Controllers
                 var json = formCollection["document"].ToString().Replace(@"\", "");
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
-                GenericFactory.Business.CreateDocument(document);
-                return Json(null);
+                GenericFactory.Business.CreateDocument(document,"SR");
+                return Json("");
             }
             catch (Exception ex) {
                 var msg = ex.Message;

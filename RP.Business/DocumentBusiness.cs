@@ -21,10 +21,10 @@ namespace RP.Business
                 return uow.DocumentRepository.GetById(id);
             }
         }
-        public void CreateDocument(Document document) {
+        public void CreateDocument(Document document, string customerCode) {
             using (var uow = UnitOfWork.Create())
             {
-                uow.DocumentRepository.Add(document);
+                uow.DocumentRepository.AddNewDocument(document,customerCode);
                 uow.Commit();
             }
         }

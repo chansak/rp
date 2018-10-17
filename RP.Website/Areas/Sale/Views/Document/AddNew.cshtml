@@ -45,13 +45,12 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
-                                        <div class="form-group row">
+                                        @*<div class="form-group row">
                                             <label class="col-sm-3 col-form-label">เลขที่เอกสาร</label>
                                             <div class="col-sm-9">
                                                 @Html.TextBox("DocumentCode", "SR256100001", new { @class = "form-control", disabled = "disabled" })
-                                                @*<span class="form-text">SR256100001</span>*@
                                             </div>
-                                        </div>
+                                        </div>*@
                                         <div class="form-group row" id="data_1">
                                             <label class="col-sm-3 col-form-label">วันที่ออกใบเสนอราคา</label>
                                             <div class="input-group date col-sm-4" style="padding-left: 15px;">
@@ -585,7 +584,8 @@
             $(".date").datepicker({
                 startDate: new Date(),
                 todayHighlight: true,
-                format:"dd/mm/yyyy"
+                format: "dd/mm/yyyy",
+                autoclose: true,
             });
             $(".date").datepicker('setDate', new Date());
             
