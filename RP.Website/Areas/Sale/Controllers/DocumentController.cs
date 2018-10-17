@@ -34,9 +34,9 @@ namespace RP.Website.Areas.Sale.Controllers
                 CustomerName = d.Customer.Name,
                 DocumentCode = d.FileNumber,
                 SaleUserName = "ชาญศักดิ์ คชเสน",
-                WorkflowStatus = 1,
+                WorkflowStatus = (int)d.DocumentStatusId,
                 WorkflowStatusName = "ลูกค้าเสนอราคา",
-                BiddingStatus = 1,
+                BiddingStatus = (int)d.BiddingStatusId,
                 BiddingStatusName = "รอยืนยัน",
                 ExpiryDate = d.ExpiryDate.Value
             }));

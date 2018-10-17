@@ -179,6 +179,10 @@
       <End Role="Unit" EntitySet="Units" />
       <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
     </AssociationSet>
+    <AssociationSet Name="FK_DocumentProductItems_ProductUnit1" Association="RP.Model.FK_DocumentProductItems_ProductUnit1">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Company">
     <Key>
@@ -346,6 +350,7 @@
     <NavigationProperty Name="ProductItemPrintOptionals" Relationship="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemPrintOptional" />
     <NavigationProperty Name="ProductItemScreenOptionals" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemScreenOptional" />
     <NavigationProperty Name="ProductItemSewOptionals" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemSewOptional" />
+    <NavigationProperty Name="Unit" Relationship="RP.Model.FK_DocumentProductItems_ProductUnit1" FromRole="DocumentProductItem" ToRole="Unit" />
   </EntityType>
   <EntityType Name="Material">
     <Key>
@@ -524,6 +529,7 @@
     <Property Name="UnitName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ProductUnits" Relationship="RP.Model.FK_ProductUnit_Unit" FromRole="Unit" ToRole="ProductUnit" />
     <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Unit" FromRole="Unit" ToRole="ProductMaterialUsage" />
+    <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_ProductUnit1" FromRole="Unit" ToRole="DocumentProductItem" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -1006,6 +1012,18 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ProductMaterialUsage">
+        <PropertyRef Name="ProductUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentProductItems_ProductUnit1">
+    <End Type="RP.Model.Unit" Role="Unit" Multiplicity="0..1" />
+    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentProductItem">
         <PropertyRef Name="ProductUnitId" />
       </Dependent>
     </ReferentialConstraint>

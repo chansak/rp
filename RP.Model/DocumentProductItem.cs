@@ -41,6 +41,7 @@ namespace RP.Model
         public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
         public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
         public virtual ICollection<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
+        public virtual Unit Unit { get; set; }
     }
     
 }

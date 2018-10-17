@@ -75,6 +75,7 @@
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_MaterialUnit" />
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Product" />
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Unit" />
+        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_ProductUnit1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

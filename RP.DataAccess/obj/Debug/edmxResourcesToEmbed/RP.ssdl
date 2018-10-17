@@ -470,11 +470,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DocumentProductItems_ProductUnit">
-    <End Role="ProductUnit" Type="Self.ProductUnit" Multiplicity="0..1" />
+  <Association Name="FK_DocumentProductItems_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
     <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProductUnit">
+      <Principal Role="Unit">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="DocumentProductItems">
@@ -841,8 +841,8 @@
       <End Role="Product" EntitySet="Product" />
       <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
     </AssociationSet>
-    <AssociationSet Name="FK_DocumentProductItems_ProductUnit" Association="Self.FK_DocumentProductItems_ProductUnit">
-      <End Role="ProductUnit" EntitySet="ProductUnit" />
+    <AssociationSet Name="FK_DocumentProductItems_Unit" Association="Self.FK_DocumentProductItems_Unit">
+      <End Role="Unit" EntitySet="Unit" />
       <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
     </AssociationSet>
     <AssociationSet Name="FK_DocumentProductItems_Warehouse" Association="Self.FK_DocumentProductItems_Warehouse">

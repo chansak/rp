@@ -3,22 +3,17 @@ using RP.Website.Models;
 using RP.Model;
 using System.Collections.Generic;
 using System.Linq;
+using RP.Model.Enum;
 
 namespace RP.Website
 {
     public static class EntityExtension
     {
-        //public static EntityModel.Transport ToEntity(this ViewModel.TransportDetailViewModel viewmodel)
-        //{
-        //    return Mapper.Map<ViewModel.TransportDetailViewModel, EntityModel.Transport>(viewmodel);
-        //}
-        //public static TransportDetailViewModel ToViewModel(this EntityModel.Transport entity)
-        //{
-        //    return Mapper.Map<EntityModel.Transport, ViewModel.TransportDetailViewModel>(entity);
-        //}
         public static Document ToEntity(this DocumentViewModel viewModel)
         {
             var document = new Document();
+            document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
+            document.BiddingStatusId = (int)BiddingStatus.Waiting;
             document.FileNumber = viewModel.DocumentCode;
             document.IssueDate = viewModel.IssuedDate;
             document.ExpiryDate = viewModel.ExpirationDate;

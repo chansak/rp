@@ -18,6 +18,7 @@ namespace RP.Model
         {
             this.ProductUnits = new HashSet<ProductUnit>();
             this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
+            this.DocumentProductItems = new HashSet<DocumentProductItem>();
         }
     
         public System.Guid Id { get; set; }
@@ -25,6 +26,7 @@ namespace RP.Model
     
         public virtual ICollection<ProductUnit> ProductUnits { get; set; }
         public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
+        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
     }
     
 }
