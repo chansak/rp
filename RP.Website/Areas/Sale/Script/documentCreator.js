@@ -85,13 +85,13 @@
     var _render = function (items) {
         var html = '';
         $(items).each(function (index, item) {
-            console.log(item);
+            var total = parseFloat((item.amount * item.pricePerUnit));
             html += '<tr>';
             html += '   <td>' + item.productName +'</td>';
             html += '   <td>' + item.productUnitName +'</td>';
             html += '   <td>' + item.amount +'</td>';
             html += '   <td>' + item.pricePerUnit +'</td>';
-            html += '   <td>' + (item.amount * item.pricePerUnit).toFixed(2) +'</td>';
+            html += '   <td>' + currency(total).format() +'</td>';
             html += '<tr>';
         });
         $("#productItems").empty().html(html);

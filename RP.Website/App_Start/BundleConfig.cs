@@ -466,9 +466,13 @@ namespace RP.Website
                         "~/Scripts/plugins/pwstrength/pwstrength-bootstrap.min.js",
                         "~/Scripts/plugins/pwstrength/zxcvbn.js"));
 
+            // Money format from input
+            bundles.Add(new StyleBundle("~/plugins/moneyFormat").Include(
+                        "~/Scripts/plugins/moneyFormat/simple.money.format.js"));
 
-
-
+            // Money format from value
+            bundles.Add(new StyleBundle("~/plugins/currency").Include(
+                        "~/Scripts/plugins/currency/currency.min.js"));
         }
     }
 }

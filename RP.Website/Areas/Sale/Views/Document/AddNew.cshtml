@@ -328,19 +328,19 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ประเภทสินค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="productCategories" ></select>
+                                                <select class="form-control m-b" id="productCategories"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">สินค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="products" ></select>
+                                                <select class="form-control m-b" id="products"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">รายละเอียด</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="productOptions" ></select>
+                                                <select class="form-control m-b" id="productOptions"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -404,7 +404,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="print-pattern" ></select>
+                                                                <select class="form-control m-b" id="print-pattern"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -424,7 +424,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">สีที่พิมพ์</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="print-color" ></select>
+                                                                <select class="form-control m-b" id="print-color"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -451,7 +451,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="screen-pattern" ></select>
+                                                                <select class="form-control m-b" id="screen-pattern"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -471,13 +471,13 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">สีที่พิมพ์</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="screen-color" ></select>
+                                                                <select class="form-control m-b" id="screen-color"></select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ตำแหน่ง</label>
                                                             <div class="col-sm-3">
-                                                                <select class="form-control m-b" id="screen-position" ></select>
+                                                                <select class="form-control m-b" id="screen-position"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -503,7 +503,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="sew-pattern" ></select>
+                                                                <select class="form-control m-b" id="sew-pattern"></select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -523,7 +523,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ตำแหน่ง</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="sew-position" ></select>
+                                                                <select class="form-control m-b" id="sew-position"></select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -573,6 +573,8 @@
     @Scripts.Render("~/plugins/codeEditor")
     @Scripts.Render("~/plugins/dataPicker")
     @Scripts.Render("~/plugins/typehead")
+    @Scripts.Render("~/plugins/currency")
+
     <script type="text/javascript">
         $(document).ready(function () {
             //green checkbox
