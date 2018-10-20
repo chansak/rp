@@ -56,11 +56,14 @@ namespace RP.Website
             document.SaleUserId = entity.UserId.ToString();
             document.CustomerId = entity.CustomerId.ToString();
             document.ContactId = entity.ContactId.ToString();
-            var productItems = new List<ProductItem>();
-            productItems.AddRange(entity.DocumentProductItems.Select(i => new ProductItem
+            var productItems = new List<ProductItemViewModel>();
+            productItems.AddRange(entity.DocumentProductItems.Select(i => new ProductItemViewModel
             {
                 ProductId = i.ProductId.ToString(),
+                ProductName = i.Product.Name,
                 ProductUnitId = i.ProductUnitId.ToString(),
+                ProductUnitName = i.Unit.UnitName,
+                PricePerUnit = i.PricePerUnit,
                 Amount = i.Amount
             }));
             document.Items = productItems;
@@ -91,7 +94,6 @@ namespace RP.Website
             contact.Fax = entity.Fax;
             return contact;
         }
-
         public static SaleUserViewModel ToViewModel(this User entity)
         {
             var user = new SaleUserViewModel();

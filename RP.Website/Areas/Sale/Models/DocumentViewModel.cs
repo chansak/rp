@@ -16,7 +16,7 @@ namespace RP.Website.Models
         public string SaleUserId { get; set; }
         public string CustomerId { get; set; }
         public string ContactId { get; set; }
-        public List<ProductItem> Items { get; set; }
+        public List<ProductItemViewModel> Items { get; set; }
         public string DeliveryAddress { get; set; }
         public string DeliveryContactId { get; set; }
         public string Remark { get; set; }

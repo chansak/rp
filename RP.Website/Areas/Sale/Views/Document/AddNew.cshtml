@@ -668,7 +668,6 @@
                         }
                 }
             });
-
             $('.btnSave').click(function () {
                 documentCreator.SaveDocument(function () {
                     swal({
@@ -680,8 +679,6 @@
                     });
                 });
             });
-            
-
             $("#btnAddNewProduct").click(function () {
                 $("#addProductModal").modal({ backdrop: "static" });
                 productCreator.init();
@@ -691,11 +688,9 @@
                 productCreator.AddNewItem();
                 documentCreator.RenderProducts();
             });
-
             $("#productNumberOfProducts").change(function () {
                 productCreator.MaterialStockCheck();
             });
-
             documentCreator.init();
         });
     </script>

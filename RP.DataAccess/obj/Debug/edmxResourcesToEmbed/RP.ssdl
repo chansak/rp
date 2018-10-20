@@ -140,7 +140,7 @@
     <Property Name="ProductId" Type="uniqueidentifier" />
     <Property Name="ProductUnitId" Type="uniqueidentifier" />
     <Property Name="Amount" Type="int" Nullable="false" />
-    <Property Name="PricePerUnit" Type="money" />
+    <Property Name="PricePerUnit" Type="money" Nullable="false" />
     <Property Name="DiscountAmount" Type="money" />
     <Property Name="DiscountPercentage" Type="int" />
     <Property Name="TotalPrice" Type="money" />

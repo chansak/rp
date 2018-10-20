@@ -28,7 +28,7 @@ namespace RP.DataAccess
         public Nullable<System.Guid> ProductId { get; set; }
         public Nullable<System.Guid> ProductUnitId { get; set; }
         public int Amount { get; set; }
-        public Nullable<decimal> PricePerUnit { get; set; }
+        public decimal PricePerUnit { get; set; }
         public Nullable<decimal> DiscountAmount { get; set; }
         public Nullable<int> DiscountPercentage { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }

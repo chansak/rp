@@ -1,4 +1,86 @@
 ﻿var documentEditor = new function () {
+    var items = [];
+    var sales = [];
+    var customers = [];
+    var contacts = [];
+    var _bindingSale = function () {
+        var success = function (data, textStatus, jqXHR) {
+            $(data).each(function (index, value) {
+                sales.push(value);
+            });
+            $('#auto_saleName').typeahead({
+                source: sales,
+                updater: function (item) {
+                    $("#auto_saleId").val(item.id);
+                    $("#auto_saleCode").val(item.code);
+                    $("#auto_saleBranch").val(item.branch);
+                    return item;
+                }
+            });
+        }
+
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetSaleUsers(success, failure);
+    };
+    var _bindingCustomer = function () {
+        var success = function (data, textStatus, jqXHR) {
+            $(data).each(function (index, value) {
+                customers.push(value);
+            });
+            $('#auto_customerName').typeahead({
+                source: customers,
+                updater: function (item) {
+                    $("#auto_customerId").val(item.id);
+                    $("#auto_customerType").val(item.customerTypeName);
+                    $("#auto_customerHospitalName").val(item.hospitalName);
+                    _bindingContact(item.id);
+                    return item;
+                }
+            });
+        }
+
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetCustomers(success, failure);
+    };
+    var _bindingContact = function (id) {
+        contacts = [];
+        $('#auto_contactName').val('');
+        $("#auto_contactId").val('');
+        var success = function (data, textStatus, jqXHR) {
+            $(data).each(function (index, value) {
+                contacts.push(value);
+            });
+            $('#auto_contactName').typeahead({
+                source: contacts,
+                updater: function (item) {
+                    $("#auto_contactId").val(item.id);
+                    $("#auto_contactPhone").val(item.phone);
+                    $("#auto_contactFax").val(item.fax);
+                    $("#auto_contactMobile").val(item.mobile);
+                    return item;
+                }
+            });
+            $('#auto_deliveryContactName').typeahead({
+                source: contacts,
+                updater: function (item) {
+                    $("#auto_deliveryContactId").val(item.id);
+                    $("#auto_deliveryContactPhone").val(item.phone);
+                    $("#auto_deliveryContactFax").val(item.fax);
+                    $("#auto_deliveryContactMobile").val(item.mobile);
+                    return item;
+                }
+            });
+        }
+
+        var failure = function (id, jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetContactByCustomerId(id, success, failure);
+    }
     var _getCustomerDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
             $("#auto_customerName").val(data.name);
@@ -45,9 +127,22 @@
         }
         var xhr = RPService.GetSaleUserById(id, success, failure);
     };
+    var _render = function (items) {
+        var html = '';
+        $(items).each(function (index, item) {
+            var total = parseFloat((item.amount * item.pricePerUnit));
+            html += '<tr>';
+            html += '   <td>' + item.productName + '</td>';
+            html += '   <td>' + item.productUnitName + '</td>';
+            html += '   <td>' + item.amount + '</td>';
+            html += '   <td>' + item.pricePerUnit + '</td>';
+            html += '   <td>' + currency(total).format() + '</td>';
+            html += '<tr>';
+        });
+        $("#productItems").empty().html(html);
+    };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
-            console.log(data);
             var issuedDate = utilities.ConvertToDate(data.issuedDate);
             var expirationDate = utilities.ConvertToDate(data.expirationDate);
             var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
@@ -59,6 +154,11 @@
             _getContactDetail(data.contactId);
             _getSaleDetail(data.saleUserId);
             _getDeliveryContactDetail(data.deliveryContactId);
+            $(data.items).each(function (index, item) {
+                items.push(item);
+            });
+            _render(items);
+            
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -68,6 +168,8 @@
     return {
         init: function () {
             var id = $("#documentId").val();
+            _bindingSale();
+            _bindingCustomer();
             _getDocumentDetail(id);
         },
     }

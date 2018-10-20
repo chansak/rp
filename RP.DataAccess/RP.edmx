@@ -145,7 +145,7 @@
           <Property Name="ProductId" Type="uniqueidentifier" />
           <Property Name="ProductUnitId" Type="uniqueidentifier" />
           <Property Name="Amount" Type="int" Nullable="false" />
-          <Property Name="PricePerUnit" Type="money" />
+          <Property Name="PricePerUnit" Type="money" Nullable="false" />
           <Property Name="DiscountAmount" Type="money" />
           <Property Name="DiscountPercentage" Type="int" />
           <Property Name="TotalPrice" Type="money" />
@@ -1284,7 +1284,7 @@
           <Property Name="ProductId" Type="Guid" />
           <Property Name="ProductUnitId" Type="Guid" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
-          <Property Name="PricePerUnit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PricePerUnit" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="DiscountAmount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="DiscountPercentage" Type="Int32" />
           <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
