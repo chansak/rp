@@ -200,7 +200,7 @@
     <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="CompanyId" Type="Guid" />
     <Property Name="CustomerTypeId" Type="Int32" />
-    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="0" />
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
@@ -234,7 +234,7 @@
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="0" />
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
@@ -282,14 +282,14 @@
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="FileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IssueDate" Type="DateTime" Precision="0" />
-    <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
-    <Property Name="ExpectedDeliveryDate" Type="DateTime" Precision="0" />
+    <Property Name="IssueDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="ExpectedDeliveryDate" Type="DateTime" Precision="3" Nullable="false" />
     <Property Name="CustomerId" Type="Guid" />
     <Property Name="ContactId" Type="Guid" />
     <Property Name="UserId" Type="Guid" />
     <Property Name="DocumentStatusId" Type="Int32" />
-    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
@@ -336,7 +336,7 @@
     <Property Name="DocumentId" Type="Guid" />
     <Property Name="ProductId" Type="Guid" />
     <Property Name="ProductUnitId" Type="Guid" />
-    <Property Name="Amount" Type="Int32" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
     <Property Name="PricePerUnit" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="DiscountAmount" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="DiscountPercentage" Type="Int32" />

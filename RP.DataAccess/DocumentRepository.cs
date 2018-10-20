@@ -24,8 +24,10 @@ namespace RP.DataAccess
         }
         public override Model.Document GetById(string id)
         {
-            return ObjectSet.Where(i => i.Id.ToString() == id && !i.IsDelete.Value).
-                Include(i => i.Customer)
+            return ObjectSet.Where(i => i.Id.ToString() == id && !i.IsDelete).
+                Include(i => i.Customer).
+                Include(i=>i.DocumentProductItems).
+                Include(i=>i.DocumentDeliveries)
                 .FirstOrDefault();
         }
         public void AddNewDocument(Model.Document document, string customerCode)

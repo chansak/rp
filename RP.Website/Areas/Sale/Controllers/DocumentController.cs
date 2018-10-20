@@ -31,7 +31,7 @@ namespace RP.Website.Areas.Sale.Controllers
             result.AddRange(documents.Select(d => new DocumentListItemViewModel
             {
                 Id = d.Id.ToString(),
-                IssueDate = d.IssueDate.Value,
+                IssueDate = d.IssueDate,
                 CustomerType = d.Customer.CustomerType.CustomerTypeName,
                 CustomerName = d.Customer.Name,
                 DocumentCode = d.FileNumber,
@@ -40,7 +40,7 @@ namespace RP.Website.Areas.Sale.Controllers
                 WorkflowStatusName = "ลูกค้าเสนอราคา",
                 BiddingStatus = (int)d.BiddingStatusId,
                 BiddingStatusName = "รอยืนยัน",
-                ExpiryDate = d.ExpiryDate.Value
+                ExpiryDate = d.ExpiryDate
             }));
 
 
@@ -64,15 +64,6 @@ namespace RP.Website.Areas.Sale.Controllers
         {
             return View();
         }
-        public ActionResult Edit(string id)
-        {
-            var document = GenericFactory.Business.GetDocument(id);
-            var viewModel = new DocumentViewModel
-            {
-                DocumentCode = document.FileNumber
-            };
-            return View(viewModel);
-        }
         [HttpPost]
         public JsonResult CreateDocument(FormCollection formCollection)
         {
@@ -81,13 +72,26 @@ namespace RP.Website.Areas.Sale.Controllers
                 var json = formCollection["document"].ToString().Replace(@"\", "");
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
-                GenericFactory.Business.CreateDocument(document,"SR");
+                GenericFactory.Business.CreateDocument(document, "SR");
                 return Json("");
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 var msg = ex.Message;
             }
             return Json(null);
+        }
+        public ActionResult Edit(string id)
+        {
+            ViewBag.DocumentId = id;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GetDocumentDetail(string id)
+        {
+            var document = GenericFactory.Business.GetDocument(id);
+            var viewModel = document.ToViewModel();
+            return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
         }
     }
 }

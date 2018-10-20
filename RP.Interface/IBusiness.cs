@@ -32,6 +32,10 @@ namespace RP.Interfaces
         Product GetProductsById(string id);
         IList<ProductMaterialUsage> GetMaterialUsageByProductId(string id,string productUnitId);
         IList<Stock> GetStockCheck(string warehouseId, string materialId, string materialUnitId);
+        Customer GetCustomerById(string id);
+        CustomerContact GetContactById(string id);
+        User GetSaleUserById(string id);
+        
         #endregion
 
         #region Pattern

@@ -588,18 +588,6 @@
                 autoclose: true,
             });
             $(".date").datepicker('setDate', new Date());
-            
-            $('.btnSave').click(function () {
-                documentCreator.SaveDocument(function () {
-                    swal({
-                        title: "บันทึกเรียบร้อย!",
-                        text: "กดปุ่ม OK เพื่อปิด!",
-                        icon: "success"
-                    }).then((value) => {
-                        utilities.RedirectToAction("/Sale/Document/Index");
-                    });
-                });
-            });
             $(".iCheck-helper").click(function () {
                 var id = $(this).prev().prop("id");
                 switch (id) {
@@ -680,6 +668,19 @@
                         }
                 }
             });
+
+            $('.btnSave').click(function () {
+                documentCreator.SaveDocument(function () {
+                    swal({
+                        title: "บันทึกเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("/Sale/Document/Index");
+                    });
+                });
+            });
+            
 
             $("#btnAddNewProduct").click(function () {
                 $("#addProductModal").modal({ backdrop: "static" });

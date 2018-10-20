@@ -17,5 +17,12 @@ namespace RP.Business
                 return uow.UserRepository.All().ToList();
             }
         }
+        public User GetSaleUserById(string id)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                return uow.UserRepository.GetById(id);
+            }
+        }
     }
 }

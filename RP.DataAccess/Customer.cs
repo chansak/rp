@@ -25,7 +25,7 @@ namespace RP.DataAccess
         public string Name { get; set; }
         public Nullable<System.Guid> CompanyId { get; set; }
         public Nullable<int> CustomerTypeId { get; set; }
-        public Nullable<bool> IsDelete { get; set; }
+        public bool IsDelete { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }

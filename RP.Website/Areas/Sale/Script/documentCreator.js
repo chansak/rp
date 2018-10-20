@@ -1,5 +1,4 @@
 ﻿var documentCreator = new function () {
-    //variables
     var sales = [];
     var customers = [];
     var contacts = [];
@@ -112,10 +111,9 @@
             );
         });
         var document = {
-            //documentCode: $("#DocumentCode").val(),
-            issuedDate: $("#issuedDate").val(),//Date.parse($("#issuedDate").val()),
-            expirationDate: $("#expirationDate").val(),//Date.parse($("#expirationDate").val()),
-            expectedDeliveryDate: $("#expectedDeliveryDate").val(),//Date.parse($("#expectedDeliveryDate").val()),
+            issuedDate: $("#issuedDate").val(),
+            expirationDate: $("#expirationDate").val(),
+            expectedDeliveryDate: $("#expectedDeliveryDate").val(),
             saleUserId: $("#auto_saleId").val(),
             customerId: $("#auto_customerId").val(),
             contactId: $("#auto_contactId").val(),
@@ -135,7 +133,6 @@
         }
         var xhr = RPService.CreateDocument(formData, success, failure);
     };
-    //all services
     return {
         init: function () {
             _bindingSale();

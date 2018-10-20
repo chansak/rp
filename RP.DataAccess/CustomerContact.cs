@@ -28,7 +28,7 @@ namespace RP.DataAccess
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string Mobile { get; set; }
-        public Nullable<bool> IsDelete { get; set; }
+        public bool IsDelete { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }

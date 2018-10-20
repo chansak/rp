@@ -24,14 +24,14 @@ namespace RP.DataAccess
     
         public System.Guid Id { get; set; }
         public string FileNumber { get; set; }
-        public Nullable<System.DateTime> IssueDate { get; set; }
-        public Nullable<System.DateTime> ExpiryDate { get; set; }
-        public Nullable<System.DateTime> ExpectedDeliveryDate { get; set; }
+        public System.DateTime IssueDate { get; set; }
+        public System.DateTime ExpiryDate { get; set; }
+        public System.DateTime ExpectedDeliveryDate { get; set; }
         public Nullable<System.Guid> CustomerId { get; set; }
         public Nullable<System.Guid> ContactId { get; set; }
         public Nullable<System.Guid> UserId { get; set; }
         public Nullable<int> DocumentStatusId { get; set; }
-        public Nullable<bool> IsDelete { get; set; }
+        public bool IsDelete { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }

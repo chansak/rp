@@ -22,5 +22,11 @@ namespace RP.DataAccess
                 Include(i => i.CustomerType)
                 .AsQueryable();
         }
+        public override Model.Customer GetById(string id)
+        {
+            return ObjectSet.Where(i => i.Id.ToString() == id && !i.IsDelete).
+                Include(i=>i.CustomerType)
+                .FirstOrDefault();
+        }
     }
 }

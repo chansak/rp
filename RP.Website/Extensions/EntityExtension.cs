@@ -42,7 +42,63 @@ namespace RP.Website
             };
             document.DocumentDeliveries.Add(delivery);
             document.RefPriceAndRemark = viewModel.Remark;
+            document.IsDelete = false;
             return document;
+        }
+        public static DocumentViewModel ToViewModel(this Document entity)
+        {
+            var document = new DocumentViewModel();
+            document.Id = entity.Id.ToString();
+            document.DocumentCode = entity.FileNumber;
+            document.IssuedDate = entity.IssueDate;
+            document.ExpirationDate = entity.ExpiryDate;
+            document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate;
+            document.SaleUserId = entity.UserId.ToString();
+            document.CustomerId = entity.CustomerId.ToString();
+            document.ContactId = entity.ContactId.ToString();
+            var productItems = new List<ProductItem>();
+            productItems.AddRange(entity.DocumentProductItems.Select(i => new ProductItem
+            {
+                ProductId = i.ProductId.ToString(),
+                ProductUnitId = i.ProductUnitId.ToString(),
+                Amount = i.Amount
+            }));
+            document.Items = productItems;
+            document.DeliveryAddress = entity.DocumentDeliveries.FirstOrDefault().Address1;
+            document.DeliveryContactId = entity.DeliveryContactId.ToString();
+            document.Remark = entity.RefPriceAndRemark;
+            return document;
+        }
+
+
+        public static CustomerViewModel ToViewModel(this Customer entity)
+        {
+            var customer = new CustomerViewModel();
+            customer.Id = entity.Id.ToString();
+            customer.Name = entity.Name;
+            customer.HospitalName = entity.Name;
+            customer.CustomerTypeName = entity.CustomerType.CustomerTypeName;
+            return customer;
+        }
+        public static ContactViewModel ToViewModel(this CustomerContact entity)
+        {
+            var contact = new ContactViewModel();
+            contact.Id = entity.Id.ToString();
+            contact.Name = entity.Name;
+            contact.Phone = entity.Phone;
+            contact.Mobile = entity.Mobile;
+            contact.Email = entity.Email;
+            contact.Fax = entity.Fax;
+            return contact;
+        }
+
+        public static SaleUserViewModel ToViewModel(this User entity)
+        {
+            var user = new SaleUserViewModel();
+            user.Id = entity.Id.ToString();
+            user.Name = entity.DisplayName;
+            user.Branch = entity.Department.DepartmentName;
+            return user;
         }
     }
 }

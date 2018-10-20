@@ -19,5 +19,12 @@ namespace RP.Business
                     .ToList();
             }
         }
+        public CustomerContact GetContactById(string id)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                return uow.CustomerContactRepository.GetById(id);
+            }
+        }
     }
 }

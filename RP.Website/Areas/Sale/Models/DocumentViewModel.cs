@@ -8,6 +8,7 @@ namespace RP.Website.Models
 {
     public class DocumentViewModel
     {
+        public string Id { get; set; }
         public string DocumentCode { get; set; }
         public DateTime IssuedDate { get; set; }
         public DateTime ExpirationDate { get; set; }

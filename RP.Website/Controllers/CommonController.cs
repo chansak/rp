@@ -166,5 +166,23 @@ namespace RP.Website.Controllers
             }));
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult GetCustomerById(string id)
+        {
+            var customer = GenericFactory.Business.GetCustomerById(id);
+            var data = customer.ToViewModel();
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetContactById(string id)
+        {
+            var contact = GenericFactory.Business.GetContactById(id);
+            var data = contact.ToViewModel();
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetSaleUserById(string id)
+        {
+            var user = GenericFactory.Business.GetSaleUserById(id);
+            var data = user.ToViewModel();
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }
