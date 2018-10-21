@@ -36,7 +36,7 @@ namespace RP.DataAccess
     
         public virtual Document Document { get; set; }
         public virtual Product Product { get; set; }
-        public virtual ProductUnit ProductUnit { get; set; }
+        public virtual Unit Unit { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductItemAttachment> ProductItemAttachments { get; set; }
@@ -46,6 +46,5 @@ namespace RP.DataAccess
         public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
-        public virtual Unit Unit { get; set; }
     }
 }

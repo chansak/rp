@@ -25,6 +25,7 @@ namespace RP.DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
@@ -40,6 +41,7 @@ namespace RP.DataAccess
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<MaterialType> MaterialTypes { get; set; }
         public virtual DbSet<MaterialUnit> MaterialUnits { get; set; }
+        public virtual DbSet<PatternImage> PatternImages { get; set; }
         public virtual DbSet<PatternPosition> PatternPositions { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
@@ -47,6 +49,7 @@ namespace RP.DataAccess
         public virtual DbSet<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
         public virtual DbSet<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
         public virtual DbSet<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
+        public virtual DbSet<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         public virtual DbSet<ProductOption> ProductOptions { get; set; }
         public virtual DbSet<ProductPrice> ProductPrices { get; set; }
         public virtual DbSet<ProductUnit> ProductUnits { get; set; }
@@ -56,8 +59,5 @@ namespace RP.DataAccess
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
-        public virtual DbSet<PatternImage> PatternImages { get; set; }
-        public virtual DbSet<Color> Colors { get; set; }
-        public virtual DbSet<ProductMaterialUsage> ProductMaterialUsages { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace RP.Model
     {
         public ProductUnit()
         {
-            this.DocumentProductItems = new HashSet<DocumentProductItem>();
             this.ProductPrices = new HashSet<ProductPrice>();
         }
     
@@ -24,7 +23,6 @@ namespace RP.Model
         public Nullable<System.Guid> ProductId { get; set; }
         public Nullable<System.Guid> UnitId { get; set; }
     
-        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
         public virtual Unit Unit { get; set; }
     }

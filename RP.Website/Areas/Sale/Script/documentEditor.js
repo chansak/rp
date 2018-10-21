@@ -132,28 +132,35 @@
         $(items).each(function (index, item) {
             var total = parseFloat((item.amount * item.pricePerUnit));
             var id = "'" + item.itemId + "'";
-            html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
-            html += '   <td style="width:16%"></td>';
-            html += '   <td style="width:16%">' + item.productName + '</td>';
-            html += '   <td style="width:16%">' + item.productUnitName + '</td>';
-            html += '   <td style="width:16%">' + item.amount + '</td>';
-            html += '   <td style="width:16%">' + item.pricePerUnit + '</td>';
-            html += '   <td style="width:16%">' + currency(total).format() + '</td>';
+            
+            if (item.itemId != null) {
+                html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
+            } else {
+                html += '<tr>';
+            }
+            html += '   <td style="width:15%"></td>';
+            html += '   <td style="width:15%">' + item.productName + '</td>';
+            html += '   <td style="width:15%">' + item.productUnitName + '</td>';
+            html += '   <td style="width:15%">' + item.amount + '</td>';
+            html += '   <td style="width:15%">' + item.pricePerUnit + '</td>';
+            html += '   <td style="width:15%">' + currency(total).format() + '</td>';
             html += '<tr>';
-            html += '<tr id=' + item.itemId + ' style="background-color: #ffffff;display:none">'
-            html += '   <td colspan="2" style="border:solid 1px #eee">'
-            html += '       <div>พิมพ์</div>';
-            html += '       <div><ul><li>1</li><li>2</li></ul></div>';
-            html += '   </td>';
-            html += '   <td colspan="2" style="border:solid 1px #eee">';
-            html += '       <div>สกรีน</div>';
-            html += '       <div><ul><li>1</li><li>2</li></ul></div>';
-            html += '   </td>';
-            html += '   <td colspan="2" style="border:solid 1px #eee">';
-            html += '       <div>ปัก</div>';
-            html += '       <div><ul><li>1</li><li>2</li></ul></div>';
-            html += '   </td>';
-            html += '</tr>'
+            if (item.itemId != null) {
+                html += '<tr id=' + item.itemId + ' style="background-color: #ffffff;display:none">'
+                html += '   <td colspan="2" style="border:solid 0px #eee">'
+                html += '       <div>พิมพ์</div>';
+                html += '       <div><ul><li>1</li><li>2</li></ul></div>';
+                html += '   </td>';
+                html += '   <td colspan="2" style="border:solid 1px #eee">';
+                html += '       <div>สกรีน</div>';
+                html += '       <div><ul><li>1</li><li>2</li></ul></div>';
+                html += '   </td>';
+                html += '   <td colspan="2" style="border:solid 1px #eee">';
+                html += '       <div>ปัก</div>';
+                html += '       <div><ul><li>1</li><li>2</li></ul></div>';
+                html += '   </td>';
+                html += '</tr>'
+            }
         });
         $("#productItems").empty().html(html);
     };

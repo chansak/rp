@@ -17,6 +17,7 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Color()
         {
+            this.ProductItemPrintOptionals = new HashSet<ProductItemPrintOptional>();
             this.ProductItemScreenOptionals = new HashSet<ProductItemScreenOptional>();
         }
     
@@ -24,6 +25,8 @@ namespace RP.DataAccess
         public string ColorCode { get; set; }
         public string ColorName { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
     }

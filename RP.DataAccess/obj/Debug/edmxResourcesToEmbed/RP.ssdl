@@ -21,13 +21,14 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="250" />
-    <Property Name="CompanyId" Type="uniqueidentifier" />
-    <Property Name="CustomerTypeId" Type="int" />
+    <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CustomerTypeId" Type="int" Nullable="false" />
     <Property Name="IsDelete" Type="bit" Nullable="false" />
     <Property Name="CreatedDate" Type="date" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="UpdatedDate" Type="date" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerCode" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="CustomerAddress">
     <Key>
@@ -213,29 +214,29 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ProductItemId" Type="uniqueidentifier" />
     <Property Name="PatternImagePath" Type="nvarchar(max)" />
-    <Property Name="ColorCodeId" Type="uniqueidentifier" />
+    <Property Name="ColorCodeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductItemId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductItemScreenOptional">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ProductItemId" Type="uniqueidentifier" />
     <Property Name="PatternImagePath" Type="nvarchar(max)" />
-    <Property Name="ColorCodeId" Type="uniqueidentifier" />
-    <Property Name="PatternPositionId" Type="uniqueidentifier" />
+    <Property Name="ColorCodeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PatternPositionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductItemId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductItemSewOptional">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ProductItemId" Type="uniqueidentifier" />
     <Property Name="PatternImagePath" Type="nvarchar(max)" />
-    <Property Name="PatternPositionId" Type="uniqueidentifier" />
+    <Property Name="PatternPositionId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Remark" Type="nvarchar(max)" />
+    <Property Name="ProductItemId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductMaterialUsage">
     <Key>
@@ -327,7 +328,7 @@
     <Property Name="Name" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Customer_Company">
-    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
     <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Company">
@@ -339,7 +340,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Customer_CustomerType">
-    <End Role="CustomerType" Type="Self.CustomerType" Multiplicity="0..1" />
+    <End Role="CustomerType" Type="Self.CustomerType" Multiplicity="1" />
     <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CustomerType">
@@ -542,8 +543,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProductItemPrintOptional_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="1" />
+    <End Role="ProductItemPrintOptional" Type="Self.ProductItemPrintOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemPrintOptional">
+        <PropertyRef Name="ColorCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ProductItemPrintOptional_DocumentProductItems">
-    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="0..1" />
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="1" />
     <End Role="ProductItemPrintOptional" Type="Self.ProductItemPrintOptional" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DocumentProductItems">
@@ -555,7 +568,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductItemScreenOptional_Color">
-    <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+    <End Role="Color" Type="Self.Color" Multiplicity="1" />
     <End Role="ProductItemScreenOptional" Type="Self.ProductItemScreenOptional" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Color">
@@ -567,7 +580,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductItemScreenOptional_DocumentProductItems">
-    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="0..1" />
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="1" />
     <End Role="ProductItemScreenOptional" Type="Self.ProductItemScreenOptional" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DocumentProductItems">
@@ -579,7 +592,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductItemScreenOptional_PatternPosition">
-    <End Role="PatternPosition" Type="Self.PatternPosition" Multiplicity="0..1" />
+    <End Role="PatternPosition" Type="Self.PatternPosition" Multiplicity="1" />
     <End Role="ProductItemScreenOptional" Type="Self.ProductItemScreenOptional" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatternPosition">
@@ -591,7 +604,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductItemSewOptional_DocumentProductItems">
-    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="0..1" />
+    <End Role="DocumentProductItems" Type="Self.DocumentProductItems" Multiplicity="1" />
     <End Role="ProductItemSewOptional" Type="Self.ProductItemSewOptional" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DocumentProductItems">
@@ -603,7 +616,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ProductItemSewOptional_PatternPosition">
-    <End Role="PatternPosition" Type="Self.PatternPosition" Multiplicity="0..1" />
+    <End Role="PatternPosition" Type="Self.PatternPosition" Multiplicity="1" />
     <End Role="ProductItemSewOptional" Type="Self.ProductItemSewOptional" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PatternPosition">
@@ -864,6 +877,10 @@
     <AssociationSet Name="FK_ProductItemAttachment_DocumentProductItems" Association="Self.FK_ProductItemAttachment_DocumentProductItems">
       <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
       <End Role="ProductItemAttachment" EntitySet="ProductItemAttachment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemPrintOptional_Color" Association="Self.FK_ProductItemPrintOptional_Color">
+      <End Role="Color" EntitySet="Color" />
+      <End Role="ProductItemPrintOptional" EntitySet="ProductItemPrintOptional" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductItemPrintOptional_DocumentProductItems" Association="Self.FK_ProductItemPrintOptional_DocumentProductItems">
       <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />

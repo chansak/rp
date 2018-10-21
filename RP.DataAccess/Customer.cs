@@ -23,13 +23,14 @@ namespace RP.DataAccess
     
         public System.Guid Id { get; set; }
         public string Name { get; set; }
-        public Nullable<System.Guid> CompanyId { get; set; }
-        public Nullable<int> CustomerTypeId { get; set; }
+        public System.Guid CompanyId { get; set; }
+        public int CustomerTypeId { get; set; }
         public bool IsDelete { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
+        public string CustomerCode { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual CustomerType CustomerType { get; set; }

@@ -17,7 +17,6 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductUnit()
         {
-            this.DocumentProductItems = new HashSet<DocumentProductItem>();
             this.ProductPrices = new HashSet<ProductPrice>();
         }
     
@@ -25,8 +24,6 @@ namespace RP.DataAccess
         public Nullable<System.Guid> ProductId { get; set; }
         public Nullable<System.Guid> UnitId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
         public virtual Unit Unit { get; set; }
