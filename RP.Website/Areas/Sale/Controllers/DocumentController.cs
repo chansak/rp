@@ -35,7 +35,7 @@ namespace RP.Website.Areas.Sale.Controllers
                 CustomerType = d.Customer.CustomerType.CustomerTypeName,
                 CustomerName = d.Customer.Name,
                 DocumentCode = d.FileNumber,
-                SaleUserName = "ชาญศักดิ์ คชเสน",
+                SaleUserName = d.Customer.Name,
                 WorkflowStatus = (int)d.DocumentStatusId,
                 WorkflowStatusName = "ลูกค้าเสนอราคา",
                 BiddingStatus = (int)d.BiddingStatusId,
@@ -72,7 +72,8 @@ namespace RP.Website.Areas.Sale.Controllers
                 var json = formCollection["document"].ToString().Replace(@"\", "");
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
-                GenericFactory.Business.CreateDocument(document, "SR");
+                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                GenericFactory.Business.CreateDocument(document, customerCode);
                 return Json("");
             }
             catch (Exception ex)

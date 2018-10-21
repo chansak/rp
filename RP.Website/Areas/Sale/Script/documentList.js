@@ -20,7 +20,7 @@
             toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration')
         }
         if (itemId != 0) {
-            window.location.href = 'Document/Edit/' + itemId;
+            window.location.href = '../../Sale/Document/Edit/' + itemId;
         }
     };
 
