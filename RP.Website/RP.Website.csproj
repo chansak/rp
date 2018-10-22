@@ -1557,7 +1557,10 @@
     <Compile Include="Areas\Sale\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Sale\Models\DocumentListItemViewModel.cs" />
     <Compile Include="Areas\Sale\Models\DocumentViewModel.cs" />
-    <Compile Include="Areas\Sale\Models\ProductItem.cs" />
+    <Compile Include="Areas\Sale\Models\PrintOptionViewModel.cs" />
+    <Compile Include="Areas\Sale\Models\ProductItemViewModel.cs" />
+    <Compile Include="Areas\Sale\Models\ScreenOptionViewModel.cs" />
+    <Compile Include="Areas\Sale\Models\SewOptionViewModel.cs" />
     <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />

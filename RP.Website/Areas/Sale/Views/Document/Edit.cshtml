@@ -180,8 +180,8 @@
                                     </div>
                                     <div class="ibox-content no-borders">
                                         <div class="full-height-scroll">
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-hover">
+                                            <div class="table-responsive" style="border:1px solid #eee">
+                                                <table class="table table-striped table-hover" style="margin-bottom: 0px">
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
@@ -792,7 +792,7 @@
                     text: "กดปุ่ม OK เพื่อปิด!",
                     icon: "success"
                 }).then((value) => {
-                    utilities.RedirectToAction("/Sale/Quotation/Index");
+                    utilities.RedirectToAction("../");
                 });
             });
             $('.btnShowHistory').click(function () {

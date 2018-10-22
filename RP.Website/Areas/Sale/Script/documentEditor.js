@@ -132,13 +132,18 @@
         $(items).each(function (index, item) {
             var total = parseFloat((item.amount * item.pricePerUnit));
             var id = "'" + item.itemId + "'";
-            
-            if (item.itemId != null) {
-                html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
+            if (item.printOptions.length > 0 || item.screenOptions.length > 0 || item.sewOptions.length > 0) {
+                if (item.itemId != null) {
+                    html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
+                    html += '   <td style="width:15%" id="icon_' + item.itemId + '"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></td>';
+                } else {
+                    html += '<tr>';
+                    html += '<td></td>';
+                }
             } else {
                 html += '<tr>';
+                html += '<td></td>';
             }
-            html += '   <td style="width:15%"></td>';
             html += '   <td style="width:15%">' + item.productName + '</td>';
             html += '   <td style="width:15%">' + item.productUnitName + '</td>';
             html += '   <td style="width:15%">' + item.amount + '</td>';
@@ -147,17 +152,23 @@
             html += '<tr>';
             if (item.itemId != null) {
                 html += '<tr id=' + item.itemId + ' style="background-color: #ffffff;display:none">'
-                html += '   <td colspan="2" style="border:solid 0px #eee">'
-                html += '       <div>พิมพ์</div>';
-                html += '       <div><ul><li>1</li><li>2</li></ul></div>';
+                html += '   <td colspan="2" style="border-right:dashed 1px #e6e6e6">'
+                html += '       <h4>พิมพ์</h4>';
+                $(item.printOptions).each(function (index, i) {
+                    html += '       <div><ul<li>' + utilities.GetFileName(i.patternImagePath) + '</li></ul></div>';
+                });
                 html += '   </td>';
-                html += '   <td colspan="2" style="border:solid 1px #eee">';
-                html += '       <div>สกรีน</div>';
-                html += '       <div><ul><li>1</li><li>2</li></ul></div>';
+                html += '   <td colspan="2" style="border-right:dashed 1px #e6e6e6">';
+                html += '       <h4>สกรีน</h4>';
+                $(item.screenOptions).each(function (index, i) {
+                    html += '       <div><ul<li>' + utilities.GetFileName(i.patternImagePath) + '</li></ul></div>';
+                });
                 html += '   </td>';
-                html += '   <td colspan="2" style="border:solid 1px #eee">';
-                html += '       <div>ปัก</div>';
-                html += '       <div><ul><li>1</li><li>2</li></ul></div>';
+                html += '   <td colspan="2" style="border-right:dashed 0px #e6e6e6">';
+                html += '       <h4>ปัก</h4>';
+                $(item.sewOptions).each(function (index, i) {
+                    html += '       <div><ul<li>' + utilities.GetFileName(i.patternImagePath) + '</li></ul></div>';
+                });
                 html += '   </td>';
                 html += '</tr>'
             }
@@ -197,7 +208,15 @@
         },
         showItemDetail: function (itemId) {
             var isVisible = $("#" + itemId).is(":visible");
-            if (isVisible) { $("#" + itemId).hide(); } else { $("#" + itemId).show(); }
+            if (isVisible) {
+                $("#" + itemId).hide();
+                var html = '<a class="collapse-link"><i class="fa fa-chevron-down"></i></a>';
+                $("#icon_c1cc1b71-fa86-46c4-9972-024fe14bdc3f").html(html);
+            } else {
+                $("#" + itemId).show();
+                var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>';
+                $("#icon_c1cc1b71-fa86-46c4-9972-024fe14bdc3f").html(html);
+            }
 
         }
     }

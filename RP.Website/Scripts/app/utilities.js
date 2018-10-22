@@ -15,6 +15,9 @@
         },
         ConvertToDate(strDate) {
             return _convertToDate(strDate);
+        },
+        GetFileName(fullPath) {
+            return fullPath.replace(/^.*(\\|\/|\:)/, '');
         }
     }
 }

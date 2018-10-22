@@ -57,15 +57,56 @@ namespace RP.Website
             document.CustomerId = entity.CustomerId.ToString();
             document.ContactId = entity.ContactId.ToString();
             var productItems = new List<ProductItemViewModel>();
-            productItems.AddRange(entity.DocumentProductItems.Select(i => new ProductItemViewModel
+            foreach (var i in entity.DocumentProductItems)
             {
-                ProductId = i.ProductId.ToString(),
-                ProductName = i.Product.Name,
-                ProductUnitId = i.ProductUnitId.ToString(),
-                ProductUnitName = i.Unit.UnitName,
-                PricePerUnit = i.PricePerUnit,
-                Amount = i.Amount
-            }));
+                var printOptions = new List<PrintOptionViewModel>();
+                if (i.ProductItemPrintOptionals.Count > 0)
+                {
+                    var o1 = i.ProductItemPrintOptionals.FirstOrDefault();
+                    printOptions.Add(new PrintOptionViewModel
+                    {
+                        PatternImagePath = o1.PatternImagePath,
+                        ColorId = o1.ColorCodeId.ToString(),
+                        ColorName = ""
+                    });
+                }
+                var screenOptions = new List<ScreenOptionViewModel>();
+                if (i.ProductItemScreenOptionals.Count > 0)
+                {
+                    var o2 = i.ProductItemScreenOptionals.FirstOrDefault();
+                    screenOptions.Add(new ScreenOptionViewModel
+                    {
+                        PatternImagePath = o2.PatternImagePath,
+                        PositionId = o2.PatternPositionId.ToString(),
+                        PositionName = ""
+                    });
+                }
+                var sewOption = new List<SewOptionViewModel>();
+                if (i.ProductItemSewOptionals.Count > 0)
+                {
+                    var o3 = i.ProductItemSewOptionals.FirstOrDefault();
+                    sewOption.Add(new SewOptionViewModel
+                    {
+                        PatternImagePath = o3.PatternImagePath,
+                        PositionId = o3.PatternPositionId.ToString(),
+                        PositionName = "",
+                        Remark = o3.Remark
+                    });
+                }
+                productItems.Add(new ProductItemViewModel
+                {
+                    ItemId = i.Id.ToString(),
+                    ProductId = i.ProductId.ToString(),
+                    ProductName = i.Product.Name,
+                    ProductUnitId = i.ProductUnitId.ToString(),
+                    ProductUnitName = i.Unit.UnitName,
+                    PricePerUnit = i.PricePerUnit,
+                    Amount = i.Amount,
+                    PrintOptions = printOptions,
+                    ScreenOptions = screenOptions,
+                    SewOptions = sewOption
+                });
+            }
             document.Items = productItems;
             document.DeliveryAddress = entity.DocumentDeliveries.FirstOrDefault().Address1;
             document.DeliveryContactId = entity.DeliveryContactId.ToString();

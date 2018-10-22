@@ -1,4 +1,6 @@
-﻿namespace RP.Website.Models
+﻿using System.Collections.Generic;
+
+namespace RP.Website.Models
 {
     public class ProductItemViewModel
     {
@@ -9,5 +11,8 @@
         public string ProductUnitName { get; set; }
         public int Amount { get; set; }
         public decimal PricePerUnit { get; set; }
+        public List<PrintOptionViewModel> PrintOptions { get; set; }
+        public List<ScreenOptionViewModel> ScreenOptions { get; set; }
+        public List<SewOptionViewModel> SewOptions { get; set; }
     }
 }

@@ -29,6 +29,9 @@ namespace RP.DataAccess
                 Include(i => i.DocumentProductItems).
                 Include(i => i.DocumentProductItems.Select(p => p.Product)).
                 Include(i => i.DocumentProductItems.Select(p => p.Unit)).
+                Include(i => i.DocumentProductItems.Select(p => p.ProductItemPrintOptionals)).
+                Include(i => i.DocumentProductItems.Select(p => p.ProductItemScreenOptionals)).
+                Include(i => i.DocumentProductItems.Select(p => p.ProductItemSewOptionals)).
                 Include(i => i.DocumentDeliveries)
                 .FirstOrDefault();
         }
