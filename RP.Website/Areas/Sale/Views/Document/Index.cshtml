@@ -1,4 +1,4 @@
-﻿@model RP.Website.Models.ListViewModel<RP.Website.Models.DocumentListItemViewModel>
+﻿@*@model RP.Website.Models.ListViewModel<RP.Website.Models.DocumentListItemViewModel>*@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -25,17 +25,16 @@
                     <h2>&nbsp;</h2>
                     <div class="row">
                         <div class="col-sm-4">
-                            <select class="form-control m-b" name="account">
-                                <option>รหัสลูกค้า</option>
-                                <option>ชื่อลูกค้า</option>
-                                <option>เลขที่เอกสาร</option>
+                            <select class="form-control m-b" id="ddSearch">
+                                <option value="CustomerName">ชื่อลูกค้า</option>
+                                <option value="DocumentCode">เลขที่เอกสาร</option>
                             </select>
                         </div>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" placeholder="ค้นหา" class="input form-control">
+                                <input type="text" id="keyword" placeholder="ค้นหา" class="input form-control">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+                                    <button type="button" id="btnSearch" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
                                 </span>
                             </div>
                         </div>
@@ -58,19 +57,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var item in Model.Data)
-                                            {
-                                                <tr>
-                                                    <td><div class="checkbox i-checks"><label> <input type="checkbox" name="documentId" value='@Html.Raw(item.Id)'> <i></i></label></div></td>
-                                                    <td><button type="button" class="btn btn-primary btn-circle"></button></td>
-                                                    <td>@Html.Raw(item.CustomerType)</td>
-                                                    <td>@Html.Raw(item.CustomerName)</td>
-                                                    <td>@Html.Raw(item.DocumentCode)</td>
-                                                    <td>@Html.Raw(item.SaleUserName)</td>
-                                                    <td>@Html.Raw(item.WorkflowStatusName)</td>
-                                                    <td><span class="badge badge-primary">@Html.Raw(item.BiddingStatusName)</span></td>
-                                                </tr>
-                                            }
                                         </tbody>
                                     </table>
                                     <div id="pager_quotation"></div>
@@ -94,7 +80,6 @@
                 <div class="ibox-content float-e-margins">
                     @Html.ActionLink("สร้างใบขอราคา", "AddNew", null, new { @class = "btn btn-primary btn-xs" })
                     <button type="button" id="btnEdit" class="btn btn-white btn-xs">แก้ไข</button>
-                    @*@Html.ActionLink("แก้ไข", "Edit", new { id = "5F9C2528-F951-4AA4-9CF4-234C4CE56772" }, new { @class = "btn btn-primary btn-xs" })*@
                     <button type="button" class="btn btn-white btn-xs btnDelete">ลบ</button>
                     <button type="button" class="btn btn-white btn-xs">คัดลอก</button>
                     <button type="button" class="btn btn-white btn-xs">ยื่นขออนุมัติ</button>
@@ -109,19 +94,6 @@
                         </ul>
                     </div>
                 </div>
-                @*<div class="ibox-footer">
-                    <h5>ข้อมูลที่เกี่ยวข้อง </h5>
-                    <p>
-                        <ul>
-                            <li>ลูกค้า</li>
-                            <li>ผู้ติดต่อ</li>
-                            <li>เงื่อนไขการชำระเงิน</li>
-                            <li>กระบวนการจัดซื้อ</li>
-                            <li>วิธีการขนส่ง</li>
-                            <li>เงื่อนไขการขนส่ง</li>
-                        </ul>
-                    </p>
-                </div>*@
             </div>
             <div class="ibox collapsed">
                 <div class="ibox-title">
@@ -187,12 +159,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             documentList.init();
-            //green checkbox
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-            // Add slimscroll to element
             $('.scroll_content').slimscroll({
                 height: '500px'
             });
@@ -219,6 +185,9 @@
             $("#btnEdit").unbind("click");
             $("#btnEdit").click(function () {
                 documentList.edit();
+            });
+            $("#btnSearch").click(function () {
+                documentList.search();
             });
         });
     </script>

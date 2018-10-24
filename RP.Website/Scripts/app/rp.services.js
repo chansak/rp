@@ -79,7 +79,7 @@
 
         return XHR;
     },
-    GetProductsByCategoryId: function (id,successCallback, errorCallback) {
+    GetProductsByCategoryId: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
             url: "/common/GetProductsByCategoryId",
@@ -121,11 +121,11 @@
 
         return XHR;
     },
-    GetMaterialStockCheck: function (id, productUnitId,amount, successCallback, errorCallback) {
+    GetMaterialStockCheck: function (id, productUnitId, amount, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
             url: "/common/GetMaterialStockCheck",
-            data: JSON.stringify({ id: id, productUnitId: productUnitId,amount:amount }),
+            data: JSON.stringify({ id: id, productUnitId: productUnitId, amount: amount }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data, textStatus, jqXHR) {
@@ -344,5 +344,25 @@
         });
         return XHR;
     },
-    
+    GetDocumentsListBySearch: function (searchBy, keyword, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/document/Search",
+            data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+
 }

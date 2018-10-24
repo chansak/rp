@@ -17,14 +17,60 @@ namespace RP.Website.Areas.Sale.Controllers
     {
         public ActionResult Index(string searchBy, string keyword, string sortBy, string direction, int? page)
         {
+            //int pageSize = AppSettingHelper.PageSize;
+            //if (!string.IsNullOrWhiteSpace(keyword))
+            //{
+            //    keyword = keyword.Trim();
+            //}
+
+            //var documents = GenericFactory.Business.GetDocumentsList()
+            //    .OrderByDescending(i=>i.CreatedDate)
+            //    .ToList();
+            //int totalCount = documents.Count;
+            //var result = new List<DocumentListItemViewModel>();
+            //result.AddRange(documents.Select(d => new DocumentListItemViewModel
+            //{
+            //    Id = d.Id.ToString(),
+            //    IssueDate = d.IssueDate,
+            //    CustomerType = d.Customer.CustomerType.CustomerTypeName,
+            //    CustomerName = d.Customer.Name,
+            //    DocumentCode = d.FileNumber,
+            //    SaleUserName = d.Customer.Name,
+            //    WorkflowStatus = (int)d.DocumentStatusId,
+            //    WorkflowStatusName = "ลูกค้าเสนอราคา",
+            //    BiddingStatus = (int)d.BiddingStatusId,
+            //    BiddingStatusName = "รอยืนยัน",
+            //    ExpiryDate = d.ExpiryDate
+            //}));
+
+
+            //RouteValueDictionary routeValues = new RouteValueDictionary();
+            //routeValues.Add("searchBy", searchBy ?? "");
+            //routeValues.Add("keyword", keyword ?? "");
+            //routeValues.Add("sortBy", sortBy ?? "");
+            //routeValues.Add("direction", direction);
+            //var list = new PaginatedList<DocumentListItemViewModel>(result, page ?? 0, pageSize, totalCount, true, routeValues);
+            //var viewModel = new ListViewModel<DocumentListItemViewModel>()
+            //{
+            //    SearchBy = searchBy,
+            //    Keyword = keyword,
+            //    Direction = direction,
+            //    SortBy = sortBy,
+            //    Data = list
+            //};
+            //return View(viewModel);
+            return View();
+        }
+        public ActionResult Search(string searchBy, string keyword, string sortBy, string direction, int? page)
+        {
             int pageSize = AppSettingHelper.PageSize;
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 keyword = keyword.Trim();
             }
 
-            var documents = GenericFactory.Business.GetDocumentsList()
-                .OrderByDescending(i=>i.CreatedDate)
+            var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword)
+                .OrderByDescending(i => i.CreatedDate)
                 .ToList();
             int totalCount = documents.Count;
             var result = new List<DocumentListItemViewModel>();
@@ -58,7 +104,7 @@ namespace RP.Website.Areas.Sale.Controllers
                 SortBy = sortBy,
                 Data = list
             };
-            return View(viewModel);
+            return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
         }
         public ActionResult AddNew()
         {
