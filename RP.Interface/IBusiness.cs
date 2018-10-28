@@ -43,7 +43,8 @@ namespace RP.Interfaces
         IList<PatternImage> GetPatternImage();
         IList<PatternPosition> GetPatternPosition();
         IList<Color> GetPatternColor();
-
+        Color GetColorById(string id);
+        PatternPosition GetPositionById(string id);
         #endregion
 
     }

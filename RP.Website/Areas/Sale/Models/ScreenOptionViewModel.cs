@@ -4,6 +4,7 @@
     {
         public string PatternImagePath { get; set; }
         public string PositionName { get; set; }
+        public string ColorName { get; set; }
 
         public int SelectedOption { get; set; }
         public string PatternId { get; set; }

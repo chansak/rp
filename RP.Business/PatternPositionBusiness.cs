@@ -17,5 +17,11 @@ namespace RP.Business
                 return uow.PatternPositionRepository.All().ToList();
             }
         }
+        public PatternPosition GetPositionById(string id) {
+            using (var uow = UnitOfWork.Create())
+            {
+                return uow.PatternPositionRepository.GetById(id);
+            }
+        }
     }
 }

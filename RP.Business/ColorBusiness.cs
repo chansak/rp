@@ -17,5 +17,11 @@ namespace RP.Business
                 return uow.ColorRepository.All().ToList();
             }
         }
+        public Color GetColorById(string id) {
+            using (var uow = UnitOfWork.Create())
+            {
+                return uow.ColorRepository.GetById(id);
+            }
+        }
     }
 }

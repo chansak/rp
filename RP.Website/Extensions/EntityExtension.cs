@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RP.Model.Enum;
 using System;
+using RP.Interfaces;
 
 namespace RP.Website
 {
@@ -152,22 +153,62 @@ namespace RP.Website
                 if (i.ProductItemPrintOptionals.Count > 0)
                 {
                     var o1 = i.ProductItemPrintOptionals.FirstOrDefault();
-                    printOptions.Add(new PrintOptionViewModel
+                    switch (o1.OptionalStatusId)
                     {
-                        PatternImagePath = o1.PatternImagePath,
-                        ColorName = ""
-                    });
+                        case 1:
+                            {
+                                printOptions.Add(new PrintOptionViewModel
+                                {
+                                    SelectedOption = o1.OptionalStatusId,
+                                    PatternImagePath = o1.PatternImagePath,
+                                });
+                                break;
+                            }
+                        case 2:
+                            {
+                                var color = GenericFactory.Business.GetColorById(o1.ColorCodeId.Value.ToString());
+                                printOptions.Add(new PrintOptionViewModel
+                                {
+                                    SelectedOption = o1.OptionalStatusId,
+                                    PatternImagePath = o1.PatternImagePath,
+                                    ColorName = color.ColorName,
+                                });
+                                break;
+                            }
+                    }
+
                 }
                 var screenOptions = new List<ScreenOptionViewModel>();
                 if (i.ProductItemScreenOptionals.Count > 0)
                 {
                     var o2 = i.ProductItemScreenOptionals.FirstOrDefault();
-                    screenOptions.Add(new ScreenOptionViewModel
+                    switch (o2.OptionalStatusId)
                     {
-                        PatternImagePath = o2.PatternImagePath,
-                        PositionId = o2.PatternPositionId.ToString(),
-                        PositionName = ""
-                    });
+                        case 1:
+                            {
+                                screenOptions.Add(new ScreenOptionViewModel
+                                {
+                                    SelectedOption = o2.OptionalStatusId,
+                                    PatternImagePath = o2.PatternImagePath,
+                                    PositionId = o2.PatternPositionId.ToString(),
+                                });
+                                break;
+                            }
+                        case 2:
+                            {
+                                var color = GenericFactory.Business.GetColorById(o2.ColorCodeId.Value.ToString());
+                                var position = GenericFactory.Business.GetPositionById(o2.ColorCodeId.Value.ToString());
+                                screenOptions.Add(new ScreenOptionViewModel
+                                {
+                                    SelectedOption = o2.OptionalStatusId,
+                                    PatternImagePath = o2.PatternImagePath,
+                                    PositionId = o2.PatternPositionId.ToString(),
+                                    ColorName = color.ColorName,
+                                    PositionName = position.PositionName
+                                });
+                                break;
+                            }
+                    }
                 }
                 var sewOptions = new List<SewOptionViewModel>();
                 if (i.ProductItemSewOptionals.Count > 0)
@@ -175,6 +216,7 @@ namespace RP.Website
                     var o3 = i.ProductItemSewOptionals.FirstOrDefault();
                     sewOptions.Add(new SewOptionViewModel
                     {
+                        SelectedOption = o3.OptionalStatusId,
                         PatternImagePath = o3.PatternImagePath,
                         PositionId = o3.PatternPositionId.ToString(),
                         PositionName = "",
