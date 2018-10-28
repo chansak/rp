@@ -41,17 +41,85 @@ namespace RP.Website
                     case 1:
                         {
                             printOption1.Id = Guid.NewGuid();
+                            printOption1.OptionalStatusId = 1;
                             printOption1.ProductItemId = itemId;
+                            printOption1.PatternImagePath = "";
                             break;
                         }
                     case 2:
                         {
+                            printOption1.Id = Guid.NewGuid();
+                            printOption1.OptionalStatusId = 2;
+                            printOption1.ColorCodeId = new Guid(i.PrintOption.ColorId);
+                            printOption1.ProductItemId = itemId;
+
                             break;
                         }
                     case 0:
                         {
                             break;
                         }
+                }
+                switch (i.ScreenOption.SelectedOption)
+                {
+                    case 1:
+                        {
+                            printOption2.Id = Guid.NewGuid();
+                            printOption2.OptionalStatusId = 1;
+                            printOption2.ProductItemId = itemId;
+                            printOption2.PatternImagePath = "";
+                            break;
+                        }
+                    case 2:
+                        {
+                            printOption2.Id = Guid.NewGuid();
+                            printOption2.OptionalStatusId = 2;
+                            printOption2.ColorCodeId = new Guid(i.ScreenOption.ColorId);
+                            printOption2.PatternPositionId = new Guid(i.ScreenOption.ColorId);
+                            printOption2.ProductItemId = itemId;
+
+                            break;
+                        }
+                    case 0:
+                        {
+                            break;
+                        }
+                }
+                switch (i.SewOption.SelectedOption)
+                {
+                    case 1:
+                        {
+                            printOption3.Id = Guid.NewGuid();
+                            printOption3.OptionalStatusId = 1;
+                            printOption3.ProductItemId = itemId;
+                            printOption3.PatternImagePath = "";
+                            break;
+                        }
+                    case 2:
+                        {
+                            printOption3.Id = Guid.NewGuid();
+                            printOption3.OptionalStatusId = 2;
+                            printOption3.PatternPositionId = new Guid(i.SewOption.PositionId);
+                            printOption3.ProductItemId = itemId;
+                            printOption3.Remark = i.SewOption.Remark;
+                            break;
+                        }
+                    case 0:
+                        {
+                            break;
+                        }
+                }
+                if (i.PrintOption.SelectedOption > 0)
+                {
+                    item.ProductItemPrintOptionals.Add(printOption1);
+                }
+                if (i.ScreenOption.SelectedOption > 0)
+                {
+                    item.ProductItemScreenOptionals.Add(printOption2);
+                }
+                if (i.SewOption.SelectedOption > 0)
+                {
+                    item.ProductItemSewOptionals.Add(printOption3);
                 }
                 document.DocumentProductItems.Add(item);
             }

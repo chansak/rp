@@ -86,7 +86,6 @@
     var _save = function (callback) {
         var allItems = [];
         var formData = new FormData();
-
         $(items).each(function (index, item) {
             var printOptions = item.print;
             var screenOptions = item.screen;
@@ -148,7 +147,7 @@
                     positionId: 0,
                     remark: ''
                 };
-            } else if (sewOptions.selectedOption = 2) {
+            } else if (sewOptions.selectedOption == 2) {
                 sewData = {
                     selectedOption: sewOptions.selectedOption,
                     patternId: 0,
