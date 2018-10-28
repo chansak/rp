@@ -215,8 +215,8 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="PatternImagePath" Type="nvarchar(max)" />
-    <Property Name="ColorCodeId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProductItemId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ColorCodeId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductItemScreenOptional">
     <Key>

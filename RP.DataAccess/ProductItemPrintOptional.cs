@@ -16,10 +16,10 @@ namespace RP.DataAccess
     {
         public System.Guid Id { get; set; }
         public string PatternImagePath { get; set; }
-        public System.Guid ColorCodeId { get; set; }
         public System.Guid ProductItemId { get; set; }
+        public System.Guid ColorCodeId { get; set; }
     
-        public virtual Color Color { get; set; }
         public virtual DocumentProductItem DocumentProductItem { get; set; }
+        public virtual Color Color { get; set; }
     }
 }

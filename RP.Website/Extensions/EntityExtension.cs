@@ -33,16 +33,15 @@ namespace RP.Website
                     Amount = i.Amount,
                     PricePerUnit = (decimal)i.PricePerUnit
                 };
+                var printOption1 = new ProductItemPrintOptional();
+                var printOption2 = new ProductItemScreenOptional();
+                var printOption3 = new ProductItemSewOptional();
                 switch (i.PrintOption.SelectedOption)
                 {
                     case 1:
                         {
-                            var option = new ProductItemPrintOptional
-                            {
-                                Id = Guid.NewGuid(),
-                                ProductItemId = itemId,
-                                ColorCodeId = new System.Guid(i.PrintOption.ColorId)
-                            };
+                            printOption1.Id = Guid.NewGuid();
+                            printOption1.ProductItemId = itemId;
                             break;
                         }
                     case 2:
@@ -88,7 +87,6 @@ namespace RP.Website
                     printOptions.Add(new PrintOptionViewModel
                     {
                         PatternImagePath = o1.PatternImagePath,
-                        ColorId = o1.ColorCodeId.ToString(),
                         ColorName = ""
                     });
                 }

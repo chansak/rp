@@ -231,16 +231,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProductItemPrintOptionals">
-      <EntityTypeMapping TypeName="RP.Model.ProductItemPrintOptional">
-        <MappingFragment StoreEntitySet="ProductItemPrintOptional">
-          <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
-          <ScalarProperty Name="ColorCodeId" ColumnName="ColorCodeId" />
-          <ScalarProperty Name="PatternImagePath" ColumnName="PatternImagePath" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductItemScreenOptionals">
       <EntityTypeMapping TypeName="RP.Model.ProductItemScreenOptional">
         <MappingFragment StoreEntitySet="ProductItemScreenOptional">
@@ -358,6 +348,16 @@
       <EntityTypeMapping TypeName="RP.Model.Warehouse">
         <MappingFragment StoreEntitySet="Warehouse">
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductItemPrintOptionals">
+      <EntityTypeMapping TypeName="RP.Model.ProductItemPrintOptional">
+        <MappingFragment StoreEntitySet="ProductItemPrintOptional">
+          <ScalarProperty Name="ColorCodeId" ColumnName="ColorCodeId" />
+          <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
+          <ScalarProperty Name="PatternImagePath" ColumnName="PatternImagePath" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

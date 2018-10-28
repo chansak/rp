@@ -132,7 +132,7 @@
         $(items).each(function (index, item) {
             var total = parseFloat((item.amount * item.pricePerUnit));
             var id = "'" + item.itemId + "'";
-            if (item.printOptions.length > 0 || item.screenOptions.length > 0 || item.sewOptions.length > 0) {
+            if (item.printOption != null || item.screenOption != null || item.sewOption != null) {
                 if (item.itemId != null) {
                     html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
                     html += '   <td style="width:15%" id="icon_' + item.itemId + '"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></td>';
@@ -154,19 +154,19 @@
                 html += '<tr id=' + item.itemId + ' style="background-color: #ffffff;display:none">'
                 html += '   <td colspan="2" style="border-right:dashed 1px #e6e6e6">'
                 html += '       <h4>พิมพ์</h4>';
-                $(item.printOptions).each(function (index, i) {
+                $(item.printOption).each(function (index, i) {
                     html += '       <div><ul<li>' + utilities.GetFileName(i.patternImagePath) + '</li></ul></div>';
                 });
                 html += '   </td>';
                 html += '   <td colspan="2" style="border-right:dashed 1px #e6e6e6">';
                 html += '       <h4>สกรีน</h4>';
-                $(item.screenOptions).each(function (index, i) {
+                $(item.screenOption).each(function (index, i) {
                     html += '       <div><ul<li>' + utilities.GetFileName(i.patternImagePath) + '</li></ul></div>';
                 });
                 html += '   </td>';
                 html += '   <td colspan="2" style="border-right:dashed 0px #e6e6e6">';
                 html += '       <h4>ปัก</h4>';
-                $(item.sewOptions).each(function (index, i) {
+                $(item.sewOption).each(function (index, i) {
                     html += '       <div><ul<li>' + utilities.GetFileName(i.patternImagePath) + '</li></ul></div>';
                 });
                 html += '   </td>';

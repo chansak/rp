@@ -17,9 +17,9 @@ namespace RP.Model
         public DocumentProductItem()
         {
             this.ProductItemAttachments = new HashSet<ProductItemAttachment>();
-            this.ProductItemPrintOptionals = new HashSet<ProductItemPrintOptional>();
             this.ProductItemScreenOptionals = new HashSet<ProductItemScreenOptional>();
             this.ProductItemSewOptionals = new HashSet<ProductItemSewOptional>();
+            this.ProductItemPrintOptionals = new HashSet<ProductItemPrintOptional>();
         }
     
         public System.Guid Id { get; set; }
@@ -38,9 +38,9 @@ namespace RP.Model
         public virtual Unit Unit { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         public virtual ICollection<ProductItemAttachment> ProductItemAttachments { get; set; }
-        public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
         public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
         public virtual ICollection<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
+        public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
     }
     
 }

@@ -16,16 +16,16 @@ namespace RP.Model
     {
         public Color()
         {
-            this.ProductItemPrintOptionals = new HashSet<ProductItemPrintOptional>();
             this.ProductItemScreenOptionals = new HashSet<ProductItemScreenOptional>();
+            this.ProductItemPrintOptionals = new HashSet<ProductItemPrintOptional>();
         }
     
         public System.Guid Id { get; set; }
         public string ColorCode { get; set; }
         public string ColorName { get; set; }
     
-        public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
         public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
+        public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
     }
     
 }
