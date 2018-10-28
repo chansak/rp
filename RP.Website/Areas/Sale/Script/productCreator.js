@@ -148,15 +148,15 @@
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 images.push(item);
-                $('#print-pattern').empty().append($('<option>', {
+                $('#print-pattern').append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
-                $('#screen-pattern').empty().append($('<option>', {
+                $('#screen-pattern').append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
-                $('#sew-pattern').empty().append($('<option>', {
+                $('#sew-pattern').append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
@@ -245,6 +245,38 @@
             $("#productOptions").find('option').remove().end();
             $("#productsUnit").find('option').remove().end();
 
+            $("#print-pattern").find('option').remove().end();
+            $("#screen-pattern").find('option').remove().end();
+            $("#sew-pattern").find('option').remove().end();
+
+            $("#print-color").find('option').remove().end();
+            $("#screen-color").find('option').remove().end();
+            $("#screen-position").find('option').remove().end();
+            $("#sew-position").find('option').remove().end();
+
+            $("#print-optional2").iCheck('check');
+            $("#screen-optional2").iCheck('check');
+            $("#sew-optional2").iCheck('check');
+
+            $("#print-option1-section").hide();
+            $("#print-option2-section").show();
+            $("#print-option3-section").hide();
+            $("#print-patternImage").html("");
+            $("#screen-option1-section").hide();
+            $("#screen-option2-section").show();
+            $("#screen-option3-section").hide();
+            $("#screen-patternImage").html("");
+            $("#sew-option1-section").hide();
+            $("#sew-option2-section").show();
+            $("#sew-option3-section").hide();
+            $("#sew-patternImage").html("");
+
+            $("#print-file").val('');
+            $("#screen-file").val('');
+            $("#sew-file").val('');
+            $(".fileinput-filename").empty()
+            $("#sew-remark").val('');
+
             _bindingProductCategories();
             _bindingPatternImage();
             _bindingPatternPosition();
@@ -291,6 +323,11 @@
             var sewPositionName = _sewPositionName != null ? _sewPositionName.positionName : '';
             var remark = $("#sew-remark").val();
 
+
+            var printPatternimage = utilities.FindObjectByKey(images, 'id', printPatternId);
+            var screenPatternimage = utilities.FindObjectByKey(images, 'id', screenPatternId);
+            var sewPatternimage = utilities.FindObjectByKey(images, 'id', sewPatternId);
+
             var item = {
                 productId: $("#products option:selected").val(),
                 productName: $("#products option:selected").text(),
@@ -305,45 +342,49 @@
                     options1: {
                         patternId: printPatternId,
                         patternName: printPatternName,
+                        patternImage: printPatternimage
                     },
                     options2: {
-                    },
-                    options3: {
                         file: printFile,
                         colorId: printColorId,
                         colorName: printColorName
-                    }
+                    },
+                    options3: {
+                    },
                 },
                 screen: {
                     selectedOption: selectedScreenOption,
                     options1: {
                         patternId: screenPatternId,
                         patternName: screenPatternName,
+                        patternImage: screenPatternimage
                     },
                     options2: {
-                    },
-                    options3: {
                         file: screenFile,
                         colorId: screenColorId,
                         colorName: screenColorName,
                         positionId: screenPositionId,
                         positionName: screenPositionName
-                    }
+                    },
+                    options3: {
+                    },
                 },
                 sew: {
                     selectedOption: selectedSewOption,
                     options1: {
                         patternId: sewPatternId,
                         patternName: sewPatternName,
+                        patternImage: sewPatternimage
+
                     },
                     options2: {
-                    },
-                    options3: {
                         file: sewFile,
                         positionId: sewPositionId,
                         positionName: sewPositionName,
                         remark: remark
-                    }
+                    },
+                    options3: {
+                    },
                 }
             };
             items.push(item);

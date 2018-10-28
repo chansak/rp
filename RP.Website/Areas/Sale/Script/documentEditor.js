@@ -211,13 +211,12 @@
             if (isVisible) {
                 $("#" + itemId).hide();
                 var html = '<a class="collapse-link"><i class="fa fa-chevron-down"></i></a>';
-                $("#icon_c1cc1b71-fa86-46c4-9972-024fe14bdc3f").html(html);
+                $("#icon_" + itemId).html(html);
             } else {
                 $("#" + itemId).show();
                 var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>';
-                $("#icon_c1cc1b71-fa86-46c4-9972-024fe14bdc3f").html(html);
+                $("#icon_" + itemId).html(html);
             }
-
         }
     }
 };
