@@ -8,7 +8,13 @@
         var d = new Date(milli);
         return moment(d).format("DD/MM/YYYY");
     };
-
+    var findObjectByKey = function (array, key, value) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i][key] === value) {
+                return array[i];
+            }
+        }
+    };
     return {
         RedirectToAction: function (url) {
             _redirectToAction(url);
@@ -18,6 +24,9 @@
         },
         GetFileName(fullPath) {
             return fullPath.replace(/^.*(\\|\/|\:)/, '');
+        },
+        FindObjectByKey: function (array, key, value) {
+            return findObjectByKey(array, key, value);
         }
     }
 }

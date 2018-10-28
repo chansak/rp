@@ -85,6 +85,7 @@
     var _render = function (items) {
         var html = '';
         $(items).each(function (index, item) {
+            console.log(item);
             var total = parseFloat((item.amount * item.pricePerUnit));
             html += '<tr>';
             html += '   <td>' + item.productName + '</td>';

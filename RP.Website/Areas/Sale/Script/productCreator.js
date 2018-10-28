@@ -1,7 +1,8 @@
 ﻿var productCreator = new function () {
-    //variables
     var images = [];
     var items = [];
+    var colors = [];
+    var positions = [];
 
     var _bindingProductCategories = function () {
         var success = function (data, textStatus, jqXHR) {
@@ -147,32 +148,32 @@
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 images.push(item);
-                $('#print-pattern').append($('<option>', {
+                $('#print-pattern').empty().append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
-                $('#screen-pattern').append($('<option>', {
+                $('#screen-pattern').empty().append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
-                $('#sew-pattern').append($('<option>', {
+                $('#sew-pattern').empty().append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
 
                 $("#print-pattern").change(function () {
                     var selectedImageId = $('#print-pattern').val();
-                    var image = findObjectByKey(images, 'id', selectedImageId);
+                    var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
                     $("#print-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' />");
                 });
                 $("#screen-pattern").change(function () {
                     var selectedImageId = $('#screen-pattern').val();
-                    var image = findObjectByKey(images, 'id', selectedImageId);
+                    var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
                     $("#screen-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' />");
                 });
                 $("#sew-pattern").change(function () {
                     var selectedImageId = $('#sew-pattern').val();
-                    var image = findObjectByKey(images, 'id', selectedImageId);
+                    var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
                     $("#sew-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' />");
                 });
             });
@@ -188,6 +189,7 @@
     var _bindingPatternPosition = function () {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
+                positions.push(item);
                 $('#print-position').append($('<option>', {
                     value: item.id,
                     text: item.positionName
@@ -213,15 +215,16 @@
     var _bindingPatternColor = function () {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
-                $('#sew-color').append($('<option>', {
+                colors.push(item);
+                $('#print-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
-                $('#screen-color').append($('<option>', {
+                $('#screen-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
-                $('#sew-color').append($('<option>', {
+                $('#sew-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
@@ -233,18 +236,8 @@
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetPatternPosition(success, failure);
+        var xhr = RPService.GetPatternColors(success, failure);
     };
-
-    function findObjectByKey(array, key, value) {
-        for (var i = 0; i < array.length; i++) {
-            if (array[i][key] === value) {
-                return array[i];
-            }
-        }
-        return null;
-    }
-    //all services
     return {
         init: function () {
             $("#productCategories").find('option').remove().end();
@@ -262,6 +255,42 @@
             _materialStockCheck(selectedProductId);
         },
         AddNewItem: function () {
+            var selectedPrintOption = $("input[name='print-optional']:checked").val();
+            var selectedScreenOption = $("input[name='screen-optional']:checked").val();
+            var selectedSewOption = $("input[name='sew-optional']:checked").val();
+           
+
+            //print option
+            var printFile = $("#print-file").get(0).files[0];
+            var printPatternId = $("#print-pattern").val();
+            var _printPatternName = utilities.FindObjectByKey(images, 'id', printPatternId);
+            var printPatternName = _printPatternName != null ? _printPatternName.patternName:'';
+            var printColorId = $("#print-color").val();
+            var _printColorName = utilities.FindObjectByKey(colors, 'id', printColorId);
+            var printColorName = _printColorName != null ? _printColorName.colorName : '';
+
+            //screen option
+            var screenFile = $("#screen-file").get(0).files[0];
+            var screenPatternId = $("#screen-pattern").val();
+            var _screenPatternName = utilities.FindObjectByKey(images, 'id', screenPatternId);
+            var screenPatternName = _screenPatternName != null ? _screenPatternName.patternName : '';
+            var screenColorId = $("#screen-color").val();
+            var _screenColorName = utilities.FindObjectByKey(colors, 'id', screenColorId);
+            var screenColorName = _screenColorName != null ? _screenColorName.colorName : '';
+            var screenPositionId = $("#screen-position").val();
+            var _screenPositionName = utilities.FindObjectByKey(positions, 'id', screenPositionId);
+            var screenPositionName = _screenPositionName != null ? _screenPositionName.positionName : '';
+
+            //sew option
+            var sewFile = $("#sew-file").get(0).files[0];
+            var sewPatternId = $("#sew-pattern").val();
+            var _sewPatternName = utilities.FindObjectByKey(images, 'id', sewPatternId);
+            var sewPatternName = _sewPatternName != null ? _sewPatternName.patternName : '';
+            var sewPositionId = $("#sew-position").val();
+            var _sewPositionName = utilities.FindObjectByKey(positions, 'id', sewPositionId);
+            var sewPositionName = _sewPositionName != null ? _sewPositionName.positionName : '';
+            var remark = $("#sew-remark").val();
+
             var item = {
                 productId: $("#products option:selected").val(),
                 productName: $("#products option:selected").text(),
@@ -272,37 +301,48 @@
                 file: null,
                 remark: $("#productRemark").val(),
                 print: {
-                    //1=yes,2=no,3=pattern
-                    status: 2,
-                    options: {
-                        patternId: "",
-                        patternName: "",
-                        file: null,
-                        colorId: "",
-                        colorName:""
+                    selectedOption: selectedPrintOption,
+                    options1: {
+                        patternId: printPatternId,
+                        patternName: printPatternName,
+                    },
+                    options2: {
+                    },
+                    options3: {
+                        file: printFile,
+                        colorId: printColorId,
+                        colorName: printColorName
                     }
                 },
                 screen: {
-                    status: 2,
-                    options: {
-                        patternId: "",
-                        patternName: "",
-                        file: null,
-                        colorId: "",
-                        colorName: "",
-                        positionId: "",
-                        positionName:""
+                    selectedOption: selectedScreenOption,
+                    options1: {
+                        patternId: screenPatternId,
+                        patternName: screenPatternName,
+                    },
+                    options2: {
+                    },
+                    options3: {
+                        file: screenFile,
+                        colorId: screenColorId,
+                        colorName: screenColorName,
+                        positionId: screenPositionId,
+                        positionName: screenPositionName
                     }
                 },
                 sew: {
-                    status: 2,
-                    options: {
-                        patternId: "",
-                        patternName: "",
-                        file: null,
-                        positionId: "",
-                        positionName: "",
-                        remark:""
+                    selectedOption: selectedSewOption,
+                    options1: {
+                        patternId: sewPatternId,
+                        patternName: sewPatternName,
+                    },
+                    options2: {
+                    },
+                    options3: {
+                        file: sewFile,
+                        positionId: sewPositionId,
+                        positionName: sewPositionName,
+                        remark: remark
                     }
                 }
             };

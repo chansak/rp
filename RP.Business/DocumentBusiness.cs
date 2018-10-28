@@ -18,33 +18,28 @@ namespace RP.Business
         {
             using (var uow = UnitOfWork.Create())
             {
-                var documents = uow.DocumentRepository.All().ToList();
-                var result = new List<Document>();
+                var documents = uow.DocumentRepository.All().AsEnumerable();
                 if (!string.IsNullOrWhiteSpace(searchBy) && !string.IsNullOrWhiteSpace(keyword))
                 {
                     switch (searchBy)
                     {
                         case "CustomerName":
                             {
-                                result.AddRange(documents.Where(i => i.Customer.Name.ToLower().Contains(keyword.ToLower())));
+                                documents = documents.Where(i => i.Customer.Name.ToLower().Contains(keyword.ToLower()));
                                 break;
                             }
                         case "DocumentCode":
                             {
-                                result.AddRange(documents.Where(i => i.FileNumber.ToLower().Contains(keyword.ToLower())));
+                                documents = documents.Where(i => i.FileNumber.ToLower().Contains(keyword.ToLower()));
                                 break;
                             }
                         default:
                             {
-                                result.AddRange(documents);
                                 break;
                             }
                     }
                 }
-                else {
-                    result.AddRange(documents);
-                }
-                return result;
+                return documents.ToList();
             }
         }
         public Document GetDocument(string id)
