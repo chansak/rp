@@ -5,40 +5,40 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f6c9ef7f48bf4ebdab2c30102ffa10be" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="RP.Model.Color" Width="1.5" PointX="3" PointY="5.75" />
-        <EntityTypeShape EntityType="RP.Model.Company" Width="1.5" PointX="1.5" PointY="28" />
-        <EntityTypeShape EntityType="RP.Model.Customer" Width="1.5" PointX="1.5" PointY="23.125" />
-        <EntityTypeShape EntityType="RP.Model.CustomerAddress" Width="1.5" PointX="10.75" PointY="2.125" />
-        <EntityTypeShape EntityType="RP.Model.CustomerContact" Width="1.5" PointX="1.5" PointY="32.75" />
-        <EntityTypeShape EntityType="RP.Model.CustomerContactBranch" Width="1.5" PointX="1.5" PointY="38" />
-        <EntityTypeShape EntityType="RP.Model.CustomerType" Width="1.5" PointX="1.5" PointY="30.375" />
-        <EntityTypeShape EntityType="RP.Model.DeliveryCondition" Width="1.5" PointX="10.75" PointY="6.125" />
-        <EntityTypeShape EntityType="RP.Model.Department" Width="1.5" PointX="5.75" PointY="2.75" />
-        <EntityTypeShape EntityType="RP.Model.Document" Width="1.5" PointX="0.75" PointY="15.625" />
-        <EntityTypeShape EntityType="RP.Model.DocumentAttachment" Width="1.5" PointX="3" PointY="19.875" />
-        <EntityTypeShape EntityType="RP.Model.DocumentDelivery" Width="1.5" PointX="8" PointY="17.25" />
-        <EntityTypeShape EntityType="RP.Model.DocumentProductItem" Width="1.5" PointX="3" PointY="9.75" />
-        <EntityTypeShape EntityType="RP.Model.Material" Width="1.5" PointX="3.75" PointY="43.125" />
-        <EntityTypeShape EntityType="RP.Model.MaterialType" Width="1.5" PointX="1.5" PointY="43.5" />
-        <EntityTypeShape EntityType="RP.Model.MaterialUnit" Width="1.5" PointX="3.75" PointY="22.5" />
-        <EntityTypeShape EntityType="RP.Model.PatternImage" Width="1.5" PointX="10.75" PointY="9.125" />
-        <EntityTypeShape EntityType="RP.Model.PatternPosition" Width="1.5" PointX="3" PointY="2.5" />
-        <EntityTypeShape EntityType="RP.Model.Product" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RP.Model.ProductCategory" Width="1.5" PointX="1.5" PointY="40.5" />
-        <EntityTypeShape EntityType="RP.Model.ProductItemAttachment" Width="1.5" PointX="5.25" PointY="19.125" />
-        <EntityTypeShape EntityType="RP.Model.ProductItemScreenOptional" Width="1.5" PointX="5.25" PointY="6.75" />
-        <EntityTypeShape EntityType="RP.Model.ProductItemSewOptional" Width="1.5" PointX="8.25" PointY="7.75" />
-        <EntityTypeShape EntityType="RP.Model.ProductMaterialUsage" Width="1.5" PointX="6" PointY="10.5" />
-        <EntityTypeShape EntityType="RP.Model.ProductOption" Width="1.5" PointX="3" PointY="46.625" />
-        <EntityTypeShape EntityType="RP.Model.ProductPrice" Width="1.5" PointX="5.25" PointY="16.125" />
-        <EntityTypeShape EntityType="RP.Model.ProductUnit" Width="1.5" PointX="3" PointY="16.25" />
-        <EntityTypeShape EntityType="RP.Model.Role" Width="1.5" PointX="5.75" PointY="27.75" />
-        <EntityTypeShape EntityType="RP.Model.Stock" Width="1.5" PointX="6" PointY="23.25" />
-        <EntityTypeShape EntityType="RP.Model.TransportationType" Width="1.5" PointX="5.75" PointY="30.75" />
-        <EntityTypeShape EntityType="RP.Model.Unit" Width="1.5" PointX="0.75" PointY="11" />
-        <EntityTypeShape EntityType="RP.Model.User" Width="1.5" PointX="8" PointY="2.375" />
-        <EntityTypeShape EntityType="RP.Model.Warehouse" Width="1.5" PointX="0.75" PointY="4.5" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemScreenOptional_Color" />
+        <EntityTypeShape EntityType="RP.Model.Color" Width="1.5" PointX="7.75" PointY="7.375" />
+        <EntityTypeShape EntityType="RP.Model.Company" Width="1.5" PointX="1.5" PointY="36.125" />
+        <EntityTypeShape EntityType="RP.Model.Customer" Width="1.5" PointX="1.5" PointY="31.25" />
+        <EntityTypeShape EntityType="RP.Model.CustomerAddress" Width="1.5" PointX="8.75" PointY="10.375" />
+        <EntityTypeShape EntityType="RP.Model.CustomerContact" Width="1.5" PointX="1.5" PointY="16.125" />
+        <EntityTypeShape EntityType="RP.Model.CustomerContactBranch" Width="1.5" PointX="1.5" PointY="21.375" />
+        <EntityTypeShape EntityType="RP.Model.CustomerType" Width="1.5" PointX="1.5" PointY="38.5" />
+        <EntityTypeShape EntityType="RP.Model.DeliveryCondition" Width="1.5" PointX="9.75" PointY="7.375" />
+        <EntityTypeShape EntityType="RP.Model.Department" Width="1.5" PointX="5.75" PointY="24.875" />
+        <EntityTypeShape EntityType="RP.Model.Document" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="RP.Model.DocumentAttachment" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="RP.Model.DocumentDelivery" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="RP.Model.DocumentProductItem" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="RP.Model.Material" Width="1.5" PointX="3.75" PointY="44.125" />
+        <EntityTypeShape EntityType="RP.Model.MaterialType" Width="1.5" PointX="1.5" PointY="44.5" />
+        <EntityTypeShape EntityType="RP.Model.MaterialUnit" Width="1.5" PointX="3.75" PointY="4.625" />
+        <EntityTypeShape EntityType="RP.Model.PatternImage" Width="1.5" PointX="10.75" PointY="3.375" />
+        <EntityTypeShape EntityType="RP.Model.PatternPosition" Width="1.5" PointX="10.75" PointY="10.375" />
+        <EntityTypeShape EntityType="RP.Model.Product" Width="1.5" PointX="0.75" PointY="24.25" />
+        <EntityTypeShape EntityType="RP.Model.ProductCategory" Width="1.5" PointX="1.5" PointY="40.875" />
+        <EntityTypeShape EntityType="RP.Model.ProductItemAttachment" Width="1.5" PointX="5.25" PointY="15.75" />
+        <EntityTypeShape EntityType="RP.Model.ProductItemPrintOptional" Width="1.5" PointX="5.25" PointY="18.25" />
+        <EntityTypeShape EntityType="RP.Model.ProductItemScreenOptional" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="RP.Model.ProductItemSewOptional" Width="1.5" PointX="5.25" PointY="21.125" />
+        <EntityTypeShape EntityType="RP.Model.ProductMaterialUsage" Width="1.5" PointX="6" PointY="11.625" />
+        <EntityTypeShape EntityType="RP.Model.ProductOption" Width="1.5" PointX="3" PointY="24.75" />
+        <EntityTypeShape EntityType="RP.Model.ProductPrice" Width="1.5" PointX="5.25" PointY="27.375" />
+        <EntityTypeShape EntityType="RP.Model.ProductUnit" Width="1.5" PointX="3" PointY="27.5" />
+        <EntityTypeShape EntityType="RP.Model.Role" Width="1.5" PointX="5.75" PointY="3.875" />
+        <EntityTypeShape EntityType="RP.Model.Stock" Width="1.5" PointX="8" PointY="23.75" />
+        <EntityTypeShape EntityType="RP.Model.TransportationType" Width="1.5" PointX="0.75" PointY="47.375" />
+        <EntityTypeShape EntityType="RP.Model.Unit" Width="1.5" PointX="0.75" PointY="12" />
+        <EntityTypeShape EntityType="RP.Model.User" Width="1.5" PointX="8" PointY="3.5" />
+        <EntityTypeShape EntityType="RP.Model.Warehouse" Width="1.5" PointX="0.75" PointY="27.75" />
         <AssociationConnector Association="RP.Model.FK_Customer_Company" />
         <AssociationConnector Association="RP.Model.FK_Customer_CustomerType" />
         <AssociationConnector Association="RP.Model.FK_CustomerContact_Customer" />
@@ -55,6 +55,7 @@
         <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Unit" />
         <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Warehouse" />
         <AssociationConnector Association="RP.Model.FK_ProductItemAttachment_DocumentProductItems" />
+        <AssociationConnector Association="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" />
         <AssociationConnector Association="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" />
         <AssociationConnector Association="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" />
         <AssociationConnector Association="RP.Model.FK_Material_MaterialType" />
@@ -62,8 +63,6 @@
         <AssociationConnector Association="RP.Model.FK_Stock_Material" />
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_MaterialUnit" />
         <AssociationConnector Association="RP.Model.FK_Stock_MaterialUnit" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemScreenOptional_PatternPosition" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemSewOptional_PatternPosition" />
         <AssociationConnector Association="RP.Model.FK_Option_Product" />
         <AssociationConnector Association="RP.Model.FK_Product_ProductCategory" />
         <AssociationConnector Association="RP.Model.FK_ProductMaterialUsage_Product" />
@@ -73,9 +72,6 @@
         <AssociationConnector Association="RP.Model.FK_ProductUnit_Unit" />
         <AssociationConnector Association="RP.Model.FK_User_Role" />
         <AssociationConnector Association="RP.Model.FK_Stock_Warehouse" />
-        <EntityTypeShape EntityType="RP.Model.ProductItemPrintOptional" Width="1.5" PointX="5.25" PointY="0.75" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemPrintOptional_Color" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

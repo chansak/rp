@@ -46,6 +46,7 @@ namespace RP.DataAccess
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<ProductItemAttachment> ProductItemAttachments { get; set; }
+        public virtual DbSet<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
         public virtual DbSet<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
         public virtual DbSet<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
         public virtual DbSet<ProductMaterialUsage> ProductMaterialUsages { get; set; }
@@ -58,6 +59,5 @@ namespace RP.DataAccess
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
-        public virtual DbSet<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
     }
 }

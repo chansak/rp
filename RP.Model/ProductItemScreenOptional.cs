@@ -16,13 +16,12 @@ namespace RP.Model
     {
         public System.Guid Id { get; set; }
         public string PatternImagePath { get; set; }
-        public System.Guid ColorCodeId { get; set; }
-        public System.Guid PatternPositionId { get; set; }
+        public Nullable<System.Guid> ColorCodeId { get; set; }
+        public Nullable<System.Guid> PatternPositionId { get; set; }
         public System.Guid ProductItemId { get; set; }
+        public int OptionalStatusId { get; set; }
     
-        public virtual Color Color { get; set; }
         public virtual DocumentProductItem DocumentProductItem { get; set; }
-        public virtual PatternPosition PatternPosition { get; set; }
     }
     
 }

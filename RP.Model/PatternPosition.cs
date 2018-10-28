@@ -14,17 +14,8 @@ namespace RP.Model
 {
     public partial class PatternPosition
     {
-        public PatternPosition()
-        {
-            this.ProductItemScreenOptionals = new HashSet<ProductItemScreenOptional>();
-            this.ProductItemSewOptionals = new HashSet<ProductItemSewOptional>();
-        }
-    
         public System.Guid Id { get; set; }
         public string PositionName { get; set; }
-    
-        public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
-        public virtual ICollection<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
     }
     
 }

@@ -14,18 +14,9 @@ namespace RP.Model
 {
     public partial class Color
     {
-        public Color()
-        {
-            this.ProductItemScreenOptionals = new HashSet<ProductItemScreenOptional>();
-            this.ProductItemPrintOptionals = new HashSet<ProductItemPrintOptional>();
-        }
-    
         public System.Guid Id { get; set; }
         public string ColorCode { get; set; }
         public string ColorName { get; set; }
-    
-        public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
-        public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
     }
     
 }

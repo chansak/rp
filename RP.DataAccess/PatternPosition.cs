@@ -14,19 +14,7 @@ namespace RP.DataAccess
     
     public partial class PatternPosition
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PatternPosition()
-        {
-            this.ProductItemScreenOptionals = new HashSet<ProductItemScreenOptional>();
-            this.ProductItemSewOptionals = new HashSet<ProductItemSewOptional>();
-        }
-    
         public System.Guid Id { get; set; }
         public string PositionName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
     }
 }

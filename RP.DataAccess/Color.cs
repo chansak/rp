@@ -14,20 +14,8 @@ namespace RP.DataAccess
     
     public partial class Color
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Color()
-        {
-            this.ProductItemScreenOptionals = new HashSet<ProductItemScreenOptional>();
-            this.ProductItemPrintOptionals = new HashSet<ProductItemPrintOptional>();
-        }
-    
         public System.Guid Id { get; set; }
         public string ColorCode { get; set; }
         public string ColorName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
     }
 }
