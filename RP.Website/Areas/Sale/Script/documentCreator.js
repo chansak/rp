@@ -48,6 +48,7 @@
         var xhr = RPService.GetCustomers(success, failure);
     };
     var _bindingContact = function (id) {
+        console.log(id);
         contacts = [];
         $('#auto_contactName').val('');
         $("#auto_contactId").val('');
@@ -87,15 +88,90 @@
         var formData = new FormData();
 
         $(items).each(function (index, item) {
+            var printOptions = item.print;
+            var screenOptions = item.screen;
+            var sewOptions = item.sew;
+
+            //print options
+            var printData = {};
+            if (printOptions.selectedOption == 1) {
+                printData = {
+                    selectedOption: printOptions.selectedOption,
+                    patternId: printOptions.options1.patternId || 0,
+                    colorId: 0
+                };
+            } else if (printOptions.selectedOption = 2) {
+                printData = {
+                    selectedOption: printOptions.selectedOption,
+                    patternId: 0,
+                    colorId: printOptions.options2.colorId || 0
+                };
+            } else {
+                printData = {
+                    selectedOption: printOptions.selectedOption,
+                    patternId: 0,
+                    colorId: 0
+                };
+            }
+
+            //screen options
+            var screenData = {};
+            if (screenOptions.selectedOption == 1) {
+                screenData = {
+                    selectedOption: screenOptions.selectedOption,
+                    patternId: screenOptions.options1.patternId || 0,
+                    colorId: 0,
+                    positionId: 0,
+                }
+            } else if (screenOptions.selectedOption = 2) {
+                screenData = {
+                    selectedOption: screenOptions.selectedOption,
+                    patternId: 0,
+                    colorId: screenOptions.options2.colorId || 0,
+                    positionId: screenOptions.options2.positionId || 0,
+                };
+            } else {
+                screenData = {
+                    selectedOption: screenOptions.selectedOption,
+                    patternId: 0,
+                    colorId: 0,
+                    positionId: 0,
+                };
+            }
+
+            //sew options
+            var sewData = {};
+            if (sewOptions.selectedOption == 1) {
+                sewData = {
+                    selectedOption: sewOptions.selectedOption,
+                    patternId: sewOptions.options1.patternId || 0,
+                    positionId: 0,
+                    remark: ''
+                };
+            } else if (sewOptions.selectedOption = 2) {
+                sewData = {
+                    selectedOption: sewOptions.selectedOption,
+                    patternId: 0,
+                    positionId: sewOptions.options2.positionId || 0,
+                    remark: sewOptions.options2.remark
+                };
+            } else {
+                sewData = {
+                    selectedOption: sewOptions.selectedOption,
+                    patternId: 0,
+                    positionId: 0,
+                    remark: ''
+                };
+            }
             allItems.push(
                 {
                     productId: item.productId,
                     productUnitId: item.productUnitId,
                     amount: item.amount,
-                    pricePerUnit: item.pricePerUnit,
-                    printOption: {},
-                    screenOption: {},
-                    sewOption: {}
+                    pricePerUnit: item.pricePerUnit||0,
+                    printOption: printData,
+                    screenOption: screenData,
+                    sewOption: sewData
                 }
             );
         });
@@ -204,7 +280,7 @@
                     html += '           <a href="#" class="list-group-item">';
                     html += '               <div class="d-flex justify-content-between">';
                     html += '                   <h5 class="mb-1">ลายเก่า</h5>';
-                    html += '                   <small>ชื่อลาย :' + option.patternName +'</small>';
+                    html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
                     html += '               </div>';
                     html += '               <img src="../../FileUpload/pattern/' + option.patternImage.imagePath + '" />';
                     html += '           </a>'

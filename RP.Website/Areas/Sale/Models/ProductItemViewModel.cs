@@ -11,8 +11,8 @@ namespace RP.Website.Models
         public string ProductUnitName { get; set; }
         public int Amount { get; set; }
         public decimal PricePerUnit { get; set; }
-        public List<PrintOptionViewModel> PrintOptions { get; set; }
-        public List<ScreenOptionViewModel> ScreenOptions { get; set; }
-        public List<SewOptionViewModel> SewOptions { get; set; }
+        public PrintOptionViewModel PrintOption { get; set; }
+        public ScreenOptionViewModel ScreenOption { get; set; }
+        public SewOptionViewModel SewOption { get; set; }
     }
 }

@@ -24,14 +24,36 @@ namespace RP.Website
             document.ContactId = new System.Guid(viewModel.ContactId);
             foreach (var i in viewModel.Items)
             {
+                var itemId = Guid.NewGuid();
                 var item = new DocumentProductItem
                 {
-                    Id = Guid.NewGuid(),
+                    Id = itemId,
                     ProductId = new System.Guid(i.ProductId),
                     ProductUnitId = new System.Guid(i.ProductUnitId),
                     Amount = i.Amount,
                     PricePerUnit = (decimal)i.PricePerUnit
                 };
+                switch (i.PrintOption.SelectedOption)
+                {
+                    case 1:
+                        {
+                            var option = new ProductItemPrintOptional
+                            {
+                                Id = Guid.NewGuid(),
+                                ProductItemId = itemId,
+                                ColorCodeId = new System.Guid(i.PrintOption.ColorId)
+                            };
+                            break;
+                        }
+                    case 2:
+                        {
+                            break;
+                        }
+                    case 0:
+                        {
+                            break;
+                        }
+                }
                 document.DocumentProductItems.Add(item);
             }
             document.DeliveryContactId = new System.Guid(viewModel.DeliveryContactId);
@@ -81,11 +103,11 @@ namespace RP.Website
                         PositionName = ""
                     });
                 }
-                var sewOption = new List<SewOptionViewModel>();
+                var sewOptions = new List<SewOptionViewModel>();
                 if (i.ProductItemSewOptionals.Count > 0)
                 {
                     var o3 = i.ProductItemSewOptionals.FirstOrDefault();
-                    sewOption.Add(new SewOptionViewModel
+                    sewOptions.Add(new SewOptionViewModel
                     {
                         PatternImagePath = o3.PatternImagePath,
                         PositionId = o3.PatternPositionId.ToString(),
@@ -102,9 +124,9 @@ namespace RP.Website
                     ProductUnitName = i.Unit.UnitName,
                     PricePerUnit = i.PricePerUnit,
                     Amount = i.Amount,
-                    PrintOptions = printOptions,
-                    ScreenOptions = screenOptions,
-                    SewOptions = sewOption
+                    PrintOption = printOptions.FirstOrDefault(),
+                    ScreenOption = screenOptions.FirstOrDefault(),
+                    SewOption = sewOptions.FirstOrDefault()
                 });
             }
             document.Items = productItems;

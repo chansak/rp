@@ -3,7 +3,11 @@
     public class ScreenOptionViewModel
     {
         public string PatternImagePath { get; set; }
-        public string PositionId { get; set; }
         public string PositionName { get; set; }
+
+        public int SelectedOption { get; set; }
+        public string PatternId { get; set; }
+        public string ColorId { get; set; }
+        public string PositionId { get; set; }
     }
 }
