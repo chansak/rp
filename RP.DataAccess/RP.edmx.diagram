@@ -72,6 +72,7 @@
         <AssociationConnector Association="RP.Model.FK_ProductUnit_Unit" />
         <AssociationConnector Association="RP.Model.FK_User_Role" />
         <AssociationConnector Association="RP.Model.FK_Stock_Warehouse" />
+        <AssociationConnector Association="RP.Model.FK_Document_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

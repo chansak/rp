@@ -20,5 +20,7 @@ namespace RP.Website.Models
         public string DeliveryAddress { get; set; }
         public string DeliveryContactId { get; set; }
         public string Remark { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

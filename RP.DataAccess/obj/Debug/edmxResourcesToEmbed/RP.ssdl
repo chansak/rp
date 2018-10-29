@@ -414,6 +414,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Document_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DocumentAttachment_Document">
     <End Role="Document" Type="Self.Document" Multiplicity="0..1" />
     <End Role="DocumentAttachment" Type="Self.DocumentAttachment" Multiplicity="*" />
@@ -787,6 +799,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Document_DeliveryCustomerContact" Association="Self.FK_Document_DeliveryCustomerContact">
       <End Role="CustomerContact" EntitySet="CustomerContact" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_User" Association="Self.FK_Document_User">
+      <End Role="User" EntitySet="User" />
       <End Role="Document" EntitySet="Document" />
     </AssociationSet>
     <AssociationSet Name="FK_DocumentAttachment_Document" Association="Self.FK_DocumentAttachment_Document">

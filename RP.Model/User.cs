@@ -14,6 +14,11 @@ namespace RP.Model
 {
     public partial class User
     {
+        public User()
+        {
+            this.Documents = new HashSet<Document>();
+        }
+    
         public System.Guid Id { get; set; }
         public string UserName { get; set; }
         public string DisplayName { get; set; }
@@ -22,6 +27,7 @@ namespace RP.Model
     
         public virtual Department Department { get; set; }
         public virtual Role Role { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
     }
     
 }

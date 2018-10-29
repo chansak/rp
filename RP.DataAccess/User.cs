@@ -14,6 +14,12 @@ namespace RP.DataAccess
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.Documents = new HashSet<Document>();
+        }
+    
         public System.Guid Id { get; set; }
         public string UserName { get; set; }
         public string DisplayName { get; set; }
@@ -22,5 +28,7 @@ namespace RP.DataAccess
     
         public virtual Department Department { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Document> Documents { get; set; }
     }
 }

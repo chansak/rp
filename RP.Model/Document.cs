@@ -47,6 +47,7 @@ namespace RP.Model
         public virtual ICollection<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual ICollection<DocumentDelivery> DocumentDeliveries { get; set; }
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
+        public virtual User User { get; set; }
     }
     
 }

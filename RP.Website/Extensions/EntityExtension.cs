@@ -17,6 +17,7 @@ namespace RP.Website
             document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
             document.BiddingStatusId = (int)BiddingStatus.Waiting;
             //document.FileNumber = viewModel.DocumentCode;
+            document.CreatedDate = viewModel.CreatedDate;
             document.IssueDate = viewModel.IssuedDate;
             document.ExpiryDate = viewModel.ExpirationDate;
             document.ExpectedDeliveryDate = viewModel.ExpectedDeliveryDate;

@@ -175,15 +175,16 @@
             );
         });
         var document = {
-            issuedDate: $("#issuedDate").val(),
+            //issuedDate: $("#issuedDate").val(),
+            //createdDate: $("#createdDate").val(),
             expirationDate: $("#expirationDate").val(),
-            expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+            //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
             saleUserId: $("#auto_saleId").val(),
             customerId: $("#auto_customerId").val(),
             contactId: $("#auto_contactId").val(),
             items: allItems,
             deliveryAddress: $("#deliveryAddress").val(),
-            deliveryContactId: $("#auto_deliveryContactId").val(),
+            //deliveryContactId: $("#auto_deliveryContactId").val(),
             remark: $("#documentRemark").val()
         };
         formData.append("document", JSON.stringify(document));

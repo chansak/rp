@@ -39,7 +39,7 @@ namespace RP.Website.Areas.Sale.Controllers
                 CustomerType = d.Customer.CustomerType.CustomerTypeName,
                 CustomerName = d.Customer.Name,
                 DocumentCode = d.FileNumber,
-                SaleUserName = d.Customer.Name,
+                SaleUserName = d.User.DisplayName,
                 WorkflowStatus = (int)d.DocumentStatusId,
                 WorkflowStatusName = "ลูกค้าเสนอราคา",
                 BiddingStatus = (int)d.BiddingStatusId,

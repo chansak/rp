@@ -419,6 +419,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Document_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DocumentAttachment_Document">
           <End Role="Document" Type="Self.Document" Multiplicity="0..1" />
           <End Role="DocumentAttachment" Type="Self.DocumentAttachment" Multiplicity="*" />
@@ -794,6 +806,10 @@
             <End Role="CustomerContact" EntitySet="CustomerContact" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
+          <AssociationSet Name="FK_Document_User" Association="Self.FK_Document_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
           <AssociationSet Name="FK_DocumentAttachment_Document" Association="Self.FK_DocumentAttachment_Document">
             <End Role="Document" EntitySet="Document" />
             <End Role="DocumentAttachment" EntitySet="DocumentAttachment" />
@@ -1070,6 +1086,10 @@
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
+          <AssociationSet Name="FK_Document_User" Association="RP.Model.FK_Document_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Color">
           <Key>
@@ -1201,6 +1221,7 @@
           <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
           <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
           <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
+          <NavigationProperty Name="User" Relationship="RP.Model.FK_Document_User" FromRole="Document" ToRole="User" />
         </EntityType>
         <EntityType Name="DocumentAttachment">
           <Key>
@@ -1457,6 +1478,7 @@
           <Property Name="DepartmentId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="RP.Model.FK_User_Department" FromRole="User" ToRole="Department" />
           <NavigationProperty Name="Role" Relationship="RP.Model.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_User" FromRole="User" ToRole="Document" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -1860,6 +1882,18 @@
             </Principal>
             <Dependent Role="Stock">
               <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_User">
+          <End Type="RP.Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
