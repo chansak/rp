@@ -1,12 +1,5 @@
 ﻿var documentList = new function () {
     var documents = [];
-    var message = {
-        info: {
-            noSelectedItemBeforeEdit: "Please select document"
-        },
-        error: {}
-    };
-
     var _edit = function () {
         var itemId = 0;
         var items = $("input:checkbox[name=documentId]:checked");
@@ -14,7 +7,7 @@
             itemId = $(items[0]).val();
 
         } else {
-            toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration')
+            toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration');
         }
         if (itemId != 0) {
             window.location.href = '../../Sale/Document/Edit/' + itemId;

@@ -25,7 +25,6 @@
     <EntitySet Name="ProductItemPrintOptionals" EntityType="RP.Model.ProductItemPrintOptional" />
     <EntitySet Name="ProductItemScreenOptionals" EntityType="RP.Model.ProductItemScreenOptional" />
     <EntitySet Name="ProductItemSewOptionals" EntityType="RP.Model.ProductItemSewOptional" />
-    <EntitySet Name="ProductMaterialUsages" EntityType="RP.Model.ProductMaterialUsage" />
     <EntitySet Name="ProductOptions" EntityType="RP.Model.ProductOption" />
     <EntitySet Name="ProductPrices" EntityType="RP.Model.ProductPrice" />
     <EntitySet Name="ProductUnits" EntityType="RP.Model.ProductUnit" />
@@ -115,17 +114,9 @@
       <End Role="MaterialType" EntitySet="MaterialTypes" />
       <End Role="Material" EntitySet="Materials" />
     </AssociationSet>
-    <AssociationSet Name="FK_ProductMaterialUsage_Material" Association="RP.Model.FK_ProductMaterialUsage_Material">
-      <End Role="Material" EntitySet="Materials" />
-      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
-    </AssociationSet>
     <AssociationSet Name="FK_Stock_Material" Association="RP.Model.FK_Stock_Material">
       <End Role="Material" EntitySet="Materials" />
       <End Role="Stock" EntitySet="Stocks" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductMaterialUsage_MaterialUnit" Association="RP.Model.FK_ProductMaterialUsage_MaterialUnit">
-      <End Role="MaterialUnit" EntitySet="MaterialUnits" />
-      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
     </AssociationSet>
     <AssociationSet Name="FK_Stock_MaterialUnit" Association="RP.Model.FK_Stock_MaterialUnit">
       <End Role="MaterialUnit" EntitySet="MaterialUnits" />
@@ -139,17 +130,9 @@
       <End Role="ProductCategory" EntitySet="ProductCategories" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="FK_ProductMaterialUsage_Product" Association="RP.Model.FK_ProductMaterialUsage_Product">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
-    </AssociationSet>
     <AssociationSet Name="FK_ProductPrice_Product" Association="RP.Model.FK_ProductPrice_Product">
       <End Role="Product" EntitySet="Products" />
       <End Role="ProductPrice" EntitySet="ProductPrices" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductMaterialUsage_Unit" Association="RP.Model.FK_ProductMaterialUsage_Unit">
-      <End Role="Unit" EntitySet="Units" />
-      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductPrice_ProductUnit" Association="RP.Model.FK_ProductPrice_ProductUnit">
       <End Role="ProductUnit" EntitySet="ProductUnits" />
@@ -170,6 +153,23 @@
     <AssociationSet Name="FK_Document_User" Association="RP.Model.FK_Document_User">
       <End Role="User" EntitySet="Users" />
       <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatternImage_Customer" Association="RP.Model.FK_PatternImage_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="PatternImage" EntitySet="PatternImages" />
+    </AssociationSet>
+    <EntitySet Name="ProductMaterialUsages" EntityType="RP.Model.ProductMaterialUsage" />
+    <AssociationSet Name="FK_ProductMaterialUsage_MaterialUnit" Association="RP.Model.FK_ProductMaterialUsage_MaterialUnit">
+      <End Role="MaterialUnit" EntitySet="MaterialUnits" />
+      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterialUsage_Product" Association="RP.Model.FK_ProductMaterialUsage_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductMaterialUsage_Unit" Association="RP.Model.FK_ProductMaterialUsage_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Color">
@@ -206,6 +206,7 @@
     <NavigationProperty Name="CustomerType" Relationship="RP.Model.FK_Customer_CustomerType" FromRole="Customer" ToRole="CustomerType" />
     <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="Customer" ToRole="CustomerContact" />
     <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_Customer" FromRole="Customer" ToRole="Document" />
+    <NavigationProperty Name="PatternImages" Relationship="RP.Model.FK_PatternImage_Customer" FromRole="Customer" ToRole="PatternImage" />
   </EntityType>
   <EntityType Name="CustomerAddress">
     <Key>
@@ -358,7 +359,6 @@
     <Property Name="MaterialCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="MaterialTypeId" Type="Guid" />
     <NavigationProperty Name="MaterialType" Relationship="RP.Model.FK_Material_MaterialType" FromRole="Material" ToRole="MaterialType" />
-    <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Material" FromRole="Material" ToRole="ProductMaterialUsage" />
     <NavigationProperty Name="Stocks" Relationship="RP.Model.FK_Stock_Material" FromRole="Material" ToRole="Stock" />
   </EntityType>
   <EntityType Name="MaterialType">
@@ -375,8 +375,8 @@
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_MaterialUnit" FromRole="MaterialUnit" ToRole="ProductMaterialUsage" />
     <NavigationProperty Name="Stocks" Relationship="RP.Model.FK_Stock_MaterialUnit" FromRole="MaterialUnit" ToRole="Stock" />
+    <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_MaterialUnit" FromRole="MaterialUnit" ToRole="ProductMaterialUsage" />
   </EntityType>
   <EntityType Name="PatternImage">
     <Key>
@@ -385,6 +385,9 @@
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="PatternName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="PatternImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerId" Type="Guid" />
+    <Property Name="Year" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="RP.Model.FK_PatternImage_Customer" FromRole="PatternImage" ToRole="Customer" />
   </EntityType>
   <EntityType Name="PatternPosition">
     <Key>
@@ -404,8 +407,8 @@
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="Product" ToRole="DocumentProductItem" />
     <NavigationProperty Name="ProductOptions" Relationship="RP.Model.FK_Option_Product" FromRole="Product" ToRole="ProductOption" />
     <NavigationProperty Name="ProductCategory" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
-    <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
     <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
+    <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
   </EntityType>
   <EntityType Name="ProductCategory">
     <Key>
@@ -458,21 +461,6 @@
     <Property Name="ProductItemId" Type="Guid" Nullable="false" />
     <Property Name="OptionalStatusId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="DocumentProductItem" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="ProductItemSewOptional" ToRole="DocumentProductItem" />
-  </EntityType>
-  <EntityType Name="ProductMaterialUsage">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="ProductId" Type="Guid" Nullable="false" />
-    <Property Name="MaterialId" Type="Guid" Nullable="false" />
-    <Property Name="MaterialUnitId" Type="Guid" Nullable="false" />
-    <Property Name="Amount" Type="Int32" />
-    <Property Name="ProductUnitId" Type="Guid" Nullable="false" />
-    <NavigationProperty Name="Material" Relationship="RP.Model.FK_ProductMaterialUsage_Material" FromRole="ProductMaterialUsage" ToRole="Material" />
-    <NavigationProperty Name="MaterialUnit" Relationship="RP.Model.FK_ProductMaterialUsage_MaterialUnit" FromRole="ProductMaterialUsage" ToRole="MaterialUnit" />
-    <NavigationProperty Name="Product" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="ProductMaterialUsage" ToRole="Product" />
-    <NavigationProperty Name="Unit" Relationship="RP.Model.FK_ProductMaterialUsage_Unit" FromRole="ProductMaterialUsage" ToRole="Unit" />
   </EntityType>
   <EntityType Name="ProductOption">
     <Key>
@@ -545,8 +533,8 @@
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="UnitName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Unit" FromRole="Unit" ToRole="DocumentProductItem" />
-    <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Unit" FromRole="Unit" ToRole="ProductMaterialUsage" />
     <NavigationProperty Name="ProductUnits" Relationship="RP.Model.FK_ProductUnit_Unit" FromRole="Unit" ToRole="ProductUnit" />
+    <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Unit" FromRole="Unit" ToRole="ProductMaterialUsage" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -810,18 +798,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ProductMaterialUsage_Material">
-    <End Type="RP.Model.Material" Role="Material" Multiplicity="1" />
-    <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Material">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductMaterialUsage">
-        <PropertyRef Name="MaterialId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Stock_Material">
     <End Type="RP.Model.Material" Role="Material" Multiplicity="0..1" />
     <End Type="RP.Model.Stock" Role="Stock" Multiplicity="*" />
@@ -831,18 +807,6 @@
       </Principal>
       <Dependent Role="Stock">
         <PropertyRef Name="MaterialId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductMaterialUsage_MaterialUnit">
-    <End Type="RP.Model.MaterialUnit" Role="MaterialUnit" Multiplicity="1" />
-    <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MaterialUnit">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductMaterialUsage">
-        <PropertyRef Name="MaterialUnitId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -882,18 +846,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ProductMaterialUsage_Product">
-    <End Type="RP.Model.Product" Role="Product" Multiplicity="1" />
-    <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductMaterialUsage">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ProductPrice_Product">
     <End Type="RP.Model.Product" Role="Product" Multiplicity="0..1" />
     <End Type="RP.Model.ProductPrice" Role="ProductPrice" Multiplicity="*" />
@@ -903,18 +855,6 @@
       </Principal>
       <Dependent Role="ProductPrice">
         <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductMaterialUsage_Unit">
-    <End Type="RP.Model.Unit" Role="Unit" Multiplicity="1" />
-    <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Unit">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductMaterialUsage">
-        <PropertyRef Name="ProductUnitId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -975,6 +915,68 @@
       </Principal>
       <Dependent Role="Document">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatternImage_Customer">
+    <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="RP.Model.PatternImage" Role="PatternImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatternImage">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProductMaterialUsage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ProductId" Type="Guid" Nullable="false" />
+    <Property Name="MaterialId" Type="Guid" />
+    <Property Name="MaterialUnitId" Type="Guid" Nullable="false" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="ProductUnitId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="MaterialUnit" Relationship="RP.Model.FK_ProductMaterialUsage_MaterialUnit" FromRole="ProductMaterialUsage" ToRole="MaterialUnit" />
+    <NavigationProperty Name="Product" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="ProductMaterialUsage" ToRole="Product" />
+    <NavigationProperty Name="Unit" Relationship="RP.Model.FK_ProductMaterialUsage_Unit" FromRole="ProductMaterialUsage" ToRole="Unit" />
+  </EntityType>
+  <Association Name="FK_ProductMaterialUsage_MaterialUnit">
+    <End Type="RP.Model.MaterialUnit" Role="MaterialUnit" Multiplicity="1" />
+    <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MaterialUnit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductMaterialUsage">
+        <PropertyRef Name="MaterialUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterialUsage_Product">
+    <End Type="RP.Model.Product" Role="Product" Multiplicity="1" />
+    <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductMaterialUsage">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductMaterialUsage_Unit">
+    <End Type="RP.Model.Unit" Role="Unit" Multiplicity="1" />
+    <End Type="RP.Model.ProductMaterialUsage" Role="ProductMaterialUsage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductMaterialUsage">
+        <PropertyRef Name="ProductUnitId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

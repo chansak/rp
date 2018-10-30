@@ -18,8 +18,8 @@ namespace RP.DataAccess
         public Unit()
         {
             this.DocumentProductItems = new HashSet<DocumentProductItem>();
-            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
             this.ProductUnits = new HashSet<ProductUnit>();
+            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
         }
     
         public System.Guid Id { get; set; }
@@ -28,8 +28,8 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductUnit> ProductUnits { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
     }
 }

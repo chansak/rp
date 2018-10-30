@@ -16,15 +16,15 @@ namespace RP.Model
     {
         public MaterialUnit()
         {
-            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
             this.Stocks = new HashSet<Stock>();
+            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
         }
     
         public System.Guid Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         public virtual ICollection<Stock> Stocks { get; set; }
+        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
     }
     
 }

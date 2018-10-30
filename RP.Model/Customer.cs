@@ -18,6 +18,7 @@ namespace RP.Model
         {
             this.CustomerContacts = new HashSet<CustomerContact>();
             this.Documents = new HashSet<Document>();
+            this.PatternImages = new HashSet<PatternImage>();
         }
     
         public System.Guid Id { get; set; }
@@ -35,6 +36,7 @@ namespace RP.Model
         public virtual CustomerType CustomerType { get; set; }
         public virtual ICollection<CustomerContact> CustomerContacts { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<PatternImage> PatternImages { get; set; }
     }
     
 }

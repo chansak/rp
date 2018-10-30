@@ -31,12 +31,13 @@ namespace RP.Interfaces
         IList<ProductOption> GetOptionsByProductId(string id);
         IList<ProductUnit> GetUnitsByProductId(string id);
         Product GetProductsById(string id);
-        IList<ProductMaterialUsage> GetMaterialUsageByProductId(string id,string productUnitId);
+        IList<ProductMaterialUsage> GetMaterialUsageByProductId(string productId, string productUnitId);
         IList<Stock> GetStockCheck(string warehouseId, string materialId, string materialUnitId);
         Customer GetCustomerById(string id);
         CustomerContact GetContactById(string id);
         User GetSaleUserById(string id);
-        
+        IList<Material> GetMaterial();
+        Material GetMaterialById(string id);
         #endregion
 
         #region Pattern

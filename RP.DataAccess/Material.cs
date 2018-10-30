@@ -17,7 +17,6 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Material()
         {
-            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
             this.Stocks = new HashSet<Stock>();
         }
     
@@ -27,8 +26,6 @@ namespace RP.DataAccess
         public Nullable<System.Guid> MaterialTypeId { get; set; }
     
         public virtual MaterialType MaterialType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stock> Stocks { get; set; }
     }

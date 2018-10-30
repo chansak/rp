@@ -4,6 +4,13 @@
     var contacts = [];
     var items = [];
     var files = [];
+    var message = {
+        info: {
+            noCustomerId: "กรุณาเลือกลูกค้าก่อน"
+        },
+        error: {}
+    };
+
     var _bindingSale = function () {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, value) {

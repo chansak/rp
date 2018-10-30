@@ -121,11 +121,11 @@
 
         return XHR;
     },
-    GetMaterialStockCheck: function (id, productUnitId, amount, successCallback, errorCallback) {
+    GetMaterialStockCheck: function (productId, productUnitId,materialId, amount, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
             url: "/common/GetMaterialStockCheck",
-            data: JSON.stringify({ id: id, productUnitId: productUnitId, amount: amount }),
+            data: JSON.stringify({ productId: productId, productUnitId: productUnitId, materialId: materialId, amount: amount }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data, textStatus, jqXHR) {
@@ -364,5 +364,24 @@
         });
         return XHR;
     },
+    GetMaterials: function(successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/common/GetMaterials",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
 
+        return XHR;
+    },
 }

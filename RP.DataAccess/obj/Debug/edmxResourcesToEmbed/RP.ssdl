@@ -177,6 +177,8 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="PatternName" Type="nvarchar" MaxLength="250" />
     <Property Name="PatternImagePath" Type="nvarchar(max)" />
+    <Property Name="CustomerId" Type="uniqueidentifier" />
+    <Property Name="Year" Type="int" />
   </EntityType>
   <EntityType Name="PatternPosition">
     <Key>
@@ -247,7 +249,7 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="MaterialId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MaterialId" Type="uniqueidentifier" />
     <Property Name="MaterialUnitId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Amount" Type="int" />
     <Property Name="ProductUnitId" Type="uniqueidentifier" Nullable="false" />
@@ -534,6 +536,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PatternImage_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="PatternImage" Type="Self.PatternImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatternImage">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Product_ProductCategory">
     <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -591,18 +605,6 @@
       </Principal>
       <Dependent Role="ProductItemSewOptional">
         <PropertyRef Name="ProductItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductMaterialUsage_Material">
-    <End Role="Material" Type="Self.Material" Multiplicity="1" />
-    <End Role="ProductMaterialUsage" Type="Self.ProductMaterialUsage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Material">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductMaterialUsage">
-        <PropertyRef Name="MaterialId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -841,6 +843,10 @@
       <End Role="Product" EntitySet="Product" />
       <End Role="ProductOption" EntitySet="ProductOption" />
     </AssociationSet>
+    <AssociationSet Name="FK_PatternImage_Customer" Association="Self.FK_PatternImage_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="PatternImage" EntitySet="PatternImage" />
+    </AssociationSet>
     <AssociationSet Name="FK_Product_ProductCategory" Association="Self.FK_Product_ProductCategory">
       <End Role="ProductCategory" EntitySet="ProductCategory" />
       <End Role="Product" EntitySet="Product" />
@@ -860,10 +866,6 @@
     <AssociationSet Name="FK_ProductItemSewOptional_DocumentProductItems" Association="Self.FK_ProductItemSewOptional_DocumentProductItems">
       <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
       <End Role="ProductItemSewOptional" EntitySet="ProductItemSewOptional" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductMaterialUsage_Material" Association="Self.FK_ProductMaterialUsage_Material">
-      <End Role="Material" EntitySet="Material" />
-      <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsage" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductMaterialUsage_MaterialUnit" Association="Self.FK_ProductMaterialUsage_MaterialUnit">
       <End Role="MaterialUnit" EntitySet="MaterialUnit" />

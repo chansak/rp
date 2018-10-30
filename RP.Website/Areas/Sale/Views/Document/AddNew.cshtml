@@ -375,6 +375,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">ผ้า</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control m-b" id="materials"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ราคาต่อหน่วย</label>
                                             <div class="col-sm-3">
                                                 <input type="text" class="form-control" id="productPricePerUnit" />
@@ -581,6 +587,7 @@
     @Styles.Render("~/plugins/jasnyBootstrapStyles")
     @Styles.Render("~/plugins/codeEditorStyles")
     @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/toastrStyles")
 }
 
 @section Scripts {
@@ -594,6 +601,7 @@
     @Scripts.Render("~/plugins/typehead")
     @Scripts.Render("~/plugins/currency")
     @Scripts.Render("~/plugins/fullCalendar")
+    @Scripts.Render("~/plugins/toastr")
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -701,18 +709,23 @@
                 });
             });
             $("#btnAddNewProduct").click(function () {
-                $("#addProductModal").modal({ backdrop: "static" });
-                productCreator.init();
+                var cid = $("#auto_customerId").val();
+                if (cid == "") {
+                    toastr.info("กรุณาเลือกลูกค้าก่อนทำรายการเพิ่มสินค้า", 'Infomration');
+                } else {
+                    $("#addProductModal").modal({ backdrop: "static" });
+                    productCreator.init(cid);
+                }
             });
             $("#btnAddNewItem").click(function () {
                 $("#addProductModal").modal("hide");
                 productCreator.AddNewItem();
                 documentCreator.RenderProducts();
             });
-            $("#productNumberOfProducts").change(function () {
+            $("#materials").change(function () {
                 productCreator.MaterialStockCheck();
             });
-            $("#priceValidityDays").change(function() {
+            $("#priceValidityDays").change(function () {
                 documentCreator.ExpirationCalculation();
             });
             documentCreator.init();

@@ -16,7 +16,6 @@ namespace RP.Model
     {
         public Material()
         {
-            this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
             this.Stocks = new HashSet<Stock>();
         }
     
@@ -26,7 +25,6 @@ namespace RP.Model
         public Nullable<System.Guid> MaterialTypeId { get; set; }
     
         public virtual MaterialType MaterialType { get; set; }
-        public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         public virtual ICollection<Stock> Stocks { get; set; }
     }
     

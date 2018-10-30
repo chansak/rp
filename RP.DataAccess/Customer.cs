@@ -19,6 +19,7 @@ namespace RP.DataAccess
         {
             this.CustomerContacts = new HashSet<CustomerContact>();
             this.Documents = new HashSet<Document>();
+            this.PatternImages = new HashSet<PatternImage>();
         }
     
         public System.Guid Id { get; set; }
@@ -38,5 +39,7 @@ namespace RP.DataAccess
         public virtual ICollection<CustomerContact> CustomerContacts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Document> Documents { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PatternImage> PatternImages { get; set; }
     }
 }

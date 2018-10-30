@@ -1578,6 +1578,7 @@
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\ListViewModel.cs" />
+    <Compile Include="Models\MaterialViewModel.cs" />
     <Compile Include="Models\PatternColorViewModel.cs" />
     <Compile Include="Models\PatternImageViewModel.cs" />
     <Compile Include="Models\PatternPositionViewModel.cs" />

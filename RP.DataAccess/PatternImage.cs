@@ -17,5 +17,9 @@ namespace RP.DataAccess
         public System.Guid Id { get; set; }
         public string PatternName { get; set; }
         public string PatternImagePath { get; set; }
+        public Nullable<System.Guid> CustomerId { get; set; }
+        public Nullable<int> Year { get; set; }
+    
+        public virtual Customer Customer { get; set; }
     }
 }
