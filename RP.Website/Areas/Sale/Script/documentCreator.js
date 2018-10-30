@@ -167,7 +167,7 @@
                     productId: item.productId,
                     productUnitId: item.productUnitId,
                     amount: item.amount,
-                    pricePerUnit: item.pricePerUnit||0,
+                    pricePerUnit: item.pricePerUnit || 0,
                     printOption: printData,
                     screenOption: screenData,
                     sewOption: sewData
@@ -390,6 +390,11 @@
                 $("#icon_" + itemId).html(html);
             }
 
+        },
+        ExpirationCalculation: function () {
+            var days = $("#priceValidityDays").val();
+            var expirationDate = moment().add(days, 'd').toDate();
+            $("#expirationDate").val(moment(expirationDate).format("DD/MM/YYYY"));
         }
     }
 };

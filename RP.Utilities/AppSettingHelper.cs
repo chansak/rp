@@ -52,5 +52,28 @@ namespace RP.Utilities
                 return "46EE6B5A-5E68-4CF8-844B-F3095878C8B2";
             }
         }
+
+        public static int DefaultPriceValidityDays
+        {
+            get
+            {
+                int number = 0;
+                if (ConfigurationManager.AppSettings["DefaultPriceValidityDays"] != null)
+                    number = int.Parse(ConfigurationManager.AppSettings["DefaultPriceValidityDays"]);
+
+                return number;
+            }
+        }
+        public static int DefaultDeliveryDays
+        {
+            get
+            {
+                int number = 0;
+                if (ConfigurationManager.AppSettings["DefaultDeliveryDays"] != null)
+                    number = int.Parse(ConfigurationManager.AppSettings["DefaultDeliveryDays"]);
+
+                return number;
+            }
+        }
     }
 }

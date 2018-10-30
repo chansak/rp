@@ -61,18 +61,18 @@
                                                 </div>
                                             </div>*@
                                         @*<div class="form-group row" id="data_1">
-                                            <label class="col-sm-3 col-form-label">วันที่สร้างเอกสาร</label>
-                                            <div class="input-group date col-sm-4" style="padding-left: 15px;">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </span>
-                                                <input type="text" id="createdDate" class="form-control date">
-                                            </div>
-                                        </div>*@
+                                                <label class="col-sm-3 col-form-label">วันที่สร้างเอกสาร</label>
+                                                <div class="input-group date col-sm-4" style="padding-left: 15px;">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                    <input type="text" id="createdDate" class="form-control date">
+                                                </div>
+                                            </div>*@
                                         <div class="form-group row" id="data_2">
                                             <label class="col-sm-3 col-form-label">จำนวนวันที่ยืนราคา</label>
                                             <div class="input-group col-sm-4" style="padding-left: 15px;">
-                                                <input type="number" id="priceValidityDays" class="form-control" value="0" min="0" onkeypress="return event.charCode != 45">
+                                                <input type="number" id="priceValidityDays" class="form-control" value="@Html.Raw(RP.Utilities.AppSettingHelper.DefaultPriceValidityDays)" min="0" onkeypress="return event.charCode != 45">
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_2">
@@ -96,7 +96,7 @@
                                         <div class="form-group row" id="data_2">
                                             <label class="col-sm-3 col-form-label">จำนวนวันที่ส่งสินค้า</label>
                                             <div class="input-group col-sm-4" style="padding-left: 15px;">
-                                                <input type="number" id="numberOfDeliveryDays" class="form-control" value="0" min="0" onkeypress="return event.charCode != 45">
+                                                <input type="number" id="numberOfDeliveryDays" class="form-control" value="@Html.Raw(RP.Utilities.AppSettingHelper.DefaultDeliveryDays)" min="0" onkeypress="return event.charCode != 45">
                                             </div>
                                         </div>
                                         <h2>ข้อมูลการขาย</h2>
@@ -237,36 +237,36 @@
                                         </div>
 
                                         @*<h2>ข้อมูลผู้ติดต่อสำหรับจัดส่ง</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
 
-                                            <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
-                                                <input type="hidden" id="auto_deliveryContactId" />
+                                                <div class="col-sm-9">
+                                                    <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                    <input type="hidden" id="auto_deliveryContactId" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
-                                                <span class="form-text"></span>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">โทรสาร</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
-                                                <span class="form-text"></span>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">โทรสาร</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
-                                                <span class="form-text"></span>
-                                            </div>
-                                        </div>*@
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
+                                            </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -593,6 +593,7 @@
     @Scripts.Render("~/plugins/dataPicker")
     @Scripts.Render("~/plugins/typehead")
     @Scripts.Render("~/plugins/currency")
+    @Scripts.Render("~/plugins/fullCalendar")
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -710,6 +711,9 @@
             });
             $("#productNumberOfProducts").change(function () {
                 productCreator.MaterialStockCheck();
+            });
+            $("#priceValidityDays").change(function() {
+                documentCreator.ExpirationCalculation();
             });
             documentCreator.init();
         });
