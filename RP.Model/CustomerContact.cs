@@ -17,7 +17,6 @@ namespace RP.Model
         public CustomerContact()
         {
             this.Documents = new HashSet<Document>();
-            this.Documents1 = new HashSet<Document>();
         }
     
         public System.Guid Id { get; set; }
@@ -37,7 +36,6 @@ namespace RP.Model
         public virtual Customer Customer { get; set; }
         public virtual CustomerContactBranch CustomerContactBranch { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
-        public virtual ICollection<Document> Documents1 { get; set; }
     }
     
 }

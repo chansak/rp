@@ -96,6 +96,7 @@
         $(items).each(function (index, item) {
             var printOptions = item.print;
             var screenOptions = item.screen;
+            console.log(item);
             var sewOptions = item.sew;
 
             //print options
@@ -106,12 +107,14 @@
                     patternId: printOptions.options1.patternId || 0,
                     colorId: 0
                 };
-            } else if (printOptions.selectedOption = 2) {
+            } else if (printOptions.selectedOption == 2) {
                 printData = {
                     selectedOption: printOptions.selectedOption,
                     patternId: 0,
                     colorId: printOptions.options2.colorId || 0
                 };
+                console.log(printOptions.file);
+                formData.append("printFile", printOptions.options2.file);
             } else {
                 printData = {
                     selectedOption: printOptions.selectedOption,
@@ -129,13 +132,14 @@
                     colorId: 0,
                     positionId: 0,
                 }
-            } else if (screenOptions.selectedOption = 2) {
+            } else if (screenOptions.selectedOption == 2) {
                 screenData = {
                     selectedOption: screenOptions.selectedOption,
                     patternId: 0,
                     colorId: screenOptions.options2.colorId || 0,
                     positionId: screenOptions.options2.positionId || 0,
                 };
+                formData.append("screenFile", screenOptions.options2.file);
             } else {
                 screenData = {
                     selectedOption: screenOptions.selectedOption,
@@ -161,6 +165,7 @@
                     positionId: sewOptions.options2.positionId || 0,
                     remark: sewOptions.options2.remark
                 };
+                formData.append("sewFile", sewOptions.options2.file);
             } else {
                 sewData = {
                     selectedOption: sewOptions.selectedOption,

@@ -160,20 +160,21 @@
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         html += '                   <h5 class="mb-1">ลายเก่า</h5>';
-                        //html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.printOption.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="../../../FileUpload/pattern/' + utilities.GetFileName(item.printOption.patternImagePath) + '" />';
+                        html += '               <img src="' + item.printOption.patternImagePath + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
                     else if (item.printOption.selectedOption == 2) {
+                        console.log(item.printOption);
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         html += '                   <h5 class="mb-1">ลายใหม่</h5>';
-                        //html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.printOption.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="../../../FileUpload/pattern/' + utilities.GetFileName(item.printOption.patternImagePath) + '" />';
+                        html += '               <img src="' + item.printOption.patternImagePath + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
@@ -188,9 +189,9 @@
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         html += '                   <h5 class="mb-1">ลายเก่า</h5>';
-                        //html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.screenOption.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="../../../FileUpload/pattern/' + utilities.GetFileName(item.screenOption.patternImagePath) + '" />';
+                        html += '               <img src="' + item.screenOption.patternImagePath + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
@@ -199,9 +200,9 @@
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         html += '                   <h5 class="mb-1">ลายใหม่</h5>';
-                        //html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.screenOption.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="../../../FileUpload/pattern/' + utilities.GetFileName(item.screenOption.patternImagePath) + '" />';
+                        html += '               <img src="' + item.screenOption.patternImagePath + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
@@ -216,9 +217,9 @@
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         html += '                   <h5 class="mb-1">ลายเก่า</h5>';
-                        //html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.sewOption.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="../../../FileUpload/pattern/' + utilities.GetFileName(item.sewOption.patternImagePath) + '" />';
+                        html += '               <img src="' + item.sewOption.patternImagePath + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
@@ -227,9 +228,9 @@
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         html += '                   <h5 class="mb-1">ลายใหม่</h5>';
-                        //html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.sewOption.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="../../../FileUpload/pattern/' + utilities.GetFileName(item.sewOption.patternImagePath) + '" />';
+                        html += '               <img src="' + item.sewOption.patternImagePath + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }

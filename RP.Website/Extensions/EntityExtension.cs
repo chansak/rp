@@ -13,14 +13,16 @@ namespace RP.Website
     {
         public static Document ToEntity(this DocumentViewModel viewModel)
         {
+            var _documentId = Guid.NewGuid();
             var document = new Document();
+            document.Id = _documentId;
             document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
             document.BiddingStatusId = (int)BiddingStatus.Waiting;
             //document.FileNumber = viewModel.DocumentCode;
-            document.CreatedDate = viewModel.CreatedDate;
-            document.IssueDate = viewModel.IssuedDate;
+            //document.CreatedDate = viewModel.CreatedDate;
+            //document.IssueDate = viewModel.IssuedDate;
             document.ExpiryDate = viewModel.ExpirationDate;
-            document.ExpectedDeliveryDate = viewModel.ExpectedDeliveryDate;
+            //document.ExpectedDeliveryDate = viewModel.ExpectedDeliveryDate;
             document.UserId = new System.Guid(viewModel.SaleUserId);
             document.CustomerId = new System.Guid(viewModel.CustomerId);
             document.ContactId = new System.Guid(viewModel.ContactId);
@@ -38,17 +40,18 @@ namespace RP.Website
                 var printOption1 = new ProductItemPrintOptional();
                 var printOption2 = new ProductItemScreenOptional();
                 var printOption3 = new ProductItemSewOptional();
-                switch (i.PrintOption.SelectedOption)
+                var printStatus = (ItemOptionStatus)i.PrintOption.SelectedOption;
+                switch (printStatus)
                 {
-                    case 1:
+                    case ItemOptionStatus.ExistingPattern:
                         {
                             printOption1.Id = Guid.NewGuid();
                             printOption1.OptionalStatusId = 1;
                             printOption1.ProductItemId = itemId;
-                            printOption1.PatternImagePath = "";
+                            printOption1.PatternId = new Guid(i.PrintOption.PatternId.ToString());
                             break;
                         }
-                    case 2:
+                    case ItemOptionStatus.NewPattern:
                         {
                             printOption1.Id = Guid.NewGuid();
                             printOption1.OptionalStatusId = 2;
@@ -62,17 +65,18 @@ namespace RP.Website
                             break;
                         }
                 }
-                switch (i.ScreenOption.SelectedOption)
+                var screenStatus = (ItemOptionStatus)i.ScreenOption.SelectedOption;
+                switch (screenStatus)
                 {
-                    case 1:
+                    case ItemOptionStatus.ExistingPattern:
                         {
                             printOption2.Id = Guid.NewGuid();
                             printOption2.OptionalStatusId = 1;
                             printOption2.ProductItemId = itemId;
-                            printOption2.PatternImagePath = "";
+                            printOption2.PatternId = new Guid(i.ScreenOption.PatternId.ToString());
                             break;
                         }
-                    case 2:
+                    case ItemOptionStatus.NewPattern:
                         {
                             printOption2.Id = Guid.NewGuid();
                             printOption2.OptionalStatusId = 2;
@@ -87,17 +91,18 @@ namespace RP.Website
                             break;
                         }
                 }
-                switch (i.SewOption.SelectedOption)
+                var sewStatus = (ItemOptionStatus)i.SewOption.SelectedOption;
+                switch (sewStatus)
                 {
-                    case 1:
+                    case ItemOptionStatus.ExistingPattern:
                         {
                             printOption3.Id = Guid.NewGuid();
                             printOption3.OptionalStatusId = 1;
                             printOption3.ProductItemId = itemId;
-                            printOption3.PatternImagePath = "";
+                            printOption3.PatternId = new Guid(i.SewOption.PatternId.ToString());
                             break;
                         }
-                    case 2:
+                    case ItemOptionStatus.NewPattern:
                         {
                             printOption3.Id = Guid.NewGuid();
                             printOption3.OptionalStatusId = 2;
@@ -125,10 +130,11 @@ namespace RP.Website
                 }
                 document.DocumentProductItems.Add(item);
             }
-            document.DeliveryContactId = new System.Guid(viewModel.DeliveryContactId);
+            //document.DeliveryContactId = new System.Guid(viewModel.DeliveryContactId);
             var delivery = new DocumentDelivery
             {
                 Id = Guid.NewGuid(),
+                DocumentId = _documentId,
                 Address1 = viewModel.DeliveryAddress
             };
             document.DocumentDeliveries.Add(delivery);
@@ -141,9 +147,9 @@ namespace RP.Website
             var document = new DocumentViewModel();
             document.Id = entity.Id.ToString();
             document.DocumentCode = entity.FileNumber;
-            document.IssuedDate = entity.IssueDate;
-            document.ExpirationDate = entity.ExpiryDate;
-            document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate;
+            //document.IssuedDate = entity.IssueDate.Value;
+            document.ExpirationDate = entity.ExpiryDate.Value;
+            //document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate.Value;
             document.SaleUserId = entity.UserId.ToString();
             document.CustomerId = entity.CustomerId.ToString();
             document.ContactId = entity.ContactId.ToString();
@@ -154,24 +160,34 @@ namespace RP.Website
                 if (i.ProductItemPrintOptionals.Count > 0)
                 {
                     var o1 = i.ProductItemPrintOptionals.FirstOrDefault();
-                    switch (o1.OptionalStatusId)
+                    var printStatus = (ItemOptionStatus)o1.OptionalStatusId;
+                    switch (printStatus)
                     {
-                        case 1:
+                        case ItemOptionStatus.ExistingPattern:
                             {
+                                var p1 = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
                                 printOptions.Add(new PrintOptionViewModel
                                 {
+                                    PatternName = p1.PatternName,
                                     SelectedOption = o1.OptionalStatusId,
-                                    PatternImagePath = o1.PatternImagePath,
+                                    PatternId = o1.PatternId.ToString(),
+                                    PatternImagePath = p1.PatternImagePath,
                                 });
                                 break;
                             }
-                        case 2:
+                        case ItemOptionStatus.NewPattern:
                             {
+                                var p1 = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
                                 var color = GenericFactory.Business.GetColorById(o1.ColorCodeId.Value.ToString());
+                                var path = string.Format(@"../../../FileUpload/{0}",
+                                            p1.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
                                 printOptions.Add(new PrintOptionViewModel
                                 {
+                                    PatternName = p1.PatternName,
                                     SelectedOption = o1.OptionalStatusId,
-                                    PatternImagePath = o1.PatternImagePath,
+                                    PatternImagePath = path,
                                     ColorName = color.ColorName,
                                 });
                                 break;
@@ -179,30 +195,41 @@ namespace RP.Website
                     }
 
                 }
+
                 var screenOptions = new List<ScreenOptionViewModel>();
                 if (i.ProductItemScreenOptionals.Count > 0)
                 {
                     var o2 = i.ProductItemScreenOptionals.FirstOrDefault();
-                    switch (o2.OptionalStatusId)
+                    var screenStatus = (ItemOptionStatus)o2.OptionalStatusId;
+                    switch (screenStatus)
                     {
-                        case 1:
+                        case ItemOptionStatus.ExistingPattern:
                             {
+                                var p1 = GenericFactory.Business.GetPatternImageById(o2.PatternId.ToString());
                                 screenOptions.Add(new ScreenOptionViewModel
                                 {
+                                    PatternName = p1.PatternName,
                                     SelectedOption = o2.OptionalStatusId,
-                                    PatternImagePath = o2.PatternImagePath,
+                                    PatternId = o2.PatternId.ToString(),
+                                    PatternImagePath = p1.PatternImagePath,
                                     PositionId = o2.PatternPositionId.ToString(),
                                 });
                                 break;
                             }
-                        case 2:
+                        case ItemOptionStatus.NewPattern:
                             {
                                 var color = GenericFactory.Business.GetColorById(o2.ColorCodeId.Value.ToString());
-                                var position = GenericFactory.Business.GetPositionById(o2.ColorCodeId.Value.ToString());
+                                var position = GenericFactory.Business.GetPositionById(o2.PatternPositionId.Value.ToString());
+                                var p1 = GenericFactory.Business.GetPatternImageById(o2.PatternId.ToString());
+                                var path = string.Format(@"../../../FileUpload/{0}",
+                                            p1.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
                                 screenOptions.Add(new ScreenOptionViewModel
                                 {
+                                    PatternName = p1.PatternName,
                                     SelectedOption = o2.OptionalStatusId,
-                                    PatternImagePath = o2.PatternImagePath,
+                                    PatternImagePath = path,
                                     PositionId = o2.PatternPositionId.ToString(),
                                     ColorName = color.ColorName,
                                     PositionName = position.PositionName
@@ -211,19 +238,49 @@ namespace RP.Website
                             }
                     }
                 }
+
                 var sewOptions = new List<SewOptionViewModel>();
                 if (i.ProductItemSewOptionals.Count > 0)
                 {
                     var o3 = i.ProductItemSewOptionals.FirstOrDefault();
-                    sewOptions.Add(new SewOptionViewModel
+                    var sewStatus = (ItemOptionStatus)o3.OptionalStatusId;
+                    switch (sewStatus)
                     {
-                        SelectedOption = o3.OptionalStatusId,
-                        PatternImagePath = o3.PatternImagePath,
-                        PositionId = o3.PatternPositionId.ToString(),
-                        PositionName = "",
-                        Remark = o3.Remark
-                    });
+                        case ItemOptionStatus.ExistingPattern:
+                            {
+                                var p1 = GenericFactory.Business.GetPatternImageById(o3.PatternId.ToString());
+                                sewOptions.Add(new SewOptionViewModel
+                                {
+                                    PatternName = p1.PatternName,
+                                    SelectedOption = o3.OptionalStatusId,
+                                    PatternImagePath = p1.PatternImagePath,
+                                    PatternId = o3.PatternId.ToString()
+                                });
+                                break;
+                            }
+                        case ItemOptionStatus.NewPattern:
+                            {
+                                var position = GenericFactory.Business.GetPositionById(o3.PatternPositionId.Value.ToString());
+                                var p1 = GenericFactory.Business.GetPatternImageById(o3.PatternId.ToString());
+                                var path = string.Format(@"../../../FileUpload/{0}",
+                                            p1.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
+                                sewOptions.Add(new SewOptionViewModel
+                                {
+                                    PatternName = p1.PatternName,
+                                    SelectedOption = o3.OptionalStatusId,
+                                    PatternImagePath = path,
+                                    PositionId = o3.PatternPositionId.ToString(),
+                                    PositionName = position.PositionName,
+                                    Remark = o3.Remark
+                                });
+                                break;
+                            }
+                    }
+
                 }
+
                 productItems.Add(new ProductItemViewModel
                 {
                     ItemId = i.Id.ToString(),

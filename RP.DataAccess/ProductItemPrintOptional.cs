@@ -19,6 +19,7 @@ namespace RP.DataAccess
         public System.Guid ProductItemId { get; set; }
         public Nullable<System.Guid> ColorCodeId { get; set; }
         public int OptionalStatusId { get; set; }
+        public Nullable<System.Guid> PatternId { get; set; }
     
         public virtual DocumentProductItem DocumentProductItem { get; set; }
     }

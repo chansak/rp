@@ -99,31 +99,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Documents">
-      <EntityTypeMapping TypeName="RP.Model.Document">
-        <MappingFragment StoreEntitySet="Document">
-          <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
-          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
-          <ScalarProperty Name="ConfirmedPriceDays" ColumnName="ConfirmedPriceDays" />
-          <ScalarProperty Name="BiddingStatusId" ColumnName="BiddingStatusId" />
-          <ScalarProperty Name="DeliveryContactId" ColumnName="DeliveryContactId" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-          <ScalarProperty Name="DocumentStatusId" ColumnName="DocumentStatusId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="ExpectedDeliveryDate" ColumnName="ExpectedDeliveryDate" />
-          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
-          <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DocumentAttachments">
       <EntityTypeMapping TypeName="RP.Model.DocumentAttachment">
         <MappingFragment StoreEntitySet="DocumentAttachment">
@@ -226,6 +201,7 @@
     <EntitySetMapping Name="ProductItemPrintOptionals">
       <EntityTypeMapping TypeName="RP.Model.ProductItemPrintOptional">
         <MappingFragment StoreEntitySet="ProductItemPrintOptional">
+          <ScalarProperty Name="PatternId" ColumnName="PatternId" />
           <ScalarProperty Name="OptionalStatusId" ColumnName="OptionalStatusId" />
           <ScalarProperty Name="ColorCodeId" ColumnName="ColorCodeId" />
           <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
@@ -237,6 +213,7 @@
     <EntitySetMapping Name="ProductItemScreenOptionals">
       <EntityTypeMapping TypeName="RP.Model.ProductItemScreenOptional">
         <MappingFragment StoreEntitySet="ProductItemScreenOptional">
+          <ScalarProperty Name="PatternId" ColumnName="PatternId" />
           <ScalarProperty Name="OptionalStatusId" ColumnName="OptionalStatusId" />
           <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
           <ScalarProperty Name="PatternPositionId" ColumnName="PatternPositionId" />
@@ -249,6 +226,7 @@
     <EntitySetMapping Name="ProductItemSewOptionals">
       <EntityTypeMapping TypeName="RP.Model.ProductItemSewOptional">
         <MappingFragment StoreEntitySet="ProductItemSewOptional">
+          <ScalarProperty Name="PatternId" ColumnName="PatternId" />
           <ScalarProperty Name="OptionalStatusId" ColumnName="OptionalStatusId" />
           <ScalarProperty Name="ProductItemId" ColumnName="ProductItemId" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -363,6 +341,31 @@
           <ScalarProperty Name="MaterialTypeId" ColumnName="MaterialTypeId" />
           <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="RP.Model.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="ConfirmedPriceDays" ColumnName="ConfirmedPriceDays" />
+          <ScalarProperty Name="BiddingStatusId" ColumnName="BiddingStatusId" />
+          <ScalarProperty Name="DeliveryContactId" ColumnName="DeliveryContactId" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="DocumentStatusId" ColumnName="DocumentStatusId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ExpectedDeliveryDate" ColumnName="ExpectedDeliveryDate" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

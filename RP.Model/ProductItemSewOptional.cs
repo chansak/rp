@@ -20,6 +20,7 @@ namespace RP.Model
         public string Remark { get; set; }
         public System.Guid ProductItemId { get; set; }
         public int OptionalStatusId { get; set; }
+        public Nullable<System.Guid> PatternId { get; set; }
     
         public virtual DocumentProductItem DocumentProductItem { get; set; }
     }

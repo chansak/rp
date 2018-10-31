@@ -17,5 +17,20 @@ namespace RP.Business
                 return uow.PatternImageRepository.All().ToList();
             }
         }
+        public PatternImage GetPatternImageById(string id)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                return uow.PatternImageRepository.GetById(id);
+            }
+        }
+        public void CreateNewPattern(PatternImage pattern)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                uow.PatternImageRepository.AddNewPattern(pattern);
+                uow.Commit();
+            }
+        }
     }
 }

@@ -15,5 +15,18 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+
+        public void AddNewPattern(Model.PatternImage pattern)
+        {
+            var currentYear = DateTime.Now.Year;
+            pattern.Year = currentYear;
+            ObjectSet.Add(pattern);
+        }
+
+        public override Model.PatternImage GetById(string id)
+        {
+            return ObjectSet.Where(i => i.Id.ToString() == id)
+                .FirstOrDefault();
+        }
+    }
 }

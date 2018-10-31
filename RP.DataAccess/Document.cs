@@ -24,9 +24,9 @@ namespace RP.DataAccess
     
         public System.Guid Id { get; set; }
         public string FileNumber { get; set; }
-        public System.DateTime IssueDate { get; set; }
-        public System.DateTime ExpiryDate { get; set; }
-        public System.DateTime ExpectedDeliveryDate { get; set; }
+        public Nullable<System.DateTime> IssueDate { get; set; }
+        public Nullable<System.DateTime> ExpiryDate { get; set; }
+        public Nullable<System.DateTime> ExpectedDeliveryDate { get; set; }
         public Nullable<System.Guid> CustomerId { get; set; }
         public Nullable<System.Guid> ContactId { get; set; }
         public Nullable<System.Guid> UserId { get; set; }
@@ -44,13 +44,12 @@ namespace RP.DataAccess
     
         public virtual Customer Customer { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }
-        public virtual CustomerContact CustomerContact1 { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentAttachment> DocumentAttachments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentDelivery> DocumentDeliveries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
-        public virtual User User { get; set; }
     }
 }

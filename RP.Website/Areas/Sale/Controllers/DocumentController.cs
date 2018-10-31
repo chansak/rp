@@ -1,11 +1,13 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using RP.Interfaces;
+using RP.Model;
 using RP.Utilities;
 using RP.Website.Helpers;
 using RP.Website.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +17,9 @@ namespace RP.Website.Areas.Sale.Controllers
 {
     public class DocumentController : Controller
     {
+        public const string PRINT_NEWPATTERN = "printFile";
+        public const string SCREEN_NEWPATTERN = "screenFile";
+        public const string SEW_NEWPATTERN = "sewFile";
         public ActionResult Index(string searchBy, string keyword, string sortBy, string direction, int? page)
         {
             return View();
@@ -35,7 +40,6 @@ namespace RP.Website.Areas.Sale.Controllers
             result.AddRange(documents.Select(d => new DocumentListItemViewModel
             {
                 Id = d.Id.ToString(),
-                IssueDate = d.IssueDate,
                 CustomerType = d.Customer.CustomerType.CustomerTypeName,
                 CustomerName = d.Customer.Name,
                 DocumentCode = d.FileNumber,
@@ -44,7 +48,6 @@ namespace RP.Website.Areas.Sale.Controllers
                 WorkflowStatusName = "ลูกค้าเสนอราคา",
                 BiddingStatus = (int)d.BiddingStatusId,
                 BiddingStatusName = "รอยืนยัน",
-                ExpiryDate = d.ExpiryDate
             }));
 
 
@@ -77,7 +80,50 @@ namespace RP.Website.Areas.Sale.Controllers
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
                 var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                if (document.DocumentProductItems.Count > 0)
+                {
+                    foreach (var item in document.DocumentProductItems)
+                    {
+                        if (item.ProductItemPrintOptionals.Count > 0)
+                        {
+                            var printOption = item.ProductItemPrintOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)printOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                printOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[PRINT_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                        if (item.ProductItemScreenOptionals.Count > 0)
+                        {
+                            var screenOption = item.ProductItemScreenOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)screenOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                screenOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[SCREEN_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                        if (item.ProductItemSewOptionals.Count > 0)
+                        {
+                            var sewOption = item.ProductItemSewOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)sewOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                sewOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[SEW_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                    }
+                }
                 GenericFactory.Business.CreateDocument(document, customerCode);
+
                 return Json("");
             }
             catch (Exception ex)
@@ -97,6 +143,41 @@ namespace RP.Website.Areas.Sale.Controllers
             var document = GenericFactory.Business.GetDocument(id);
             var viewModel = document.ToViewModel();
             return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
+        }
+        private bool SaveAttachFiles(string customerId, string patternId, HttpPostedFileBase file)
+        {
+            try
+            {
+                var directory = HttpContext.Server.MapPath("~/FileUpload/pattern/");
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                var subDirectory = Path.Combine(directory, customerId.ToString());
+                if (!Directory.Exists(subDirectory))
+                {
+                    Directory.CreateDirectory(subDirectory);
+                }
+                var filesDirectory = Path.Combine(subDirectory, patternId.ToString());
+                if (!Directory.Exists(filesDirectory))
+                {
+                    Directory.CreateDirectory(filesDirectory);
+                }
+                var path = Path.Combine(filesDirectory, file.FileName);
+                file.SaveAs(path);
+                GenericFactory.Business.CreateNewPattern(new PatternImage
+                {
+                    Id = new Guid(patternId),
+                    CustomerId = new Guid(customerId),
+                    PatternName = file.FileName,
+                    PatternImagePath = path
+                });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

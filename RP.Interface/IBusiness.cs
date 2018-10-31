@@ -17,15 +17,24 @@ namespace RP.Interfaces
 
         #region Documents
         IList<Document> GetDocumentsList();
-        IList<Document> GetDocumentsListBySearch(string searchBy,string keyword);
+        IList<Document> GetDocumentsListBySearch(string searchBy, string keyword);
         Document GetDocument(string id);
-        void CreateDocument(Document document,string customerCode);
+        void CreateDocument(Document document, string customerCode);
+        #endregion
+
+        #region User
+        IList<User> GetSaleUsersList();
+        User GetSaleUserById(string id);
+        #endregion
+
+        #region Customer
+        IList<Customer> GetCustomersList();
+        IList<CustomerContact> GetContactByCustomerId(string id);
+        Customer GetCustomerById(string id);
+        CustomerContact GetContactById(string id);
         #endregion
 
         #region Common
-        IList<User> GetSaleUsersList();
-        IList<Customer> GetCustomersList();
-        IList<CustomerContact> GetContactByCustomerId(string id);
         IList<ProductCategory> GetProductCategories();
         IList<Product> GetProductsByCategoryId(string id);
         IList<ProductOption> GetOptionsByProductId(string id);
@@ -33,20 +42,19 @@ namespace RP.Interfaces
         Product GetProductsById(string id);
         IList<ProductMaterialUsage> GetMaterialUsageByProductId(string productId, string productUnitId);
         IList<Stock> GetStockCheck(string warehouseId, string materialId, string materialUnitId);
-        Customer GetCustomerById(string id);
-        CustomerContact GetContactById(string id);
-        User GetSaleUserById(string id);
         IList<Material> GetMaterials();
         Material GetMaterialById(string id);
-        #endregion
-
-        #region Pattern
         IList<PatternImage> GetPatternImage();
         IList<PatternPosition> GetPatternPosition();
         IList<Color> GetPatternColor();
         Color GetColorById(string id);
         PatternPosition GetPositionById(string id);
+        PatternImage GetPatternImageById(string id);
         #endregion
 
+
+        #region Patrern
+        void CreateNewPattern(PatternImage pattern);
+        #endregion
     }
 }

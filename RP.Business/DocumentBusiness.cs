@@ -2,6 +2,7 @@
 using RP.Interfaces;
 using RP.Model;
 using System.Linq;
+using System;
 
 namespace RP.Business
 {
@@ -53,8 +54,12 @@ namespace RP.Business
         {
             using (var uow = UnitOfWork.Create())
             {
-                uow.DocumentRepository.AddNewDocument(document, customerCode);
-                uow.Commit();
+                try {
+                    uow.DocumentRepository.AddNewDocument(document, customerCode);
+                    uow.Commit();
+                } catch (Exception ex) {
+                    var msg = ex.Message;
+                }
             }
         }
     }

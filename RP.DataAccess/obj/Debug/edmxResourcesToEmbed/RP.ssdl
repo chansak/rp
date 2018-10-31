@@ -95,9 +95,9 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="FileNumber" Type="nvarchar" MaxLength="50" />
-    <Property Name="IssueDate" Type="datetime" Nullable="false" />
-    <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
-    <Property Name="ExpectedDeliveryDate" Type="datetime" Nullable="false" />
+    <Property Name="IssueDate" Type="datetime" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="ExpectedDeliveryDate" Type="datetime" />
     <Property Name="CustomerId" Type="uniqueidentifier" />
     <Property Name="ContactId" Type="uniqueidentifier" />
     <Property Name="UserId" Type="uniqueidentifier" />
@@ -220,6 +220,7 @@
     <Property Name="ProductItemId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ColorCodeId" Type="uniqueidentifier" />
     <Property Name="OptionalStatusId" Type="int" Nullable="false" />
+    <Property Name="PatternId" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="ProductItemScreenOptional">
     <Key>
@@ -231,6 +232,7 @@
     <Property Name="PatternPositionId" Type="uniqueidentifier" />
     <Property Name="ProductItemId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="OptionalStatusId" Type="int" Nullable="false" />
+    <Property Name="PatternId" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="ProductItemSewOptional">
     <Key>
@@ -242,6 +244,7 @@
     <Property Name="Remark" Type="nvarchar(max)" />
     <Property Name="ProductItemId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="OptionalStatusId" Type="int" Nullable="false" />
+    <Property Name="PatternId" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="ProductMaterialUsage">
     <Key>
@@ -401,18 +404,6 @@
       </Principal>
       <Dependent Role="Document">
         <PropertyRef Name="ContactId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Document_DeliveryCustomerContact">
-    <End Role="CustomerContact" Type="Self.CustomerContact" Multiplicity="0..1" />
-    <End Role="Document" Type="Self.Document" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CustomerContact">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Document">
-        <PropertyRef Name="DeliveryContactId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -784,10 +775,6 @@
       <End Role="Document" EntitySet="Document" />
     </AssociationSet>
     <AssociationSet Name="FK_Document_CustomerContact" Association="Self.FK_Document_CustomerContact">
-      <End Role="CustomerContact" EntitySet="CustomerContact" />
-      <End Role="Document" EntitySet="Document" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Document_DeliveryCustomerContact" Association="Self.FK_Document_DeliveryCustomerContact">
       <End Role="CustomerContact" EntitySet="CustomerContact" />
       <End Role="Document" EntitySet="Document" />
     </AssociationSet>

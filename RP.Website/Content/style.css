@@ -8561,3 +8561,6 @@ body.md-skin {
     margin: 0;
   }
 }
+.thumb-image {
+    width: 200px;
+}

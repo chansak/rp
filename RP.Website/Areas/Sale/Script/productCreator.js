@@ -327,8 +327,6 @@
             var selectedPrintOption = $("input[name='print-optional']:checked").val();
             var selectedScreenOption = $("input[name='screen-optional']:checked").val();
             var selectedSewOption = $("input[name='sew-optional']:checked").val();
-
-
             //print option
             var printFile = $("#print-file").get(0).files[0];
             var printPatternId = $("#print-pattern").val();

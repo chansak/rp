@@ -18,7 +18,6 @@ namespace RP.DataAccess
         public CustomerContact()
         {
             this.Documents = new HashSet<Document>();
-            this.Documents1 = new HashSet<Document>();
         }
     
         public System.Guid Id { get; set; }
@@ -39,7 +38,5 @@ namespace RP.DataAccess
         public virtual CustomerContactBranch CustomerContactBranch { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Document> Documents { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Document> Documents1 { get; set; }
     }
 }
