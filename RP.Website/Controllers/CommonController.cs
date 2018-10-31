@@ -118,7 +118,7 @@ namespace RP.Website.Controllers
                 var totalAmount = stock.Amount.Value;
                 data.Add(new StockCheckViewModel
                 {
-                    MaterialName = string.Format("{0} ({1})", stock.Material.Name, stock.Material.MaterialCode),
+                    MaterialName = string.Format("{0}", stock.Material.Name, stock.Material.MaterialCode),
                     MaterialInStock = totalAmount,
                     MaterialUsaged = (usageAmount * amount),
                     MaterialInStockAfterWithdraw = (totalAmount - (usageAmount * amount))

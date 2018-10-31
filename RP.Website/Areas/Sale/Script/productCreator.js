@@ -105,7 +105,7 @@
                 html += '<div class="row">';
                 html += '   <div class="col-sm-3">';
                 html += '       <div class="form-group">';
-                html += '           <label>รหัสผ้า</label>';
+                html += '           <label>ผ้า</label>';
                 html += '           <input type="text" id="materialName" class="form-control" disabled value="' + item.materialName + '">';
                 html += '       </div>';
                 html += '   </div>';
@@ -130,13 +130,23 @@
                 html += '           <input type="text" id="materialUsaged" class="form-control" disabled value="' + item.materialUsaged + '">';
                 html += '       </div>';
                 html += '   </div>';
-                html += '   <div class="col-sm-3">';
-                html += '       <div class="form-group">';
-                html += '           <label>ผ้าคงเหลือ</label>';
-                html += '           <input type="text" id="materialInStockAfterWithdraw" class="form-control" disabled value="' + item.materialInStockAfterWithdraw + '">';
-                html += '       </div>';
-                html += '   </div>';
-                html += '</div>';
+                if (item.materialInStockAfterWithdraw <= 0) {
+                    html += '   <div class="col-sm-3">';
+                    html += '       <div class="form-group">';
+                    html += '           <label>ผ้าคงเหลือ</label>';
+                    html += '           <input type="text" id="materialInStockAfterWithdraw" class="form-control" style="color:red" disabled value="' + item.materialInStockAfterWithdraw + '">';
+                    html += '       </div>';
+                    html += '   </div>';
+                    html += '</div>';
+                } else {
+                    html += '   <div class="col-sm-3">';
+                    html += '       <div class="form-group">';
+                    html += '           <label>ผ้าคงเหลือ</label>';
+                    html += '           <input type="text" id="materialInStockAfterWithdraw" class="form-control" disabled value="' + item.materialInStockAfterWithdraw + '">';
+                    html += '       </div>';
+                    html += '   </div>';
+                    html += '</div>';
+                }
             });
             $("#materialStockCheck").empty().html(html);
         }
