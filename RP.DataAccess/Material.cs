@@ -25,7 +25,6 @@ namespace RP.DataAccess
         public string MaterialCode { get; set; }
         public Nullable<System.Guid> MaterialTypeId { get; set; }
     
-        public virtual MaterialType MaterialType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stock> Stocks { get; set; }
     }

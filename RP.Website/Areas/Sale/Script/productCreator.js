@@ -109,12 +109,21 @@
                 html += '           <input type="text" id="materialName" class="form-control" disabled value="' + item.materialName + '">';
                 html += '       </div>';
                 html += '   </div>';
-                html += '   <div class="col-sm-3">';
-                html += '       <div class="form-group">';
-                html += '           <label>จำนวนผ้าในสต๊อค</label>';
-                html += '           <input type="text" id="materialInStock" class="form-control" disabled value="' + item.materialInStock + '">';
-                html += '       </div>';
-                html += '   </div>';
+                if (item.materialInStock <= 0) {
+                    html += '   <div class="col-sm-3">';
+                    html += '       <div class="form-group">';
+                    html += '           <label>จำนวนผ้าในสต๊อค</label>';
+                    html += '           <input type="text" id="materialInStock" class="form-control" style="color:red" disabled value="' + item.materialInStock + '">';
+                    html += '       </div>';
+                    html += '   </div>';
+                } else {
+                    html += '   <div class="col-sm-3">';
+                    html += '       <div class="form-group">';
+                    html += '           <label>จำนวนผ้าในสต๊อค</label>';
+                    html += '           <input type="text" id="materialInStock" class="form-control" disabled value="' + item.materialInStock + '">';
+                    html += '       </div>';
+                    html += '   </div>';
+                }
                 html += '   <div class="col-sm-3">';
                 html += '       <div class="form-group">';
                 html += '           <label>ผ้าที่ต้องใช้</label>';
@@ -241,7 +250,6 @@
     };
     var _bindingMaterial = function () {
         var success = function (data, textStatus, jqXHR) {
-            console.log(data);
             $(data).each(function (index, item) {
                 materials.push(item);
                 $('#materials').append($('<option>', {
@@ -262,6 +270,7 @@
             $("#products").find('option').remove().end();
             $("#productOptions").find('option').remove().end();
             $("#productsUnit").find('option').remove().end();
+            $("#materials").find('option').remove().end();
 
             $("#print-pattern").find('option').remove().end();
             $("#screen-pattern").find('option').remove().end();

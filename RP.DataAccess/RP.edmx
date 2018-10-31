@@ -517,18 +517,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Material_MaterialType">
-          <End Role="MaterialType" Type="Self.MaterialType" Multiplicity="0..1" />
-          <End Role="Material" Type="Self.Material" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MaterialType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Material">
-              <PropertyRef Name="MaterialTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Option_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="*" />
@@ -840,10 +828,6 @@
             <End Role="Warehouse" EntitySet="Warehouse" />
             <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_Material_MaterialType" Association="Self.FK_Material_MaterialType">
-            <End Role="MaterialType" EntitySet="MaterialType" />
-            <End Role="Material" EntitySet="Material" />
-          </AssociationSet>
           <AssociationSet Name="FK_Option_Product" Association="Self.FK_Option_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductOption" EntitySet="ProductOption" />
@@ -935,7 +919,6 @@
           <EntitySet Name="DocumentAttachments" EntityType="RP.Model.DocumentAttachment" />
           <EntitySet Name="DocumentDeliveries" EntityType="RP.Model.DocumentDelivery" />
           <EntitySet Name="DocumentProductItems" EntityType="RP.Model.DocumentProductItem" />
-          <EntitySet Name="Materials" EntityType="RP.Model.Material" />
           <EntitySet Name="MaterialTypes" EntityType="RP.Model.MaterialType" />
           <EntitySet Name="MaterialUnits" EntityType="RP.Model.MaterialUnit" />
           <EntitySet Name="PatternImages" EntityType="RP.Model.PatternImage" />
@@ -1031,14 +1014,6 @@
             <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
             <End Role="ProductItemSewOptional" EntitySet="ProductItemSewOptionals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Material_MaterialType" Association="RP.Model.FK_Material_MaterialType">
-            <End Role="MaterialType" EntitySet="MaterialTypes" />
-            <End Role="Material" EntitySet="Materials" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stock_Material" Association="RP.Model.FK_Stock_Material">
-            <End Role="Material" EntitySet="Materials" />
-            <End Role="Stock" EntitySet="Stocks" />
-          </AssociationSet>
           <AssociationSet Name="FK_Stock_MaterialUnit" Association="RP.Model.FK_Stock_MaterialUnit">
             <End Role="MaterialUnit" EntitySet="MaterialUnits" />
             <End Role="Stock" EntitySet="Stocks" />
@@ -1091,6 +1066,11 @@
           <AssociationSet Name="FK_ProductMaterialUsage_Unit" Association="RP.Model.FK_ProductMaterialUsage_Unit">
             <End Role="Unit" EntitySet="Units" />
             <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsages" />
+          </AssociationSet>
+          <EntitySet Name="Materials" EntityType="RP.Model.Material" />
+          <AssociationSet Name="FK_Stock_Material" Association="RP.Model.FK_Stock_Material">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Color">
@@ -1271,24 +1251,12 @@
           <NavigationProperty Name="ProductItemScreenOptionals" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemScreenOptional" />
           <NavigationProperty Name="ProductItemSewOptionals" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemSewOptional" />
         </EntityType>
-        <EntityType Name="Material">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MaterialCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaterialTypeId" Type="Guid" />
-          <NavigationProperty Name="MaterialType" Relationship="RP.Model.FK_Material_MaterialType" FromRole="Material" ToRole="MaterialType" />
-          <NavigationProperty Name="Stocks" Relationship="RP.Model.FK_Stock_Material" FromRole="Material" ToRole="Stock" />
-        </EntityType>
         <EntityType Name="MaterialType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Materials" Relationship="RP.Model.FK_Material_MaterialType" FromRole="MaterialType" ToRole="Material" />
         </EntityType>
         <EntityType Name="MaterialUnit">
           <Key>
@@ -1435,9 +1403,9 @@
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Material" Relationship="RP.Model.FK_Stock_Material" FromRole="Stock" ToRole="Material" />
           <NavigationProperty Name="MaterialUnit" Relationship="RP.Model.FK_Stock_MaterialUnit" FromRole="Stock" ToRole="MaterialUnit" />
           <NavigationProperty Name="Warehouse" Relationship="RP.Model.FK_Stock_Warehouse" FromRole="Stock" ToRole="Warehouse" />
+          <NavigationProperty Name="Material" Relationship="RP.Model.FK_Stock_Material" FromRole="Stock" ToRole="Material" />
         </EntityType>
         <EntityType Name="TransportationType">
           <Key>
@@ -1707,30 +1675,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Material_MaterialType">
-          <End Type="RP.Model.MaterialType" Role="MaterialType" Multiplicity="0..1" />
-          <End Type="RP.Model.Material" Role="Material" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MaterialType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Material">
-              <PropertyRef Name="MaterialTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Stock_Material">
-          <End Type="RP.Model.Material" Role="Material" Multiplicity="0..1" />
-          <End Type="RP.Model.Stock" Role="Stock" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Material">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Stock">
-              <PropertyRef Name="MaterialId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Stock_MaterialUnit">
           <End Type="RP.Model.MaterialUnit" Role="MaterialUnit" Multiplicity="0..1" />
           <End Type="RP.Model.Stock" Role="Stock" Multiplicity="*" />
@@ -1901,6 +1845,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaterialCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaterialTypeId" Type="Guid" />
+          <NavigationProperty Name="Stocks" Relationship="RP.Model.FK_Stock_Material" FromRole="Material" ToRole="Stock" />
+        </EntityType>
+        <Association Name="FK_Stock_Material">
+          <End Type="RP.Model.Material" Role="Material" Multiplicity="0..1" />
+          <End Type="RP.Model.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2063,16 +2029,6 @@
                 <ScalarProperty Name="ProductUnitId" ColumnName="ProductUnitId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Materials">
-            <EntityTypeMapping TypeName="RP.Model.Material">
-              <MappingFragment StoreEntitySet="Material">
-                <ScalarProperty Name="MaterialTypeId" ColumnName="MaterialTypeId" />
-                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2269,6 +2225,16 @@
                 <ScalarProperty Name="MaterialUnitId" ColumnName="MaterialUnitId" />
                 <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="RP.Model.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="MaterialTypeId" ColumnName="MaterialTypeId" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

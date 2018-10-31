@@ -17,7 +17,7 @@ namespace RP.Business
                 return uow.MaterialRepository.GetById(id);
             }
         }
-        public IList<Material> GetMaterial()
+        public IList<Material> GetMaterials()
         {
             using (var uow = UnitOfWork.Create())
             {

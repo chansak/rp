@@ -512,18 +512,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Material_MaterialType">
-    <End Role="MaterialType" Type="Self.MaterialType" Multiplicity="0..1" />
-    <End Role="Material" Type="Self.Material" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MaterialType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Material">
-        <PropertyRef Name="MaterialTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Option_Product">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="*" />
@@ -834,10 +822,6 @@
     <AssociationSet Name="FK_DocumentProductItems_Warehouse" Association="Self.FK_DocumentProductItems_Warehouse">
       <End Role="Warehouse" EntitySet="Warehouse" />
       <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Material_MaterialType" Association="Self.FK_Material_MaterialType">
-      <End Role="MaterialType" EntitySet="MaterialType" />
-      <End Role="Material" EntitySet="Material" />
     </AssociationSet>
     <AssociationSet Name="FK_Option_Product" Association="Self.FK_Option_Product">
       <End Role="Product" EntitySet="Product" />

@@ -15,5 +15,10 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+        public override Model.Material GetById(string id)
+        {
+            return ObjectSet.Where(i => i.Id.ToString() == id)
+                .FirstOrDefault();
+        }
+    }
 }

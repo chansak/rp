@@ -24,7 +24,6 @@ namespace RP.Model
         public string MaterialCode { get; set; }
         public Nullable<System.Guid> MaterialTypeId { get; set; }
     
-        public virtual MaterialType MaterialType { get; set; }
         public virtual ICollection<Stock> Stocks { get; set; }
     }
     

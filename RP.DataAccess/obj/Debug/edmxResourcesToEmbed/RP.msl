@@ -161,16 +161,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Materials">
-      <EntityTypeMapping TypeName="RP.Model.Material">
-        <MappingFragment StoreEntitySet="Material">
-          <ScalarProperty Name="MaterialTypeId" ColumnName="MaterialTypeId" />
-          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="MaterialTypes">
       <EntityTypeMapping TypeName="RP.Model.MaterialType">
         <MappingFragment StoreEntitySet="MaterialType">
@@ -363,6 +353,16 @@
           <ScalarProperty Name="MaterialUnitId" ColumnName="MaterialUnitId" />
           <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materials">
+      <EntityTypeMapping TypeName="RP.Model.Material">
+        <MappingFragment StoreEntitySet="Material">
+          <ScalarProperty Name="MaterialTypeId" ColumnName="MaterialTypeId" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

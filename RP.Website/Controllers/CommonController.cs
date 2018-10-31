@@ -110,6 +110,7 @@ namespace RP.Website.Controllers
             var result = new AjaxResultModel();
             var data = new List<StockCheckViewModel>();
             var material = GenericFactory.Business.GetMaterialUsageByProductId(productId, productUnitId).FirstOrDefault();
+            var selectedMaterial = GenericFactory.Business.GetMaterialById(materialId);
             var stock = GenericFactory.Business.GetStockCheck(AppSettingHelper.GetDefaultWarehouseId, materialId, material.MaterialUnitId.ToString()).FirstOrDefault();
             if (stock != null)
             {
@@ -125,12 +126,14 @@ namespace RP.Website.Controllers
             }
             else
             {
+                var usageAmount = material.Amount.Value;
+                var totalAmount = 0;
                 data.Add(new StockCheckViewModel
                 {
-                    MaterialName = "",
+                    MaterialName = selectedMaterial.Name,
                     MaterialInStock = 0,
-                    MaterialUsaged = 0,
-                    MaterialInStockAfterWithdraw = 0
+                    MaterialUsaged = (usageAmount * amount),
+                    MaterialInStockAfterWithdraw = (totalAmount - (usageAmount * amount))
                 });
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
@@ -193,7 +196,7 @@ namespace RP.Website.Controllers
         }
         public ActionResult GetMaterials()
         {
-            var materials = GenericFactory.Business.GetMaterial();
+            var materials = GenericFactory.Business.GetMaterials();
             var data = new List<MaterialViewModel>();
             data.AddRange(materials.Select(m => new MaterialViewModel
             {

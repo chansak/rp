@@ -36,7 +36,7 @@ namespace RP.Interfaces
         Customer GetCustomerById(string id);
         CustomerContact GetContactById(string id);
         User GetSaleUserById(string id);
-        IList<Material> GetMaterial();
+        IList<Material> GetMaterials();
         Material GetMaterialById(string id);
         #endregion
 

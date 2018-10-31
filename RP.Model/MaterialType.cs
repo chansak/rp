@@ -14,15 +14,8 @@ namespace RP.Model
 {
     public partial class MaterialType
     {
-        public MaterialType()
-        {
-            this.Materials = new HashSet<Material>();
-        }
-    
         public System.Guid Id { get; set; }
         public string Name { get; set; }
-    
-        public virtual ICollection<Material> Materials { get; set; }
     }
     
 }
