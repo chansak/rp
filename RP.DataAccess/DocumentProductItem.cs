@@ -33,6 +33,7 @@ namespace RP.DataAccess
         public Nullable<int> DiscountPercentage { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }
         public Nullable<System.Guid> FromWarehouseId { get; set; }
+        public Nullable<System.Guid> ProductOptionId { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Unit Unit { get; set; }

@@ -7,6 +7,7 @@ namespace RP.Interfaces
 {
 	public interface IProductItemScreenOptionalRepository : IRepository<RP.Model.ProductItemScreenOptional>
 	{
+        ProductItemScreenOptional GetByItemId(string id);
 
-	}
+    }
 }

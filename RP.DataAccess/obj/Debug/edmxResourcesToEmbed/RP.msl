@@ -123,6 +123,7 @@
     <EntitySetMapping Name="DocumentProductItems">
       <EntityTypeMapping TypeName="RP.Model.DocumentProductItem">
         <MappingFragment StoreEntitySet="DocumentProductItems">
+          <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
           <ScalarProperty Name="FromWarehouseId" ColumnName="FromWarehouseId" />
           <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
           <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />

@@ -353,8 +353,8 @@ namespace RP.Website
             item.Amount = entity.Amount;
             item.PricePerUnit = entity.PricePerUnit;
             var o1 = GenericFactory.Business.GetProductItemPrintOptionalByItemId(entity.Id.ToString());
+            var printOption = new PrintOptionViewModel();
             if (o1 != null) {
-                var printOption = new PrintOptionViewModel();
                 var pattern = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
                 var path = string.Format(@"../../../FileUpload/{0}",
                                             pattern.PatternImagePath.Replace(@"\", @"/")
@@ -364,9 +364,46 @@ namespace RP.Website
                 printOption.PatternId = pattern.Id.ToString();
                 printOption.PatternName = pattern.PatternName;
                 printOption.PatternImagePath = path;
-                printOption.ColorId = color.Id.ToString();
-                printOption.ColorName = color.ColorName;
             }
+            item.PrintOption = printOption;
+            var o2 = GenericFactory.Business.GetProductItemScreenOptionalByItemId(entity.Id.ToString());
+            var screenOption = new ScreenOptionViewModel();
+            if (o2 != null)
+            {
+                var pattern = GenericFactory.Business.GetPatternImageById(o2.PatternId.ToString());
+                var path = string.Format(@"../../../FileUpload/{0}",
+                                            pattern.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
+                var color = GenericFactory.Business.GetColorById(o2.ColorCodeId.ToString());
+                var position = GenericFactory.Business.GetPositionById(o2.PatternPositionId.ToString());
+                screenOption.PatternId = pattern.Id.ToString();
+                screenOption.PatternName = pattern.PatternName;
+                screenOption.PatternImagePath = path;
+                screenOption.PositionId = position.Id.ToString();
+                screenOption.PositionName = position.PositionName;
+            }
+            item.ScreenOption = screenOption;
+            var o3 = GenericFactory.Business.GetProductItemSewOptionalByItemId(entity.Id.ToString());
+            var sewOption = new SewOptionViewModel();
+            if (o2 != null)
+            {
+                var pattern = GenericFactory.Business.GetPatternImageById(o3.PatternId.ToString());
+                var path = string.Format(@"../../../FileUpload/{0}",
+                                            pattern.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
+                var position = GenericFactory.Business.GetPositionById(o2.PatternPositionId.ToString());
+                sewOption.PatternId = pattern.Id.ToString();
+                sewOption.PatternName = pattern.PatternName;
+                sewOption.PatternImagePath = path;
+                sewOption.PositionId = position.Id.ToString();
+                sewOption.PositionName = position.PositionName;
+                sewOption.Remark = o3.Remark;
+            }
+            item.SewOption = sewOption;
+            item.ProductCategoryId = entity.Product.ProductCategoryId.ToString();
+            item.ProductOptionId = entity.ProductOptionId.ToString();
             return item;
         }
     }

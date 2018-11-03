@@ -51,6 +51,8 @@
     <Compile Include="PatternPositionBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />
     <Compile Include="ProductCategoryBusiness.cs" />
+    <Compile Include="ProductItemScreenOptionalBusiness.cs" />
+    <Compile Include="ProductItemSewOptionalBusiness.cs" />
     <Compile Include="ProductItemPrintOptionalBusiness.cs" />
     <Compile Include="ProductMaterialUsageBusiness.cs" />
     <Compile Include="ProductOptionBusiness.cs" />

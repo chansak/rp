@@ -52,6 +52,8 @@ namespace RP.Interfaces
         PatternImage GetPatternImageById(string id);
         DocumentProductItem GetProductItemByItemId(string id);
         ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
+        ProductItemScreenOptional GetProductItemScreenOptionalByItemId(string id);
+        ProductItemSewOptional GetProductItemSewOptionalByItemId(string id);
         #endregion
 
 

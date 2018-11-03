@@ -146,6 +146,7 @@
     <Property Name="DiscountPercentage" Type="int" />
     <Property Name="TotalPrice" Type="money" />
     <Property Name="FromWarehouseId" Type="uniqueidentifier" />
+    <Property Name="ProductOptionId" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="Material">
     <Key>

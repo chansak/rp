@@ -15,5 +15,10 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+        public Model.ProductItemScreenOptional GetByItemId(string id)
+        {
+            return ObjectSet.Where(i => i.ProductItemId.ToString() == id)
+                .FirstOrDefault();
+        }
+    }
 }

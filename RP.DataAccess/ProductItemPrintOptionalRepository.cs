@@ -17,7 +17,7 @@ namespace RP.DataAccess
 		}
         public Model.ProductItemPrintOptional GetByItemId(string id)
         {
-            return ObjectSet.Where(i => i.Id.ToString() == id)
+            return ObjectSet.Where(i => i.ProductItemId.ToString() == id)
                 .FirstOrDefault();
         }
     }
