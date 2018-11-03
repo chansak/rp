@@ -157,6 +157,7 @@
     <Content Include="Areas\Sale\Script\documentCreator.js" />
     <Content Include="Areas\Sale\Script\documentEditor.js" />
     <Content Include="Areas\Sale\Script\documentList.js" />
+    <Content Include="Areas\Sale\Script\productEditor.js" />
     <Content Include="Areas\Sale\Script\productCreator.js" />
     <Content Include="Areas\Sale\Views\Document\AddNew.cshtml" />
     <Content Include="Areas\Sale\Views\Document\Index.cshtml" />

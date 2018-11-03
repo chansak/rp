@@ -7,6 +7,6 @@ namespace RP.Interfaces
 {
 	public interface IProductItemPrintOptionalRepository : IRepository<RP.Model.ProductItemPrintOptional>
 	{
-
-	}
+        ProductItemPrintOptional GetByItemId(string id);
+    }
 }

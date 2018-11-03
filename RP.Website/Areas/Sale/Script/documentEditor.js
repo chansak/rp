@@ -83,6 +83,7 @@
     }
     var _getCustomerDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
+            $("#auto_customerId").val(data.id);
             $("#auto_customerName").val(data.name);
             $("#auto_customerType").val(data.customerTypeName);
             $("#auto_customerHospitalName").val(data.hospitalName);
@@ -135,7 +136,8 @@
             if (item.printOption != null || item.screenOption != null || item.sewOption != null) {
                 if (item.itemId != null) {
                     html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
-                    html += '   <td style="width:15%" id="icon_' + item.itemId + '"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></td>';
+                    //html += '   <td style="width:15%" id="icon_' + item.itemId + '"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></td>';
+                    html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="'+ item.itemId +'" alt="ทั้งหมด"> <i></i></label></div></td>';
                 } else {
                     html += '<tr>';
                     html += '<td></td>';
@@ -144,11 +146,11 @@
                 html += '<tr>';
                 html += '<td></td>';
             }
-            html += '   <td style="width:15%">' + item.productName + '</td>';
-            html += '   <td style="width:15%">' + item.productUnitName + '</td>';
-            html += '   <td style="width:15%">' + item.amount + '</td>';
-            html += '   <td style="width:15%">' + item.pricePerUnit + '</td>';
-            html += '   <td style="width:15%">' + currency(total).format() + '</td>';
+            html += '   <td style="width:25%;line-height:40px">' + item.productName + '</td>';
+            html += '   <td style="width:15%;line-height:40px">' + item.productUnitName + '</td>';
+            html += '   <td style="width:15%;line-height:40px">' + item.amount + '</td>';
+            html += '   <td style="width:15%;line-height:40px">' + item.pricePerUnit + '</td>';
+            html += '   <td style="width:15%;line-height:40px">' + currency(total).format() + '</td>';
             html += '<tr>';
             if (item.itemId != null) {
                 html += '<tr id=' + item.itemId + ' style="background-color: #ffffff;display:none">'
@@ -159,7 +161,7 @@
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
-                        html += '                   <h5 class="mb-1">ลายเก่า</h5>';
+                        //html += '                   <h5 class="mb-1">ลายเก่า</h5>';
                         html += '                   <small>ชื่อลาย :' + item.printOption.patternName + '</small>';
                         html += '               </div>';
                         html += '               <img src="' + item.printOption.patternImagePath + '" class="thumb-image" />';
@@ -171,7 +173,7 @@
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
-                        html += '                   <h5 class="mb-1">ลายใหม่</h5>';
+                        //html += '                   <h5 class="mb-1">ลายใหม่</h5>';
                         html += '                   <small>ชื่อลาย :' + item.printOption.patternName + '</small>';
                         html += '               </div>';
                         html += '               <img src="' + item.printOption.patternImagePath + '" class="thumb-image" />';
@@ -188,7 +190,7 @@
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
-                        html += '                   <h5 class="mb-1">ลายเก่า</h5>';
+                        //html += '                   <h5 class="mb-1">ลายเก่า</h5>';
                         html += '                   <small>ชื่อลาย :' + item.screenOption.patternName + '</small>';
                         html += '               </div>';
                         html += '               <img src="' + item.screenOption.patternImagePath + '" class="thumb-image" />';
@@ -199,7 +201,7 @@
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
-                        html += '                   <h5 class="mb-1">ลายใหม่</h5>';
+                        //html += '                   <h5 class="mb-1">ลายใหม่</h5>';
                         html += '                   <small>ชื่อลาย :' + item.screenOption.patternName + '</small>';
                         html += '               </div>';
                         html += '               <img src="' + item.screenOption.patternImagePath + '" class="thumb-image" />';
@@ -216,7 +218,7 @@
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
-                        html += '                   <h5 class="mb-1">ลายเก่า</h5>';
+                        //html += '                   <h5 class="mb-1">ลายเก่า</h5>';
                         html += '                   <small>ชื่อลาย :' + item.sewOption.patternName + '</small>';
                         html += '               </div>';
                         html += '               <img src="' + item.sewOption.patternImagePath + '" class="thumb-image" />';
@@ -227,7 +229,7 @@
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
-                        html += '                   <h5 class="mb-1">ลายใหม่</h5>';
+                        //html += '                   <h5 class="mb-1">ลายใหม่</h5>';
                         html += '                   <small>ชื่อลาย :' + item.sewOption.patternName + '</small>';
                         html += '               </div>';
                         html += '               <img src="' + item.sewOption.patternImagePath + '" class="thumb-image" />';
@@ -241,6 +243,10 @@
             }
         });
         $("#productItems").empty().html(html);
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
     };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
@@ -277,13 +283,19 @@
             var isVisible = $("#" + itemId).is(":visible");
             if (isVisible) {
                 $("#" + itemId).hide();
-                var html = '<a class="collapse-link"><i class="fa fa-chevron-down"></i></a>';
+                //var html = '<a class="collapse-link"><i class="fa fa-chevron-down"></i></a>';
+                var html = '<div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + itemId +'" alt="ทั้งหมด"> <i></i></label></div>';
+                
                 $("#icon_" + itemId).html(html);
             } else {
                 $("#" + itemId).show();
-                var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>';
+                //var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>';var html = '<div class="checkbox i-checks"><label> <input type="checkbox" value="' + itemId +'" alt="ทั้งหมด"> <i></i></label></div>';
                 $("#icon_" + itemId).html(html);
             }
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
         }
     }
 };

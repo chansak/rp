@@ -141,14 +141,22 @@ namespace RP.Website.Controllers
         public ActionResult GetPatternImages()
         {
             var result = new AjaxResultModel();
-            var images = GenericFactory.Business.GetPatternImage();
+            var patterns = GenericFactory.Business.GetPatternImage();
             var data = new List<PatternImageViewModel>();
-            data.AddRange(images.Select(p => new PatternImageViewModel
+            foreach (var p1 in patterns)
             {
-                Id = p.Id.ToString(),
-                PatternName = p.PatternName,
-                ImagePath = p.PatternImagePath
-            }));
+                var path = string.Format(@"../../../FileUpload/{0}",
+                                                p1.PatternImagePath.Replace(@"\", @"/")
+                                                .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                                .Remove(0, 1));
+                data.Add(new PatternImageViewModel
+                {
+                    Id = p1.Id.ToString(),
+                    PatternName = p1.PatternName,
+                    ImagePath = path
+                });
+            }
+
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetPatternPosition()
@@ -203,6 +211,11 @@ namespace RP.Website.Controllers
                 Id = m.Id.ToString(),
                 MaterialName = m.Name
             }));
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetProductItemByItemId(string id) {
+            var item = GenericFactory.Business.GetProductItemByItemId(id);
+            var data = item.ToViewModel();
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
     }

@@ -15,5 +15,12 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+        public override Model.DocumentProductItem GetById(string id)
+        {
+            return ObjectSet.Where(i => i.Id.ToString() == id).
+                Include(i=>i.Product).
+                Include(i=>i.Unit)
+                .FirstOrDefault();
+        }
+    }
 }

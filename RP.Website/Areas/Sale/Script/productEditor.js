@@ -1,4 +1,5 @@
-﻿var productCreator = new function () {
+﻿var productEditor = new function () {
+    var item;
     var customerId = '';
     var images = [];
     var items = [];
@@ -9,20 +10,20 @@
     var _bindingProductCategories = function () {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
-                $('#productCategories').append($('<option>', {
+                $('#editProductCategories').append($('<option>', {
                     value: item.id,
                     text: item.categoryName
                 }));
             });
-            $("#productCategories").prepend("<option value='' selected='selected'>เลือกประเภทสินค้า</option>");
-            $("#productCategories").unbind();
-            $("#productCategories").change(function () {
+            $("#editProductCategories").prepend("<option value='' selected='selected'>เลือกประเภทสินค้า</option>");
+            $("#editProductCategories").unbind();
+            $("#editProductCategories").change(function () {
                 var selectedCategoryId = '';
-                selectedCategoryId = $('#productCategories').val();
+                selectedCategoryId = $('#editProductCategories').val();
                 if (selectedCategoryId != '') {
                     _bindingProducts(selectedCategoryId);
                 } else {
-                    $("#products").find('option').remove().end();
+                    $("#editProducts").find('option').remove().end();
                     $("#productOptions").find('option').remove().end();
                 }
             });
@@ -35,16 +36,16 @@
     var _bindingProducts = function (id) {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
-                $('#products').append($('<option>', {
+                $('#editProducts').append($('<option>', {
                     value: item.id,
                     text: item.productName
                 }));
             });
-            $("#products").prepend("<option value='' selected='selected'>เลือกสินค้า</option>");
-            $("#products").unbind();
-            $("#products").change(function () {
+            $("#editProducts").prepend("<option value='' selected='selected'>เลือกสินค้า</option>");
+            $("#editProducts").unbind();
+            $("#editProducts").change(function () {
                 var selectedProductId = '';
-                selectedProductId = $('#products').val();
+                selectedProductId = $('#editProducts').val();
                 if (selectedProductId != '') {
                     _bindingProductOptions(selectedProductId);
                     _bindingProductUnits(selectedProductId);
@@ -273,6 +274,14 @@
         }
         var xhr = RPService.GetMaterials(success, failure);
     };
+    var _getProductItemDetail = function (itemId) {
+        var success = function (data, textStatus, jqXHR) {
+            item = data;
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.GetProductItemByItemId(itemId, success, failure);
+    };
     return {
         init: function (cid) {
             customerId = cid;
@@ -314,6 +323,53 @@
             $(".fileinput-filename").empty()
             $("#sew-remark").val('');
 
+            _bindingProductCategories();
+            _bindingPatternImage();
+            _bindingPatternPosition();
+            _bindingPatternColor();
+            _bindingMaterial();
+        },
+        edit: function (cid, id) {
+            customerId = cid;
+            itemId = id;
+            $("#productCategories").find('option').remove().end();
+            $("#products").find('option').remove().end();
+            $("#productOptions").find('option').remove().end();
+            $("#productsUnit").find('option').remove().end();
+            $("#materials").find('option').remove().end();
+
+            $("#print-pattern").find('option').remove().end();
+            $("#screen-pattern").find('option').remove().end();
+            $("#sew-pattern").find('option').remove().end();
+
+            $("#print-color").find('option').remove().end();
+            $("#screen-color").find('option').remove().end();
+            $("#screen-position").find('option').remove().end();
+            $("#sew-position").find('option').remove().end();
+
+            $("#print-optional2").iCheck('check');
+            $("#screen-optional2").iCheck('check');
+            $("#sew-optional2").iCheck('check');
+
+            $("#print-option1-section").hide();
+            $("#print-option2-section").show();
+            $("#print-option3-section").hide();
+            $("#print-patternImage").html("");
+            $("#screen-option1-section").hide();
+            $("#screen-option2-section").show();
+            $("#screen-option3-section").hide();
+            $("#screen-patternImage").html("");
+            $("#sew-option1-section").hide();
+            $("#sew-option2-section").show();
+            $("#sew-option3-section").hide();
+            $("#sew-patternImage").html("");
+
+            $("#print-file").val('');
+            $("#screen-file").val('');
+            $("#sew-file").val('');
+            $(".fileinput-filename").empty()
+            $("#sew-remark").val('');
+            _getProductItemDetail(itemId);
             _bindingProductCategories();
             _bindingPatternImage();
             _bindingPatternPosition();

@@ -166,12 +166,16 @@ namespace RP.Website
                         case ItemOptionStatus.ExistingPattern:
                             {
                                 var p1 = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
+                                var path = string.Format(@"../../../FileUpload/{0}",
+                                            p1.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
                                 printOptions.Add(new PrintOptionViewModel
                                 {
                                     PatternName = p1.PatternName,
                                     SelectedOption = o1.OptionalStatusId,
                                     PatternId = o1.PatternId.ToString(),
-                                    PatternImagePath = p1.PatternImagePath,
+                                    PatternImagePath = path
                                 });
                                 break;
                             }
@@ -206,12 +210,16 @@ namespace RP.Website
                         case ItemOptionStatus.ExistingPattern:
                             {
                                 var p1 = GenericFactory.Business.GetPatternImageById(o2.PatternId.ToString());
+                                var path = string.Format(@"../../../FileUpload/{0}",
+                                            p1.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
                                 screenOptions.Add(new ScreenOptionViewModel
                                 {
                                     PatternName = p1.PatternName,
                                     SelectedOption = o2.OptionalStatusId,
                                     PatternId = o2.PatternId.ToString(),
-                                    PatternImagePath = p1.PatternImagePath,
+                                    PatternImagePath = path,
                                     PositionId = o2.PatternPositionId.ToString(),
                                 });
                                 break;
@@ -249,11 +257,15 @@ namespace RP.Website
                         case ItemOptionStatus.ExistingPattern:
                             {
                                 var p1 = GenericFactory.Business.GetPatternImageById(o3.PatternId.ToString());
+                                var path = string.Format(@"../../../FileUpload/{0}",
+                                            p1.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
                                 sewOptions.Add(new SewOptionViewModel
                                 {
                                     PatternName = p1.PatternName,
                                     SelectedOption = o3.OptionalStatusId,
-                                    PatternImagePath = p1.PatternImagePath,
+                                    PatternImagePath = path,
                                     PatternId = o3.PatternId.ToString()
                                 });
                                 break;
@@ -302,7 +314,6 @@ namespace RP.Website
             return document;
         }
 
-
         public static CustomerViewModel ToViewModel(this Customer entity)
         {
             var customer = new CustomerViewModel();
@@ -330,6 +341,33 @@ namespace RP.Website
             user.Name = entity.DisplayName;
             user.Branch = entity.Department.DepartmentName;
             return user;
+        }
+
+        public static ProductItemViewModel ToViewModel(this DocumentProductItem entity) {
+            var item = new ProductItemViewModel();
+            item.ItemId = entity.Id.ToString();
+            item.ProductId = entity.Product.Id.ToString();
+            item.ProductName = entity.Product.Name;
+            item.ProductUnitId = entity.ProductUnitId.ToString();
+            item.ProductUnitName = entity.Unit.UnitName;
+            item.Amount = entity.Amount;
+            item.PricePerUnit = entity.PricePerUnit;
+            var o1 = GenericFactory.Business.GetProductItemPrintOptionalByItemId(entity.Id.ToString());
+            if (o1 != null) {
+                var printOption = new PrintOptionViewModel();
+                var pattern = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
+                var path = string.Format(@"../../../FileUpload/{0}",
+                                            pattern.PatternImagePath.Replace(@"\", @"/")
+                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                            .Remove(0, 1));
+                var color = GenericFactory.Business.GetColorById(o1.ColorCodeId.ToString());
+                printOption.PatternId = pattern.Id.ToString();
+                printOption.PatternName = pattern.PatternName;
+                printOption.PatternImagePath = path;
+                printOption.ColorId = color.Id.ToString();
+                printOption.ColorName = color.ColorName;
+            }
+            return item;
         }
     }
 }

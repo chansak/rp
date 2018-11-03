@@ -45,11 +45,13 @@
     <Compile Include="ContactBusiness.cs" />
     <Compile Include="CustomerBusiness.cs" />
     <Compile Include="DocumentBusiness.cs" />
+    <Compile Include="DocumentProductItemBusiness.cs" />
     <Compile Include="MaterialBusiness.cs" />
     <Compile Include="PatternImageBusiness.cs" />
     <Compile Include="PatternPositionBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />
     <Compile Include="ProductCategoryBusiness.cs" />
+    <Compile Include="ProductItemPrintOptionalBusiness.cs" />
     <Compile Include="ProductMaterialUsageBusiness.cs" />
     <Compile Include="ProductOptionBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,6 +5,7 @@ namespace RP.Website.Models
     public class ProductItemViewModel
     {
         public string ItemId { get; set; }
+
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         public string ProductUnitId { get; set; }
@@ -14,5 +15,8 @@ namespace RP.Website.Models
         public PrintOptionViewModel PrintOption { get; set; }
         public ScreenOptionViewModel ScreenOption { get; set; }
         public SewOptionViewModel SewOption { get; set; }
+
+        public string ProductCategoryId { get; set; }
+        public string ProductOptionId { get; set; }
     }
 }

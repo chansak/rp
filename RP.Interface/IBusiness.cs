@@ -50,6 +50,8 @@ namespace RP.Interfaces
         Color GetColorById(string id);
         PatternPosition GetPositionById(string id);
         PatternImage GetPatternImageById(string id);
+        DocumentProductItem GetProductItemByItemId(string id);
+        ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
         #endregion
 
 
