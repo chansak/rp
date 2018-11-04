@@ -169,42 +169,45 @@
             var xhr = RPService.GetMaterialStockCheck(productId, productUnitId, materialId, amount, success, failure);
         }
     }
-    var _bindingPatternImage = function () {
+    var _bindingPatternImage = function (callback) {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 images.push(item);
-                $('#print-pattern').append($('<option>', {
+                $('#editPrint-pattern').append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
-                $('#screen-pattern').append($('<option>', {
+                $('#editScreen-pattern').append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
-                $('#sew-pattern').append($('<option>', {
+                $('#editSew-pattern').append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
 
-                $("#print-pattern").change(function () {
+                $("#editPrint-pattern").change(function () {
                     var selectedImageId = $('#print-pattern').val();
                     var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
                     $("#print-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' class='thumb-image' />");
                 });
-                $("#screen-pattern").change(function () {
+                $("#editScreen-pattern").change(function () {
                     var selectedImageId = $('#screen-pattern').val();
                     var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
                     $("#screen-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' class='thumb-image' />");
                 });
-                $("#sew-pattern").change(function () {
+                $("#editSew-pattern").change(function () {
                     var selectedImageId = $('#sew-pattern').val();
                     var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
                     $("#sew-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "'  class='thumb-image'/>");
                 });
             });
-            $("#print-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
-            $("#screen-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
-            $("#sew-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            $("#editPrint-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            $("#editScreen-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            $("#editSew-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            if (callback != null) {
+                callback();
+            }
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -283,108 +286,246 @@
             item = data;
             $("#editProductNumberOfProducts").val(item.amount);
             $("#editProductPricePerUnit").val(item.pricePerUnit);
-            if (item.printOption != null) {
-                $("input[name=editPrint-optional][value='" + item.patternId + "']").prop("checked", true);
-            }
-            console.log(item);
             _bindingProductCategories();
-            _bindingPatternImage();
+            _bindingPatternImage(function () {
+                if (item.printOption != null) {
+                    $("#editPrint-option1-section").show();
+                    $("#editPrint-option2-section").hide();
+                    $("#editPrint-option3-section").hide();
+                    $("#editPrint-optional1").parent().removeClass("iradio_square-green").addClass("iradio_square-green checked");
+                    $("#editPrint-optional2").parent().removeClass("iradio_square-green checked").addClass("iradio_square-green");
+                    $("#editPrint-optional3").parent().removeClass("iradio_square-green checked").addClass("iradio_square-green");
+                    $("#editPrint-pattern").val(item.printOption.patternId);
+                }
+            });
             _bindingPatternPosition();
             _bindingPatternColor();
-            _bindingMaterial();
+            _bindingMaterial();           
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
         var xhr = RPService.GetProductItemByItemId(itemId, success, failure);
     };
+    var _registerStartupInitScript = function () {
+        $(".iCheck-helper").click(function () {
+            var id = $(this).prev().prop("id");
+            switch (id) {
+                case "print-optional1":
+                    {
+                        $("#print-option1-section").show();
+                        $("#print-option2-section").hide();
+                        $("#print-option3-section").hide();
+                        $("#print-pattern").val($("#print-pattern option:first").val());
+                        $("#print-patternImage").html("");
+                        break;
+                    }
+                case "print-optional2":
+                    {
+                        $("#print-option1-section").hide();
+                        $("#print-option2-section").show();
+                        $("#print-option3-section").hide();
+                        $("#print-patternImage").html("");
+                        break;
+                    }
+                case "print-optional3":
+                    {
+                        $("#print-option1-section").hide();
+                        $("#print-option2-section").hide();
+                        $("#print-option3-section").show();
+                        $("#print-patternImage").html("");
+                        break;
+                    }
+                case "screen-optional1":
+                    {
+                        $("#screen-option1-section").show();
+                        $("#screen-option2-section").hide();
+                        $("#screen-option3-section").hide();
+                        $("#screen-pattern").val($("#screen-pattern option:first").val());
+                        $("#screen-patternImage").html("");
+                        break;
+                    }
+                case "screen-optional2":
+                    {
+                        $("#screen-option1-section").hide();
+                        $("#screen-option2-section").show();
+                        $("#screen-option3-section").hide();
+                        $("#screen-patternImage").html("");
+                        break;
+                    }
+                case "screen-optional3":
+                    {
+                        $("#screen-option1-section").hide();
+                        $("#screen-option2-section").hide();
+                        $("#screen-option3-section").show();
+                        $("#screen-patternImage").html("");
+                        break;
+                    }
+                case "sew-optional1":
+                    {
+                        $("#sew-option1-section").show();
+                        $("#sew-option2-section").hide();
+                        $("#sew-option3-section").hide();
+                        $("#sew-pattern").val($("#sew-pattern option:first").val());
+                        $("#sew-patternImage").html("");
+                        break;
+                    }
+                case "sew-optional2":
+                    {
+                        $("#sew-option1-section").hide();
+                        $("#sew-option2-section").show();
+                        $("#sew-option3-section").hide();
+                        $("#sew-patternImage").html("");
+                        break;
+                    }
+                case "sew-optional3":
+                    {
+                        $("#sew-option1-section").hide();
+                        $("#sew-option2-section").hide();
+                        $("#sew-option3-section").show();
+                        $("#sew-patternImage").html("");
+                        break;
+                    }
+                case "editPrint-optional1":
+                    {
+                        $("#editPrint-option1-section").show();
+                        $("#editPrint-option2-section").hide();
+                        $("#editPrint-option3-section").hide();
+                        //if (item.printOption != null) {
+                        //    $("#editPrint-pattern").val(item.printOption.patternId);
+                        //}
+                        $("#print-pattern").val($("#print-pattern option:first").val());
+                        $("#editPrint-patternImage").html("");
+                        break;
+                    }
+                case "editPrint-optional2":
+                    {
+                        $("#editPrint-option1-section").hide();
+                        $("#editPrint-option2-section").show();
+                        $("#editPrint-option3-section").hide();
+                        $("#editPrint-patternImage").html("");
+                        break;
+                    }
+                case "editPrint-optional3":
+                    {
+                        $("#editPrint-option1-section").hide();
+                        $("#editPrint-option2-section").hide();
+                        $("#editPrint-option3-section").show();
+                        $("#editPrint-patternImage").html("");
+                        break;
+                    }
+                case "editScreen-optional1":
+                    {
+                        $("#editScreen-option1-section").show();
+                        $("#editScreen-option2-section").hide();
+                        $("#editScreen-option3-section").hide();
+                        $("#editScreen-pattern").val($("#editScreen-pattern option:first").val());
+                        $("#editScreen-patternImage").html("");
+                        break;
+                    }
+                case "editScreen-optional2":
+                    {
+                        $("#editScreen-option1-section").hide();
+                        $("#editScreen-option2-section").show();
+                        $("#editScreen-option3-section").hide();
+                        $("#editScreen-patternImage").html("");
+                        break;
+                    }
+                case "editScreen-optional3":
+                    {
+                        $("#editScreen-option1-section").hide();
+                        $("#editScreen-option2-section").hide();
+                        $("#editScreen-option3-section").show();
+                        $("#editScreen-patternImage").html("");
+                        break;
+                    }
+                case "editSew-optional1":
+                    {
+                        $("#editSew-option1-section").show();
+                        $("#editSew-option2-section").hide();
+                        $("#editSew-option3-section").hide();
+                        $("#editSew-pattern").val($("#editSew-pattern option:first").val());
+                        $("#editSew-patternImage").html("");
+                        break;
+                    }
+                case "editSew-optional2":
+                    {
+                        $("#editSew-option1-section").hide();
+                        $("#editSew-option2-section").show();
+                        $("#editSew-option3-section").hide();
+                        $("#editSew-patternImage").html("");
+                        break;
+                    }
+                case "editSew-optional3":
+                    {
+                        $("#editSew-option1-section").hide();
+                        $("#editSew-option2-section").hide();
+                        $("#editSew-option3-section").show();
+                        $("#editSew-patternImage").html("");
+                        break;
+                    }
+            }
+        });
+        //$("#editPrint-optional1").on('ifChanged', function (event) {
+        //    console.log($(event.target));
+        //    $(event.target).trigger('change');
+        //});
+    };
+    var _init = function () {
+        $("#productCategories").find('option').remove().end();
+        $("#products").find('option').remove().end();
+        $("#productOptions").find('option').remove().end();
+        $("#productsUnit").find('option').remove().end();
+        $("#materials").find('option').remove().end();
+
+        $("#print-pattern").find('option').remove().end();
+        $("#screen-pattern").find('option').remove().end();
+        $("#sew-pattern").find('option').remove().end();
+
+        $("#print-color").find('option').remove().end();
+        $("#screen-color").find('option').remove().end();
+        $("#screen-position").find('option').remove().end();
+        $("#sew-position").find('option').remove().end();
+
+        $("#print-optional2").iCheck('check');
+        $("#screen-optional2").iCheck('check');
+        $("#sew-optional2").iCheck('check');
+
+        $("#print-option1-section").hide();
+        $("#print-option2-section").show();
+        $("#print-option3-section").hide();
+        $("#print-patternImage").html("");
+        $("#screen-option1-section").hide();
+        $("#screen-option2-section").show();
+        $("#screen-option3-section").hide();
+        $("#screen-patternImage").html("");
+        $("#sew-option1-section").hide();
+        $("#sew-option2-section").show();
+        $("#sew-option3-section").hide();
+        $("#sew-patternImage").html("");
+
+        $("#print-file").val('');
+        $("#screen-file").val('');
+        $("#sew-file").val('');
+        $(".fileinput-filename").empty()
+        $("#sew-remark").val('');
+    };
     return {
         init: function (cid) {
             customerId = cid;
-            $("#productCategories").find('option').remove().end();
-            $("#products").find('option').remove().end();
-            $("#productOptions").find('option').remove().end();
-            $("#productsUnit").find('option').remove().end();
-            $("#materials").find('option').remove().end();
-
-            $("#print-pattern").find('option').remove().end();
-            $("#screen-pattern").find('option').remove().end();
-            $("#sew-pattern").find('option').remove().end();
-
-            $("#print-color").find('option').remove().end();
-            $("#screen-color").find('option').remove().end();
-            $("#screen-position").find('option').remove().end();
-            $("#sew-position").find('option').remove().end();
-
-            $("#print-optional2").iCheck('check');
-            $("#screen-optional2").iCheck('check');
-            $("#sew-optional2").iCheck('check');
-
-            $("#print-option1-section").hide();
-            $("#print-option2-section").show();
-            $("#print-option3-section").hide();
-            $("#print-patternImage").html("");
-            $("#screen-option1-section").hide();
-            $("#screen-option2-section").show();
-            $("#screen-option3-section").hide();
-            $("#screen-patternImage").html("");
-            $("#sew-option1-section").hide();
-            $("#sew-option2-section").show();
-            $("#sew-option3-section").hide();
-            $("#sew-patternImage").html("");
-
-            $("#print-file").val('');
-            $("#screen-file").val('');
-            $("#sew-file").val('');
-            $(".fileinput-filename").empty()
-            $("#sew-remark").val('');
-
+            _init();
             _bindingProductCategories();
             _bindingPatternImage();
             _bindingPatternPosition();
             _bindingPatternColor();
             _bindingMaterial();
+            //_registerStartupScript();
         },
         edit: function (cid, id) {
             customerId = cid;
             itemId = id;
-            $("#editProductCategories").find('option').remove().end();
-            $("#editProducts").find('option').remove().end();
-            $("#editProductOptions").find('option').remove().end();
-            $("#editProductsUnit").find('option').remove().end();
-            $("#editPaterials").find('option').remove().end();
-
-            $("#print-pattern").find('option').remove().end();
-            $("#screen-pattern").find('option').remove().end();
-            $("#sew-pattern").find('option').remove().end();
-
-            $("#print-color").find('option').remove().end();
-            $("#screen-color").find('option').remove().end();
-            $("#screen-position").find('option').remove().end();
-            $("#sew-position").find('option').remove().end();
-
-            $("#print-optional2").iCheck('check');
-            $("#screen-optional2").iCheck('check');
-            $("#sew-optional2").iCheck('check');
-
-            $("#print-option1-section").hide();
-            $("#print-option2-section").show();
-            $("#print-option3-section").hide();
-            $("#print-patternImage").html("");
-            $("#screen-option1-section").hide();
-            $("#screen-option2-section").show();
-            $("#screen-option3-section").hide();
-            $("#screen-patternImage").html("");
-            $("#sew-option1-section").hide();
-            $("#sew-option2-section").show();
-            $("#sew-option3-section").hide();
-            $("#sew-patternImage").html("");
-
-            $("#print-file").val('');
-            $("#screen-file").val('');
-            $("#sew-file").val('');
-            $(".fileinput-filename").empty()
-            $("#sew-remark").val('');
+            _init();
             _getProductItemDetail(itemId);
+            _registerStartupInitScript();
         },
         MaterialStockCheck: function () {
             _materialStockCheck();
