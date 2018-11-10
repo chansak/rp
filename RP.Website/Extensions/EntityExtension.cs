@@ -193,6 +193,7 @@ namespace RP.Website
                                     SelectedOption = o1.OptionalStatusId,
                                     PatternImagePath = path,
                                     ColorName = color.ColorName,
+                                    ColorId = color.Id.ToString()
                                 });
                                 break;
                             }
@@ -239,6 +240,7 @@ namespace RP.Website
                                     SelectedOption = o2.OptionalStatusId,
                                     PatternImagePath = path,
                                     PositionId = o2.PatternPositionId.ToString(),
+                                    ColorId = color.Id.ToString(),
                                     ColorName = color.ColorName,
                                     PositionName = position.PositionName
                                 });

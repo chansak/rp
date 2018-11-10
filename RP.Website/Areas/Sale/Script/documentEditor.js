@@ -137,7 +137,7 @@
                 if (item.itemId != null) {
                     html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
                     //html += '   <td style="width:15%" id="icon_' + item.itemId + '"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></td>';
-                    html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="'+ item.itemId +'" alt="ทั้งหมด"> <i></i></label></div></td>';
+                    html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="'+ item.itemId +'" > <i></i></label></div></td>';
                 } else {
                     html += '<tr>';
                     html += '<td></td>';
@@ -278,24 +278,28 @@
             _bindingSale();
             _bindingCustomer();
             _getDocumentDetail(id);
+            console.log(items);
         },
         showItemDetail: function (itemId) {
             var isVisible = $("#" + itemId).is(":visible");
             if (isVisible) {
                 $("#" + itemId).hide();
                 //var html = '<a class="collapse-link"><i class="fa fa-chevron-down"></i></a>';
-                var html = '<div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + itemId +'" alt="ทั้งหมด"> <i></i></label></div>';
+                var html = '<div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + itemId +'" > <i></i></label></div>';
                 
                 $("#icon_" + itemId).html(html);
             } else {
                 $("#" + itemId).show();
-                //var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>';var html = '<div class="checkbox i-checks"><label> <input type="checkbox" value="' + itemId +'" alt="ทั้งหมด"> <i></i></label></div>';
+                //var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>';var html = '<div class="checkbox i-checks"><label> <input type="checkbox" value="' + itemId +'" > <i></i></label></div>';
                 $("#icon_" + itemId).html(html);
             }
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
+        },
+        getItemsById : function (itemId) {
+            return utilities.FindObjectByKey(items, 'itemId', itemId);
         }
     }
 };

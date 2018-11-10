@@ -950,14 +950,17 @@
                     return;
                 } else {
                     $("#editProductModal").modal({ backdrop: "static" });
-                    productEditor.edit(cid, $(selectedProductItems[0]).val());
+                    var selectedItemId = $(selectedProductItems[0]).val();
+                    var selectedItem = documentEditor.getItemsById(selectedItemId);
+                    console.log(selectedItem);
+                    productEditor.edit(cid,selectedItem);
                 }
             });
             $("#btnAddNew").unbind("click");
             $("#btnAddNew").click(function () {
                 var cid = $("#auto_customerId").val();
-                $("#addProductModal").modal({ backdrop: "static" });
-                productEditor.init(cid);
+                $("#editProductModal").modal({ backdrop: "static" });
+                productEditor.addNew(cid);
             });
             documentEditor.init();
         });
