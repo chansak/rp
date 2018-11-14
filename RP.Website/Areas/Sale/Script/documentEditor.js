@@ -278,7 +278,6 @@
             _bindingSale();
             _bindingCustomer();
             _getDocumentDetail(id);
-            console.log(items);
         },
         showItemDetail: function (itemId) {
             var isVisible = $("#" + itemId).is(":visible");
@@ -300,6 +299,11 @@
         },
         getItemsById : function (itemId) {
             return utilities.FindObjectByKey(items, 'itemId', itemId);
-        }
+        },
+        RenderProducts: function () {
+            items = [];
+            items = productEditor.GetItems();
+            _render(items);
+        },
     }
 };

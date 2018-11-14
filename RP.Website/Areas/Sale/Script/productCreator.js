@@ -9,7 +9,7 @@
     var _bindingProductCategories = function () {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
-                $('#productCategories').append($('<option>', {
+                $('#productCategories').empty().append($('<option>', {
                     value: item.id,
                     text: item.categoryName
                 }));
@@ -35,7 +35,7 @@
     var _bindingProducts = function (id) {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
-                $('#products').append($('<option>', {
+                $('#products').empty().append($('<option>', {
                     value: item.id,
                     text: item.productName
                 }));
@@ -62,7 +62,7 @@
     var _bindingProductUnits = function (id) {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
-                $('#productsUnit').append($('<option>', {
+                $('#productsUnit').empty().append($('<option>', {
                     value: item.id,
                     text: item.unitName
                 }));
@@ -81,7 +81,7 @@
     var _bindingProductOptions = function (id) {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
-                $('#productOptions').append($('<option>', {
+                $('#productOptions').empty().append($('<option>', {
                     value: item.id,
                     text: item.optionName
                 }));
@@ -168,15 +168,15 @@
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 images.push(item);
-                $('#print-pattern').append($('<option>', {
+                $('#print-pattern').empty().append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
-                $('#screen-pattern').append($('<option>', {
+                $('#screen-pattern').empty().append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
-                $('#sew-pattern').append($('<option>', {
+                $('#sew-pattern').empty().append($('<option>', {
                     value: item.id,
                     text: item.patternName
                 }));
@@ -210,15 +210,15 @@
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 positions.push(item);
-                $('#print-position').append($('<option>', {
+                $('#print-position').empty().append($('<option>', {
                     value: item.id,
                     text: item.positionName
                 }));
-                $('#screen-position').append($('<option>', {
+                $('#screen-position').empty().append($('<option>', {
                     value: item.id,
                     text: item.positionName
                 }));
-                $('#sew-position').append($('<option>', {
+                $('#sew-position').empty().append($('<option>', {
                     value: item.id,
                     text: item.positionName
                 }));
@@ -236,15 +236,15 @@
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 colors.push(item);
-                $('#print-color').append($('<option>', {
+                $('#print-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
-                $('#screen-color').append($('<option>', {
+                $('#screen-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
-                $('#sew-color').append($('<option>', {
+                $('#sew-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
@@ -273,47 +273,52 @@
         }
         var xhr = RPService.GetMaterials(success, failure);
     };
+    var _setDefault = function () {
+        $("#productCategories").find('option').remove().end();
+        $("#products").find('option').remove().end();
+        $("#productOptions").find('option').remove().end();
+        $("#productsUnit").find('option').remove().end();
+        $("#materials").find('option').remove().end();
+
+        $("#print-pattern").find('option').remove().end();
+        $("#screen-pattern").find('option').remove().end();
+        $("#sew-pattern").find('option').remove().end();
+
+        $("#print-color").find('option').remove().end();
+        $("#screen-color").find('option').remove().end();
+        $("#screen-position").find('option').remove().end();
+        $("#sew-position").find('option').remove().end();
+    };
+    var _init = function () {
+        _setDefault();
+
+        $("#print-optional2").iCheck('check');
+        $("#screen-optional2").iCheck('check');
+        $("#sew-optional2").iCheck('check');
+
+        $("#print-option1-section").hide();
+        $("#print-option2-section").show();
+        $("#print-option3-section").hide();
+        $("#print-patternImage").html("");
+        $("#screen-option1-section").hide();
+        $("#screen-option2-section").show();
+        $("#screen-option3-section").hide();
+        $("#screen-patternImage").html("");
+        $("#sew-option1-section").hide();
+        $("#sew-option2-section").show();
+        $("#sew-option3-section").hide();
+        $("#sew-patternImage").html("");
+
+        $("#print-file").val('');
+        $("#screen-file").val('');
+        $("#sew-file").val('');
+        $(".fileinput-filename").empty()
+        $("#sew-remark").val('');
+    };
     return {
         init: function (cid) {
             customerId = cid;
-            $("#productCategories").find('option').remove().end();
-            $("#products").find('option').remove().end();
-            $("#productOptions").find('option').remove().end();
-            $("#productsUnit").find('option').remove().end();
-            $("#materials").find('option').remove().end();
-
-            $("#print-pattern").find('option').remove().end();
-            $("#screen-pattern").find('option').remove().end();
-            $("#sew-pattern").find('option').remove().end();
-
-            $("#print-color").find('option').remove().end();
-            $("#screen-color").find('option').remove().end();
-            $("#screen-position").find('option').remove().end();
-            $("#sew-position").find('option').remove().end();
-
-            $("#print-optional2").iCheck('check');
-            $("#screen-optional2").iCheck('check');
-            $("#sew-optional2").iCheck('check');
-
-            $("#print-option1-section").hide();
-            $("#print-option2-section").show();
-            $("#print-option3-section").hide();
-            $("#print-patternImage").html("");
-            $("#screen-option1-section").hide();
-            $("#screen-option2-section").show();
-            $("#screen-option3-section").hide();
-            $("#screen-patternImage").html("");
-            $("#sew-option1-section").hide();
-            $("#sew-option2-section").show();
-            $("#sew-option3-section").hide();
-            $("#sew-patternImage").html("");
-
-            $("#print-file").val('');
-            $("#screen-file").val('');
-            $("#sew-file").val('');
-            $(".fileinput-filename").empty()
-            $("#sew-remark").val('');
-
+            _init();
             _bindingProductCategories();
             _bindingPatternImage();
             _bindingPatternPosition();

@@ -16,48 +16,27 @@ var productEditor = new function () {
     var mode = null;
     var _bindingProductCategories = function () {
         var success = function (data, textStatus, jqXHR) {
-            console.log(mode);
+            $(data).each(function (index, item) {
+                $('#editProductCategories').append($('<option>', {
+                    value: item.id,
+                    text: item.categoryName
+                }));
+            });
+            $("#editProductCategories").prepend("<option value='' selected='selected'>เลือกประเภทสินค้า</option>");
+            $("#editProductCategories").unbind();
+            $("#editProductCategories").change(function () {
+                var selectedCategoryId = '';
+                selectedCategoryId = $('#editProductCategories').val();
+                if (selectedCategoryId != '') {
+                    _bindingProducts(selectedCategoryId);
+                } else {
+                    $("#editProducts").find('option').remove().end();
+                    $("#editProductOptions").find('option').remove().end();
+                }
+            });
             if (mode == RpMode.edit) {
-                $(data).each(function (index, item) {
-                    $('#editProductCategories').append($('<option>', {
-                        value: item.id,
-                        text: item.categoryName
-                    }));
-                });
-                $("#editProductCategories").prepend("<option value='' selected='selected'>เลือกประเภทสินค้า</option>");
-                $("#editProductCategories").unbind();
-                $("#editProductCategories").change(function () {
-                    var selectedCategoryId = '';
-                    selectedCategoryId = $('#editProductCategories').val();
-                    if (selectedCategoryId != '') {
-                        _bindingProducts(selectedCategoryId);
-                    } else {
-                        $("#editProducts").find('option').remove().end();
-                        $("#editProductOptions").find('option').remove().end();
-                    }
-                });
-                $("#editProductCategories").val(item.productCategoryId).change();
-            } else if (mode == RpMode.addNew) {
-                $(data).each(function (index, item) {
-                    $('#productCategories').append($('<option>', {
-                        value: item.id,
-                        text: item.categoryName
-                    }));
-                });
-                $("#productCategories").prepend("<option value='' selected='selected'>เลือกประเภทสินค้า</option>");
-                $("#productCategories").unbind();
-                $("#productCategories").change(function () {
-                    var selectedCategoryId = '';
-                    selectedCategoryId = $('#productCategories').val();
-                    if (selectedCategoryId != '') {
-                        _bindingProducts(selectedCategoryId);
-                    } else {
-                        $("#products").find('option').remove().end();
-                        $("#productOptions").find('option').remove().end();
-                    }
-                });
+                $("#editProductCategories").val(rowItem.productCategoryId).change();
             }
-
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -66,50 +45,27 @@ var productEditor = new function () {
     };
     var _bindingProducts = function (id) {
         var success = function (data, textStatus, jqXHR) {
-            if (mode == RpMode.edit) {
-                $(data).each(function (index, item) {
-                    $('#editProducts').append($('<option>', {
-                        value: item.id,
-                        text: item.productName
-                    }));
-                });
-                $("#editProducts").prepend("<option value='' selected='selected'>เลือกสินค้า</option>");
-                $("#editProducts").unbind();
-                $("#editProducts").change(function () {
-                    var selectedProductId = '';
-                    selectedProductId = $('#editProducts').val();
-                    if (selectedProductId != '') {
-                        _bindingProductOptions(selectedProductId);
-                        _bindingProductUnits(selectedProductId);
-                    } else {
-                        $("#editProductOptions").find('option').remove().end();
-                        $("#editProductsUnit").find('option').remove().end();
-                    }
-                });
-                if (item != null) {
-                    $("#editProducts").val(item.productId).change();
+            $(data).each(function (index, item) {
+                $('#editProducts').append($('<option>', {
+                    value: item.id,
+                    text: item.productName
+                }));
+            });
+            $("#editProducts").prepend("<option value='' selected='selected'>เลือกสินค้า</option>");
+            $("#editProducts").unbind();
+            $("#editProducts").change(function () {
+                var selectedProductId = '';
+                selectedProductId = $('#editProducts').val();
+                if (selectedProductId != '') {
+                    _bindingProductOptions(selectedProductId);
+                    _bindingProductUnits(selectedProductId);
+                } else {
+                    $("#editProductOptions").find('option').remove().end();
+                    $("#editProductsUnit").find('option').remove().end();
                 }
-            } else if (mode == RpMode.addNew) {
-                $(data).each(function (index, item) {
-                    $('#products').append($('<option>', {
-                        value: item.id,
-                        text: item.productName
-                    }));
-                });
-                $("#products").prepend("<option value='' selected='selected'>เลือกสินค้า</option>");
-                $("#products").unbind();
-                $("#products").change(function () {
-                    var selectedProductId = '';
-                    selectedProductId = $('#products').val();
-                    if (selectedProductId != '') {
-                        _bindingProductOptions(selectedProductId);
-                        _bindingProductUnits(selectedProductId);
-                    } else {
-                        $("#productOptions").find('option').remove().end();
-                        $("#productsUnit").find('option').remove().end();
-                    }
-                });
-            } else { }
+            });
+            if (mode == RpMode.edit)
+                $("#editProducts").val(rowItem.productId).change();
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -118,34 +74,20 @@ var productEditor = new function () {
     };
     var _bindingProductUnits = function (id) {
         var success = function (data, textStatus, jqXHR) {
+            $(data).each(function (index, item) {
+                $('#editProductsUnit').append($('<option>', {
+                    value: item.id,
+                    text: item.unitName
+                }));
+            });
+            $("#editProductsUnit").prepend("<option value='' selected='selected'>เลือกหน่วยนับ</option>");
+            $("#editProductsUnit").unbind();
+            $("#editProductsUnit").change(function () {
+                _materialStockCheck()
+            });
             if (mode == RpMode.edit) {
-                $(data).each(function (index, item) {
-                    $('#editProductsUnit').append($('<option>', {
-                        value: item.id,
-                        text: item.unitName
-                    }));
-                });
-                $("#editProductsUnit").prepend("<option value='' selected='selected'>เลือกหน่วยนับ</option>");
-                $("#editProductsUnit").unbind();
-                $("#editProductsUnit").change(function () {
-                    _materialStockCheck()
-                });
-                if (item != null) {
-                    $("#editProductsUnit").val(item.productUnitId).change();
-                }
-            } else if (mode == RpMode.addNew) {
-                $(data).each(function (index, item) {
-                    $('#productsUnit').append($('<option>', {
-                        value: item.id,
-                        text: item.unitName
-                    }));
-                });
-                $("#productsUnit").prepend("<option value='' selected='selected'>เลือกหน่วยนับ</option>");
-                $("#productsUnit").unbind();
-                $("#productsUnit").change(function () {
-                    _materialStockCheck()
-                });
-            } else { }
+                $("#editProductsUnit").val(rowItem.productUnitId).change();
+            }
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -154,36 +96,22 @@ var productEditor = new function () {
     };
     var _bindingProductOptions = function (id) {
         var success = function (data, textStatus, jqXHR) {
+            $(data).each(function (index, item) {
+                $('#editProductOptions').append($('<option>', {
+                    value: item.id,
+                    text: item.optionName
+                }));
+            });
+            $("#editProductOptions").prepend("<option value='' selected='selected'>เลือกรายละเอียด</option>");
+            $("#editProductOptions").unbind();
+            $("#editProductOptions").change(function () {
+                var selectedProductOptionsId = '';
+                selectedProductOptionsId = $('#editProductOptions').val();
+            });
             if (mode == RpMode.edit) {
-                $(data).each(function (index, item) {
-                    $('#editProductOptions').append($('<option>', {
-                        value: item.id,
-                        text: item.optionName
-                    }));
-                });
-                $("#editProductOptions").prepend("<option value='' selected='selected'>เลือกรายละเอียด</option>");
-                $("#editProductOptions").unbind();
-                $("#editProductOptions").change(function () {
-                    var selectedProductOptionsId = '';
-                    selectedProductOptionsId = $('#editProductOptions').val();
-                });
-                if (item != null) {
-                    $("#editProductOptions").val(item.productOptionId).change();
-                }
-            } else if (mode == RpMode.addNew) {
-                $(data).each(function (index, item) {
-                    $('#productOptions').append($('<option>', {
-                        value: item.id,
-                        text: item.optionName
-                    }));
-                });
-                $("#productOptions").prepend("<option value='' selected='selected'>เลือกรายละเอียด</option>");
-                $("#productOptions").unbind();
-                $("#productOptions").change(function () {
-                    var selectedProductOptionsId = '';
-                    selectedProductOptionsId = $('#productOptions').val();
-                });
-            } else { }
+                $("#editProductOptions").val(rowItem.productOptionId).change();
+            }
+
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -192,102 +120,63 @@ var productEditor = new function () {
     };
     var _bindingPatternImage = function (callback) {
         var success = function (data, textStatus, jqXHR) {
-            if (mode == RpMode.edit) {
-                $(data).each(function (index, item) {
-                    images.push(item);
-                    $('#editPrint-pattern').append($('<option>', {
-                        value: item.id,
-                        text: item.patternName
-                    }));
-                    $('#editScreen-pattern').append($('<option>', {
-                        value: item.id,
-                        text: item.patternName
-                    }));
-                    $('#editSew-pattern').append($('<option>', {
-                        value: item.id,
-                        text: item.patternName
-                    }));
+            $(data).each(function (index, item) {
+                images.push(item);
+                $('#editPrint-pattern').empty().append($('<option>', {
+                    value: item.id,
+                    text: item.patternName
+                }));
+                $('#editScreen-pattern').empty().append($('<option>', {
+                    value: item.id,
+                    text: item.patternName
+                }));
+                $('#editSew-pattern').empty().append($('<option>', {
+                    value: item.id,
+                    text: item.patternName
+                }));
 
-                    $("#editPrint-pattern").change(function () {
-                        var selectedImageId = $('#editPrint-pattern').val();
-                        var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
-                        $("#editPrint-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' class='thumb-image' />");
-                    });
-                    $("#editScreen-pattern").change(function () {
-                        var selectedImageId = $('#editScreen-pattern').val();
-                        var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
-                        $("#editScreen-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' class='thumb-image' />");
-                    });
-                    $("#editSew-pattern").change(function () {
-                        var selectedImageId = $('#editSew-pattern').val();
-                        var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
-                        $("#editSew-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "'  class='thumb-image'/>");
-                    });
+                $("#editPrint-pattern").change(function () {
+                    var selectedImageId = $('#editPrint-pattern').val();
+                    var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
+                    $("#editPrint-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' class='thumb-image' />");
                 });
-                $("#editPrint-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
-                $("#editScreen-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
-                $("#editSew-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
-                if (callback != null) {
-                    callback();
-                }
-            } else if (mode == RpMode.addNew) {
-                $(data).each(function (index, item) {
-                    images.push(item);
-                    $('#print-pattern').append($('<option>', {
-                        value: item.id,
-                        text: item.patternName
-                    }));
-                    $('#screen-pattern').append($('<option>', {
-                        value: item.id,
-                        text: item.patternName
-                    }));
-                    $('#sew-pattern').append($('<option>', {
-                        value: item.id,
-                        text: item.patternName
-                    }));
+                $("#editScreen-pattern").change(function () {
+                    var selectedImageId = $('#editScreen-pattern').val();
+                    var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
+                    $("#editScreen-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' class='thumb-image' />");
+                });
+                $("#editSew-pattern").change(function () {
+                    var selectedImageId = $('#editSew-pattern').val();
+                    var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
+                    $("#editSew-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "'  class='thumb-image'/>");
+                });
+            });
+            $("#editPrint-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            $("#editScreen-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            $("#editSew-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
+            if (callback != null) {
+                callback();
+            }
 
-                    $("#print-pattern").change(function () {
-                        var selectedImageId = $('#print-pattern').val();
-                        var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
-                        $("#print-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' class='thumb-image' />");
-                    });
-                    $("#screen-pattern").change(function () {
-                        var selectedImageId = $('#screen-pattern').val();
-                        var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
-                        $("#screen-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "' class='thumb-image' />");
-                    });
-                    $("#sew-pattern").change(function () {
-                        var selectedImageId = $('#sew-pattern').val();
-                        var image = utilities.FindObjectByKey(images, 'id', selectedImageId);
-                        $("#sew-patternImage").html("<img src='../../FileUpload/pattern/" + image.imagePath + "'  class='thumb-image'/>");
-                    });
-                });
-                $("#print-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
-                $("#screen-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
-                $("#sew-pattern").prepend("<option value='' selected='selected'>เลือกลาย</option>");
-                if (callback != null) {
-                    callback();
-                }
-            } else { }
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
         var xhr = RPService.GetPatternImages(success, failure);
     };
-    var _bindingPatternPosition = function () {
+    var _bindingPatternPosition = function (callback) {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 positions.push(item);
-                $('#print-position').append($('<option>', {
+                $('#print-position').empty().append($('<option>', {
                     value: item.id,
                     text: item.positionName
                 }));
-                $('#screen-position').append($('<option>', {
+                $('#screen-position').empty().append($('<option>', {
                     value: item.id,
                     text: item.positionName
                 }));
-                $('#sew-position').append($('<option>', {
+                $('#sew-position').empty().append($('<option>', {
                     value: item.id,
                     text: item.positionName
                 }));
@@ -295,25 +184,28 @@ var productEditor = new function () {
             $("#print-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
             $("#screen-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
             $("#sew-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
+            if (callback != null) {
+                callback();
+            }
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
         var xhr = RPService.GetPatternPosition(success, failure);
     };
-    var _bindingPatternColor = function () {
+    var _bindingPatternColor = function (callback) {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 colors.push(item);
-                $('#print-color').append($('<option>', {
+                $('#print-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
-                $('#screen-color').append($('<option>', {
+                $('#screen-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
-                $('#sew-color').append($('<option>', {
+                $('#sew-color').empty().append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
@@ -321,6 +213,9 @@ var productEditor = new function () {
             $("#print-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
             $("#screen-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
             $("#sew-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
+            if (callback != null) {
+                callback();
+            }
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -331,18 +226,17 @@ var productEditor = new function () {
         var success = function (data, textStatus, jqXHR) {
             $(data).each(function (index, item) {
                 materials.push(item);
-                $('#materials').append($('<option>', {
+                $('#editMaterials').empty().append($('<option>', {
                     value: item.id,
                     text: item.materialName
                 }));
             });
-            $("#materials").prepend("<option value='' selected='selected'>เลือกผ้า</option>");
+            $("#editMaterials").prepend("<option value='' selected='selected'>เลือกผ้า</option>");
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
         var xhr = RPService.GetMaterials(success, failure);
     };
-
 
     var _materialStockCheck = function () {
         var success = function (data, textStatus, jqXHR) {
@@ -417,7 +311,7 @@ var productEditor = new function () {
             $("#editProductPricePerUnit").val(item.pricePerUnit);
             _bindingProductCategories();
             _bindingPatternImage(function () {
-                if (item.printOption != null) {
+                if (item.printOption.id != null) {
                     $("#editPrint-pattern").val(item.printOption.patternId);
                     $("#editPrint-option1-section").show();
                     $("#editPrint-option2-section").hide();
@@ -428,7 +322,9 @@ var productEditor = new function () {
                 }
             });
             _bindingPatternPosition(function () {
-                if (item.printOption != null) {
+                if (item.screenOption.id != null) {
+                    console.log(item.screenOption.patternId);
+                    $("#editScreen-pattern").val(item.screenOption.patternId);
                     $("#editScreen-option1-section").show();
                     $("#editScreen-option2-section").hide();
                     $("#editScreen-option3-section").hide();
@@ -438,7 +334,8 @@ var productEditor = new function () {
                 }
             });
             _bindingPatternColor(function () {
-                if (item.printOption != null) {
+                if (item.sewOption.id != null) {
+                    $("#editScreen-pattern").val(item.sewOption.patternId);
                     $("#editSew-option1-section").show();
                     $("#editSew-option2-section").hide();
                     $("#editSew-option3-section").hide();
@@ -494,81 +391,6 @@ var productEditor = new function () {
         $(".iCheck-helper").click(function () {
             var id = $(this).prev().prop("id");
             switch (id) {
-                case "print-optional1":
-                    {
-                        $("#print-option1-section").show();
-                        $("#print-option2-section").hide();
-                        $("#print-option3-section").hide();
-                        $("#print-pattern").val($("#print-pattern option:first").val());
-                        $("#print-patternImage").html("");
-                        break;
-                    }
-                case "print-optional2":
-                    {
-                        $("#print-option1-section").hide();
-                        $("#print-option2-section").show();
-                        $("#print-option3-section").hide();
-                        $("#print-patternImage").html("");
-                        break;
-                    }
-                case "print-optional3":
-                    {
-                        $("#print-option1-section").hide();
-                        $("#print-option2-section").hide();
-                        $("#print-option3-section").show();
-                        $("#print-patternImage").html("");
-                        break;
-                    }
-                case "screen-optional1":
-                    {
-                        $("#screen-option1-section").show();
-                        $("#screen-option2-section").hide();
-                        $("#screen-option3-section").hide();
-                        $("#screen-pattern").val($("#screen-pattern option:first").val());
-                        $("#screen-patternImage").html("");
-                        break;
-                    }
-                case "screen-optional2":
-                    {
-                        $("#screen-option1-section").hide();
-                        $("#screen-option2-section").show();
-                        $("#screen-option3-section").hide();
-                        $("#screen-patternImage").html("");
-                        break;
-                    }
-                case "screen-optional3":
-                    {
-                        $("#screen-option1-section").hide();
-                        $("#screen-option2-section").hide();
-                        $("#screen-option3-section").show();
-                        $("#screen-patternImage").html("");
-                        break;
-                    }
-                case "sew-optional1":
-                    {
-                        $("#sew-option1-section").show();
-                        $("#sew-option2-section").hide();
-                        $("#sew-option3-section").hide();
-                        $("#sew-pattern").val($("#sew-pattern option:first").val());
-                        $("#sew-patternImage").html("");
-                        break;
-                    }
-                case "sew-optional2":
-                    {
-                        $("#sew-option1-section").hide();
-                        $("#sew-option2-section").show();
-                        $("#sew-option3-section").hide();
-                        $("#sew-patternImage").html("");
-                        break;
-                    }
-                case "sew-optional3":
-                    {
-                        $("#sew-option1-section").hide();
-                        $("#sew-option2-section").hide();
-                        $("#sew-option3-section").show();
-                        $("#sew-patternImage").html("");
-                        break;
-                    }
                 case "editPrint-optional1":
                     {
                         $("#editPrint-option1-section").show();
@@ -678,6 +500,7 @@ var productEditor = new function () {
         });
     };
     var _init = function () {
+        _setDefault();
         $("#productCategories").find('option').remove().end();
         $("#products").find('option').remove().end();
         $("#productOptions").find('option').remove().end();
@@ -716,10 +539,35 @@ var productEditor = new function () {
         $(".fileinput-filename").empty()
         $("#sew-remark").val('');
     };
+    var _setDefault = function () {
+        $("#editProductCategories").find('option').remove().end();
+        $("#editPoducts").find('option').remove().end();
+        $("#editProductOptions").find('option').remove().end();
+        $("#editProductsUnit").find('option').remove().end();
+        $("#editMaterials").find('option').remove().end();
+
+        $("#editPrint-pattern").find('option').remove().end();
+        $("#editScreen-pattern").find('option').remove().end();
+        $("#editSew-pattern").find('option').remove().end();
+
+        $("#editPrint-color").find('option').remove().end();
+        $("#editScreen-color").find('option').remove().end();
+        $("#editScreen-position").find('option').remove().end();
+        $("#editSew-position").find('option').remove().end();
+    };
     return {
         init: function (cid) {
             customerId = cid;
             _init();
+            var title = $("#modalTitle");
+            var btnSaveTitle = $("#btnAddNewItem");
+            if (mode == RpMode.addNew) {
+                title.html("เพิ่มรายการ");
+                btnSaveTitle.html("เพิ่มรายการ");
+            } else if (RpMode.edit) {
+                title.html("แก้ไขรายการ");
+                btnSaveTitle.html("ปรับปรุงรายการ");
+            } else { }
             _bindingProductCategories();
             _bindingPatternImage();
             _bindingPatternPosition();
@@ -745,6 +593,7 @@ var productEditor = new function () {
             _materialStockCheck();
         },
         AddNewItem: function () {
+
             var selectedPrintOption = $("input[name='print-optional']:checked").val();
             var selectedScreenOption = $("input[name='screen-optional']:checked").val();
             var selectedSewOption = $("input[name='sew-optional']:checked").val();
@@ -844,6 +693,9 @@ var productEditor = new function () {
                 }
             };
             items.push(item);
+        },
+        GetItems: function () {
+            return items;
         }
     }
 };

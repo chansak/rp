@@ -2,6 +2,7 @@
 {
     public class SewOptionViewModel
     {
+        public string Id { get; set; }
         public string PatternName { get; set; }
         public string PatternImagePath { get; set; }
         public string PositionName { get; set; }
