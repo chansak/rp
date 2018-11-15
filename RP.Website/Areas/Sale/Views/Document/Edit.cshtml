@@ -649,7 +649,7 @@
                 format: "dd/mm/yyyy",
                 autoclose: true,
             });
-            
+
             $('.btnSave').click(function () {
                 swal({
                     title: "บันทึกเรียบร้อย!",
@@ -698,7 +698,7 @@
                     $("#editProductModal").modal({ backdrop: "static" });
                     var selectedItemId = $(selectedProductItems[0]).val();
                     var selectedItem = documentEditor.getItemsById(selectedItemId);
-                    productEditor.edit(cid,selectedItem);
+                    productEditor.edit(cid, selectedItem);
                 }
             });
             $("#btnAddNew").unbind("click");
@@ -708,10 +708,17 @@
                 productEditor.addNew(cid);
             });
             $("#btnAddNewItem").click(function () {
-                $("#addProductModal").modal("hide");
-                productEditor.AddNewItem();
-                var items = productEditor.GetItems();
-                //documentEditor.RenderProducts();
+                var mode = productEditor.getMode();
+                if (mode == 1) {
+                    $("#addProductModal").modal("hide");
+                    productEditor.AddNewItem();
+                }
+                else {
+                    var selectedItem = productEditor.getSelectedItem();
+                    $("#editProductModal").modal("hide");
+                    productEditor.UpdateItem(selectedItem.itemId);
+                }
+                documentEditor.RenderProducts();
             });
             documentEditor.init();
         });

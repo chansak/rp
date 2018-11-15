@@ -540,6 +540,7 @@ var productEditor = new function () {
         $("#sew-remark").val('');
     };
     var _setDefault = function () {
+        items = [];
         $("#editProductCategories").find('option').remove().end();
         $("#editPoducts").find('option').remove().end();
         $("#editProductOptions").find('option').remove().end();
@@ -574,6 +575,12 @@ var productEditor = new function () {
             _bindingPatternColor();
             _bindingMaterial();
         },
+        getMode: function () {
+            return mode;
+        },
+        getSelectedItem: function () {
+            return item;
+        },
         addNew: function (cid) {
             mode = RpMode.addNew;
             productEditor.init(cid);
@@ -593,7 +600,6 @@ var productEditor = new function () {
             _materialStockCheck();
         },
         AddNewItem: function () {
-
             var selectedPrintOption = $("input[name='print-optional']:checked").val();
             var selectedScreenOption = $("input[name='screen-optional']:checked").val();
             var selectedSewOption = $("input[name='sew-optional']:checked").val();
@@ -694,8 +700,102 @@ var productEditor = new function () {
             };
             items.push(item);
         },
-        GetItems: function () {
-            return items;
+        UpdateItem: function (itemId) {
+            documentEditor.RemoveItem(itemId);
+            var selectedPrintOption = $("input[name='editPrint-optional']:checked").val();
+            var selectedScreenOption = $("input[name='editScreen-optional']:checked").val();
+            var selectedSewOption = $("input[name='editSew-optional']:checked").val();
+            var printFile = $("#editPrint-file").get(0).files[0];
+            var printPatternId = $("#editPrint-pattern").val();
+            var _printPatternName = utilities.FindObjectByKey(images, 'id', printPatternId);
+            var printPatternName = _printPatternName != null ? _printPatternName.patternName : '';
+            var printColorId = $("#editPrint-color").val();
+            var _printColorName = utilities.FindObjectByKey(colors, 'id', printColorId);
+            var printColorName = _printColorName != null ? _printColorName.colorName : '';
+            var screenFile = $("#editScreen-file").get(0).files[0];
+            var screenPatternId = $("#editScreen-pattern").val();
+            var _screenPatternName = utilities.FindObjectByKey(images, 'id', screenPatternId);
+            var screenPatternName = _screenPatternName != null ? _screenPatternName.patternName : '';
+            var screenColorId = $("#editScreen-color").val();
+            var _screenColorName = utilities.FindObjectByKey(colors, 'id', screenColorId);
+            var screenColorName = _screenColorName != null ? _screenColorName.colorName : '';
+            var screenPositionId = $("#editScreen-position").val();
+            var _screenPositionName = utilities.FindObjectByKey(positions, 'id', screenPositionId);
+            var screenPositionName = _screenPositionName != null ? _screenPositionName.positionName : '';
+            var sewFile = $("#editSew-file").get(0).files[0];
+            var sewPatternId = $("#editSew-pattern").val();
+            var _sewPatternName = utilities.FindObjectByKey(images, 'id', sewPatternId);
+            var sewPatternName = _sewPatternName != null ? _sewPatternName.patternName : '';
+            var sewPositionId = $("#editSew-position").val();
+            var _sewPositionName = utilities.FindObjectByKey(positions, 'id', sewPositionId);
+            var sewPositionName = _sewPositionName != null ? _sewPositionName.positionName : '';
+            var remark = $("#editSew-remark").val();
+            var printPatternimage = utilities.FindObjectByKey(images, 'id', printPatternId);
+            var screenPatternimage = utilities.FindObjectByKey(images, 'id', screenPatternId);
+            var sewPatternimage = utilities.FindObjectByKey(images, 'id', sewPatternId);
+            var item = {
+                productId: $("#editProducts option:selected").val(),
+                productName: $("#editProducts option:selected").text(),
+                productUnitId: $("#editProductsUnit option:selected").val(),
+                productUnitName: $("#editProductsUnit option:selected").text(),
+                amount: parseFloat($("#editProductNumberOfProducts").val()),
+                pricePerUnit: parseFloat($("#editProductPricePerUnit").val()),
+                file: null,
+                remark: $("#editProductRemark").val(),
+                print: {
+                    selectedOption: selectedPrintOption,
+                    options1: {
+                        patternId: printPatternId,
+                        patternName: printPatternName,
+                        patternImage: printPatternimage
+                    },
+                    options2: {
+                        file: printFile,
+                        colorId: printColorId,
+                        colorName: printColorName
+                    },
+                    options3: {
+                    },
+                },
+                screen: {
+                    selectedOption: selectedScreenOption,
+                    options1: {
+                        patternId: screenPatternId,
+                        patternName: screenPatternName,
+                        patternImage: screenPatternimage
+                    },
+                    options2: {
+                        file: screenFile,
+                        colorId: screenColorId,
+                        colorName: screenColorName,
+                        positionId: screenPositionId,
+                        positionName: screenPositionName
+                    },
+                    options3: {
+                    },
+                },
+                sew: {
+                    selectedOption: selectedSewOption,
+                    options1: {
+                        patternId: sewPatternId,
+                        patternName: sewPatternName,
+                        patternImage: sewPatternimage
+
+                    },
+                    options2: {
+                        file: sewFile,
+                        positionId: sewPositionId,
+                        positionName: sewPositionName,
+                        remark: remark
+                    },
+                    options3: {
+                    },
+                }
+            };
+            items.push(item);
+        },
+        GetItem: function () {
+            return items[0];
         }
     }
 };

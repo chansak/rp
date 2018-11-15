@@ -136,7 +136,6 @@
             if (item.printOption != null || item.screenOption != null || item.sewOption != null) {
                 if (item.itemId != null) {
                     html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
-                    //html += '   <td style="width:15%" id="icon_' + item.itemId + '"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></td>';
                     html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="'+ item.itemId +'" > <i></i></label></div></td>';
                 } else {
                     html += '<tr>';
@@ -301,9 +300,15 @@
             return utilities.FindObjectByKey(items, 'itemId', itemId);
         },
         RenderProducts: function () {
-            items = [];
-            items = productEditor.GetItems();
+            var item = productEditor.GetItem();
+            items.push(item);
             _render(items);
         },
+        RemoveItem(itemId) {
+            console.log(items);
+            utilities.RemoveByAttr(items, 'itemId', itemId);
+            console.log(items);
+            _render(items);
+        }
     }
 };
