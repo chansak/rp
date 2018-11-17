@@ -179,5 +179,12 @@ namespace RP.Website.Areas.Sale.Controllers
                 return false;
             }
         }
+        [HttpPost]
+        public ActionResult IsExistingItem(string id)
+        {
+            var item = GenericFactory.Business.GetProductItemByItemId(id);
+            var isExisting = (item != null) ? true : false;
+            return new JsonCamelCaseResult(isExisting, JsonRequestBehavior.AllowGet);
+        }
     }
 }

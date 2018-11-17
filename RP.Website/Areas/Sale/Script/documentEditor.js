@@ -136,14 +136,14 @@
             if (item.printOption != null || item.screenOption != null || item.sewOption != null) {
                 if (item.itemId != null) {
                     html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
-                    html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="'+ item.itemId +'" > <i></i></label></div></td>';
+                    html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
                 } else {
                     html += '<tr>';
                     html += '<td></td>';
                 }
             } else {
                 html += '<tr>';
-                html += '<td></td>';
+                html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
             }
             html += '   <td style="width:25%;line-height:40px">' + item.productName + '</td>';
             html += '   <td style="width:15%;line-height:40px">' + item.productUnitName + '</td>';
@@ -271,6 +271,43 @@
         }
         var xhr = RPService.GetDocumentDetail(id, success, failure);
     };
+    var _updateItem = function (item) {
+        $(items).each(function (index, value) {
+            if (value.itemId == item.itemId) {
+                value.productId = item.productId;
+                value.productName = item.productName;
+                value.productUnitId = item.productUnitId;
+                value.productUnitName = item.productUnitName;
+                value.amount = item.amount || 0;
+                value.pricePerUnit = item.pricePerUnit || 0;
+                value.file = null;
+                value.remark = item.remark;
+                if (value.print != null) {
+                    value.print = item.print;
+                }
+                if (value.screen != null) {
+                    value.screen = item.screen;
+                }
+                if (value.sew != null) {
+                    value.sew = item.sew;
+                }
+            }
+        });
+    };
+    var _openModelForEditing = function (customerId,itemId) {
+        var success = function (result, textStatus, jqXHR) {
+            if (result == undefined || result == false) {
+                result = false;
+            } else { result = true; }
+            $("#editProductModal").modal({ backdrop: "static" });
+            var selectedItem = utilities.FindObjectByKey(items, 'itemId', itemId);
+            productEditor.edit(customerId, selectedItem, result);
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.IsExistingItem(itemId, success, failure);
+    };
     return {
         init: function () {
             var id = $("#documentId").val();
@@ -283,8 +320,8 @@
             if (isVisible) {
                 $("#" + itemId).hide();
                 //var html = '<a class="collapse-link"><i class="fa fa-chevron-down"></i></a>';
-                var html = '<div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + itemId +'" > <i></i></label></div>';
-                
+                var html = '<div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + itemId + '" > <i></i></label></div>';
+
                 $("#icon_" + itemId).html(html);
             } else {
                 $("#" + itemId).show();
@@ -296,19 +333,24 @@
                 radioClass: 'iradio_square-green',
             });
         },
-        getItemsById : function (itemId) {
+        getItemsById: function (itemId) {
             return utilities.FindObjectByKey(items, 'itemId', itemId);
         },
         RenderProducts: function () {
             var item = productEditor.GetItem();
-            items.push(item);
+            var mode = productEditor.getMode();
+            if (mode == RpMode.addNew || mode == RpMode.copy) {
+                items.push(item);
+            } else {
+                _updateItem(item);
+            }
             _render(items);
         },
-        RemoveItem(itemId) {
-            console.log(items);
-            utilities.RemoveByAttr(items, 'itemId', itemId);
-            console.log(items);
-            _render(items);
-        }
+        IsExistingItem: function (itemId, callback) {
+            _isExisingItem(itemId);
+        },
+        OpenEditor: function (customerId,itemId) {
+            _openModelForEditing(customerId,itemId);
+        },
     }
 };

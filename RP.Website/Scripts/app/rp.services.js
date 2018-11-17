@@ -404,4 +404,24 @@
         });
         return XHR;
     },
+    IsExistingItem: function (itemId, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Sale/document/IsExistingItem",
+            data: JSON.stringify({ id: itemId }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
 }

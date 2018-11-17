@@ -684,8 +684,8 @@
                     utilities.RedirectToAction("/Sale/Quotation/Index");
                 });
             });
-            $("#btnEdit").unbind("click");
-            $("#btnEdit").click(function () {
+            $("#btnCopy").unbind();
+            $("#btnCopy").click(function () {
                 var cid = $("#auto_customerId").val();
                 var selectedProductItems = $("input[name='productItemId']:checked");
                 if ($(selectedProductItems[0]).val() == undefined) {
@@ -698,7 +698,22 @@
                     $("#editProductModal").modal({ backdrop: "static" });
                     var selectedItemId = $(selectedProductItems[0]).val();
                     var selectedItem = documentEditor.getItemsById(selectedItemId);
-                    productEditor.edit(cid, selectedItem);
+                    productEditor.copy(cid, selectedItem);
+                }
+            });
+            $("#btnEdit").unbind("click");
+            $("#btnEdit").click(function () {
+                var customerId = $("#auto_customerId").val();
+                var selectedProductItems = $("input[name='productItemId']:checked");
+                if ($(selectedProductItems[0]).val() == undefined) {
+                    toastr.info("กรุณาเลือกรายการก่อน", 'Infomration');
+                    return;
+                } else if (selectedProductItems.length > 1) {
+                    toastr.info("กรุณาเลือกเพียง 1 รายการ", 'Infomration');
+                    return;
+                } else {
+                    var selectedItemId = $(selectedProductItems[0]).val();
+                    documentEditor.OpenEditor(customerId,selectedItemId);
                 }
             });
             $("#btnAddNew").unbind("click");
@@ -710,13 +725,17 @@
             $("#btnAddNewItem").click(function () {
                 var mode = productEditor.getMode();
                 if (mode == 1) {
-                    $("#addProductModal").modal("hide");
+                    $("#editProductModal").modal("hide");
                     productEditor.AddNewItem();
                 }
-                else {
+                else if (mode == 2) {
                     var selectedItem = productEditor.getSelectedItem();
                     $("#editProductModal").modal("hide");
                     productEditor.UpdateItem(selectedItem.itemId);
+                } else {
+                    var selectedItem = productEditor.getSelectedItem();
+                    $("#editProductModal").modal("hide");
+                    productEditor.CopyItem(selectedItem.itemId);
                 }
                 documentEditor.RenderProducts();
             });
