@@ -261,6 +261,7 @@
             _getSaleDetail(data.saleUserId);
             _getDeliveryContactDetail(data.deliveryContactId);
             $(data.items).each(function (index, item) {
+                console.log(item);
                 items.push(item);
             });
             _render(items);
