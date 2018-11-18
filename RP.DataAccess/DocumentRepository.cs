@@ -45,5 +45,19 @@ namespace RP.DataAccess
             document.CreatedDate = DateTime.Now;
             ObjectSet.Add(document);
         }
+        public void UpdateDocument(Model.Document document)
+        {
+            var existingDocument = this.GetById(document.Id);
+            existingDocument.FileNumber = document.FileNumber;
+            existingDocument.CustomerId = document.CustomerId;
+            existingDocument.ContactId = document.ContactId;
+            existingDocument.UserId = document.UserId;
+            if (document.DocumentProductItems.Count > 0) {
+                foreach (var item in document.DocumentProductItems){
+                    existingDocument.DocumentProductItems.Add(item);
+                }
+            }
+            existingDocument.UpdatedDate = DateTime.Now;
+        }
     }
 }

@@ -264,6 +264,27 @@
         });
         return XHR;
     },
+    UpdateDocument: function (formData, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Sale/document/UpdateDocument",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
     GetDocumentDetail: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",

@@ -95,6 +95,7 @@
     };
     var _getContactDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
+            $("#auto_contactId").val(data.id);
             $("#auto_contactName").val(data.name);
             $("#auto_contactPhone").val(data.phone);
             $("#auto_contactFax").val(data.fax);
@@ -119,6 +120,7 @@
     };
     var _getSaleDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
+            $("#auto_saleId").val(data.id);
             $("#auto_saleName").val(data.name);
             $("#auto_saleCode").val(data.code);
             $("#auto_saleBranch").val(data.branch);
@@ -168,7 +170,6 @@
                         html += '       </div>';
                     }
                     else if (item.printOption.selectedOption == 2) {
-                        console.log(item.printOption);
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
@@ -260,8 +261,68 @@
             _getContactDetail(data.contactId);
             _getSaleDetail(data.saleUserId);
             _getDeliveryContactDetail(data.deliveryContactId);
-            $(data.items).each(function (index, item) {
-                console.log(item);
+            $(data.items).each(function (index, data) {
+                var printOption = data.printOption;
+                var screenOption = data.screenOption;
+                var sewOption = data.sewOption;
+
+                var o1 = null;
+                var o2 = null;
+                var o3 = null;
+                if (printOption != null) {
+                    o1 = {
+                        selectedOption: data.printOption.selectedOption,
+                        options1: {
+                            patternId: printOption.patternId,
+                            patternName: printOption.patternName,
+                            patternImage: printOption.patternImagePath
+                        },
+                        options2: {
+                        },
+                        options3: {
+                        },
+                    };
+                }
+                if (screenOption != null) {
+                    o2 = {
+                        selectedOption: data.screenOption.selectedOption,
+                        options1: {
+                            patternId: screenOption.patternId,
+                            patternName: screenOption.patternName,
+                            patternImage: screenOption.patternImagePath
+                        },
+                        options2: {
+                        },
+                        options3: {
+                        },
+                    };
+                }
+                if (sewOption != null) {
+                    o3 = {
+                        selectedOption: data.sewOption.selectedOption,
+                        options1: {
+                            patternId: sewOption.patternId,
+                            patternName: sewOption.patternName,
+                            patternImage: sewOption.patternImagePath
+                        },
+                        options2: {
+                        },
+                        options3: {
+                        },
+                    };
+                }
+                var item = {
+                    productId: data.productId,
+                    productName: data.productName,
+                    productUnitId: data.productUnitId,
+                    productUnitName: data.productUnitName,
+                    amount: parseFloat(data.amount),
+                    pricePerUnit: parseFloat(data.pricePerUnit),
+                    remark: data.remark,
+                    print: o1,
+                    screen: o2,
+                    sew: o3
+                };
                 items.push(item);
             });
             _render(items);
@@ -295,7 +356,7 @@
             }
         });
     };
-    var _openModelForEditing = function (customerId,itemId) {
+    var _openModelForEditing = function (customerId, itemId) {
         var success = function (result, textStatus, jqXHR) {
             if (result == undefined || result == false) {
                 result = false;
@@ -308,6 +369,131 @@
             //alert(errorThrown);
         }
         var xhr = RPService.IsExistingItem(itemId, success, failure);
+    };
+    var _save = function (callback) {
+        var allItems = [];
+        var formData = new FormData();
+        $(items).each(function (index, item) {
+            var printOptions = item.print;
+            var screenOptions = item.screen;
+            var sewOptions = item.sew;
+
+            //print options
+            var printData = {};
+            if (printOptions != null) {
+                if (printOptions.selectedOption == 1) {
+                    printData = {
+                        selectedOption: printOptions.selectedOption,
+                        patternId: printOptions.options1.patternId || 0,
+                        colorId: 0
+                    };
+                } else if (printOptions.selectedOption == 2) {
+                    printData = {
+                        selectedOption: printOptions.selectedOption,
+                        patternId: 0,
+                        colorId: printOptions.options2.colorId || 0
+                    };
+                    formData.append("printFile", printOptions.options2.file);
+                } else {
+                    printData = {
+                        selectedOption: printOptions.selectedOption,
+                        patternId: 0,
+                        colorId: 0
+                    };
+                }
+            }
+
+            //screen options
+            var screenData = {};
+            if (screenOptions != null) {
+                if (screenOptions.selectedOption == 1) {
+                    screenData = {
+                        selectedOption: screenOptions.selectedOption,
+                        patternId: screenOptions.options1.patternId || 0,
+                        colorId: 0,
+                        positionId: 0,
+                    }
+                } else if (screenOptions.selectedOption == 2) {
+                    screenData = {
+                        selectedOption: screenOptions.selectedOption,
+                        patternId: 0,
+                        colorId: screenOptions.options2.colorId || 0,
+                        positionId: screenOptions.options2.positionId || 0,
+                    };
+                    formData.append("screenFile", screenOptions.options2.file);
+                } else {
+                    screenData = {
+                        selectedOption: screenOptions.selectedOption,
+                        patternId: 0,
+                        colorId: 0,
+                        positionId: 0,
+                    };
+                }
+            }
+
+            //sew options
+            var sewData = {};
+            if (sewOptions != null) {
+                if (sewOptions.selectedOption == 1) {
+                    sewData = {
+                        selectedOption: sewOptions.selectedOption,
+                        patternId: sewOptions.options1.patternId || 0,
+                        positionId: 0,
+                        remark: ''
+                    };
+                } else if (sewOptions.selectedOption == 2) {
+                    sewData = {
+                        selectedOption: sewOptions.selectedOption,
+                        patternId: 0,
+                        positionId: sewOptions.options2.positionId || 0,
+                        remark: sewOptions.options2.remark
+                    };
+                    formData.append("sewFile", sewOptions.options2.file);
+                } else {
+                    sewData = {
+                        selectedOption: sewOptions.selectedOption,
+                        patternId: 0,
+                        positionId: 0,
+                        remark: ''
+                    };
+                }
+            }
+            allItems.push(
+                {
+                    productId: item.productId,
+                    productUnitId: item.productUnitId,
+                    amount: item.amount,
+                    pricePerUnit: item.pricePerUnit || 0,
+                    printOption: printData,
+                    screenOption: screenData,
+                    sewOption: sewData
+                }
+            );
+        });
+        var document = {
+            id: $("#documentId").val(),
+            //issuedDate: $("#issuedDate").val(),
+            //createdDate: $("#createdDate").val(),
+            expirationDate: $("#expirationDate").val(),
+            //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+            saleUserId: $("#auto_saleId").val(),
+            customerId: $("#auto_customerId").val(),
+            contactId: $("#auto_contactId").val(),
+            items: allItems,
+            deliveryAddress: $("#deliveryAddress").val(),
+            //deliveryContactId: $("#auto_deliveryContactId").val(),
+            remark: $("#documentRemark").val()
+        };
+        formData.append("document", JSON.stringify(document));
+        //for (var i = 0; i < files.length; i++) {
+        //    formData.append(files[i].name, files[i]);
+        //}
+        var success = function (data, textStatus, jqXHR) {
+            callback();
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.UpdateDocument(formData, success, failure);
     };
     return {
         init: function () {
@@ -350,8 +536,11 @@
         IsExistingItem: function (itemId, callback) {
             _isExisingItem(itemId);
         },
-        OpenEditor: function (customerId,itemId) {
-            _openModelForEditing(customerId,itemId);
+        OpenEditor: function (customerId, itemId) {
+            _openModelForEditing(customerId, itemId);
+        },
+        SaveDocument: function (callback) {
+            _save(callback);
         },
     }
 };

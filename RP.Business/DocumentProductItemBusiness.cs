@@ -17,5 +17,24 @@ namespace RP.Business
                 return uow.DocumentProductItemRepository.GetById(id);
             }
         }
+        public void DeleteProductItemsByDocument(Document document)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                foreach (var item in document.DocumentProductItems)
+                {
+                    uow.DocumentProductItemRepository.Delete(item);
+                }
+            }
+        }
+        public void DeleteProductItemsByDocumentId(string id) {
+            using (var uow = UnitOfWork.Create())
+            {
+                var document = uow.DocumentRepository.GetById(id);
+                foreach (var item in document.DocumentProductItems) {
+                    //uow.DocumentProductItemRepository.Delete(item);
+                }
+            }
+        }
     }
 }

@@ -651,12 +651,14 @@
             });
 
             $('.btnSave').click(function () {
-                swal({
-                    title: "บันทึกเรียบร้อย!",
-                    text: "กดปุ่ม OK เพื่อปิด!",
-                    icon: "success"
-                }).then((value) => {
-                    utilities.RedirectToAction("../");
+                documentEditor.SaveDocument(function () {
+                    swal({
+                        title: "บันทึกเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("../");
+                    });
                 });
             });
             $('.btnShowHistory').click(function () {

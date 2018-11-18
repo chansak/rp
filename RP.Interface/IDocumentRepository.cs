@@ -10,5 +10,6 @@ namespace RP.Interfaces
 	public interface IDocumentRepository : IRepository<RP.Model.Document>
 	{
         void AddNewDocument(Model.Document document, string customerCode);
+        void UpdateDocument(Model.Document document);
     }
 }

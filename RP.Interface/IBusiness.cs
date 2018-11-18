@@ -20,6 +20,13 @@ namespace RP.Interfaces
         IList<Document> GetDocumentsListBySearch(string searchBy, string keyword);
         Document GetDocument(string id);
         void CreateDocument(Document document, string customerCode);
+        void UpdateDocument(Document document);
+        DocumentProductItem GetProductItemByItemId(string id);
+        ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
+        ProductItemScreenOptional GetProductItemScreenOptionalByItemId(string id);
+        ProductItemSewOptional GetProductItemSewOptionalByItemId(string id);
+        void DeleteProductItemsByDocumentId(string id);
+        void DeleteProductItemsByDocument(Document document);
         #endregion
 
         #region User
@@ -50,10 +57,6 @@ namespace RP.Interfaces
         Color GetColorById(string id);
         PatternPosition GetPositionById(string id);
         PatternImage GetPatternImageById(string id);
-        DocumentProductItem GetProductItemByItemId(string id);
-        ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
-        ProductItemScreenOptional GetProductItemScreenOptionalByItemId(string id);
-        ProductItemSewOptional GetProductItemSewOptionalByItemId(string id);
         #endregion
 
 

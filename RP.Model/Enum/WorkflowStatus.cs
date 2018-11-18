@@ -10,6 +10,9 @@ namespace RP.Model.Enum
     public enum WorkflowStatus
     {
         undefined=0,
+        [Description("Draft")]
+        Draft = 0,
+
         [Description("ลูกค้าขออนุมัติ")]
         RequestedForApproval=1,
 
@@ -19,7 +22,7 @@ namespace RP.Model.Enum
         [Description("ไม่อนุมัติ/ขอข้อมูลเพิ่ม")]
         Rejected =3,
 
-        [Description("ลูกค้าขออนุมัติ")]
+        [Description("ยกเลิก")]
         Cancelled =4,
 
         [Description("ออกใบเสนอราคาแล้ว")]

@@ -13,7 +13,7 @@ namespace RP.Website
     {
         public static Document ToEntity(this DocumentViewModel viewModel)
         {
-            var _documentId = Guid.NewGuid();
+            var _documentId = new System.Guid(viewModel.Id);
             var document = new Document();
             document.Id = _documentId;
             document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
@@ -346,7 +346,8 @@ namespace RP.Website
             return user;
         }
 
-        public static ProductItemViewModel ToViewModel(this DocumentProductItem entity) {
+        public static ProductItemViewModel ToViewModel(this DocumentProductItem entity)
+        {
             var item = new ProductItemViewModel();
             item.ItemId = entity.Id.ToString();
             item.ProductId = entity.Product.Id.ToString();
@@ -357,7 +358,8 @@ namespace RP.Website
             item.PricePerUnit = entity.PricePerUnit;
             var o1 = GenericFactory.Business.GetProductItemPrintOptionalByItemId(entity.Id.ToString());
             var printOption = new PrintOptionViewModel();
-            if (o1 != null) {
+            if (o1 != null)
+            {
                 var pattern = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
                 var path = string.Format(@"../../../FileUpload/{0}",
                                             pattern.PatternImagePath.Replace(@"\", @"/")

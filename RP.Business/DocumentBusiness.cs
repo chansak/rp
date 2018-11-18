@@ -62,5 +62,22 @@ namespace RP.Business
                 }
             }
         }
+        public void UpdateDocument(Document document) {
+            using (var uow = UnitOfWork.Create())
+            {
+                try
+                {
+                    //Would be update IsDelete instread of delete them
+                    this.DeleteProductItemsByDocumentId(document.Id.ToString());
+                    uow.DocumentRepository.UpdateDocument(document);
+                    uow.Commit();
+                }
+                catch (Exception ex)
+                {
+                    uow.Rollback();
+                    var msg = ex.Message;
+                }
+            }
+        }
     }
 }

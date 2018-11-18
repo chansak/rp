@@ -7,6 +7,5 @@ namespace RP.Interfaces
 {
 	public interface IDocumentProductItemRepository : IRepository<RP.Model.DocumentProductItem>
 	{
-
-	}
+    }
 }
