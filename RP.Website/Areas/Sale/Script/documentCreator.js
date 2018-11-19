@@ -294,7 +294,7 @@
                     html += '                   <h5 class="mb-1">ลายเก่า</h5>';
                     html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
                     html += '               </div>';
-                    html += '               <img src="../../FileUpload/pattern/' + option.patternImage.imagePath + '" />';
+                    html += '               <img src="../../FileUpload/pattern/' + option.patternImage.imagePath + '" class="thumb-image"/>';
                     html += '           </a>'
                     html += '       </div>';
                 }
@@ -322,7 +322,7 @@
                     html += '                   <h5 class="mb-1">ลายเก่า</h5>';
                     html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
                     html += '               </div>';
-                    html += '               <img src="../../FileUpload/pattern/' + option.patternImage.imagePath + '" />';
+                    html += '               <img src="../../FileUpload/pattern/' + option.patternImage.imagePath + '" class="thumb-image"/>';
                     html += '           </a>'
                     html += '       </div>';
                 }
@@ -351,7 +351,7 @@
                     html += '                   <h5 class="mb-1">ลายเก่า</h5>';
                     html += '                   <small>ชื่อลาย :' + option.patternName + '</small>';
                     html += '               </div>';
-                    html += '               <img src="../../FileUpload/pattern/' + option.patternImage.imagePath + '" />';
+                    html += '               <img src="../../FileUpload/pattern/' + option.patternImage.imagePath + '" class="thumb-image"/>';
                     html += '           </a>'
                     html += '       </div>';
                 }

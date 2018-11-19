@@ -135,7 +135,8 @@
         $(items).each(function (index, item) {
             var total = parseFloat((item.amount * item.pricePerUnit));
             var id = "'" + item.itemId + "'";
-            if (item.printOption != null || item.screenOption != null || item.sewOption != null) {
+            if (item.print != null || item.screen != null || item.sew != null) {
+                console.log(item.itemId);
                 if (item.itemId != null) {
                     html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
                     html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
@@ -157,26 +158,26 @@
                 html += '<tr id=' + item.itemId + ' style="background-color: #ffffff;display:none">'
                 html += '   <td colspan="2" style="border-right:dashed 1px #e6e6e6">'
                 html += '       <h4>พิมพ์</h4>';
-                if (item.printOption != null) {
-                    if (item.printOption.selectedOption == 1) {
+                if (item.print != null) {
+                    if (item.print.selectedOption == 1) {
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         //html += '                   <h5 class="mb-1">ลายเก่า</h5>';
-                        html += '                   <small>ชื่อลาย :' + item.printOption.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.print.options1.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="' + item.printOption.patternImagePath + '" class="thumb-image" />';
+                        html += '               <img src="' + item.print.options1.patternImage + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
-                    else if (item.printOption.selectedOption == 2) {
+                    else if (item.print.selectedOption == 2) {
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         //html += '                   <h5 class="mb-1">ลายใหม่</h5>';
-                        html += '                   <small>ชื่อลาย :' + item.printOption.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.print.options2.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="' + item.printOption.patternImagePath + '" class="thumb-image" />';
+                        html += '               <img src="' + item.print.options2.patternImage + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
@@ -185,26 +186,27 @@
                 html += '   </td>';
                 html += '   <td colspan="2" style="border-right:dashed 1px #e6e6e6">';
                 html += '       <h4>สกรีน</h4>';
-                if (item.screenOption != null) {
-                    if (item.screenOption.selectedOption == 1) {
+                if (item.screen != null) {
+                    console.log(item);
+                    if (item.screen.selectedOption == 1) {
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         //html += '                   <h5 class="mb-1">ลายเก่า</h5>';
-                        html += '                   <small>ชื่อลาย :' + item.screenOption.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.screen.options1.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="' + item.screenOption.patternImagePath + '" class="thumb-image" />';
+                        html += '               <img src="' + item.screen.options1.patternImage + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
-                    else if (item.screenOption.selectedOption == 2) {
+                    else if (item.screen.selectedOption == 2) {
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         //html += '                   <h5 class="mb-1">ลายใหม่</h5>';
-                        html += '                   <small>ชื่อลาย :' + item.screenOption.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.screen.options2.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="' + item.screenOption.patternImagePath + '" class="thumb-image" />';
+                        html += '               <img src="' + item.screen.options2.patternImage + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
@@ -213,26 +215,26 @@
                 html += '   </td>';
                 html += '   <td colspan="2" style="border-right:dashed 0px #e6e6e6">';
                 html += '       <h4>ปัก</h4>';
-                if (item.sewOption != null) {
-                    if (item.sewOption.selectedOption == 1) {
+                if (item.sew != null) {
+                    if (item.sew.selectedOption == 1) {
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         //html += '                   <h5 class="mb-1">ลายเก่า</h5>';
-                        html += '                   <small>ชื่อลาย :' + item.sewOption.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.sew.options1.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="' + item.sewOption.patternImagePath + '" class="thumb-image" />';
+                        html += '               <img src="' + item.sew.options1.patternImage + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
-                    else if (item.printOption.selectedOption == 2) {
+                    else if (item.sew.selectedOption == 2) {
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
                         html += '               <div class="d-flex justify-content-between">';
                         //html += '                   <h5 class="mb-1">ลายใหม่</h5>';
-                        html += '                   <small>ชื่อลาย :' + item.sewOption.patternName + '</small>';
+                        html += '                   <small>ชื่อลาย :' + item.sew.options2.patternName + '</small>';
                         html += '               </div>';
-                        html += '               <img src="' + item.sewOption.patternImagePath + '" class="thumb-image" />';
+                        html += '               <img src="' + item.sew.options2.patternImage + '" class="thumb-image" />';
                         html += '           </a>'
                         html += '       </div>';
                     }
