@@ -318,7 +318,7 @@ var productEditor = new function () {
             var xhr = RPService.GetMaterialStockCheck(productId, productUnitId, materialId, amount, success, failure);
         }
     }
-    var _getProductItemDetail = function (rowItem) {
+    var _getProductItemDetail = function(selectedItem) {
         var success = function (data, textStatus, jqXHR) {
             rowItem = data;
             item = data;
@@ -361,7 +361,7 @@ var productEditor = new function () {
             _bindingMaterial();
         }
         var failure = function (jqXHR, textStatus, errorThrown) { }
-        var xhr = RPService.GetProductItemByItemId(rowItem.itemId, success, failure);
+        var xhr = RPService.GetProductItemByItemId(selectedItem.itemId, success, failure);
     };
     var _getDummyProductItemDetail = function (data) {
         rowItem = data;
@@ -589,11 +589,6 @@ var productEditor = new function () {
                 title.html("คัดลอกรายการ");
                 btnSaveTitle.html("คัดลอกรายการ");
             } else { }
-            _bindingProductCategories();
-            _bindingPatternImage();
-            _bindingPatternPosition();
-            _bindingPatternColor();
-            _bindingMaterial();
         },
         getMode: function () {
             return mode;
@@ -604,13 +599,22 @@ var productEditor = new function () {
         addNew: function (cid) {
             mode = RpMode.addNew;
             productEditor.init(cid);
+            _bindingProductCategories();
+            _bindingPatternImage();
+            _bindingPatternPosition();
+            _bindingPatternColor();
+            _bindingMaterial();
         },
         edit: function (cid, item, isExist) {
-            if (isExist) { mode = RpMode.edit; } else { mode = RpMode.copy; }
-            productEditor.init(cid);
-            rowItem = item;
             if (isExist) {
-                _getProductItemDetail(rowItem);
+                mode = RpMode.edit;
+            } else {
+                rowItem = item;
+                mode = RpMode.copy;
+            }
+            productEditor.init(cid);
+            if (isExist) {
+                _getProductItemDetail(item);
             } else {
                 _getDummyProductItemDetail(rowItem);
             }
