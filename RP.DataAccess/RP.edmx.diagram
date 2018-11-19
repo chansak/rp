@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="RP.Model.Department" Width="1.5" PointX="5.75" PointY="24.875" />
         <EntityTypeShape EntityType="RP.Model.DocumentAttachment" Width="1.5" PointX="3" PointY="7.5" />
         <EntityTypeShape EntityType="RP.Model.DocumentDelivery" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="RP.Model.DocumentProductItem" Width="1.5" PointX="3" PointY="10.75" />
         <EntityTypeShape EntityType="RP.Model.MaterialType" Width="1.5" PointX="1.5" PointY="44.5" />
         <EntityTypeShape EntityType="RP.Model.MaterialUnit" Width="1.5" PointX="3.75" PointY="4.625" />
         <EntityTypeShape EntityType="RP.Model.PatternImage" Width="1.5" PointX="10.75" PointY="3.375" />
@@ -42,13 +41,6 @@
         <AssociationConnector Association="RP.Model.FK_CustomerContact_CustomerContactBranch" />
         <AssociationConnector Association="RP.Model.FK_User_Department" />
         <AssociationConnector Association="RP.Model.FK_DocumentDelivery_TransportationType" />
-        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Product" />
-        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Unit" />
-        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Warehouse" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemAttachment_DocumentProductItems" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" />
-        <AssociationConnector Association="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" />
         <AssociationConnector Association="RP.Model.FK_Stock_MaterialUnit" />
         <AssociationConnector Association="RP.Model.FK_Option_Product" />
         <AssociationConnector Association="RP.Model.FK_Product_ProductCategory" />
@@ -70,7 +62,15 @@
         <AssociationConnector Association="RP.Model.FK_Document_User" />
         <AssociationConnector Association="RP.Model.FK_DocumentAttachment_Document" />
         <AssociationConnector Association="RP.Model.FK_DocumentDelivery_Document" />
+        <EntityTypeShape EntityType="RP.Model.DocumentProductItem" Width="1.5" PointX="13.875" PointY="18.375" />
         <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Document" />
+        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Product" />
+        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Unit" />
+        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Warehouse" />
+        <AssociationConnector Association="RP.Model.FK_ProductItemAttachment_DocumentProductItems" />
+        <AssociationConnector Association="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" />
+        <AssociationConnector Association="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" />
+        <AssociationConnector Association="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

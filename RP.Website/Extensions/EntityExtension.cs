@@ -13,7 +13,12 @@ namespace RP.Website
     {
         public static Document ToEntity(this DocumentViewModel viewModel)
         {
-            var _documentId = new System.Guid(viewModel.Id);
+
+            Guid _documentId = Guid.NewGuid();
+            if (!string.IsNullOrEmpty(viewModel.Id))
+            {
+                _documentId = new System.Guid(viewModel.Id);
+            }
             var document = new Document();
             document.Id = _documentId;
             document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
@@ -154,7 +159,7 @@ namespace RP.Website
             document.CustomerId = entity.CustomerId.ToString();
             document.ContactId = entity.ContactId.ToString();
             var productItems = new List<ProductItemViewModel>();
-            foreach (var i in entity.DocumentProductItems)
+            foreach (var i in entity.DocumentProductItems.Where(i => !i.IsDeleted))
             {
                 var printOptions = new List<PrintOptionViewModel>();
                 if (i.ProductItemPrintOptionals.Count > 0)

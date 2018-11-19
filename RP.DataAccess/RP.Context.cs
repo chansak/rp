@@ -36,7 +36,6 @@ namespace RP.DataAccess
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual DbSet<DocumentDelivery> DocumentDeliveries { get; set; }
-        public virtual DbSet<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual DbSet<MaterialType> MaterialTypes { get; set; }
         public virtual DbSet<MaterialUnit> MaterialUnits { get; set; }
         public virtual DbSet<PatternImage> PatternImages { get; set; }
@@ -59,5 +58,6 @@ namespace RP.DataAccess
         public virtual DbSet<ProductMaterialUsage> ProductMaterialUsages { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
+        public virtual DbSet<DocumentProductItem> DocumentProductItems { get; set; }
     }
 }

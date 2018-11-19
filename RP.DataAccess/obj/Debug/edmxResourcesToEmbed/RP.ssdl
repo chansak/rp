@@ -147,6 +147,7 @@
     <Property Name="TotalPrice" Type="money" />
     <Property Name="FromWarehouseId" Type="uniqueidentifier" />
     <Property Name="ProductOptionId" Type="uniqueidentifier" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Material">
     <Key>

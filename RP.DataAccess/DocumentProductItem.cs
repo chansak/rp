@@ -34,7 +34,9 @@ namespace RP.DataAccess
         public Nullable<decimal> TotalPrice { get; set; }
         public Nullable<System.Guid> FromWarehouseId { get; set; }
         public Nullable<System.Guid> ProductOptionId { get; set; }
+        public bool IsDeleted { get; set; }
     
+        public virtual Document Document { get; set; }
         public virtual Product Product { get; set; }
         public virtual Unit Unit { get; set; }
         public virtual Warehouse Warehouse { get; set; }
@@ -46,6 +48,5 @@ namespace RP.DataAccess
         public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
-        public virtual Document Document { get; set; }
     }
 }

@@ -36,7 +36,6 @@ var productEditor = new function () {
                     $("#editProductOptions").find('option').remove().end();
                 }
             });
-            console.log(rowItem);
             if (mode == RpMode.edit || mode == RpMode.copy) {
                 $("#editProductCategories").val(rowItem.productCategoryId).change();
             }
@@ -321,6 +320,7 @@ var productEditor = new function () {
     }
     var _getProductItemDetail = function (rowItem) {
         var success = function (data, textStatus, jqXHR) {
+            rowItem = data;
             item = data;
             $("#editProductNumberOfProducts").val(item.amount);
             $("#editProductPricePerUnit").val(item.pricePerUnit);
@@ -662,7 +662,7 @@ var productEditor = new function () {
             var sewPatternimage = utilities.FindObjectByKey(images, 'id', sewPatternId);
             var item = {
                 itemId: utilities.GuId(),
-                productCategoryId:$("#editProductCategories option:selected").val(),
+                productCategoryId: $("#editProductCategories option:selected").val(),
                 productId: $("#editProducts option:selected").val(),
                 productName: $("#editProducts option:selected").text(),
                 productUnitId: $("#editProductsUnit option:selected").val(),

@@ -48,7 +48,6 @@ namespace RP.DataAccess
         public void UpdateDocument(Model.Document document)
         {
             var existingDocument = this.GetById(document.Id);
-            existingDocument.FileNumber = document.FileNumber;
             existingDocument.CustomerId = document.CustomerId;
             existingDocument.ContactId = document.ContactId;
             existingDocument.UserId = document.UserId;

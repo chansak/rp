@@ -33,7 +33,9 @@ namespace RP.Model
         public Nullable<decimal> TotalPrice { get; set; }
         public Nullable<System.Guid> FromWarehouseId { get; set; }
         public Nullable<System.Guid> ProductOptionId { get; set; }
+        public bool IsDeleted { get; set; }
     
+        public virtual Document Document { get; set; }
         public virtual Product Product { get; set; }
         public virtual Unit Unit { get; set; }
         public virtual Warehouse Warehouse { get; set; }
@@ -41,7 +43,6 @@ namespace RP.Model
         public virtual ICollection<ProductItemPrintOptional> ProductItemPrintOptionals { get; set; }
         public virtual ICollection<ProductItemScreenOptional> ProductItemScreenOptionals { get; set; }
         public virtual ICollection<ProductItemSewOptional> ProductItemSewOptionals { get; set; }
-        public virtual Document Document { get; set; }
     }
     
 }

@@ -54,21 +54,25 @@ namespace RP.Business
         {
             using (var uow = UnitOfWork.Create())
             {
-                try {
+                try
+                {
                     uow.DocumentRepository.AddNewDocument(document, customerCode);
                     uow.Commit();
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     var msg = ex.Message;
                 }
             }
         }
-        public void UpdateDocument(Document document) {
+        public void UpdateDocument(Document document)
+        {
             using (var uow = UnitOfWork.Create())
             {
                 try
                 {
                     //Would be update IsDelete instread of delete them
-                    this.DeleteProductItemsByDocumentId(document.Id.ToString());
+                    this.DeleteProductItemsByDocumentId(uow, document.Id.ToString());
                     uow.DocumentRepository.UpdateDocument(document);
                     uow.Commit();
                 }

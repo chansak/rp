@@ -373,8 +373,8 @@
                 productName: $("#products option:selected").text(),
                 productUnitId: $("#productsUnit option:selected").val(),
                 productUnitName: $("#productsUnit option:selected").text(),
-                amount: parseFloat($("#productNumberOfProducts").val()),
-                pricePerUnit: parseFloat($("#productPricePerUnit").val()),
+                amount: parseFloat($("#productNumberOfProducts").val()||0),
+                pricePerUnit: parseFloat($("#productPricePerUnit").val()||0),
                 file: null,
                 remark: $("#productRemark").val(),
                 print: {

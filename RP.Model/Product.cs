@@ -16,10 +16,10 @@ namespace RP.Model
     {
         public Product()
         {
-            this.DocumentProductItems = new HashSet<DocumentProductItem>();
             this.ProductOptions = new HashSet<ProductOption>();
             this.ProductPrices = new HashSet<ProductPrice>();
             this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
+            this.DocumentProductItems = new HashSet<DocumentProductItem>();
         }
     
         public System.Guid Id { get; set; }
@@ -27,11 +27,11 @@ namespace RP.Model
         public string Name { get; set; }
         public System.Guid ProductCategoryId { get; set; }
     
-        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual ICollection<ProductOption> ProductOptions { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
         public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
+        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
     }
     
 }

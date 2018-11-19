@@ -312,6 +312,7 @@
                     };
                 }
                 var item = {
+                    itemId: data.itemId,
                     productId: data.productId,
                     productName: data.productName,
                     productUnitId: data.productUnitId,

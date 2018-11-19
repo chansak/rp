@@ -16,17 +16,17 @@ namespace RP.Model
     {
         public Unit()
         {
-            this.DocumentProductItems = new HashSet<DocumentProductItem>();
             this.ProductUnits = new HashSet<ProductUnit>();
             this.ProductMaterialUsages = new HashSet<ProductMaterialUsage>();
+            this.DocumentProductItems = new HashSet<DocumentProductItem>();
         }
     
         public System.Guid Id { get; set; }
         public string UnitName { get; set; }
     
-        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual ICollection<ProductUnit> ProductUnits { get; set; }
         public virtual ICollection<ProductMaterialUsage> ProductMaterialUsages { get; set; }
+        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
     }
     
 }

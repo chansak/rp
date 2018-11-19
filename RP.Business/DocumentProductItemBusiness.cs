@@ -27,13 +27,14 @@ namespace RP.Business
                 }
             }
         }
-        public void DeleteProductItemsByDocumentId(string id) {
-            using (var uow = UnitOfWork.Create())
+        public void DeleteProductItemsByDocumentId(IUnitOfWork uow, string id)
+        {
+
+            var document = uow.DocumentRepository.GetById(id);
+            foreach (var item in document.DocumentProductItems)
             {
-                var document = uow.DocumentRepository.GetById(id);
-                foreach (var item in document.DocumentProductItems) {
-                    //uow.DocumentProductItemRepository.Delete(item);
-                }
+                var existingItem = uow.DocumentProductItemRepository.GetById(item.Id);
+                existingItem.IsDeleted = true;
             }
         }
     }

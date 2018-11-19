@@ -12,7 +12,6 @@
     <EntitySet Name="Departments" EntityType="RP.Model.Department" />
     <EntitySet Name="DocumentAttachments" EntityType="RP.Model.DocumentAttachment" />
     <EntitySet Name="DocumentDeliveries" EntityType="RP.Model.DocumentDelivery" />
-    <EntitySet Name="DocumentProductItems" EntityType="RP.Model.DocumentProductItem" />
     <EntitySet Name="MaterialTypes" EntityType="RP.Model.MaterialType" />
     <EntitySet Name="MaterialUnits" EntityType="RP.Model.MaterialUnit" />
     <EntitySet Name="PatternImages" EntityType="RP.Model.PatternImage" />
@@ -55,34 +54,6 @@
     <AssociationSet Name="FK_DocumentDelivery_TransportationType" Association="RP.Model.FK_DocumentDelivery_TransportationType">
       <End Role="TransportationType" EntitySet="TransportationTypes" />
       <End Role="DocumentDelivery" EntitySet="DocumentDeliveries" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DocumentProductItems_Product" Association="RP.Model.FK_DocumentProductItems_Product">
-      <End Role="Product" EntitySet="Products" />
-      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DocumentProductItems_Unit" Association="RP.Model.FK_DocumentProductItems_Unit">
-      <End Role="Unit" EntitySet="Units" />
-      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DocumentProductItems_Warehouse" Association="RP.Model.FK_DocumentProductItems_Warehouse">
-      <End Role="Warehouse" EntitySet="Warehouses" />
-      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductItemAttachment_DocumentProductItems" Association="RP.Model.FK_ProductItemAttachment_DocumentProductItems">
-      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
-      <End Role="ProductItemAttachment" EntitySet="ProductItemAttachments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductItemPrintOptional_DocumentProductItems" Association="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems">
-      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
-      <End Role="ProductItemPrintOptional" EntitySet="ProductItemPrintOptionals" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductItemScreenOptional_DocumentProductItems" Association="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems">
-      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
-      <End Role="ProductItemScreenOptional" EntitySet="ProductItemScreenOptionals" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductItemSewOptional_DocumentProductItems" Association="RP.Model.FK_ProductItemSewOptional_DocumentProductItems">
-      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
-      <End Role="ProductItemSewOptional" EntitySet="ProductItemSewOptionals" />
     </AssociationSet>
     <AssociationSet Name="FK_Stock_MaterialUnit" Association="RP.Model.FK_Stock_MaterialUnit">
       <End Role="MaterialUnit" EntitySet="MaterialUnits" />
@@ -159,9 +130,38 @@
       <End Role="Document" EntitySet="Documents" />
       <End Role="DocumentDelivery" EntitySet="DocumentDeliveries" />
     </AssociationSet>
+    <EntitySet Name="DocumentProductItems" EntityType="RP.Model.DocumentProductItem" />
     <AssociationSet Name="FK_DocumentProductItems_Document" Association="RP.Model.FK_DocumentProductItems_Document">
       <End Role="Document" EntitySet="Documents" />
       <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentProductItems_Product" Association="RP.Model.FK_DocumentProductItems_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentProductItems_Unit" Association="RP.Model.FK_DocumentProductItems_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentProductItems_Warehouse" Association="RP.Model.FK_DocumentProductItems_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemAttachment_DocumentProductItems" Association="RP.Model.FK_ProductItemAttachment_DocumentProductItems">
+      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+      <End Role="ProductItemAttachment" EntitySet="ProductItemAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemPrintOptional_DocumentProductItems" Association="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems">
+      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+      <End Role="ProductItemPrintOptional" EntitySet="ProductItemPrintOptionals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemScreenOptional_DocumentProductItems" Association="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems">
+      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+      <End Role="ProductItemScreenOptional" EntitySet="ProductItemScreenOptionals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductItemSewOptional_DocumentProductItems" Association="RP.Model.FK_ProductItemSewOptional_DocumentProductItems">
+      <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+      <End Role="ProductItemSewOptional" EntitySet="ProductItemSewOptionals" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Color">
@@ -287,30 +287,6 @@
     <NavigationProperty Name="TransportationType" Relationship="RP.Model.FK_DocumentDelivery_TransportationType" FromRole="DocumentDelivery" ToRole="TransportationType" />
     <NavigationProperty Name="Document" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="DocumentDelivery" ToRole="Document" />
   </EntityType>
-  <EntityType Name="DocumentProductItem">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="DocumentId" Type="Guid" />
-    <Property Name="ProductId" Type="Guid" />
-    <Property Name="ProductUnitId" Type="Guid" />
-    <Property Name="Amount" Type="Int32" Nullable="false" />
-    <Property Name="PricePerUnit" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="DiscountAmount" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="DiscountPercentage" Type="Int32" />
-    <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="FromWarehouseId" Type="Guid" />
-    <NavigationProperty Name="Product" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="DocumentProductItem" ToRole="Product" />
-    <NavigationProperty Name="Unit" Relationship="RP.Model.FK_DocumentProductItems_Unit" FromRole="DocumentProductItem" ToRole="Unit" />
-    <NavigationProperty Name="Warehouse" Relationship="RP.Model.FK_DocumentProductItems_Warehouse" FromRole="DocumentProductItem" ToRole="Warehouse" />
-    <NavigationProperty Name="ProductItemAttachments" Relationship="RP.Model.FK_ProductItemAttachment_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemAttachment" />
-    <NavigationProperty Name="ProductItemPrintOptionals" Relationship="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemPrintOptional" />
-    <NavigationProperty Name="ProductItemScreenOptionals" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemScreenOptional" />
-    <NavigationProperty Name="ProductItemSewOptionals" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemSewOptional" />
-    <NavigationProperty Name="Document" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="DocumentProductItem" ToRole="Document" />
-    <Property Name="ProductOptionId" Type="Guid" />
-  </EntityType>
   <EntityType Name="MaterialType">
     <Key>
       <PropertyRef Name="Id" />
@@ -353,11 +329,11 @@
     <Property Name="ProductCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
-    <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="Product" ToRole="DocumentProductItem" />
     <NavigationProperty Name="ProductOptions" Relationship="RP.Model.FK_Option_Product" FromRole="Product" ToRole="ProductOption" />
     <NavigationProperty Name="ProductCategory" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
     <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
     <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
+    <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="Product" ToRole="DocumentProductItem" />
   </EntityType>
   <EntityType Name="ProductCategory">
     <Key>
@@ -385,8 +361,8 @@
     <Property Name="ProductItemId" Type="Guid" Nullable="false" />
     <Property Name="ColorCodeId" Type="Guid" />
     <Property Name="OptionalStatusId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="DocumentProductItem" Relationship="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" FromRole="ProductItemPrintOptional" ToRole="DocumentProductItem" />
     <Property Name="PatternId" Type="Guid" />
+    <NavigationProperty Name="DocumentProductItem" Relationship="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" FromRole="ProductItemPrintOptional" ToRole="DocumentProductItem" />
   </EntityType>
   <EntityType Name="ProductItemScreenOptional">
     <Key>
@@ -398,8 +374,8 @@
     <Property Name="PatternPositionId" Type="Guid" />
     <Property Name="ProductItemId" Type="Guid" Nullable="false" />
     <Property Name="OptionalStatusId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="DocumentProductItem" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="ProductItemScreenOptional" ToRole="DocumentProductItem" />
     <Property Name="PatternId" Type="Guid" />
+    <NavigationProperty Name="DocumentProductItem" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="ProductItemScreenOptional" ToRole="DocumentProductItem" />
   </EntityType>
   <EntityType Name="ProductItemSewOptional">
     <Key>
@@ -411,8 +387,8 @@
     <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ProductItemId" Type="Guid" Nullable="false" />
     <Property Name="OptionalStatusId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="DocumentProductItem" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="ProductItemSewOptional" ToRole="DocumentProductItem" />
     <Property Name="PatternId" Type="Guid" />
+    <NavigationProperty Name="DocumentProductItem" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="ProductItemSewOptional" ToRole="DocumentProductItem" />
   </EntityType>
   <EntityType Name="ProductOption">
     <Key>
@@ -484,9 +460,9 @@
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="UnitName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Unit" FromRole="Unit" ToRole="DocumentProductItem" />
     <NavigationProperty Name="ProductUnits" Relationship="RP.Model.FK_ProductUnit_Unit" FromRole="Unit" ToRole="ProductUnit" />
     <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Unit" FromRole="Unit" ToRole="ProductMaterialUsage" />
+    <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Unit" FromRole="Unit" ToRole="DocumentProductItem" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -507,8 +483,8 @@
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Warehouse" FromRole="Warehouse" ToRole="DocumentProductItem" />
     <NavigationProperty Name="Stocks" Relationship="RP.Model.FK_Stock_Warehouse" FromRole="Warehouse" ToRole="Stock" />
+    <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Warehouse" FromRole="Warehouse" ToRole="DocumentProductItem" />
   </EntityType>
   <Association Name="FK_Customer_Company">
     <End Type="RP.Model.Company" Role="Company" Multiplicity="1" />
@@ -579,90 +555,6 @@
       </Principal>
       <Dependent Role="DocumentDelivery">
         <PropertyRef Name="TransportationTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DocumentProductItems_Product">
-    <End Type="RP.Model.Product" Role="Product" Multiplicity="0..1" />
-    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DocumentProductItem">
-        <PropertyRef Name="ProductId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DocumentProductItems_Unit">
-    <End Type="RP.Model.Unit" Role="Unit" Multiplicity="0..1" />
-    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Unit">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DocumentProductItem">
-        <PropertyRef Name="ProductUnitId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DocumentProductItems_Warehouse">
-    <End Type="RP.Model.Warehouse" Role="Warehouse" Multiplicity="0..1" />
-    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Warehouse">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DocumentProductItem">
-        <PropertyRef Name="FromWarehouseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductItemAttachment_DocumentProductItems">
-    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="0..1" />
-    <End Type="RP.Model.ProductItemAttachment" Role="ProductItemAttachment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DocumentProductItem">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductItemAttachment">
-        <PropertyRef Name="ProductItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductItemPrintOptional_DocumentProductItems">
-    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="1" />
-    <End Type="RP.Model.ProductItemPrintOptional" Role="ProductItemPrintOptional" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DocumentProductItem">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductItemPrintOptional">
-        <PropertyRef Name="ProductItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductItemScreenOptional_DocumentProductItems">
-    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="1" />
-    <End Type="RP.Model.ProductItemScreenOptional" Role="ProductItemScreenOptional" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DocumentProductItem">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductItemScreenOptional">
-        <PropertyRef Name="ProductItemId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductItemSewOptional_DocumentProductItems">
-    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="1" />
-    <End Type="RP.Model.ProductItemSewOptional" Role="ProductItemSewOptional" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DocumentProductItem">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProductItemSewOptional">
-        <PropertyRef Name="ProductItemId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -936,6 +828,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="DocumentProductItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="DocumentId" Type="Guid" />
+    <Property Name="ProductId" Type="Guid" />
+    <Property Name="ProductUnitId" Type="Guid" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="PricePerUnit" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="DiscountAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DiscountPercentage" Type="Int32" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="FromWarehouseId" Type="Guid" />
+    <Property Name="ProductOptionId" Type="Guid" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Document" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="DocumentProductItem" ToRole="Document" />
+    <NavigationProperty Name="Product" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="DocumentProductItem" ToRole="Product" />
+    <NavigationProperty Name="Unit" Relationship="RP.Model.FK_DocumentProductItems_Unit" FromRole="DocumentProductItem" ToRole="Unit" />
+    <NavigationProperty Name="Warehouse" Relationship="RP.Model.FK_DocumentProductItems_Warehouse" FromRole="DocumentProductItem" ToRole="Warehouse" />
+    <NavigationProperty Name="ProductItemAttachments" Relationship="RP.Model.FK_ProductItemAttachment_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemAttachment" />
+    <NavigationProperty Name="ProductItemPrintOptionals" Relationship="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemPrintOptional" />
+    <NavigationProperty Name="ProductItemScreenOptionals" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemScreenOptional" />
+    <NavigationProperty Name="ProductItemSewOptionals" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemSewOptional" />
+  </EntityType>
   <Association Name="FK_DocumentProductItems_Document">
     <End Type="RP.Model.Document" Role="Document" Multiplicity="0..1" />
     <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
@@ -945,6 +862,90 @@
       </Principal>
       <Dependent Role="DocumentProductItem">
         <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentProductItems_Product">
+    <End Type="RP.Model.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentProductItem">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentProductItems_Unit">
+    <End Type="RP.Model.Unit" Role="Unit" Multiplicity="0..1" />
+    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentProductItem">
+        <PropertyRef Name="ProductUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentProductItems_Warehouse">
+    <End Type="RP.Model.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentProductItem">
+        <PropertyRef Name="FromWarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemAttachment_DocumentProductItems">
+    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="0..1" />
+    <End Type="RP.Model.ProductItemAttachment" Role="ProductItemAttachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentProductItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemAttachment">
+        <PropertyRef Name="ProductItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemPrintOptional_DocumentProductItems">
+    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="1" />
+    <End Type="RP.Model.ProductItemPrintOptional" Role="ProductItemPrintOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentProductItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemPrintOptional">
+        <PropertyRef Name="ProductItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemScreenOptional_DocumentProductItems">
+    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="1" />
+    <End Type="RP.Model.ProductItemScreenOptional" Role="ProductItemScreenOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentProductItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemScreenOptional">
+        <PropertyRef Name="ProductItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductItemSewOptional_DocumentProductItems">
+    <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="1" />
+    <End Type="RP.Model.ProductItemSewOptional" Role="ProductItemSewOptional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentProductItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductItemSewOptional">
+        <PropertyRef Name="ProductItemId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

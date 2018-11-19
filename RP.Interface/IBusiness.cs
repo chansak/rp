@@ -25,7 +25,7 @@ namespace RP.Interfaces
         ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
         ProductItemScreenOptional GetProductItemScreenOptionalByItemId(string id);
         ProductItemSewOptional GetProductItemSewOptionalByItemId(string id);
-        void DeleteProductItemsByDocumentId(string id);
+        void DeleteProductItemsByDocumentId(IUnitOfWork uow, string id);
         void DeleteProductItemsByDocument(Document document);
         #endregion
 
