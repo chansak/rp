@@ -345,7 +345,7 @@
                             <label class="col-sm-3 col-form-label">คำอธิบาย</label>
 
                             <div class="col-sm-9">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" id="comments" rows="3"></textarea>
                                 <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                             </div>
                         </div>
@@ -675,16 +675,23 @@
                         $("#myModal").modal("show");
                     } else {
                         swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
-                            utilities.RedirectToAction("/Sale/Quotation/Index");
+                            utilities.RedirectToAction("../");
                         });
                     }
                 });
             });
             $('.btnSaveHistory').click(function () {
                 $('#myModal').modal('toggle');
-                swal("บันทึกเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success").then(function () {
-                    utilities.RedirectToAction("/Sale/Quotation/Index");
+                documentEditor.SaveDocumentWithComments(function () {
+                    swal({
+                        title: "บันทึกเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("../");
+                    });
                 });
+
             });
             $("#btnCopy").unbind();
             $("#btnCopy").click(function () {

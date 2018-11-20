@@ -363,7 +363,7 @@ var productEditor = new function () {
         var failure = function (jqXHR, textStatus, errorThrown) { }
         var xhr = RPService.GetProductItemByItemId(selectedItem.itemId, success, failure);
     };
-    var _getDummyProductItemDetail = function (data) {
+    var _getSelectedProductItemDetail = function (data) {
         rowItem = data;
         item = data;
         $("#editProductNumberOfProducts").val(item.amount);
@@ -616,7 +616,7 @@ var productEditor = new function () {
             if (isExist) {
                 _getProductItemDetail(item);
             } else {
-                _getDummyProductItemDetail(rowItem);
+                _getSelectedProductItemDetail(rowItem);
             }
             _registerStartupInitScript();
         },
