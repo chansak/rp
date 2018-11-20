@@ -3,6 +3,7 @@ using Newtonsoft.Json.Converters;
 using RP.Interfaces;
 using RP.Model;
 using RP.Utilities;
+using RP.Website.Extensions;
 using RP.Website.Helpers;
 using RP.Website.Models;
 using System;
@@ -37,18 +38,24 @@ namespace RP.Website.Areas.Sale.Controllers
                 .ToList();
             int totalCount = documents.Count;
             var result = new List<DocumentListItemViewModel>();
-            result.AddRange(documents.Select(d => new DocumentListItemViewModel
+            foreach (var d in documents)
             {
-                Id = d.Id.ToString(),
-                CustomerType = d.Customer.CustomerType.CustomerTypeName,
-                CustomerName = d.Customer.Name,
-                DocumentCode = d.FileNumber,
-                SaleUserName = d.User.DisplayName,
-                WorkflowStatus = (int)d.DocumentStatusId,
-                WorkflowStatusName = "ลูกค้าเสนอราคา",
-                BiddingStatus = (int)d.BiddingStatusId,
-                BiddingStatusName = "รอยืนยัน",
-            }));
+                var documentStatus = (WorkflowStatus)d.DocumentStatusId;
+                var statusName = documentStatus.ToWorkFlowStatusName();
+                var document = new DocumentListItemViewModel
+                {
+                    Id = d.Id.ToString(),
+                    CustomerType = d.Customer.CustomerType.CustomerTypeName,
+                    CustomerName = d.Customer.Name,
+                    DocumentCode = d.FileNumber,
+                    SaleUserName = d.User.DisplayName,
+                    WorkflowStatus = (int)d.DocumentStatusId,
+                    WorkflowStatusName = statusName,
+                    BiddingStatus = (int)d.BiddingStatusId,
+                    BiddingStatusName = "รอยืนยัน",
+                };
+                result.Add(document);
+            }
 
 
             RouteValueDictionary routeValues = new RouteValueDictionary();
@@ -79,6 +86,7 @@ namespace RP.Website.Areas.Sale.Controllers
                 var json = formCollection["document"].ToString().Replace(@"\", "");
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
+                document.DocumentStatusId = (int)WorkflowStatus.Draft;
                 var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
                 if (document.DocumentProductItems.Count > 0)
                 {
@@ -306,6 +314,15 @@ namespace RP.Website.Areas.Sale.Controllers
                 var msg = ex.Message;
             }
             return Json(null);
+        }
+        [HttpPost]
+        public ActionResult RequestApprove(string id)
+        {
+            var result = false;
+            var document = GenericFactory.Business.GetDocument(id);
+            document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
+            GenericFactory.Business.UpdateDocumentStatus(document);
+            return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

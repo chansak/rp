@@ -1570,6 +1570,8 @@
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Enum\AjaxResultStatus.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
+    <Compile Include="Extensions\EnumHelperExtension.cs" />
+    <Compile Include="Extensions\StatusExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

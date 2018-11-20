@@ -48,6 +48,7 @@ namespace RP.DataAccess
         public void UpdateDocument(Model.Document document)
         {
             var existingDocument = this.GetById(document.Id);
+            existingDocument.DocumentStatusId = document.DocumentStatusId;
             existingDocument.CustomerId = document.CustomerId;
             existingDocument.ContactId = document.ContactId;
             existingDocument.UserId = document.UserId;
@@ -57,6 +58,12 @@ namespace RP.DataAccess
                     existingDocument.DocumentProductItems.Add(item);
                 }
             }
+            existingDocument.UpdatedDate = DateTime.Now;
+        }
+        public void UpdateDocumentStatus(Model.Document document)
+        {
+            var existingDocument = this.GetById(document.Id);
+            existingDocument.DocumentStatusId = document.DocumentStatusId;
             existingDocument.UpdatedDate = DateTime.Now;
         }
     }

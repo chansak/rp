@@ -21,6 +21,7 @@ namespace RP.Interfaces
         Document GetDocument(string id);
         void CreateDocument(Document document, string customerCode);
         void UpdateDocument(Document document);
+        void UpdateDocumentStatus(Document document);
         DocumentProductItem GetProductItemByItemId(string id);
         ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
         ProductItemScreenOptional GetProductItemScreenOptionalByItemId(string id);

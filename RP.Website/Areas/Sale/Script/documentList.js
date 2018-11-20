@@ -48,6 +48,26 @@
         }
         var xhr = RPService.GetDocumentsListBySearch(searchBy, keyword, success, failure);
     };
+    var _request = function (callback) {
+        var id = 0;
+        var items = $("input:checkbox[name=documentId]:checked");
+        if (items.length == 1) {
+            id = $(items[0]).val();
+
+        } else {
+            toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration');
+        }
+        if (id != 0) {
+            var success = function (data, textStatus, jqXHR) {
+                callback();
+            }
+
+            var failure = function (jqXHR, textStatus, errorThrown) {
+                //alert(errorThrown);
+            }
+            var xhr = RPService.RequestApproval(id,success, failure);
+        }
+    };
     return {
         init: function () {
             _search();
@@ -57,6 +77,9 @@
         },
         search: function () {
             _search();
+        },
+        requestApprove: function (callback) {
+            _request(callback);
         }
     }
 };

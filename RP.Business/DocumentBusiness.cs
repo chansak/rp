@@ -83,5 +83,21 @@ namespace RP.Business
                 }
             }
         }
+        public void UpdateDocumentStatus(Document document)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                try
+                {
+                    uow.DocumentRepository.UpdateDocumentStatus(document);
+                    uow.Commit();
+                }
+                catch (Exception ex)
+                {
+                    uow.Rollback();
+                    var msg = ex.Message;
+                }
+            }
+        }
     }
 }

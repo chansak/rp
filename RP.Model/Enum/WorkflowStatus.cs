@@ -5,30 +5,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RP.Model.Enum
+namespace RP.Model
 {
     public enum WorkflowStatus
     {
-        undefined=0,
         [Description("Draft")]
         Draft = 0,
 
-        [Description("ลูกค้าขออนุมัติ")]
-        RequestedForApproval=1,
+        [Description("ลูกค้าขอราคา")]
+        RequestForPrice=1,
 
-        [Description("อนมัติใบเสนอราคาแล้ว")]
-        Approved =2,
+        [Description("ขออนุมัติ")]
+        RequestedForApproval=2,
 
-        [Description("ไม่อนุมัติ/ขอข้อมูลเพิ่ม")]
-        Rejected =3,
+        [Description("อนุมัติแล้ว")]
+        Approved =3,
 
-        [Description("ยกเลิก")]
-        Cancelled =4,
+        [Description("ขอข้อมูลเพิ่ม")]
+        Rejected =4,
 
         [Description("ออกใบเสนอราคาแล้ว")]
-        Quotation =5,
+        Quotation = 5,
 
         [Description("ได้รับ PO แล้ว")]
-        PurchaseOrder =6
+        PurchaseOrder = 6,
+
+        [Description("ยกเลิก")]
+        Cancelled =99,
+
     }
 }
