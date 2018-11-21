@@ -46,7 +46,9 @@ namespace RP.Website
                       "~/Areas/Sale/Script/documentCreator.js",
                       "~/Areas/Sale/Script/productCreator.js",
                       "~/Areas/Sale/Script/documentEditor.js",
-                      "~/Areas/Sale/Script/productEditor.js"));
+                      "~/Areas/Sale/Script/productEditor.js",
+                      "~/Areas/Manager/Script/approvalDocumentList.js",
+                      "~/Areas/Manager/Script/documentViewer.js"));
 
             // Inspinia skin config script
             bundles.Add(new ScriptBundle("~/bundles/skinConfig").Include(

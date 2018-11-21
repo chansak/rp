@@ -99,5 +99,33 @@ namespace RP.Business
                 }
             }
         }
+        public IList<Document> GetApprovalDocumentsListBySearch(string searchBy, string keyword)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                var documents = uow.DocumentRepository.All().Where(i=>i.DocumentStatusId == (int)WorkflowStatus.RequestedForApproval).AsEnumerable();
+                if (!string.IsNullOrWhiteSpace(searchBy) && !string.IsNullOrWhiteSpace(keyword))
+                {
+                    switch (searchBy)
+                    {
+                        case "CustomerName":
+                            {
+                                documents = documents.Where(i => i.Customer.Name.ToLower().Contains(keyword.ToLower()));
+                                break;
+                            }
+                        case "DocumentCode":
+                            {
+                                documents = documents.Where(i => i.FileNumber.ToLower().Contains(keyword.ToLower()));
+                                break;
+                            }
+                        default:
+                            {
+                                break;
+                            }
+                    }
+                }
+                return documents.ToList();
+            }
+        }
     }
 }

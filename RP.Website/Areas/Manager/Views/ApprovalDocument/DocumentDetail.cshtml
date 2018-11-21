@@ -10,10 +10,10 @@
             <h2>ตรวจสอบใบขอราคา</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="@Url.Action("Index", "QuotationApproval",new { area = "Manager" })">หน้าแรก</a>
+                    <a href="@Url.Action("Index", "ApprovalDocument",new { area = "Manager" })">หน้าแรก</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "QuotationApproval",new { area = "Manager" })">ใบขอราคารออนุมัติ</a>
+                    <a href="@Url.Action("Index", "ApprovalDocument",new { area = "Manager" })">ใบขอราคารออนุมัติ</a>
                 </li>
                 <li class="active">
                     <strong>ตรวจสอบใบขอราคา</strong>
@@ -36,7 +36,7 @@
                             <div class="panel-body">
                                 <div class="ibox">
                                     <div class="ibox-title no-borders">
-                                        <h2>ข้อมูลใบเสนอราคา</h2>
+                                        <h2>ข้อมูลใบขอราคา</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
                                             @*<a href="" class="btn btn-primary btn-xs">เพิ่มสินค้า</a>*@
@@ -51,7 +51,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row" id="data_1">
-                                            <label class="col-sm-3 col-form-label">วันที่ออกใบเสนอราคา</label>
+                                            <label class="col-sm-3 col-form-label">วันที่ออกใบขอราคา</label>
                                             <div class="input-group date col-sm-4">
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
@@ -396,7 +396,7 @@
             <div class="col-sm-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>ใบเสนอราคา </h5>
+                        <h5>ใบขอราคา </h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -631,7 +631,7 @@
                     text: "กดปุ่ม OK เพื่อปิด!",
                     icon: "success"
                 }).then(function () {
-                    utilities.RedirectToAction("/Manager/QuotationApproval/Index");
+                    utilities.RedirectToAction("/Manager/ApprovalDocument/Index");
                 });
             });
             $('.btnReject').click(function () {
@@ -648,7 +648,7 @@
                 //        $("#myModal").modal("show");
                 //    } else {
                 //        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
-                //            utilities.RedirectToAction("/Manager/QuotationApproval/Index");
+                //            utilities.RedirectToAction("/Manager/ApprovalDocument/Index");
                 //        });
                 //    }
                 //});
@@ -657,7 +657,7 @@
             $('.btnSaveReason').click(function () {
                 $('#myModal').modal('toggle');
                 swal("ไม่อนุมัติรายการเรียบร้อย!", "กดปุ่ม OK เพื่อปิด!", "success").then(function () {
-                    utilities.RedirectToAction("/Manager/QuotationApproval/Index");
+                    utilities.RedirectToAction("/Manager/ApprovalDocument/Index");
                 });
             });
         });

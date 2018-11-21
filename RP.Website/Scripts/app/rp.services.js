@@ -486,4 +486,64 @@
         });
         return XHR;
     },
+    GetApprovalDocumentsListBySearch: function (searchBy, keyword, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/ApprovalDocument/Search",
+            data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    ApprovedRequest: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Manager/ApprovalDocument/ApprovedRequest",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    RejectedRequest: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Manager/ApprovalDocument/RejectedRequest",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
 }

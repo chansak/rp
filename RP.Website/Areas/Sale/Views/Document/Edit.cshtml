@@ -40,7 +40,7 @@
                             <div class="panel-body">
                                 <div class="ibox">
                                     <div class="ibox-title no-borders">
-                                        <h2>ข้อมูลใบเสนอราคา</h2>
+                                        <h2>ข้อมูลใบขอราคา</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
                                             @*<a href="" class="btn btn-primary btn-xs">เพิ่มสินค้า</a>*@
@@ -55,7 +55,7 @@
                                             </div>
                                         </div>
                                         @*<div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">วันที่ออกใบเสนอราคา</label>
+                                                <label class="col-sm-3 col-form-label">วันที่ออกใบขอราคา</label>
                                                 <div class="input-group date col-sm-4" style="padding-left: 15px;">
                                                     <span class="input-group-addon">
                                                         <i class="fa fa-calendar"></i>
@@ -205,12 +205,12 @@
                         <div id="tab-4" class="tab-pane">
                             <div class="panel-body">
                                 <div class="ibox">
-                                    <div class="ibox-title no-borders">
+                                    @*<div class="ibox-title no-borders">
                                         <h2>ข้อมูลส่งของ</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
                                         </div>
-                                    </div>
+                                    </div>*@
                                     <div class="ibox-content no-borders">
                                         <h2>ข้อมูลจัดส่ง</h2>
                                         <div class="hr-line-dashed"></div>
@@ -222,7 +222,7 @@
                                             </div>
                                         </div>
 
-                                        <h2>ข้อมูลผู้ติดต่อสำหรับจัดส่ง</h2>
+                                        @*<h2>ข้อมูลผู้ติดต่อสำหรับจัดส่ง</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
@@ -252,7 +252,7 @@
                                                 <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
                                                 <span class="form-text"></span>
                                             </div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +282,7 @@
             <div class="col-sm-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>ใบเสนอราคา </h5>
+                        <h5>ใบขอราคา </h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -662,23 +662,24 @@
                 });
             });
             $('.btnShowHistory').click(function () {
-                swal({
-                    title: "ยืนยันการบันทึกการแก้ไขและเพิ่มประวัติ?",
-                    text: "",
-                    icon: "info",
-                    buttons: true,
-                    dangerMode: true,
-                    buttons: ["ปิด", "ตกลง"]
-                }).then((isConfirm) => {
-                    if (isConfirm) {
-                        swal.close();
-                        $("#myModal").modal("show");
-                    } else {
-                        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
-                            utilities.RedirectToAction("../");
-                        });
-                    }
-                });
+                //swal({
+                //    title: "ยืนยันการบันทึกการแก้ไขและเพิ่มประวัติ?",
+                //    text: "",
+                //    icon: "info",
+                //    buttons: true,
+                //    dangerMode: true,
+                //    buttons: ["ปิด", "ตกลง"]
+                //}).then((isConfirm) => {
+                //    if (isConfirm) {
+                //        swal.close();
+                //        $("#myModal").modal("show");
+                //    } else {
+                //        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                //            utilities.RedirectToAction("../");
+                //        });
+                //    }
+                //});
+                $("#myModal").modal("show");
             });
             $('.btnSaveHistory').click(function () {
                 $('#myModal').modal('toggle');

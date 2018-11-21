@@ -150,8 +150,10 @@
     <Content Include="Areas\Admin\Views\Setting\CustomerList.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Manager\Views\QuotationApproval\Index.cshtml" />
-    <Content Include="Areas\Manager\Views\QuotationApproval\QuotationDetail.cshtml" />
+    <Content Include="Areas\Manager\Script\approvalDocumentList.js" />
+    <Content Include="Areas\Manager\Script\documentViewer.js" />
+    <Content Include="Areas\Manager\Views\ApprovalDocument\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\ApprovalDocument\DocumentDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Manager\Views\web.config" />
     <Content Include="Areas\Sale\Script\documentCreator.js" />
@@ -1188,6 +1190,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\Sale\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Sale\Views\Document\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\ApprovalDocument\Read.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1553,7 +1556,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
-    <Compile Include="Areas\Manager\Controllers\QuotationApprovalController.cs" />
+    <Compile Include="Areas\Manager\Controllers\ApprovalDocumentController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Sale\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Sale\Models\DocumentListItemViewModel.cs" />

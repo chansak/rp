@@ -28,6 +28,7 @@ namespace RP.Interfaces
         ProductItemSewOptional GetProductItemSewOptionalByItemId(string id);
         void DeleteProductItemsByDocumentId(IUnitOfWork uow, string id);
         void DeleteProductItemsByDocument(Document document);
+        IList<Document> GetApprovalDocumentsListBySearch(string searchBy, string keyword);
         #endregion
 
         #region User

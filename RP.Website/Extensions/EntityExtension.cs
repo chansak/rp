@@ -20,7 +20,7 @@ namespace RP.Website
             }
             var document = new Document();
             document.Id = _documentId;
-            document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
+            //document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
             document.BiddingStatusId = (int)BiddingStatus.Waiting;
             //document.FileNumber = viewModel.DocumentCode;
             //document.CreatedDate = viewModel.CreatedDate;

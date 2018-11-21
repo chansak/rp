@@ -1,6 +1,4 @@
-﻿@*@model RP.Website.Models.QuotationViewModel*@
-@{
-    //Layout = "~/Areas/Sale/Views/Shared/_Layout.cshtml";
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using (Html.BeginForm())
@@ -8,7 +6,7 @@
     @Html.AntiForgeryToken()
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-sm-4">
-            <h2>สร้างใบขอราคา</h2>
+            <h2>รายละเอียดใบขอราคา</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="@Url.Action("Index", "Document",new { area = "Sale" })">หน้าแรก</a>
@@ -17,7 +15,7 @@
                     <a href="@Url.Action("Index", "Document",new { area = "Sale" })">รายการใบขอราคา</a>
                 </li>
                 <li class="active">
-                    <strong>สร้างใบขอราคา</strong>
+                    <strong>รายละเอียดใบขอราคา</strong>
                 </li>
             </ol>
         </div>
@@ -45,13 +43,14 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">เลขที่เอกสาร</label>
+                                            <div class="col-sm-9">
+                                                <input type="hidden" id="documentId" value="@ViewBag.DocumentId" />
+                                                <input type="text" id="documentCode" class="form-control" disabled>
+                                            </div>
+                                        </div>
                                         @*<div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">เลขที่เอกสาร</label>
-                                                <div class="col-sm-9">
-                                                    @Html.TextBox("DocumentCode", "SR256100001", new { @class = "form-control", disabled = "disabled" })
-                                                </div>
-                                            </div>*@
-                                        @*<div class="form-group row" id="data_1">
                                                 <label class="col-sm-3 col-form-label">วันที่ออกใบขอราคา</label>
                                                 <div class="input-group date col-sm-4" style="padding-left: 15px;">
                                                     <span class="input-group-addon">
@@ -60,31 +59,16 @@
                                                     <input type="text" id="issuedDate" class="form-control date">
                                                 </div>
                                             </div>*@
-                                        @*<div class="form-group row" id="data_1">
-                                                <label class="col-sm-3 col-form-label">วันที่สร้างเอกสาร</label>
-                                                <div class="input-group date col-sm-4" style="padding-left: 15px;">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </span>
-                                                    <input type="text" id="createdDate" class="form-control date">
-                                                </div>
-                                            </div>*@
-                                        <div class="form-group row" id="data_2">
-                                            <label class="col-sm-3 col-form-label">จำนวนวันที่ยืนราคา</label>
-                                            <div class="input-group col-sm-4" style="padding-left: 15px;">
-                                                <input type="number" id="priceValidityDays" class="form-control" value="@Html.Raw(RP.Utilities.AppSettingHelper.DefaultPriceValidityDays)" min="0" onkeypress="return event.charCode != 45">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row" id="data_2">
+                                        <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">มีผลถึงวันที่</label>
                                             <div class="input-group date col-sm-4" style="padding-left: 15px;">
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
-                                                <input type="text" id="expirationDate" class="form-control date" disabled>
+                                                <input type="text" id="expirationDate" class="form-control date">
                                             </div>
                                         </div>
-                                        @*<div class="form-group row" id="data_2">
+                                        @*<div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">วันที่ส่งของ</label>
                                                 <div class="input-group date col-sm-4" style="padding-left: 15px;">
                                                     <span class="input-group-addon">
@@ -93,12 +77,6 @@
                                                     <input type="text" id="expectedDeliveryDate" class="form-control date">
                                                 </div>
                                             </div>*@
-                                        <div class="form-group row" id="data_2">
-                                            <label class="col-sm-3 col-form-label">จำนวนวันที่ส่งสินค้า</label>
-                                            <div class="input-group col-sm-4" style="padding-left: 15px;">
-                                                <input type="number" id="numberOfDeliveryDays" class="form-control" value="@Html.Raw(RP.Utilities.AppSettingHelper.DefaultDeliveryDays)" min="0" onkeypress="return event.charCode != 45">
-                                            </div>
-                                        </div>
                                         <h2>ข้อมูลการขาย</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
@@ -193,13 +171,12 @@
                                         <h2>ข้อมูลสินค้า</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
-                                            <input type="button" id="btnAddNewProduct" class="btn btn-primary btn-xs" value="เพิ่มสินค้า" />
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
                                         <div class="full-height-scroll">
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-hover table-bordered">
+                                            <div class="table-responsive" style="border:1px solid #eee">
+                                                <table class="table table-striped table-hover table-bordered" style="margin-bottom: 0px">
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
@@ -221,13 +198,15 @@
                         <div id="tab-4" class="tab-pane">
                             <div class="panel-body">
                                 <div class="ibox">
-                                    <div class="ibox-title no-borders">
-                                        <h2>ข้อมูลส่งจัดส่ง</h2>
+                                    @*<div class="ibox-title no-borders">
+                                        <h2>ข้อมูลส่งของ</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="ibox-tools">
                                         </div>
-                                    </div>
+                                    </div>*@
                                     <div class="ibox-content no-borders">
+                                        <h2>ข้อมูลจัดส่ง</h2>
+                                        <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ที่อยุ่ในเอกสาร</label>
                                             <div class="col-sm-9">
@@ -237,36 +216,36 @@
                                         </div>
 
                                         @*<h2>ข้อมูลผู้ติดต่อสำหรับจัดส่ง</h2>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
 
-                                                <div class="col-sm-9">
-                                                    <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
-                                                    <input type="hidden" id="auto_deliveryContactId" />
-                                                </div>
+                                            <div class="col-sm-9">
+                                                <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                <input type="hidden" id="auto_deliveryContactId" />
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
-                                                    <span class="form-text"></span>
-                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
+                                                <span class="form-text"></span>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">โทรสาร</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
-                                                    <span class="form-text"></span>
-                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">โทรสาร</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
+                                                <span class="form-text"></span>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>*@
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -301,13 +280,30 @@
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
                             </a>
+                            @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li>
+                                        <a href="#">Config option 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>*@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <button type="button" class="btn btn-primary btnSave">บันทึก</button>
-                        <button type="button" class="btn btn-white">ยกเลิก</button>
+                    <button type="button" id="btnApprove" class="btn btn-primary btnApprove">อนุมัติ</button>
+                    <button type="button" id="btnReject" class="btn btn-danger btnReject">ไม่อนุมัติ</button>
                     </div>
                     <div class="ibox-footer">
+                        @*<span class="pull-right">
+                                The righ side of the footer
+                            </span>*@
                         <h5>ข้อมูลที่เกี่ยวข้อง </h5>
                         <p>
                             <ul>
@@ -326,64 +322,94 @@
     </div>
 }
 @*Modal Dialog*@
-<div class="modal inmodal fade" id="addProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal inmodal fade" id="rejectReason" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">เพิ่มเหตุผลการไม่อนุมัติ</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">คำอธิบาย</label>
+
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="comments" rows="3"></textarea>
+                                <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary btnSaveReason">บันทึก</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*Modal Dialog*@
+<div class="modal inmodal fade" id="editProductModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">เพิ่มรายการ</h4>
+                <h4 class="modal-title" id="modalTitle"></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#product-tab-1">ข้อมูลสินค้า</a></li>
-                            <li class=""><a data-toggle="tab" href="#product-tab-2">เพิ่มเติม</a></li>
+                            <li class="active"><a data-toggle="tab" href="#editProduct-tab-1">ข้อมูลสินค้า</a></li>
+                            <li class=""><a data-toggle="tab" href="#editProduct-tab-2">เพิ่มเติม</a></li>
                         </ul>
                         <div class="tab-content">
-                            <div id="product-tab-1" class="tab-pane active">
+                            <div id="editProduct-tab-1" class="tab-pane active">
                                 <div class="panel-body">
                                     <div class="ibox">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ประเภทสินค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="productCategories"></select>
+                                                <select class="form-control m-b" id="editProductCategories"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">สินค้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="products"></select>
+                                                <select class="form-control m-b" id="editProducts"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">รายละเอียด</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="productOptions"></select>
+                                                <select class="form-control m-b" id="editProductOptions"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">จำนวน</label>
                                             <div class="col-sm-3">
-                                                <input type="number" id="productNumberOfProducts" min="0" value="0" class="form-control">
+                                                <input type="number" id="editProductNumberOfProducts" min="0" value="0" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">หน่วย</label>
                                             <div class="col-sm-3">
-                                                <select class="form-control m-b" id="productsUnit"></select>
+                                                <select class="form-control m-b" id="editProductsUnit"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ผ้า</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control m-b" id="materials"></select>
+                                                <select class="form-control m-b" id="editMaterials"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ราคาต่อหน่วย</label>
                                             <div class="col-sm-3">
-                                                <input type="text" class="form-control" id="productPricePerUnit" />
+                                                <input type="text" class="form-control" id="editProductPricePerUnit" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -399,7 +425,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">หมายเหตุ</label>
                                             <div class="col-sm-9">
-                                                <textarea class="form-control" id="productRemark" rows="3"></textarea>
+                                                <textarea class="form-control" id="editProductRemark" rows="3"></textarea>
                                                 <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
                                             </div>
                                         </div>
@@ -410,7 +436,7 @@
                                     <div id="materialStockCheck"></div>
                                 </div>
                             </div>
-                            <div id="product-tab-2" class="tab-pane">
+                            <div id="editProduct-tab-2" class="tab-pane">
                                 <div class="panel-body">
                                     <div class="ibox">
                                         <div class="ibox-title no-borders">
@@ -420,27 +446,27 @@
                                                 <div class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="checkbox i-checks">
-                                                            <input type="radio" id="print-optional1" name="print-optional" value="1"><label>มี&nbsp;</label>&nbsp;&nbsp;
-                                                            <input type="radio" id="print-optional2" name="print-optional" value="0" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
-                                                            <input type="radio" id="print-optional3" name="print-optional" value="2"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editPrint-optional1" name="editPrint-optional" value="1"><label>มี&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editPrint-optional2" name="editPrint-optional" value="0" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editPrint-optional3" name="editPrint-optional" value="2"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
                                                         </div>
                                                     </div>
-                                                    <div id="print-option1-section" style="display:none">
+                                                    <div id="editPrint-option1-section" style="display:none">
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="print-pattern"></select>
+                                                                <select class="form-control m-b" id="editPrint-pattern"></select>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row" id="print-option2-section" style="display:block">
+                                                    <div class="form-group row" id="editPrint-option2-section" style="display:block">
                                                     </div>
-                                                    <div id="print-option3-section" style="display:none">
+                                                    <div id="editPrint-option3-section" style="display:none">
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">แนบไฟล์</label>
                                                             <div class="col-sm-8">
                                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="print-file" name="..."></span>
+                                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="editPrint-file" name="..."></span>
                                                                     <span class="fileinput-filename"></span>
                                                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
                                                                 </div>
@@ -449,13 +475,13 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">สีที่พิมพ์</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="print-color"></select>
+                                                                <select class="form-control m-b" id="editPrint-color"></select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    <div id="print-patternImage"></div>
+                                                    <div id="editPrint-patternImage"></div>
                                                 </div>
                                             </div>
 
@@ -467,27 +493,27 @@
                                                 <div class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="checkbox i-checks">
-                                                            <input type="radio" id="screen-optional1" name="screen-optional" value="1"><label>มี&nbsp;</label>&nbsp;&nbsp;
-                                                            <input type="radio" id="screen-optional2" name="screen-optional" value="0" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
-                                                            <input type="radio" id="screen-optional3" name="screen-optional" value="2"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editScreen-optional1" name="editScreen-optional" value="1"><label>มี&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editScreen-optional2" name="editScreen-optional" value="0" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editScreen-optional3" name="editScreen-optional" value="2"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
                                                         </div>
                                                     </div>
-                                                    <div id="screen-option1-section" style="display:none">
+                                                    <div id="editScreen-option1-section" style="display:none">
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="screen-pattern"></select>
+                                                                <select class="form-control m-b" id="editScreen-pattern"></select>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row" id="screen-option2-section" style="display:block">
+                                                    <div class="form-group row" id="editScreen-option2-section" style="display:block">
                                                     </div>
-                                                    <div id="screen-option3-section" style="display:none">
+                                                    <div id="editScreen-option3-section" style="display:none">
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">แนบไฟล์</label>
                                                             <div class="col-sm-8">
                                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="screen-file" name="..."></span>
+                                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="editScreen-file" name="..."></span>
                                                                     <span class="fileinput-filename"></span>
                                                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
                                                                 </div>
@@ -496,19 +522,19 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">สีที่พิมพ์</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="screen-color"></select>
+                                                                <select class="form-control m-b" id="editScreen-color"></select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ตำแหน่ง</label>
                                                             <div class="col-sm-3">
-                                                                <select class="form-control m-b" id="screen-position"></select>
+                                                                <select class="form-control m-b" id="editScreen-position"></select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    <div id="screen-patternImage"></div>
+                                                    <div id="editScreen-patternImage"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -519,27 +545,27 @@
                                                 <div class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="checkbox i-checks">
-                                                            <input type="radio" id="sew-optional1" name="sew-optional" value="1"><label>มี&nbsp;</label>&nbsp;&nbsp;
-                                                            <input type="radio" id="sew-optional2" name="sew-optional" value="0" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
-                                                            <input type="radio" id="sew-optional3" name="sew-optional" value="2"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editSew-optional1" name="editSew-optional" value="1"><label>มี&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editSew-optional2" name="editSew-optional" value="0" checked><label>ไม่ม่ี&nbsp;</label>&nbsp;&nbsp;
+                                                            <input type="radio" id="editSew-optional3" name="editSew-optional" value="2"><label>ลายใหม่&nbsp;</label>&nbsp;&nbsp;
                                                         </div>
                                                     </div>
-                                                    <div id="sew-option1-section" style="display:none">
+                                                    <div id="editSew-option1-section" style="display:none">
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ลาย</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="sew-pattern"></select>
+                                                                <select class="form-control m-b" id="editSew-pattern"></select>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row" id="sew-option2-section" style="display:block">
+                                                    <div class="form-group row" id="editSew-option2-section" style="display:block">
                                                     </div>
-                                                    <div id="sew-option3-section" style="display:none">
+                                                    <div id="editSew-option3-section" style="display:none">
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">แนบไฟล์</label>
                                                             <div class="col-sm-8">
                                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="sew-file" name="..."></span>
+                                                                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" id="editSew-file" name="..."></span>
                                                                     <span class="fileinput-filename"></span>
                                                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
                                                                 </div>
@@ -548,13 +574,13 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">ตำแหน่ง</label>
                                                             <div class="col-sm-6">
-                                                                <select class="form-control m-b" id="sew-position"></select>
+                                                                <select class="form-control m-b" id="editSew-position"></select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">รายละเอียดเพิ่มเติม</label>
                                                             <div class="col-sm-5">
-                                                                <textarea class="form-control" id="sew-remark" rows="3"></textarea>
+                                                                <textarea class="form-control" id="editSew-remark" rows="3"></textarea>
                                                                 <span class="form-text">กรอกข้อมูลได้สูงสุด 200 ตัวอักษร</span>
 
                                                             </div>
@@ -562,7 +588,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
-                                                    <div id="sew-patternImage"></div>
+                                                    <div id="editSew-patternImage"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -575,7 +601,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
-                <button type="button" id="btnAddNewItem" class="btn btn-primary">เพิ่มสินค้า</button>
+                <button type="button" id="btnAddNewItem" class="btn btn-primary"></button>
             </div>
         </div>
     </div>
@@ -598,11 +624,10 @@
     @Scripts.Render("~/plugins/jasnyBootstrap")
     @Scripts.Render("~/plugins/codeEditor")
     @Scripts.Render("~/plugins/dataPicker")
-    @Scripts.Render("~/plugins/typehead")
-    @Scripts.Render("~/plugins/currency")
-    @Scripts.Render("~/plugins/fullCalendar")
     @Scripts.Render("~/plugins/toastr")
-
+    @Scripts.Render("~/plugins/fullCalendar")
+    @Scripts.Render("~/plugins/currency")
+    @Scripts.Render("~/plugins/typehead")
     <script type="text/javascript">
         $(document).ready(function () {
             //green checkbox
@@ -611,124 +636,140 @@
                 radioClass: 'iradio_square-green',
             });
             $(".date").datepicker({
-                startDate: new Date(),
                 todayHighlight: true,
                 format: "dd/mm/yyyy",
                 autoclose: true,
             });
-            $(".date").datepicker('setDate', new Date());
-            $(".iCheck-helper").click(function () {
-                var id = $(this).prev().prop("id");
-                switch (id) {
-                    case "print-optional1":
-                        {
-                            $("#print-option1-section").show();
-                            $("#print-option2-section").hide();
-                            $("#print-option3-section").hide();
-                            $("#print-pattern").val($("#print-pattern option:first").val());
-                            $("#print-patternImage").html("");
-                            break;
-                        }
-                    case "print-optional2":
-                        {
-                            $("#print-option1-section").hide();
-                            $("#print-option2-section").show();
-                            $("#print-option3-section").hide();
-                            $("#print-patternImage").html("");
-                            break;
-                        }
-                    case "print-optional3":
-                        {
-                            $("#print-option1-section").hide();
-                            $("#print-option2-section").hide();
-                            $("#print-option3-section").show();
-                            $("#print-patternImage").html("");
-                            break;
-                        }
-                    case "screen-optional1":
-                        {
-                            $("#screen-option1-section").show();
-                            $("#screen-option2-section").hide();
-                            $("#screen-option3-section").hide();
-                            $("#screen-pattern").val($("#screen-pattern option:first").val());
-                            $("#screen-patternImage").html("");
-                            break;
-                        }
-                    case "screen-optional2":
-                        {
-                            $("#screen-option1-section").hide();
-                            $("#screen-option2-section").show();
-                            $("#screen-option3-section").hide();
-                            $("#screen-patternImage").html("");
-                            break;
-                        }
-                    case "screen-optional3":
-                        {
-                            $("#screen-option1-section").hide();
-                            $("#screen-option2-section").hide();
-                            $("#screen-option3-section").show();
-                            $("#screen-patternImage").html("");
-                            break;
-                        }
-                    case "sew-optional1":
-                        {
-                            $("#sew-option1-section").show();
-                            $("#sew-option2-section").hide();
-                            $("#sew-option3-section").hide();
-                            $("#sew-pattern").val($("#sew-pattern option:first").val());
-                            $("#sew-patternImage").html("");
-                            break;
-                        }
-                    case "sew-optional2":
-                        {
-                            $("#sew-option1-section").hide();
-                            $("#sew-option2-section").show();
-                            $("#sew-option3-section").hide();
-                            $("#sew-patternImage").html("");
-                            break;
-                        }
-                    case "sew-optional3":
-                        {
-                            $("#sew-option1-section").hide();
-                            $("#sew-option2-section").hide();
-                            $("#sew-option3-section").show();
-                            $("#sew-patternImage").html("");
-                            break;
-                        }
-                }
-            });
+
             $('.btnSave').click(function () {
-                documentCreator.SaveDocument(function () {
+                documentEditor.SaveDocument(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",
                         icon: "success"
                     }).then((value) => {
-                        utilities.RedirectToAction("/Sale/Document/Index");
+                        utilities.RedirectToAction("../");
                     });
                 });
             });
-            $("#btnAddNewProduct").click(function () {
+            $('.btnShowHistory').click(function () {
+                swal({
+                    title: "ยืนยันการบันทึกการแก้ไขและเพิ่มประวัติ?",
+                    text: "",
+                    icon: "info",
+                    buttons: true,
+                    dangerMode: true,
+                    buttons: ["ปิด", "ตกลง"]
+                }).then((isConfirm) => {
+                    if (isConfirm) {
+                        swal.close();
+                        $("#rejectReason").modal("show");
+                    } else {
+                        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                            utilities.RedirectToAction("../");
+                        });
+                    }
+                });
+            });
+            $('.btnSaveHistory').click(function () {
+                $('#rejectReason').modal('toggle');
+                documentEditor.SaveDocumentWithComments(function () {
+                    swal({
+                        title: "บันทึกเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("../");
+                    });
+                });
+
+            });
+            $("#btnCopy").unbind();
+            $("#btnCopy").click(function () {
                 var cid = $("#auto_customerId").val();
-                if (cid == "") {
-                    toastr.info("กรุณาเลือกลูกค้าก่อนทำรายการเพิ่มสินค้า", 'Infomration');
+                var selectedProductItems = $("input[name='productItemId']:checked");
+                if ($(selectedProductItems[0]).val() == undefined) {
+                    toastr.info("กรุณาเลือกรายการก่อน", 'Infomration');
+                    return;
+                } else if (selectedProductItems.length > 1) {
+                    toastr.info("กรุณาเลือกเพียง 1 รายการ", 'Infomration');
+                    return;
                 } else {
-                    $("#addProductModal").modal({ backdrop: "static" });
-                    productCreator.init(cid);
+                    $("#editProductModal").modal({ backdrop: "static" });
+                    var selectedItemId = $(selectedProductItems[0]).val();
+                    var selectedItem = documentEditor.getItemsById(selectedItemId);
+                    productEditor.copy(cid, selectedItem);
                 }
             });
+            $("#btnEdit").unbind("click");
+            $("#btnEdit").click(function () {
+                var customerId = $("#auto_customerId").val();
+                var selectedProductItems = $("input[name='productItemId']:checked");
+                if ($(selectedProductItems[0]).val() == undefined) {
+                    toastr.info("กรุณาเลือกรายการก่อน", 'Infomration');
+                    return;
+                } else if (selectedProductItems.length > 1) {
+                    toastr.info("กรุณาเลือกเพียง 1 รายการ", 'Infomration');
+                    return;
+                } else {
+                    var selectedItemId = $(selectedProductItems[0]).val();
+                    documentEditor.OpenEditor(customerId,selectedItemId);
+                }
+            });
+            $("#btnAddNew").unbind("click");
+            $("#btnAddNew").click(function () {
+                var cid = $("#auto_customerId").val();
+                $("#editProductModal").modal({ backdrop: "static" });
+                productEditor.addNew(cid);
+            });
             $("#btnAddNewItem").click(function () {
-                $("#addProductModal").modal("hide");
-                productCreator.AddNewItem();
-                documentCreator.RenderProducts();
+                var mode = productEditor.getMode();
+                if (mode == 1) {
+                    $("#editProductModal").modal("hide");
+                    productEditor.AddNewItem();
+                }
+                else if (mode == 2) {
+                    var selectedItem = productEditor.getSelectedItem();
+                    $("#editProductModal").modal("hide");
+                    productEditor.UpdateItem(selectedItem.itemId);
+                } else {
+                    var selectedItem = productEditor.getSelectedItem();
+                    $("#editProductModal").modal("hide");
+                    productEditor.CopyItem(selectedItem.itemId);
+                }
+                documentEditor.RenderProducts();
             });
-            $("#materials").change(function () {
-                productCreator.MaterialStockCheck();
+
+            $("#btnApprove").unbind();
+            $("#btnApprove").click(function () {
+                documentViewer.Approve(function () {
+                    swal({
+                        title: "อนุมัติเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("../");
+                    });
+                });
             });
-            $("#priceValidityDays").change(function () {
-                documentCreator.ExpirationCalculation();
+            $("#btnReject").unbind();
+            $("#btnReject").click(function () {
+                $("#rejectReason").modal("show");
+
             });
-            documentCreator.init();
+            $('.btnSaveReason').click(function () {
+                documentViewer.Reject(function () {
+                    swal({
+                        title: "ไม่อนุมัติรายการเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        $('#rejectReason').modal('toggle');
+                        utilities.RedirectToAction("/Manager/ApprovalDocument/Index");
+                    });
+                });
+            });
+            documentViewer.init();
         });
     </script>
 }
