@@ -33,6 +33,11 @@ namespace RP.Website
             foreach (var i in viewModel.Items)
             {
                 var itemId = Guid.NewGuid();
+                //if (!string.IsNullOrEmpty(viewModel))
+                //{
+                //    itemId = new System.Guid(viewModel.Id);
+                //}
+                
                 var item = new DocumentProductItem
                 {
                     Id = itemId,

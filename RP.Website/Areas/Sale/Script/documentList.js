@@ -1,5 +1,11 @@
 ﻿var documentList = new function () {
     var documents = [];
+    var message = {
+        info: {
+            noSelectedItemBeforeEdit: "Please select document"
+        },
+        error: {}
+    };
     var _edit = function () {
         var itemId = 0;
         var items = $("input:checkbox[name=documentId]:checked");

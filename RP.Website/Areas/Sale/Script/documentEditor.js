@@ -136,7 +136,6 @@
             var total = parseFloat((item.amount * item.pricePerUnit));
             var id = "'" + item.itemId + "'";
             if (item.print != null || item.screen != null || item.sew != null) {
-                console.log(item.itemId);
                 if (item.itemId != null) {
                     html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
                     html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
@@ -187,7 +186,6 @@
                 html += '   <td colspan="2" style="border-right:dashed 1px #e6e6e6">';
                 html += '       <h4>สกรีน</h4>';
                 if (item.screen != null) {
-                    console.log(item);
                     if (item.screen.selectedOption == 1) {
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
@@ -253,7 +251,6 @@
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
             var issuedDate = utilities.ConvertToDate(data.issuedDate);
-            console.log(data);
             var expirationDate = utilities.ConvertToDate(data.expirationDate);
             var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
             $("#documentCode").val(data.documentCode);
@@ -265,6 +262,7 @@
             _getSaleDetail(data.saleUserId);
             _getDeliveryContactDetail(data.deliveryContactId);
             $(data.items).each(function (index, data) {
+                console.log(data);
                 var printOption = data.printOption;
                 var screenOption = data.screenOption;
                 var sewOption = data.sewOption;
@@ -378,6 +376,7 @@
         var allItems = [];
         var formData = new FormData();
         $(items).each(function (index, item) {
+            console.log(item);
             var printOptions = item.print;
             var screenOptions = item.screen;
             var sewOptions = item.sew;
