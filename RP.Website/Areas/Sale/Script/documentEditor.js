@@ -262,7 +262,6 @@
             _getSaleDetail(data.saleUserId);
             _getDeliveryContactDetail(data.deliveryContactId);
             $(data.items).each(function (index, data) {
-                console.log(data);
                 var printOption = data.printOption;
                 var screenOption = data.screenOption;
                 var sewOption = data.sewOption;
@@ -279,6 +278,10 @@
                             patternImage: printOption.patternImagePath
                         },
                         options2: {
+                            patternId: printOption.patternId,
+                            patternName: printOption.patternName,
+                            patternImage: printOption.patternImagePath
+
                         },
                         options3: {
                         },
@@ -293,6 +296,10 @@
                             patternImage: screenOption.patternImagePath
                         },
                         options2: {
+                            patternId: screenOption.patternId,
+                            patternName: screenOption.patternName,
+                            patternImage: screenOption.patternImagePath
+
                         },
                         options3: {
                         },
@@ -307,6 +314,10 @@
                             patternImage: sewOption.patternImagePath
                         },
                         options2: {
+                            patternId: sewOption.patternId,
+                            patternName: sewOption.patternName,
+                            patternImage: sewOption.patternImagePath
+
                         },
                         options3: {
                         },
@@ -636,7 +647,7 @@
                 $("#icon_" + itemId).html(html);
             } else {
                 $("#" + itemId).show();
-                //var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>';var html = '<div class="checkbox i-checks"><label> <input type="checkbox" value="' + itemId +'" > <i></i></label></div>';
+                var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>'; var html = '<div class="checkbox i-checks"><label> <input type="checkbox" value="' + itemId + '" > <i></i></label></div>';
                 $("#icon_" + itemId).html(html);
             }
             $('.i-checks').iCheck({
