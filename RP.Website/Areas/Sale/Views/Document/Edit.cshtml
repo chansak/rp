@@ -206,11 +206,11 @@
                             <div class="panel-body">
                                 <div class="ibox">
                                     @*<div class="ibox-title no-borders">
-                                        <h2>ข้อมูลส่งของ</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="ibox-tools">
-                                        </div>
-                                    </div>*@
+                                            <h2>ข้อมูลส่งของ</h2>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="ibox-tools">
+                                            </div>
+                                        </div>*@
                                     <div class="ibox-content no-borders">
                                         <h2>ข้อมูลจัดส่ง</h2>
                                         <div class="hr-line-dashed"></div>
@@ -223,36 +223,36 @@
                                         </div>
 
                                         @*<h2>ข้อมูลผู้ติดต่อสำหรับจัดส่ง</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
 
-                                            <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
-                                                <input type="hidden" id="auto_deliveryContactId" />
+                                                <div class="col-sm-9">
+                                                    <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                    <input type="hidden" id="auto_deliveryContactId" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
-                                                <span class="form-text"></span>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">โทรสาร</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
-                                                <span class="form-text"></span>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">โทรสาร</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
-                                                <span class="form-text"></span>
-                                            </div>
-                                        </div>*@
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
+                                            </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -304,10 +304,9 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <button type="button" class="btn btn-primary btnSave">บันทึก</button>
-                        <button type="button" class="btn btn-primary btnShowHistory">บันทึกและเพิ่มประวัติ</button>
-                        <button type="button" class="btn btn-white">ยกเลิก</button>
-                        <button type="button" id="btnRequestForApprove" class="btn btn-white btn-xs">ยื่นขออนุมัติ</button>
+                        @*<button type="button" class="btn btn-primary btnSave">บันทึก</button>*@
+                        <button type="button" class="btn btn-primary  btn-xs btnShowHistory">บันทึกและเพิ่มประวัติ</button>
+                        <button type="button" class="btn btn-white  btn-xs">ยกเลิก</button>
                     </div>
                     <div class="ibox-footer">
                         @*<span class="pull-right">
@@ -723,7 +722,7 @@
                     return;
                 } else {
                     var selectedItemId = $(selectedProductItems[0]).val();
-                    documentEditor.OpenEditor(customerId,selectedItemId);
+                    documentEditor.OpenEditor(customerId, selectedItemId);
                 }
             });
             $("#btnAddNew").unbind("click");

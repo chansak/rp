@@ -630,6 +630,18 @@
         }
         var xhr = RPService.UpdateDocumentWithComments(formData, success, failure);
     };
+    //var _request = function (callback) {
+        var id = $("#documentId").val();
+
+        var success = function (data, textStatus, jqXHR) {
+            callback();
+        }
+
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.RequestApproval(id, success, failure);
+    };
     return {
         init: function () {
             var id = $("#documentId").val();
@@ -677,5 +689,8 @@
         SaveDocumentWithComments: function (callback) {
             _saveWithComments(callback);
         },
+        //RequestApprove: function (callback) {
+        //    _request(callback);
+        //}
     }
 };
