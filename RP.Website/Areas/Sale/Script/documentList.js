@@ -2,7 +2,8 @@
     var documents = [];
     var message = {
         info: {
-            noSelectedItemBeforeEdit: "Please select document"
+            noSelectedItemBeforeEdit: "กรุณาเลือกรายการ",
+            notApprovedYet:"รายการนี้ยังไม่ได้รับการอนุมัติ"
         },
         error: {}
     };
@@ -74,6 +75,41 @@
             var xhr = RPService.RequestApproval(id,success, failure);
         }
     };
+    var _gotPOValidation = function (id,callback) {
+        var success = function (result, textStatus, jqXHR) {
+            //Approved =3,
+            var documentStatusId = parseInt(result);
+            if (documentStatusId == 3) {
+                callback();
+            } else {
+                toastr.info(message.info.notApprovedYet, 'Infomration');
+            }
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.GetCurrentWorkflowStatus(id, success, failure);
+    };
+    var _gotPO = function (callback) {
+        var id = 0;
+        var items = $("input:checkbox[name=documentId]:checked");
+        if (items.length == 1) {
+            id = $(items[0]).val();
+
+        } else {
+            toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration');
+        }
+        if (id != 0) {
+            _gotPOValidation(id, function () {
+                var success = function (data, textStatus, jqXHR) {
+                    callback();
+                }
+                var failure = function (jqXHR, textStatus, errorThrown) {
+                }
+                var xhr = RPService.GotPO(id, success, failure);
+            });       
+            
+        }
+    };
     return {
         init: function () {
             _search();
@@ -86,6 +122,9 @@
         },
         requestApprove: function (callback) {
             _request(callback);
+        },
+        gotPO: function (callback) {
+            _gotPO(callback);
         }
     }
 };

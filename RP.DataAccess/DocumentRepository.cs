@@ -53,6 +53,7 @@ namespace RP.DataAccess
             existingDocument.ContactId = document.ContactId;
             existingDocument.UserId = document.UserId;
             existingDocument.ExpiryDate = document.ExpiryDate;
+            existingDocument.PoNumber = document.PoNumber;
             if (document.DocumentProductItems.Count > 0) {
                 foreach (var item in document.DocumentProductItems){
                     existingDocument.DocumentProductItems.Add(item);

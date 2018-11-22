@@ -324,5 +324,22 @@ namespace RP.Website.Areas.Sale.Controllers
             GenericFactory.Business.UpdateDocumentStatus(document);
             return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult GotPO(string id)
+        {
+            var result = false;
+            var document = GenericFactory.Business.GetDocument(id);
+            document.DocumentStatusId = (int)WorkflowStatus.PurchaseOrder;
+            GenericFactory.Business.UpdateDocumentStatus(document);
+            return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
+        }
+        
+        [HttpPost]
+        public ActionResult GetCurrentWorkflowStatus(string id)
+        {
+            var document = GenericFactory.Business.GetDocument(id);
+            var workflowStatusId = document.DocumentStatusId;
+            return new JsonCamelCaseResult(workflowStatusId, JsonRequestBehavior.AllowGet);
+        }
     }
 }

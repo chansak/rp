@@ -332,6 +332,7 @@
     <EntitySetMapping Name="Documents">
       <EntityTypeMapping TypeName="RP.Model.Document">
         <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="PoNumber" ColumnName="PoNumber" />
           <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
           <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
           <ScalarProperty Name="ConfirmedPriceDays" ColumnName="ConfirmedPriceDays" />

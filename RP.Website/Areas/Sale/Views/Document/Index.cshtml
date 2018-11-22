@@ -81,17 +81,18 @@
                     <button type="button" id="btnEdit" class="btn btn-white btn-xs">แก้ไข</button>
                     <button type="button" class="btn btn-white btn-xs btnDelete">ลบ</button>
                     <button type="button" id="btnRequestForApprove" class="btn btn-white btn-xs">ยื่นขออนุมัติ</button>
+                    <button type="button" id="btnGotPO" class="btn btn-white btn-xs">ได้รับ PO แล้ว</button>
                     @*<button type="button" class="btn btn-white btn-xs">คัดลอก</button>
-                        <button type="button" class="btn btn-white btn-xs">มอบหมาย</button>
-                        <div class="btn-group">
-                            <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" aria-expanded="false">เปลี่ยนสถานะ</button>
-                            <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 24px; left: 0px; will-change: top, left;">
-                                <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>
-                                <li><a class="dropdown-item" href="#">ปิดใช้งานใบขอราคา</a></li>
-                                <li><a class="dropdown-item" href="#">พักใบขอราคา</a></li>
-                                <li><a class="dropdown-item" href="#">ยกเลิกใบขอราคา</a></li>
-                            </ul>
-                        </div>*@
+        <button type="button" class="btn btn-white btn-xs">มอบหมาย</button>
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" aria-expanded="false">เปลี่ยนสถานะ</button>
+            <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 24px; left: 0px; will-change: top, left;">
+                <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>
+                <li><a class="dropdown-item" href="#">ปิดใช้งานใบขอราคา</a></li>
+                <li><a class="dropdown-item" href="#">พักใบขอราคา</a></li>
+                <li><a class="dropdown-item" href="#">ยกเลิกใบขอราคา</a></li>
+            </ul>
+        </div>*@
                 </div>
             </div>
             <div class="ibox collapsed">
@@ -190,42 +191,73 @@
             });
             $("#btnRequestForApprove").unbind("click");
             $("#btnRequestForApprove").click(function () {
-                //documentList.requestApprove(function () {
-                //    swal({
-                //        title: "บันทึกเรียบร้อย!",
-                //        text: "กดปุ่ม OK เพื่อปิด!",
-                //        icon: "success"
-                //    }).then((value) => {
-                //        utilities.RedirectToAction("/Sale/Document/Index");
-                //    });
-                //});
-
-
-                swal({
-                    title: "ยืนยันการยื่นเพื่อขออนุมัติ?",
-                    text: "",
-                    icon: "info",
-                    buttons: true,
-                    dangerMode: true,
-                    buttons: ["ปิด", "ตกลง"]
-                }).then((isConfirm) => {
-                    if (isConfirm) {
-                        swal.close();
-                        documentList.requestApprove(function () {
-                            swal({
-                                title: "บันทึกเรียบร้อย!",
-                                text: "กดปุ่ม OK เพื่อปิด!",
-                                icon: "success"
-                            }).then((value) => {
-                                utilities.RedirectToAction("/Sale/Document/Index");
-                            });
-                        });
-                    } else {
-                        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                var itemId = 0;
+                var items = $("input:checkbox[name=documentId]:checked");
+                if (items.length == 1) {
+                    itemId = $(items[0]).val();
+                    swal({
+                        title: "ยืนยันการยื่นเพื่อขออนุมัติ?",
+                        text: "",
+                        icon: "info",
+                        buttons: true,
+                        dangerMode: true,
+                        buttons: ["ปิด", "ตกลง"]
+                    }).then((isConfirm) => {
+                        if (isConfirm) {
                             swal.close();
-                        });
-                    }
-                });
+                            documentList.requestApprove(function () {
+                                swal({
+                                    title: "บันทึกเรียบร้อย!",
+                                    text: "กดปุ่ม OK เพื่อปิด!",
+                                    icon: "success"
+                                }).then((value) => {
+                                    utilities.RedirectToAction("/Sale/Document/Index");
+                                });
+                            });
+                        } else {
+                            swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                                swal.close();
+                            });
+                        }
+                    });
+                } else {
+                    toastr.info('กรุณาเลือกรายการ', 'Infomration');
+                }
+            });
+            $("#btnGotPO").unbind("click");
+            $("#btnGotPO").click(function () {
+                var itemId = 0;
+                var items = $("input:checkbox[name=documentId]:checked");
+                if (items.length == 1) {
+                    itemId = $(items[0]).val();
+                    swal({
+                        title: "ยืนยันการเปลี่ยนสถานะเป็น ได้รับ PO แล้ว?",
+                        text: "",
+                        icon: "info",
+                        buttons: true,
+                        dangerMode: true,
+                        buttons: ["ปิด", "ตกลง"]
+                    }).then((isConfirm) => {
+                        if (isConfirm) {
+                            swal.close();
+                            documentList.gotPO(function () {
+                                swal({
+                                    title: "บันทึกเรียบร้อย!",
+                                    text: "กดปุ่ม OK เพื่อปิด!",
+                                    icon: "success"
+                                }).then((value) => {
+                                    utilities.RedirectToAction("/Sale/Document/Index");
+                                });
+                            });
+                        } else {
+                            swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                                swal.close();
+                            });
+                        }
+                    });
+                } else {
+                    toastr.info('กรุณาเลือกรายการ', 'Infomration');
+                }
             });
         });
     </script>

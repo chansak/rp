@@ -117,6 +117,7 @@
           <Property Name="ConfirmedPriceDays" Type="int" />
           <Property Name="DocumentType" Type="int" />
           <Property Name="RefPriceAndRemark" Type="nvarchar(max)" />
+          <Property Name="PoNumber" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DocumentAttachment">
           <Key>
@@ -1661,6 +1662,7 @@
           <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
           <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
           <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
+          <Property Name="PoNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Document_Customer">
           <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
@@ -2180,6 +2182,7 @@
           <EntitySetMapping Name="Documents">
             <EntityTypeMapping TypeName="RP.Model.Document">
               <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="PoNumber" ColumnName="PoNumber" />
                 <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
                 <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
                 <ScalarProperty Name="ConfirmedPriceDays" ColumnName="ConfirmedPriceDays" />

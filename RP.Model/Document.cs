@@ -40,6 +40,7 @@ namespace RP.Model
         public Nullable<int> ConfirmedPriceDays { get; set; }
         public Nullable<int> DocumentType { get; set; }
         public string RefPriceAndRemark { get; set; }
+        public string PoNumber { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }

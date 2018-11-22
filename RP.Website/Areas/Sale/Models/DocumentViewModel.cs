@@ -22,5 +22,7 @@ namespace RP.Website.Models
         public string Remark { get; set; }
         public string Comments { get; set; }
         public DateTime CreatedDate { get; set; }
+        public int DocumentStatusId { get; set; }
+        public string PoNumber { get; set; }
     }
 }

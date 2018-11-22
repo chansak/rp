@@ -30,6 +30,7 @@ namespace RP.Website
             document.UserId = new System.Guid(viewModel.SaleUserId);
             document.CustomerId = new System.Guid(viewModel.CustomerId);
             document.ContactId = new System.Guid(viewModel.ContactId);
+            document.PoNumber = viewModel.PoNumber;
             foreach (var i in viewModel.Items)
             {
                 var itemId = Guid.NewGuid();
@@ -149,6 +150,7 @@ namespace RP.Website
         public static DocumentViewModel ToViewModel(this Document entity)
         {
             var document = new DocumentViewModel();
+            document.DocumentStatusId = entity.DocumentStatusId.Value;
             document.Id = entity.Id.ToString();
             document.DocumentCode = entity.FileNumber;
             //document.IssuedDate = entity.IssueDate.Value;
@@ -157,6 +159,7 @@ namespace RP.Website
             document.SaleUserId = entity.UserId.ToString();
             document.CustomerId = entity.CustomerId.ToString();
             document.ContactId = entity.ContactId.ToString();
+            document.PoNumber = entity.PoNumber;
             var productItems = new List<ProductItemViewModel>();
             foreach (var i in entity.DocumentProductItems.Where(i => !i.IsDeleted))
             {

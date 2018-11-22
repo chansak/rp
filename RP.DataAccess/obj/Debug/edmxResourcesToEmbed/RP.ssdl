@@ -112,6 +112,7 @@
     <Property Name="ConfirmedPriceDays" Type="int" />
     <Property Name="DocumentType" Type="int" />
     <Property Name="RefPriceAndRemark" Type="nvarchar(max)" />
+    <Property Name="PoNumber" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="DocumentAttachment">
     <Key>

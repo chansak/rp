@@ -1,4 +1,11 @@
 ﻿var documentEditor = new function () {
+    var message = {
+        info: {
+            permissionDinyToSave: "รายการนี้ไม่สามารถแก้ไขได้เนื่องจากอยู่ขั้นตอนการขออนุมัติ",
+        },
+        error: {}
+    };
+
     var items = [];
     var sales = [];
     var customers = [];
@@ -250,6 +257,12 @@
     };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
+            console.log(data);
+            $("#gotPO").hide();
+            if (data.documentStatusId == 6) {
+                $("#gotPO").show();
+                $("#poNumber").val(data.poNumber);
+            }
             var issuedDate = utilities.ConvertToDate(data.issuedDate);
             var expirationDate = utilities.ConvertToDate(data.expirationDate);
             var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
@@ -383,11 +396,24 @@
         }
         var xhr = RPService.IsExistingItem(itemId, success, failure);
     };
+    var _validation = function (id, callback) {
+        var success = function (result, textStatus, jqXHR) {
+            //RequestedForApproval = 2,
+            var documentStatusId = parseInt(result);
+            if (documentStatusId == 2) {
+                toastr.info(message.info.permissionDinyToSave, 'Infomration');
+            } else {
+                callback();
+            }
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.GetCurrentWorkflowStatus(id, success, failure);
+    };
     var _save = function (callback) {
         var allItems = [];
         var formData = new FormData();
         $(items).each(function (index, item) {
-            console.log(item);
             var printOptions = item.print;
             var screenOptions = item.screen;
             var sewOptions = item.sew;
@@ -484,30 +510,34 @@
                 }
             );
         });
-        var document = {
-            id: $("#documentId").val(),
-            //issuedDate: $("#issuedDate").val(),
-            //createdDate: $("#createdDate").val(),
-            expirationDate: $("#expirationDate").val(),
-            //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
-            saleUserId: $("#auto_saleId").val(),
-            customerId: $("#auto_customerId").val(),
-            contactId: $("#auto_contactId").val(),
-            items: allItems,
-            deliveryAddress: $("#deliveryAddress").val(),
-            //deliveryContactId: $("#auto_deliveryContactId").val(),
-            remark: $("#documentRemark").val()
-        };
-        formData.append("document", JSON.stringify(document));
-        //for (var i = 0; i < files.length; i++) {
-        //    formData.append(files[i].name, files[i]);
-        //}
-        var success = function (data, textStatus, jqXHR) {
-            callback();
-        }
-        var failure = function (jqXHR, textStatus, errorThrown) {
-        }
-        var xhr = RPService.UpdateDocument(formData, success, failure);
+        var documentId = $("#documentId").val();
+        if (_validation(documentId, function () {
+            var document = {
+                id: documentId,
+                poNumber: $("#poNumber").val(),
+                //issuedDate: $("#issuedDate").val(),
+                //createdDate: $("#createdDate").val(),
+                expirationDate: $("#expirationDate").val(),
+                //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+                saleUserId: $("#auto_saleId").val(),
+                customerId: $("#auto_customerId").val(),
+                contactId: $("#auto_contactId").val(),
+                items: allItems,
+                deliveryAddress: $("#deliveryAddress").val(),
+                //deliveryContactId: $("#auto_deliveryContactId").val(),
+                remark: $("#documentRemark").val()
+            };
+            formData.append("document", JSON.stringify(document));
+            //for (var i = 0; i < files.length; i++) {
+            //    formData.append(files[i].name, files[i]);
+            //}
+            var success = function (data, textStatus, jqXHR) {
+                callback();
+            }
+            var failure = function (jqXHR, textStatus, errorThrown) {
+            }
+            var xhr = RPService.UpdateDocument(formData, success, failure);
+        }));
     };
     var _saveWithComments = function (callback) {
         var allItems = [];
@@ -604,44 +634,36 @@
                 }
             );
         });
-        var document = {
-            id: $("#documentId").val(),
-            //issuedDate: $("#issuedDate").val(),
-            //createdDate: $("#createdDate").val(),
-            expirationDate: $("#expirationDate").val(),
-            //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
-            saleUserId: $("#auto_saleId").val(),
-            customerId: $("#auto_customerId").val(),
-            contactId: $("#auto_contactId").val(),
-            items: allItems,
-            deliveryAddress: $("#deliveryAddress").val(),
-            //deliveryContactId: $("#auto_deliveryContactId").val(),
-            remark: $("#documentRemark").val(),
-            comments: $("#comments").val()
-        };
-        formData.append("document", JSON.stringify(document));
-        //for (var i = 0; i < files.length; i++) {
-        //    formData.append(files[i].name, files[i]);
-        //}
-        var success = function (data, textStatus, jqXHR) {
-            callback();
-        }
-        var failure = function (jqXHR, textStatus, errorThrown) {
-        }
-        var xhr = RPService.UpdateDocumentWithComments(formData, success, failure);
+        var documentId = $("#documentId").val();
+        _validation(documentId, function () {
+            var document = {
+                id: documentId,
+                poNumber: $("#poNumber").val(),
+                //issuedDate: $("#issuedDate").val(),
+                //createdDate: $("#createdDate").val(),
+                expirationDate: $("#expirationDate").val(),
+                //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+                saleUserId: $("#auto_saleId").val(),
+                customerId: $("#auto_customerId").val(),
+                contactId: $("#auto_contactId").val(),
+                items: allItems,
+                deliveryAddress: $("#deliveryAddress").val(),
+                //deliveryContactId: $("#auto_deliveryContactId").val(),
+                remark: $("#documentRemark").val(),
+                comments: $("#comments").val()
+            };
+            formData.append("document", JSON.stringify(document));
+            //for (var i = 0; i < files.length; i++) {
+            //    formData.append(files[i].name, files[i]);
+            //}
+            var success = function (data, textStatus, jqXHR) {
+                callback();
+            }
+            var failure = function (jqXHR, textStatus, errorThrown) {
+            }
+            var xhr = RPService.UpdateDocumentWithComments(formData, success, failure);
+        });
     };
-    //var _request = function (callback) {
-    //    var id = $("#documentId").val();
-
-    //    var success = function (data, textStatus, jqXHR) {
-    //        callback();
-    //    }
-
-    //    var failure = function (jqXHR, textStatus, errorThrown) {
-    //        //alert(errorThrown);
-    //    }
-    //    var xhr = RPService.RequestApproval(id, success, failure);
-    //};
     return {
         init: function () {
             var id = $("#documentId").val();
@@ -689,8 +711,5 @@
         SaveDocumentWithComments: function (callback) {
             _saveWithComments(callback);
         },
-        //RequestApprove: function (callback) {
-        //    _request(callback);
-        //}
     }
 };
