@@ -12,6 +12,9 @@ namespace RP.Model
         [Description("Draft")]
         Draft = 0,
 
+        //[Description("ขอข้อมุลเพิ่มมาที่เซลล์")]
+        //RequestForMoreInfo =1,
+
         [Description("ลูกค้าขอราคา")]
         RequestForPrice=1,
 

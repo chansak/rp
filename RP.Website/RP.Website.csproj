@@ -1545,7 +1545,9 @@
     <Content Include="Scripts\plugins\velocity\velocity.ui.min.js" />
     <Content Include="Scripts\plugins\video\responsible-video.js" />
     <Content Include="Scripts\plugins\wow\wow.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -1584,6 +1586,7 @@
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\ListViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MaterialViewModel.cs" />
     <Compile Include="Models\PatternColorViewModel.cs" />
     <Compile Include="Models\PatternImageViewModel.cs" />
@@ -1623,6 +1626,7 @@
     <Content Include="Scripts\plugins\topojson\LICENSE" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

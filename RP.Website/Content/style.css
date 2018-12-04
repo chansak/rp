@@ -3639,6 +3639,10 @@ video {
 .wrapper-content {
   padding: 20px 10px 40px;
 }
+.wrapper-login {
+    padding:0px !important;
+    /*padding: 100px 10px 40px;*/
+}
 #page-wrapper {
   padding: 0 15px;
   min-height: 568px;

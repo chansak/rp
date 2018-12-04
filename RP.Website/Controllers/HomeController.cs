@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+
 namespace RP.Website.Controllers
 {
     public class HomeController : Controller
@@ -16,18 +18,19 @@ namespace RP.Website.Controllers
         {
             return View();
         }
-        //[HttpGet]
-        //[Route("/home/getTransportDetail/{id}")]
-        //public ActionResult GetTransportDetail(int id)
-        //{
-        //    var transport = GenericFactory.Business.GetTransportById(id);
-        //    return new JsonCamelCaseResult(transport.ToViewModel(), JsonRequestBehavior.AllowGet);
-        //}
-        //[HttpPost]
-        //[Route("/home/postTest")]
-        //public ActionResult PostTest(TestViewModel model) {
-        //    //Content-Type : application/json
-        //    return new JsonCamelCaseResult(null,JsonRequestBehavior.AllowGet);
-        //}
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(LoginViewModel model)
+        {
+            try
+            {
+                return RedirectToAction("Index", "Document", new { Area = "Sale" });
+            }
+            catch (Exception ex) {
+                var msg = ex.Message;
+            }
+            return RedirectToAction("Index", "Home", new { Area = "" });
+        }
     }
 }
