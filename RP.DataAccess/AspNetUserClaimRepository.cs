@@ -9,52 +9,11 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class WarehouseRepository : EFRepository<RP.Model.Warehouse>, IWarehouseRepository
+	public class AspNetUserClaimRepository : EFRepository<RP.Model.AspNetUserClaim>, IAspNetUserClaimRepository
 	{
-		public WarehouseRepository(DbContext context)
+		public AspNetUserClaimRepository(DbContext context)
             : base(context)
 		{
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

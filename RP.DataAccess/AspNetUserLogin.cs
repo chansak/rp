@@ -12,16 +12,12 @@ namespace RP.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class DocumentDelivery
+    public partial class AspNetUserLogin
     {
-        public System.Guid Id { get; set; }
-        public Nullable<System.Guid> DocumentId { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public Nullable<System.Guid> TransportationTypeId { get; set; }
-        public Nullable<System.Guid> ConditionId { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
     
-        public virtual Document Document { get; set; }
-        public virtual TransportationType TransportationType { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

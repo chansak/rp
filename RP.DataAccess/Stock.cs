@@ -25,8 +25,8 @@ namespace RP.DataAccess
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
     
+        public virtual Material Material { get; set; }
         public virtual MaterialUnit MaterialUnit { get; set; }
         public virtual Warehouse Warehouse { get; set; }
-        public virtual Material Material { get; set; }
     }
 }

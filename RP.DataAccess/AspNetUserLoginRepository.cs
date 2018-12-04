@@ -9,52 +9,11 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class WarehouseRepository : EFRepository<RP.Model.Warehouse>, IWarehouseRepository
+	public class AspNetUserLoginRepository : EFRepository<RP.Model.AspNetUserLogin>, IAspNetUserLoginRepository
 	{
-		public WarehouseRepository(DbContext context)
+		public AspNetUserLoginRepository(DbContext context)
             : base(context)
 		{
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

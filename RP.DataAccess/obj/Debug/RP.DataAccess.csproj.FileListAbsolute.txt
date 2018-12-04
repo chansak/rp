@@ -104,3 +104,7 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csproj.C
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\obj\Debug\RP.DataAccess.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.DataAccess\bin\Debug\Microsoft.AspNet.Identity.Core.xml

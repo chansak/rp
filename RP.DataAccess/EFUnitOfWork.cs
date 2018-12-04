@@ -63,6 +63,50 @@ namespace RP.DataAccess
             GC.SuppressFinalize(this);
         }
 
+		IAspNetRoleRepository _AspNetRoleRepository;
+		public IAspNetRoleRepository AspNetRoleRepository
+		{
+			get
+			{
+				if (_AspNetRoleRepository == null)
+					_AspNetRoleRepository = new AspNetRoleRepository(context);
+				
+				return _AspNetRoleRepository;
+			}
+		}
+		IAspNetUserRepository _AspNetUserRepository;
+		public IAspNetUserRepository AspNetUserRepository
+		{
+			get
+			{
+				if (_AspNetUserRepository == null)
+					_AspNetUserRepository = new AspNetUserRepository(context);
+				
+				return _AspNetUserRepository;
+			}
+		}
+		IAspNetUserClaimRepository _AspNetUserClaimRepository;
+		public IAspNetUserClaimRepository AspNetUserClaimRepository
+		{
+			get
+			{
+				if (_AspNetUserClaimRepository == null)
+					_AspNetUserClaimRepository = new AspNetUserClaimRepository(context);
+				
+				return _AspNetUserClaimRepository;
+			}
+		}
+		IAspNetUserLoginRepository _AspNetUserLoginRepository;
+		public IAspNetUserLoginRepository AspNetUserLoginRepository
+		{
+			get
+			{
+				if (_AspNetUserLoginRepository == null)
+					_AspNetUserLoginRepository = new AspNetUserLoginRepository(context);
+				
+				return _AspNetUserLoginRepository;
+			}
+		}
 		IColorRepository _ColorRepository;
 		public IColorRepository ColorRepository
 		{

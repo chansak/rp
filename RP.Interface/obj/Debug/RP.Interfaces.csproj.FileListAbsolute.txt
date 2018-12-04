@@ -68,3 +68,9 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.Co
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\EntityFramework.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\EntityFramework.xml

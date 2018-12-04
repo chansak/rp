@@ -16,7 +16,7 @@ using System.Web.Routing;
 
 namespace RP.Website.Areas.Sale.Controllers
 {
-    public class DocumentController : Controller
+    public class DocumentController : BaseController
     {
         public const string PRINT_NEWPATTERN = "printFile";
         public const string SCREEN_NEWPATTERN = "screenFile";
@@ -33,6 +33,7 @@ namespace RP.Website.Areas.Sale.Controllers
                 keyword = keyword.Trim();
             }
 
+            var userRole = this.CurrentUserRole;
             var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToList();

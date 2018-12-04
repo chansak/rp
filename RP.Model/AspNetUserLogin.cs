@@ -12,19 +12,13 @@ using System.Collections.Generic;
 
 namespace RP.Model
 {
-    public partial class Warehouse
+    public partial class AspNetUserLogin
     {
-        public Warehouse()
-        {
-            this.DocumentProductItems = new HashSet<DocumentProductItem>();
-            this.Stocks = new HashSet<Stock>();
-        }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
     
-        public System.Guid Id { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
-        public virtual ICollection<Stock> Stocks { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
     
 }

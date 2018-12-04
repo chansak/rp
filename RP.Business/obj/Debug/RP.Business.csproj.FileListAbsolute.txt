@@ -76,3 +76,9 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CoreC
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\obj\Debug\RP.Business.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\EntityFramework.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\EntityFramework.xml

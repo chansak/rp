@@ -40,3 +40,7 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CopyComplet
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csprojAssemblyReference.cache
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

@@ -21,8 +21,8 @@ namespace RP.Model
         public Nullable<System.Guid> TransportationTypeId { get; set; }
         public Nullable<System.Guid> ConditionId { get; set; }
     
-        public virtual TransportationType TransportationType { get; set; }
         public virtual Document Document { get; set; }
+        public virtual TransportationType TransportationType { get; set; }
     }
     
 }

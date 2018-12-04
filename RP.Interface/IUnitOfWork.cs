@@ -13,6 +13,10 @@ namespace RP.Interfaces
         string ConnectionString { get; set; }
         IUnitOfWork Create();
 		DateTime GetDBUtcDateTime();
+		IAspNetRoleRepository AspNetRoleRepository  { get; }
+		IAspNetUserRepository AspNetUserRepository  { get; }
+		IAspNetUserClaimRepository AspNetUserClaimRepository  { get; }
+		IAspNetUserLoginRepository AspNetUserLoginRepository  { get; }
 		IColorRepository ColorRepository  { get; }
 		ICompanyRepository CompanyRepository  { get; }
 		ICustomerRepository CustomerRepository  { get; }
