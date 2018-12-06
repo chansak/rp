@@ -35,8 +35,8 @@ namespace RP.Website.Controllers
             {
                 Id = c.Id.ToString(),
                 Name = c.Name,
-                HospitalName = c.Name,
-                CustomerTypeName = c.CustomerType.CustomerTypeName
+                //HospitalName = c.Name,
+                //CustomerTypeName = c.CustomerType.CustomerTypeName
             }));
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
@@ -186,9 +186,16 @@ namespace RP.Website.Controllers
         }
         public ActionResult GetCustomerById(string id)
         {
-            var customer = GenericFactory.Business.GetCustomerById(id);
-            var data = customer.ToViewModel();
-            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+            try
+            {
+                var customer = GenericFactory.Business.GetCustomerById(id);
+                var data = customer.ToViewModel();
+                return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex) {
+                var msg = ex.Message;
+            }
+            return new JsonCamelCaseResult(null, JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetContactById(string id)
         {

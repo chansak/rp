@@ -18,11 +18,12 @@ namespace RP.Interfaces
 		IAspNetUserClaimRepository AspNetUserClaimRepository  { get; }
 		IAspNetUserLoginRepository AspNetUserLoginRepository  { get; }
 		IColorRepository ColorRepository  { get; }
-		ICompanyRepository CompanyRepository  { get; }
 		ICustomerRepository CustomerRepository  { get; }
 		ICustomerAddressRepository CustomerAddressRepository  { get; }
+		ICustomerBranchRepository CustomerBranchRepository  { get; }
 		ICustomerContactRepository CustomerContactRepository  { get; }
 		ICustomerContactBranchRepository CustomerContactBranchRepository  { get; }
+		ICustomerRegionRepository CustomerRegionRepository  { get; }
 		ICustomerTypeRepository CustomerTypeRepository  { get; }
 		IDeliveryConditionRepository DeliveryConditionRepository  { get; }
 		IDepartmentRepository DepartmentRepository  { get; }

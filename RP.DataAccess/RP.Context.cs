@@ -32,11 +32,12 @@ namespace RP.DataAccess
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
+        public virtual DbSet<CustomerBranch> CustomerBranches { get; set; }
         public virtual DbSet<CustomerContact> CustomerContacts { get; set; }
         public virtual DbSet<CustomerContactBranch> CustomerContactBranches { get; set; }
+        public virtual DbSet<CustomerRegion> CustomerRegions { get; set; }
         public virtual DbSet<CustomerType> CustomerTypes { get; set; }
         public virtual DbSet<DeliveryCondition> DeliveryConditions { get; set; }
         public virtual DbSet<Department> Departments { get; set; }

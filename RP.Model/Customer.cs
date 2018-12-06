@@ -23,7 +23,6 @@ namespace RP.Model
     
         public System.Guid Id { get; set; }
         public string Name { get; set; }
-        public System.Guid CompanyId { get; set; }
         public int CustomerTypeId { get; set; }
         public bool IsDelete { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
@@ -32,7 +31,6 @@ namespace RP.Model
         public string UpdatedBy { get; set; }
         public string CustomerCode { get; set; }
     
-        public virtual Company Company { get; set; }
         public virtual CustomerType CustomerType { get; set; }
         public virtual ICollection<CustomerContact> CustomerContacts { get; set; }
         public virtual ICollection<Document> Documents { get; set; }

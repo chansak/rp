@@ -12,10 +12,12 @@ using System.Collections.Generic;
 
 namespace RP.Model
 {
-    public partial class CustomerContactBranch
+    public partial class CustomerBranch
     {
         public System.Guid Id { get; set; }
-        public string Name { get; set; }
+        public string CustomerBranchName { get; set; }
+        public System.Guid CustomerId { get; set; }
+        public System.Guid RegionId { get; set; }
     }
     
 }

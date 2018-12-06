@@ -26,8 +26,8 @@ namespace RP.Website.Controllers
                 //roleManager.Create(new IdentityRole { Name = "admin" });
 
                 var roles = model.Roles;
-                var user = new ApplicationUser() { UserName = model.UserName,Password = model.Password,RoleName = roles.FirstOrDefault() };
-                var result = GenericFactory.Business.AddNewUser(user);
+                var user = new ApplicationUser() { UserName = model.UserName };
+                var result = GenericFactory.Business.AddNewUser(user, model.Password, roles.FirstOrDefault());
             }
             catch (Exception ex)
             {

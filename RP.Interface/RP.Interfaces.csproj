@@ -69,16 +69,19 @@
     <Compile Include="IColorRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="ICompanyRepository.cs">
+    <Compile Include="ICustomerAddressRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
-    <Compile Include="ICustomerAddressRepository.cs">
+    <Compile Include="ICustomerBranchRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="ICustomerContactBranchRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="ICustomerContactRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICustomerRegionRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
     <Compile Include="ICustomerRepository.cs">

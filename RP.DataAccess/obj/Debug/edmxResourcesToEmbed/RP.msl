@@ -110,14 +110,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Companies">
-      <EntityTypeMapping TypeName="RP.Model.Company">
-        <MappingFragment StoreEntitySet="Company">
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="RP.Model.Customer">
         <MappingFragment StoreEntitySet="Customer">
@@ -128,7 +120,6 @@
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
           <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
-          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
@@ -148,10 +139,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CustomerBranches">
+      <EntityTypeMapping TypeName="RP.Model.CustomerBranch">
+        <MappingFragment StoreEntitySet="CustomerBranch">
+          <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CustomerBranchName" ColumnName="CustomerBranchName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CustomerContacts">
       <EntityTypeMapping TypeName="RP.Model.CustomerContact">
         <MappingFragment StoreEntitySet="CustomerContact">
-          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -171,6 +171,14 @@
       <EntityTypeMapping TypeName="RP.Model.CustomerContactBranch">
         <MappingFragment StoreEntitySet="CustomerContactBranch">
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerRegions">
+      <EntityTypeMapping TypeName="RP.Model.CustomerRegion">
+        <MappingFragment StoreEntitySet="CustomerRegion">
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

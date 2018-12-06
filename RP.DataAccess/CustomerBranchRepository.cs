@@ -9,9 +9,9 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class CompanyRepository : EFRepository<RP.Model.Company>, ICompanyRepository
+	public class CustomerBranchRepository : EFRepository<RP.Model.CustomerBranch>, ICustomerBranchRepository
 	{
-		public CompanyRepository(DbContext context)
+		public CustomerBranchRepository(DbContext context)
             : base(context)
 		{
 		}

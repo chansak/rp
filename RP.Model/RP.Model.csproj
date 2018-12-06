@@ -70,19 +70,22 @@
     <Compile Include="Color.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Company.cs">
-      <DependentUpon>RPModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Customer.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CustomerAddress.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomerBranch.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CustomerContact.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CustomerContactBranch.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerRegion.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CustomerType.cs">

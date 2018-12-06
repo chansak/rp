@@ -25,16 +25,16 @@ namespace RP.Business
                 return uow.UserRepository.GetById(id);
             }
         }
-        public bool AddNewUser(ApplicationUser user)
+        public bool AddNewUser(ApplicationUser user,string password,string role)
         {
             bool operationResult = false;
             try
             {
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(RP.DataAccess.ApplicationDbContext.Create()));
-                var result = userManager.Create(user, user.Password);
+                var result = userManager.Create(user, password);
                 if (result.Succeeded)
                 {
-                    Roles.AddUserToRole(user.UserName, user.RoleName);
+                    Roles.AddUserToRole(user.UserName, role);
                     operationResult = true;
                 }
                 else { }

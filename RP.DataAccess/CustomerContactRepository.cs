@@ -17,8 +17,8 @@ namespace RP.DataAccess
 		}
         public override Model.CustomerContact GetById(string id)
         {
-            return ObjectSet.Where(i => i.Id.ToString() == id && !i.IsDelete).
-                Include(i => i.CustomerContactBranch)
+            return ObjectSet.Where(i => i.Id.ToString() == id && !i.IsDelete)
+                //Include(i => i.CustomerContactBranch)
                 .FirstOrDefault();
         }
     }

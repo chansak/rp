@@ -337,11 +337,12 @@
     <EntitySet Name="AspNetUserLogins" EntityType="RP.Model.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="RP.Model.AspNetUser" />
     <EntitySet Name="Colors" EntityType="RP.Model.Color" />
-    <EntitySet Name="Companies" EntityType="RP.Model.Company" />
     <EntitySet Name="Customers" EntityType="RP.Model.Customer" />
     <EntitySet Name="CustomerAddresses" EntityType="RP.Model.CustomerAddress" />
+    <EntitySet Name="CustomerBranches" EntityType="RP.Model.CustomerBranch" />
     <EntitySet Name="CustomerContacts" EntityType="RP.Model.CustomerContact" />
     <EntitySet Name="CustomerContactBranches" EntityType="RP.Model.CustomerContactBranch" />
+    <EntitySet Name="CustomerRegions" EntityType="RP.Model.CustomerRegion" />
     <EntitySet Name="CustomerTypes" EntityType="RP.Model.CustomerType" />
     <EntitySet Name="DeliveryConditions" EntityType="RP.Model.DeliveryCondition" />
     <EntitySet Name="Departments" EntityType="RP.Model.Department" />
@@ -378,10 +379,6 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
     </AssociationSet>
-    <AssociationSet Name="FK_Customer_Company" Association="RP.Model.FK_Customer_Company">
-      <End Role="Company" EntitySet="Companies" />
-      <End Role="Customer" EntitySet="Customers" />
-    </AssociationSet>
     <AssociationSet Name="FK_Customer_CustomerType" Association="RP.Model.FK_Customer_CustomerType">
       <End Role="CustomerType" EntitySet="CustomerTypes" />
       <End Role="Customer" EntitySet="Customers" />
@@ -397,10 +394,6 @@
     <AssociationSet Name="FK_PatternImage_Customer" Association="RP.Model.FK_PatternImage_Customer">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="PatternImage" EntitySet="PatternImages" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CustomerContact_CustomerContactBranch" Association="RP.Model.FK_CustomerContact_CustomerContactBranch">
-      <End Role="CustomerContactBranch" EntitySet="CustomerContactBranches" />
-      <End Role="CustomerContact" EntitySet="CustomerContacts" />
     </AssociationSet>
     <AssociationSet Name="FK_Document_CustomerContact" Association="RP.Model.FK_Document_CustomerContact">
       <End Role="CustomerContact" EntitySet="CustomerContacts" />
@@ -568,21 +561,12 @@
     <Property Name="ColorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ColorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Company">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Customers" Relationship="RP.Model.FK_Customer_Company" FromRole="Company" ToRole="Customer" />
-  </EntityType>
   <EntityType Name="Customer">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="CompanyId" Type="Guid" Nullable="false" />
     <Property Name="CustomerTypeId" Type="Int32" Nullable="false" />
     <Property Name="IsDelete" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="0" />
@@ -590,7 +574,6 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
     <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Company" Relationship="RP.Model.FK_Customer_Company" FromRole="Customer" ToRole="Company" />
     <NavigationProperty Name="CustomerType" Relationship="RP.Model.FK_Customer_CustomerType" FromRole="Customer" ToRole="CustomerType" />
     <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="Customer" ToRole="CustomerContact" />
     <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_Customer" FromRole="Customer" ToRole="Document" />
@@ -609,6 +592,15 @@
     <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="CustomerId" Type="Guid" Nullable="false" />
   </EntityType>
+  <EntityType Name="CustomerBranch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="CustomerBranchName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerId" Type="Guid" Nullable="false" />
+    <Property Name="RegionId" Type="Guid" Nullable="false" />
+  </EntityType>
   <EntityType Name="CustomerContact">
     <Key>
       <PropertyRef Name="Id" />
@@ -625,9 +617,7 @@
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
     <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="BranchId" Type="Guid" Nullable="false" />
     <NavigationProperty Name="Customer" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="CustomerContact" ToRole="Customer" />
-    <NavigationProperty Name="CustomerContactBranch" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContact" ToRole="CustomerContactBranch" />
     <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="CustomerContact" ToRole="Document" />
   </EntityType>
   <EntityType Name="CustomerContactBranch">
@@ -636,7 +626,13 @@
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContactBranch" ToRole="CustomerContact" />
+  </EntityType>
+  <EntityType Name="CustomerRegion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="RegionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="CustomerType">
     <Key>
@@ -990,18 +986,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Customer_Company">
-    <End Type="RP.Model.Company" Role="Company" Multiplicity="1" />
-    <End Type="RP.Model.Customer" Role="Customer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Company">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Customer">
-        <PropertyRef Name="CompanyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Customer_CustomerType">
     <End Type="RP.Model.CustomerType" Role="CustomerType" Multiplicity="1" />
     <End Type="RP.Model.Customer" Role="Customer" Multiplicity="*" />
@@ -1047,18 +1031,6 @@
       </Principal>
       <Dependent Role="PatternImage">
         <PropertyRef Name="CustomerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CustomerContact_CustomerContactBranch">
-    <End Type="RP.Model.CustomerContactBranch" Role="CustomerContactBranch" Multiplicity="1" />
-    <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CustomerContactBranch">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CustomerContact">
-        <PropertyRef Name="BranchId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

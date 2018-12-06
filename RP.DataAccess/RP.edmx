@@ -64,20 +64,12 @@
           <Property Name="ColorCode" Type="nvarchar" MaxLength="50" />
           <Property Name="ColorName" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="CompanyName" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="250" />
-          <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CustomerTypeId" Type="int" Nullable="false" />
           <Property Name="IsDelete" Type="bit" Nullable="false" />
           <Property Name="CreatedDate" Type="date" />
@@ -99,6 +91,15 @@
           <Property Name="Mobile" Type="varchar" MaxLength="50" />
           <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="CustomerBranch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerBranchName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegionId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="CustomerContact">
           <Key>
             <PropertyRef Name="Id" />
@@ -115,7 +116,6 @@
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdatedDate" Type="date" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
-          <Property Name="BranchId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomerContactBranch">
           <Key>
@@ -123,6 +123,13 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="CustomerRegion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="CustomerType">
           <Key>
@@ -394,18 +401,6 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK_Customer_Company">
-          <End Role="Company" Type="Self.Company" Multiplicity="1" />
-          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="CompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Customer_CustomerType">
           <End Role="CustomerType" Type="Self.CustomerType" Multiplicity="1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -427,18 +422,6 @@
             </Principal>
             <Dependent Role="CustomerContact">
               <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerContact_CustomerContactBranch">
-          <End Role="CustomerContactBranch" Type="Self.CustomerContactBranch" Multiplicity="1" />
-          <End Role="CustomerContact" Type="Self.CustomerContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomerContactBranch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerContact">
-              <PropertyRef Name="BranchId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1172,11 +1155,12 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerAddress" EntityType="Self.CustomerAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerBranch" EntityType="Self.CustomerBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerContact" EntityType="Self.CustomerContact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerContactBranch" EntityType="Self.CustomerContactBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerRegion" EntityType="Self.CustomerRegion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryCondition" EntityType="Self.DeliveryCondition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -1205,20 +1189,12 @@
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Customer_Company" Association="Self.FK_Customer_Company">
-            <End Role="Company" EntitySet="Company" />
-            <End Role="Customer" EntitySet="Customer" />
-          </AssociationSet>
           <AssociationSet Name="FK_Customer_CustomerType" Association="Self.FK_Customer_CustomerType">
             <End Role="CustomerType" EntitySet="CustomerType" />
             <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
           <AssociationSet Name="FK_CustomerContact_Customer" Association="Self.FK_CustomerContact_Customer">
             <End Role="Customer" EntitySet="Customer" />
-            <End Role="CustomerContact" EntitySet="CustomerContact" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerContact_CustomerContactBranch" Association="Self.FK_CustomerContact_CustomerContactBranch">
-            <End Role="CustomerContactBranch" EntitySet="CustomerContactBranch" />
             <End Role="CustomerContact" EntitySet="CustomerContact" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -1691,11 +1667,12 @@
           <EntitySet Name="AspNetUserLogins" EntityType="RP.Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="RP.Model.AspNetUser" />
           <EntitySet Name="Colors" EntityType="RP.Model.Color" />
-          <EntitySet Name="Companies" EntityType="RP.Model.Company" />
           <EntitySet Name="Customers" EntityType="RP.Model.Customer" />
           <EntitySet Name="CustomerAddresses" EntityType="RP.Model.CustomerAddress" />
+          <EntitySet Name="CustomerBranches" EntityType="RP.Model.CustomerBranch" />
           <EntitySet Name="CustomerContacts" EntityType="RP.Model.CustomerContact" />
           <EntitySet Name="CustomerContactBranches" EntityType="RP.Model.CustomerContactBranch" />
+          <EntitySet Name="CustomerRegions" EntityType="RP.Model.CustomerRegion" />
           <EntitySet Name="CustomerTypes" EntityType="RP.Model.CustomerType" />
           <EntitySet Name="DeliveryConditions" EntityType="RP.Model.DeliveryCondition" />
           <EntitySet Name="Departments" EntityType="RP.Model.Department" />
@@ -1732,10 +1709,6 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_Customer_Company" Association="RP.Model.FK_Customer_Company">
-            <End Role="Company" EntitySet="Companies" />
-            <End Role="Customer" EntitySet="Customers" />
-          </AssociationSet>
           <AssociationSet Name="FK_Customer_CustomerType" Association="RP.Model.FK_Customer_CustomerType">
             <End Role="CustomerType" EntitySet="CustomerTypes" />
             <End Role="Customer" EntitySet="Customers" />
@@ -1751,10 +1724,6 @@
           <AssociationSet Name="FK_PatternImage_Customer" Association="RP.Model.FK_PatternImage_Customer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="PatternImage" EntitySet="PatternImages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomerContact_CustomerContactBranch" Association="RP.Model.FK_CustomerContact_CustomerContactBranch">
-            <End Role="CustomerContactBranch" EntitySet="CustomerContactBranches" />
-            <End Role="CustomerContact" EntitySet="CustomerContacts" />
           </AssociationSet>
           <AssociationSet Name="FK_Document_CustomerContact" Association="RP.Model.FK_Document_CustomerContact">
             <End Role="CustomerContact" EntitySet="CustomerContacts" />
@@ -1922,21 +1891,12 @@
           <Property Name="ColorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ColorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customers" Relationship="RP.Model.FK_Customer_Company" FromRole="Company" ToRole="Customer" />
-        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyId" Type="Guid" Nullable="false" />
           <Property Name="CustomerTypeId" Type="Int32" Nullable="false" />
           <Property Name="IsDelete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
@@ -1944,7 +1904,6 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Company" Relationship="RP.Model.FK_Customer_Company" FromRole="Customer" ToRole="Company" />
           <NavigationProperty Name="CustomerType" Relationship="RP.Model.FK_Customer_CustomerType" FromRole="Customer" ToRole="CustomerType" />
           <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="Customer" ToRole="CustomerContact" />
           <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_Customer" FromRole="Customer" ToRole="Document" />
@@ -1963,6 +1922,15 @@
           <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CustomerId" Type="Guid" Nullable="false" />
         </EntityType>
+        <EntityType Name="CustomerBranch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CustomerBranchName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="RegionId" Type="Guid" Nullable="false" />
+        </EntityType>
         <EntityType Name="CustomerContact">
           <Key>
             <PropertyRef Name="Id" />
@@ -1979,9 +1947,7 @@
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BranchId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="CustomerContact" ToRole="Customer" />
-          <NavigationProperty Name="CustomerContactBranch" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContact" ToRole="CustomerContactBranch" />
           <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="CustomerContact" ToRole="Document" />
         </EntityType>
         <EntityType Name="CustomerContactBranch">
@@ -1990,7 +1956,13 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_CustomerContactBranch" FromRole="CustomerContactBranch" ToRole="CustomerContact" />
+        </EntityType>
+        <EntityType Name="CustomerRegion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RegionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CustomerType">
           <Key>
@@ -2344,18 +2316,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Customer_Company">
-          <End Type="RP.Model.Company" Role="Company" Multiplicity="1" />
-          <End Type="RP.Model.Customer" Role="Customer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="CompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Customer_CustomerType">
           <End Type="RP.Model.CustomerType" Role="CustomerType" Multiplicity="1" />
           <End Type="RP.Model.Customer" Role="Customer" Multiplicity="*" />
@@ -2401,18 +2361,6 @@
             </Principal>
             <Dependent Role="PatternImage">
               <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerContact_CustomerContactBranch">
-          <End Type="RP.Model.CustomerContactBranch" Role="CustomerContactBranch" Multiplicity="1" />
-          <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomerContactBranch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomerContact">
-              <PropertyRef Name="BranchId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2847,14 +2795,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="RP.Model.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="RP.Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
@@ -2865,7 +2805,6 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -2885,10 +2824,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CustomerBranches">
+            <EntityTypeMapping TypeName="RP.Model.CustomerBranch">
+              <MappingFragment StoreEntitySet="CustomerBranch">
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerBranchName" ColumnName="CustomerBranchName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CustomerContacts">
             <EntityTypeMapping TypeName="RP.Model.CustomerContact">
               <MappingFragment StoreEntitySet="CustomerContact">
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -2908,6 +2856,14 @@
             <EntityTypeMapping TypeName="RP.Model.CustomerContactBranch">
               <MappingFragment StoreEntitySet="CustomerContactBranch">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerRegions">
+            <EntityTypeMapping TypeName="RP.Model.CustomerRegion">
+              <MappingFragment StoreEntitySet="CustomerRegion">
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3218,7 +3174,7 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

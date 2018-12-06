@@ -34,7 +34,7 @@ namespace RP.Interfaces
         #region User
         IList<User> GetSaleUsersList();
         User GetSaleUserById(string id);
-        bool AddNewUser(ApplicationUser user);
+        bool AddNewUser(ApplicationUser user,string password,string role);
         #endregion
 
         #region Customer

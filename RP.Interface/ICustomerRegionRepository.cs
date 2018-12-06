@@ -5,7 +5,7 @@ using RP.Model;
 
 namespace RP.Interfaces
 {
-	public interface ICompanyRepository : IRepository<RP.Model.Company>
+	public interface ICustomerRegionRepository : IRepository<RP.Model.CustomerRegion>
 	{
 
 	}

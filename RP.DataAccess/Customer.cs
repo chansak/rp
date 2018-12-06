@@ -24,7 +24,6 @@ namespace RP.DataAccess
     
         public System.Guid Id { get; set; }
         public string Name { get; set; }
-        public System.Guid CompanyId { get; set; }
         public int CustomerTypeId { get; set; }
         public bool IsDelete { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
@@ -33,7 +32,6 @@ namespace RP.DataAccess
         public string UpdatedBy { get; set; }
         public string CustomerCode { get; set; }
     
-        public virtual Company Company { get; set; }
         public virtual CustomerType CustomerType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerContact> CustomerContacts { get; set; }

@@ -55,6 +55,9 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Common.Logging.Core.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Common.Logging.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\RP.Model.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Spring.Core.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\EntityFramework.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\RP.Model.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\RP.Model.dll.config
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Common.Logging.pdb
@@ -63,14 +66,11 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Common.Logging.Core.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Common.Logging.Core.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Spring.Core.pdb
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Spring.Core.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\EntityFramework.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csprojAssemblyReference.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\obj\Debug\RP.Interfaces.pdb
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\EntityFramework.dll
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-C:\MY FILES\Public\Work\Git\rp\rp\RP.Interface\bin\Debug\EntityFramework.xml

@@ -31,10 +31,8 @@ namespace RP.Model
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
-        public System.Guid BranchId { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual CustomerContactBranch CustomerContactBranch { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
     }
     

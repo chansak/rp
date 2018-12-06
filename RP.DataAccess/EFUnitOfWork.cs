@@ -118,17 +118,6 @@ namespace RP.DataAccess
 				return _ColorRepository;
 			}
 		}
-		ICompanyRepository _CompanyRepository;
-		public ICompanyRepository CompanyRepository
-		{
-			get
-			{
-				if (_CompanyRepository == null)
-					_CompanyRepository = new CompanyRepository(context);
-				
-				return _CompanyRepository;
-			}
-		}
 		ICustomerRepository _CustomerRepository;
 		public ICustomerRepository CustomerRepository
 		{
@@ -151,6 +140,17 @@ namespace RP.DataAccess
 				return _CustomerAddressRepository;
 			}
 		}
+		ICustomerBranchRepository _CustomerBranchRepository;
+		public ICustomerBranchRepository CustomerBranchRepository
+		{
+			get
+			{
+				if (_CustomerBranchRepository == null)
+					_CustomerBranchRepository = new CustomerBranchRepository(context);
+				
+				return _CustomerBranchRepository;
+			}
+		}
 		ICustomerContactRepository _CustomerContactRepository;
 		public ICustomerContactRepository CustomerContactRepository
 		{
@@ -171,6 +171,17 @@ namespace RP.DataAccess
 					_CustomerContactBranchRepository = new CustomerContactBranchRepository(context);
 				
 				return _CustomerContactBranchRepository;
+			}
+		}
+		ICustomerRegionRepository _CustomerRegionRepository;
+		public ICustomerRegionRepository CustomerRegionRepository
+		{
+			get
+			{
+				if (_CustomerRegionRepository == null)
+					_CustomerRegionRepository = new CustomerRegionRepository(context);
+				
+				return _CustomerRegionRepository;
 			}
 		}
 		ICustomerTypeRepository _CustomerTypeRepository;
