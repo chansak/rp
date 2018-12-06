@@ -1,16 +1,10 @@
-﻿using AutoMapper;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using RP.Interfaces;
 using RP.Model;
-//using RP.Model;
 using RP.Website.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
+
 
 namespace RP.Website.Controllers
 {

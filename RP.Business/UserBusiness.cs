@@ -1,10 +1,11 @@
-﻿using RP.Interfaces;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using RP.Interfaces;
 using RP.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace RP.Business
 {
@@ -23,6 +24,26 @@ namespace RP.Business
             {
                 return uow.UserRepository.GetById(id);
             }
+        }
+        public bool AddNewUser(ApplicationUser user)
+        {
+            bool operationResult = false;
+            try
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(RP.DataAccess.ApplicationDbContext.Create()));
+                var result = userManager.Create(user, user.Password);
+                if (result.Succeeded)
+                {
+                    Roles.AddUserToRole(user.UserName, user.RoleName);
+                    operationResult = true;
+                }
+                else { }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return operationResult;
         }
     }
 }

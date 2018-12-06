@@ -1592,6 +1592,7 @@
     <Compile Include="Areas\Sale\Models\ScreenOptionViewModel.cs" />
     <Compile Include="Areas\Sale\Models\SewOptionViewModel.cs" />
     <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -1619,6 +1620,7 @@
     <Compile Include="Models\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductOptionViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SaleUserViewModel.cs" />
     <Compile Include="Models\StockCheckViewModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />

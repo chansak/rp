@@ -9,6 +9,7 @@ namespace RP.Model
 {
     public class ApplicationUser : IdentityUser
     {
-
+        public string Password { get; set; }
+        public string RoleName { get; set; }
     }
 }

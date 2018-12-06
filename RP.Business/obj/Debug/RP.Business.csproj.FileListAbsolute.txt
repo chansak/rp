@@ -82,3 +82,8 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\EntityFramework.dll
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\EntityFramework.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\EntityFramework.SqlServer.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.DataAccess.dll
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.DataAccess.pdb
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\RP.DataAccess.dll.config
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Business\bin\Debug\EntityFramework.SqlServer.xml
