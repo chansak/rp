@@ -23,7 +23,6 @@ namespace RP.Interfaces
 		ICustomerBranchRepository CustomerBranchRepository  { get; }
 		ICustomerContactRepository CustomerContactRepository  { get; }
 		ICustomerContactBranchRepository CustomerContactBranchRepository  { get; }
-		ICustomerRegionRepository CustomerRegionRepository  { get; }
 		ICustomerTypeRepository CustomerTypeRepository  { get; }
 		IDeliveryConditionRepository DeliveryConditionRepository  { get; }
 		IDepartmentRepository DepartmentRepository  { get; }
@@ -46,6 +45,7 @@ namespace RP.Interfaces
 		IProductOptionRepository ProductOptionRepository  { get; }
 		IProductPriceRepository ProductPriceRepository  { get; }
 		IProductUnitRepository ProductUnitRepository  { get; }
+		IRegionRepository RegionRepository  { get; }
 		IRoleRepository RoleRepository  { get; }
 		IStockRepository StockRepository  { get; }
 		ITransportationTypeRepository TransportationTypeRepository  { get; }

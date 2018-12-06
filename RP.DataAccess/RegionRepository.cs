@@ -9,12 +9,11 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class CustomerRegionRepository : EFRepository<RP.Model.CustomerRegion>, ICustomerRegionRepository
+	public class RegionRepository : EFRepository<RP.Model.Region>, IRegionRepository
 	{
-		public CustomerRegionRepository(DbContext context)
+		public RegionRepository(DbContext context)
             : base(context)
 		{
 		}
 	}
 }
-

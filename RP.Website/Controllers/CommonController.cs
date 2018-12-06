@@ -35,8 +35,8 @@ namespace RP.Website.Controllers
             {
                 Id = c.Id.ToString(),
                 Name = c.Name,
-                //HospitalName = c.Name,
-                //CustomerTypeName = c.CustomerType.CustomerTypeName
+                HospitalName = c.CustomerBranches.FirstOrDefault().CustomerBranchName,
+                CustomerTypeName = c.CustomerType.CustomerTypeName
             }));
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }

@@ -173,17 +173,6 @@ namespace RP.DataAccess
 				return _CustomerContactBranchRepository;
 			}
 		}
-		ICustomerRegionRepository _CustomerRegionRepository;
-		public ICustomerRegionRepository CustomerRegionRepository
-		{
-			get
-			{
-				if (_CustomerRegionRepository == null)
-					_CustomerRegionRepository = new CustomerRegionRepository(context);
-				
-				return _CustomerRegionRepository;
-			}
-		}
 		ICustomerTypeRepository _CustomerTypeRepository;
 		public ICustomerTypeRepository CustomerTypeRepository
 		{
@@ -424,6 +413,17 @@ namespace RP.DataAccess
 					_ProductUnitRepository = new ProductUnitRepository(context);
 				
 				return _ProductUnitRepository;
+			}
+		}
+		IRegionRepository _RegionRepository;
+		public IRegionRepository RegionRepository
+		{
+			get
+			{
+				if (_RegionRepository == null)
+					_RegionRepository = new RegionRepository(context);
+				
+				return _RegionRepository;
 			}
 		}
 		IRoleRepository _RoleRepository;

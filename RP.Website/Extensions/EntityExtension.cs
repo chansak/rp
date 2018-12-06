@@ -329,7 +329,7 @@ namespace RP.Website
             var customer = new CustomerViewModel();
             customer.Id = entity.Id.ToString();
             customer.Name = entity.Name;
-            customer.HospitalName = entity.Name;
+            customer.HospitalName = entity.CustomerBranches.FirstOrDefault().CustomerBranchName;
             customer.CustomerTypeName = entity.CustomerType.CustomerTypeName;
             return customer;
         }

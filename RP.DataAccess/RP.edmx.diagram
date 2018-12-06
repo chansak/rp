@@ -15,11 +15,9 @@
         <EntityTypeShape EntityType="RP.Model.CustomerBranch" Width="1.5" PointX="12.75" PointY="10.125" />
         <EntityTypeShape EntityType="RP.Model.CustomerContact" Width="1.5" PointX="1.5" PointY="7.5" />
         <EntityTypeShape EntityType="RP.Model.CustomerContactBranch" Width="1.5" PointX="12.75" PointY="13.125" />
-        <EntityTypeShape EntityType="RP.Model.CustomerRegion" Width="1.5" PointX="12.75" PointY="16.125" />
         <EntityTypeShape EntityType="RP.Model.CustomerType" Width="1.5" PointX="1.5" PointY="21.875" />
         <EntityTypeShape EntityType="RP.Model.DeliveryCondition" Width="1.5" PointX="14.75" PointY="10.125" />
         <EntityTypeShape EntityType="RP.Model.Department" Width="1.5" PointX="1.5" PointY="38.625" />
-        <EntityTypeShape EntityType="RP.Model.Document" Width="1.5" PointX="3.75" PointY="2" />
         <EntityTypeShape EntityType="RP.Model.DocumentAttachment" Width="1.5" PointX="6" PointY="4.5" />
         <EntityTypeShape EntityType="RP.Model.DocumentDelivery" Width="1.5" PointX="6" PointY="0.75" />
         <EntityTypeShape EntityType="RP.Model.DocumentProductItem" Width="1.5" PointX="6" PointY="11.625" />
@@ -48,14 +46,8 @@
         <AssociationConnector Association="RP.Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="RP.Model.FK_Customer_CustomerType" />
         <AssociationConnector Association="RP.Model.FK_CustomerContact_Customer" />
-        <AssociationConnector Association="RP.Model.FK_Document_Customer" />
         <AssociationConnector Association="RP.Model.FK_PatternImage_Customer" />
-        <AssociationConnector Association="RP.Model.FK_Document_CustomerContact" />
         <AssociationConnector Association="RP.Model.FK_User_Department" />
-        <AssociationConnector Association="RP.Model.FK_Document_User" />
-        <AssociationConnector Association="RP.Model.FK_DocumentAttachment_Document" />
-        <AssociationConnector Association="RP.Model.FK_DocumentDelivery_Document" />
-        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Document" />
         <AssociationConnector Association="RP.Model.FK_DocumentDelivery_TransportationType" />
         <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Product" />
         <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Unit" />
@@ -77,6 +69,17 @@
         <AssociationConnector Association="RP.Model.FK_User_Role" />
         <AssociationConnector Association="RP.Model.FK_Stock_Warehouse" />
         <AssociationConnector Association="RP.Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="RP.Model.Region" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="RP.Model.FK_CustomerBranch_Customer" />
+        <AssociationConnector Association="RP.Model.FK_CustomerBranch_Region" />
+        <EntityTypeShape EntityType="RP.Model.Document" Width="1.5" PointX="15" PointY="18.25" />
+        <AssociationConnector Association="RP.Model.FK_Document_Customer" />
+        <AssociationConnector Association="RP.Model.FK_Document_CustomerBranch" />
+        <AssociationConnector Association="RP.Model.FK_Document_CustomerContact" />
+        <AssociationConnector Association="RP.Model.FK_Document_User" />
+        <AssociationConnector Association="RP.Model.FK_DocumentAttachment_Document" />
+        <AssociationConnector Association="RP.Model.FK_DocumentDelivery_Document" />
+        <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Document" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

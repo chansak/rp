@@ -12,9 +12,18 @@ namespace RP.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerRegion
+    public partial class Region
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Region()
+        {
+            this.CustomerBranches = new HashSet<CustomerBranch>();
+        }
+    
         public System.Guid Id { get; set; }
         public string RegionName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CustomerBranch> CustomerBranches { get; set; }
     }
 }

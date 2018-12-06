@@ -115,12 +115,6 @@
     <Compile Include="CustomerContactRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
-    <Compile Include="CustomerRegion.cs">
-      <DependentUpon>RP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerRegionRepository.cs">
-      <DependentUpon>Repository.tt</DependentUpon>
-    </Compile>
     <Compile Include="CustomerRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
@@ -263,6 +257,12 @@
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegionRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

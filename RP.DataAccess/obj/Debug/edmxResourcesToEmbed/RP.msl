@@ -175,14 +175,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CustomerRegions">
-      <EntityTypeMapping TypeName="RP.Model.CustomerRegion">
-        <MappingFragment StoreEntitySet="CustomerRegion">
-          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CustomerTypes">
       <EntityTypeMapping TypeName="RP.Model.CustomerType">
         <MappingFragment StoreEntitySet="CustomerType">
@@ -203,32 +195,6 @@
       <EntityTypeMapping TypeName="RP.Model.Department">
         <MappingFragment StoreEntitySet="Department">
           <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Documents">
-      <EntityTypeMapping TypeName="RP.Model.Document">
-        <MappingFragment StoreEntitySet="Document">
-          <ScalarProperty Name="PoNumber" ColumnName="PoNumber" />
-          <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
-          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
-          <ScalarProperty Name="ConfirmedPriceDays" ColumnName="ConfirmedPriceDays" />
-          <ScalarProperty Name="BiddingStatusId" ColumnName="BiddingStatusId" />
-          <ScalarProperty Name="DeliveryContactId" ColumnName="DeliveryContactId" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-          <ScalarProperty Name="DocumentStatusId" ColumnName="DocumentStatusId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="ExpectedDeliveryDate" ColumnName="ExpectedDeliveryDate" />
-          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
-          <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -489,5 +455,40 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Regions">
+      <EntityTypeMapping TypeName="RP.Model.Region">
+        <MappingFragment StoreEntitySet="Region">
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="RP.Model.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="CustomerBranchId" ColumnName="CustomerBranchId" />
+          <ScalarProperty Name="PoNumber" ColumnName="PoNumber" />
+          <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="ConfirmedPriceDays" ColumnName="ConfirmedPriceDays" />
+          <ScalarProperty Name="BiddingStatusId" ColumnName="BiddingStatusId" />
+          <ScalarProperty Name="DeliveryContactId" ColumnName="DeliveryContactId" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="DocumentStatusId" ColumnName="DocumentStatusId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ExpectedDeliveryDate" ColumnName="ExpectedDeliveryDate" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

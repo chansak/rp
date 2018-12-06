@@ -12,10 +12,17 @@ using System.Collections.Generic;
 
 namespace RP.Model
 {
-    public partial class CustomerRegion
+    public partial class Region
     {
+        public Region()
+        {
+            this.CustomerBranches = new HashSet<CustomerBranch>();
+        }
+    
         public System.Guid Id { get; set; }
         public string RegionName { get; set; }
+    
+        public virtual ICollection<CustomerBranch> CustomerBranches { get; set; }
     }
     
 }

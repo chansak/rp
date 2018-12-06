@@ -42,8 +42,10 @@ namespace RP.DataAccess
         public Nullable<int> DocumentType { get; set; }
         public string RefPriceAndRemark { get; set; }
         public string PoNumber { get; set; }
+        public Nullable<System.Guid> CustomerBranchId { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual CustomerBranch CustomerBranch { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -124,13 +124,6 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <EntityType Name="CustomerRegion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RegionName" Type="nvarchar" MaxLength="250" />
-        </EntityType>
         <EntityType Name="CustomerType">
           <Key>
             <PropertyRef Name="Id" />
@@ -176,6 +169,7 @@
           <Property Name="DocumentType" Type="int" />
           <Property Name="RefPriceAndRemark" Type="nvarchar(max)" />
           <Property Name="PoNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerBranchId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="DocumentAttachment">
           <Key>
@@ -348,6 +342,13 @@
           <Property Name="ProductId" Type="uniqueidentifier" />
           <Property Name="UnitId" Type="uniqueidentifier" />
         </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -410,6 +411,30 @@
             </Principal>
             <Dependent Role="Customer">
               <PropertyRef Name="CustomerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerBranch_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="CustomerBranch" Type="Self.CustomerBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerBranch">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerBranch_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="CustomerBranch" Type="Self.CustomerBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerBranch">
+              <PropertyRef Name="RegionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -490,6 +515,18 @@
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_CustomerBranch">
+          <End Role="CustomerBranch" Type="Self.CustomerBranch" Multiplicity="0..1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerBranch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="CustomerBranchId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1160,7 +1197,6 @@
           <EntitySet Name="CustomerBranch" EntityType="Self.CustomerBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerContact" EntityType="Self.CustomerContact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerContactBranch" EntityType="Self.CustomerContactBranch" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomerRegion" EntityType="Self.CustomerRegion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryCondition" EntityType="Self.DeliveryCondition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -1183,6 +1219,7 @@
           <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransportationType" EntityType="Self.TransportationType" Schema="dbo" store:Type="Tables" />
@@ -1192,6 +1229,14 @@
           <AssociationSet Name="FK_Customer_CustomerType" Association="Self.FK_Customer_CustomerType">
             <End Role="CustomerType" EntitySet="CustomerType" />
             <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerBranch_Customer" Association="Self.FK_CustomerBranch_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerBranch" EntitySet="CustomerBranch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerBranch_Region" Association="Self.FK_CustomerBranch_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="CustomerBranch" EntitySet="CustomerBranch" />
           </AssociationSet>
           <AssociationSet Name="FK_CustomerContact_Customer" Association="Self.FK_CustomerContact_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -1215,6 +1260,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Document_Customer" Association="Self.FK_Document_Customer">
             <End Role="Customer" EntitySet="Customer" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_CustomerBranch" Association="Self.FK_Document_CustomerBranch">
+            <End Role="CustomerBranch" EntitySet="CustomerBranch" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
           <AssociationSet Name="FK_Document_CustomerContact" Association="Self.FK_Document_CustomerContact">
@@ -1672,11 +1721,9 @@
           <EntitySet Name="CustomerBranches" EntityType="RP.Model.CustomerBranch" />
           <EntitySet Name="CustomerContacts" EntityType="RP.Model.CustomerContact" />
           <EntitySet Name="CustomerContactBranches" EntityType="RP.Model.CustomerContactBranch" />
-          <EntitySet Name="CustomerRegions" EntityType="RP.Model.CustomerRegion" />
           <EntitySet Name="CustomerTypes" EntityType="RP.Model.CustomerType" />
           <EntitySet Name="DeliveryConditions" EntityType="RP.Model.DeliveryCondition" />
           <EntitySet Name="Departments" EntityType="RP.Model.Department" />
-          <EntitySet Name="Documents" EntityType="RP.Model.Document" />
           <EntitySet Name="DocumentAttachments" EntityType="RP.Model.DocumentAttachment" />
           <EntitySet Name="DocumentDeliveries" EntityType="RP.Model.DocumentDelivery" />
           <EntitySet Name="DocumentProductItems" EntityType="RP.Model.DocumentProductItem" />
@@ -1717,37 +1764,13 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="CustomerContact" EntitySet="CustomerContacts" />
           </AssociationSet>
-          <AssociationSet Name="FK_Document_Customer" Association="RP.Model.FK_Document_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Document" EntitySet="Documents" />
-          </AssociationSet>
           <AssociationSet Name="FK_PatternImage_Customer" Association="RP.Model.FK_PatternImage_Customer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="PatternImage" EntitySet="PatternImages" />
           </AssociationSet>
-          <AssociationSet Name="FK_Document_CustomerContact" Association="RP.Model.FK_Document_CustomerContact">
-            <End Role="CustomerContact" EntitySet="CustomerContacts" />
-            <End Role="Document" EntitySet="Documents" />
-          </AssociationSet>
           <AssociationSet Name="FK_User_Department" Association="RP.Model.FK_User_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Document_User" Association="RP.Model.FK_Document_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Document" EntitySet="Documents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DocumentAttachment_Document" Association="RP.Model.FK_DocumentAttachment_Document">
-            <End Role="Document" EntitySet="Documents" />
-            <End Role="DocumentAttachment" EntitySet="DocumentAttachments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DocumentDelivery_Document" Association="RP.Model.FK_DocumentDelivery_Document">
-            <End Role="Document" EntitySet="Documents" />
-            <End Role="DocumentDelivery" EntitySet="DocumentDeliveries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DocumentProductItems_Document" Association="RP.Model.FK_DocumentProductItems_Document">
-            <End Role="Document" EntitySet="Documents" />
-            <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
           </AssociationSet>
           <AssociationSet Name="FK_DocumentDelivery_TransportationType" Association="RP.Model.FK_DocumentDelivery_TransportationType">
             <End Role="TransportationType" EntitySet="TransportationTypes" />
@@ -1833,6 +1856,44 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Regions" EntityType="RP.Model.Region" />
+          <AssociationSet Name="FK_CustomerBranch_Customer" Association="RP.Model.FK_CustomerBranch_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="CustomerBranch" EntitySet="CustomerBranches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerBranch_Region" Association="RP.Model.FK_CustomerBranch_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="CustomerBranch" EntitySet="CustomerBranches" />
+          </AssociationSet>
+          <EntitySet Name="Documents" EntityType="RP.Model.Document" />
+          <AssociationSet Name="FK_Document_Customer" Association="RP.Model.FK_Document_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_CustomerBranch" Association="RP.Model.FK_Document_CustomerBranch">
+            <End Role="CustomerBranch" EntitySet="CustomerBranches" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_CustomerContact" Association="RP.Model.FK_Document_CustomerContact">
+            <End Role="CustomerContact" EntitySet="CustomerContacts" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_User" Association="RP.Model.FK_Document_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentAttachment_Document" Association="RP.Model.FK_DocumentAttachment_Document">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="DocumentAttachment" EntitySet="DocumentAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentDelivery_Document" Association="RP.Model.FK_DocumentDelivery_Document">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="DocumentDelivery" EntitySet="DocumentDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentProductItems_Document" Association="RP.Model.FK_DocumentProductItems_Document">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1906,8 +1967,9 @@
           <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CustomerType" Relationship="RP.Model.FK_Customer_CustomerType" FromRole="Customer" ToRole="CustomerType" />
           <NavigationProperty Name="CustomerContacts" Relationship="RP.Model.FK_CustomerContact_Customer" FromRole="Customer" ToRole="CustomerContact" />
-          <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_Customer" FromRole="Customer" ToRole="Document" />
           <NavigationProperty Name="PatternImages" Relationship="RP.Model.FK_PatternImage_Customer" FromRole="Customer" ToRole="PatternImage" />
+          <NavigationProperty Name="CustomerBranches" Relationship="RP.Model.FK_CustomerBranch_Customer" FromRole="Customer" ToRole="CustomerBranch" />
+          <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_Customer" FromRole="Customer" ToRole="Document" />
         </EntityType>
         <EntityType Name="CustomerAddress">
           <Key>
@@ -1930,6 +1992,9 @@
           <Property Name="CustomerBranchName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="CustomerId" Type="Guid" Nullable="false" />
           <Property Name="RegionId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="RP.Model.FK_CustomerBranch_Customer" FromRole="CustomerBranch" ToRole="Customer" />
+          <NavigationProperty Name="Region" Relationship="RP.Model.FK_CustomerBranch_Region" FromRole="CustomerBranch" ToRole="Region" />
+          <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_CustomerBranch" FromRole="CustomerBranch" ToRole="Document" />
         </EntityType>
         <EntityType Name="CustomerContact">
           <Key>
@@ -1957,13 +2022,6 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="CustomerRegion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="RegionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="CustomerType">
           <Key>
             <PropertyRef Name="Id" />
@@ -1987,37 +2045,6 @@
           <Property Name="DepartmentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="RP.Model.FK_User_Department" FromRole="Department" ToRole="User" />
         </EntityType>
-        <EntityType Name="Document">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="FileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IssueDate" Type="DateTime" Precision="3" />
-          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
-          <Property Name="ExpectedDeliveryDate" Type="DateTime" Precision="3" />
-          <Property Name="CustomerId" Type="Guid" />
-          <Property Name="ContactId" Type="Guid" />
-          <Property Name="UserId" Type="Guid" />
-          <Property Name="DocumentStatusId" Type="Int32" />
-          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DeliveryContactId" Type="Guid" />
-          <Property Name="BiddingStatusId" Type="Int32" />
-          <Property Name="ConfirmedPriceDays" Type="Int32" />
-          <Property Name="DocumentType" Type="Int32" />
-          <Property Name="RefPriceAndRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PoNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="RP.Model.FK_Document_Customer" FromRole="Document" ToRole="Customer" />
-          <NavigationProperty Name="CustomerContact" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="Document" ToRole="CustomerContact" />
-          <NavigationProperty Name="User" Relationship="RP.Model.FK_Document_User" FromRole="Document" ToRole="User" />
-          <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
-          <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
-          <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
-        </EntityType>
         <EntityType Name="DocumentAttachment">
           <Key>
             <PropertyRef Name="Id" />
@@ -2037,8 +2064,8 @@
           <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TransportationTypeId" Type="Guid" />
           <Property Name="ConditionId" Type="Guid" />
-          <NavigationProperty Name="Document" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="DocumentDelivery" ToRole="Document" />
           <NavigationProperty Name="TransportationType" Relationship="RP.Model.FK_DocumentDelivery_TransportationType" FromRole="DocumentDelivery" ToRole="TransportationType" />
+          <NavigationProperty Name="Document" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="DocumentDelivery" ToRole="Document" />
         </EntityType>
         <EntityType Name="DocumentProductItem">
           <Key>
@@ -2056,7 +2083,6 @@
           <Property Name="FromWarehouseId" Type="Guid" />
           <Property Name="ProductOptionId" Type="Guid" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Document" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="DocumentProductItem" ToRole="Document" />
           <NavigationProperty Name="Product" Relationship="RP.Model.FK_DocumentProductItems_Product" FromRole="DocumentProductItem" ToRole="Product" />
           <NavigationProperty Name="Unit" Relationship="RP.Model.FK_DocumentProductItems_Unit" FromRole="DocumentProductItem" ToRole="Unit" />
           <NavigationProperty Name="Warehouse" Relationship="RP.Model.FK_DocumentProductItems_Warehouse" FromRole="DocumentProductItem" ToRole="Warehouse" />
@@ -2064,6 +2090,7 @@
           <NavigationProperty Name="ProductItemPrintOptionals" Relationship="RP.Model.FK_ProductItemPrintOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemPrintOptional" />
           <NavigationProperty Name="ProductItemScreenOptionals" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemScreenOptional" />
           <NavigationProperty Name="ProductItemSewOptionals" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemSewOptional" />
+          <NavigationProperty Name="Document" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="DocumentProductItem" ToRole="Document" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -2276,8 +2303,8 @@
           <Property Name="RoleId" Type="Int32" />
           <Property Name="DepartmentId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="RP.Model.FK_User_Department" FromRole="User" ToRole="Department" />
-          <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_User" FromRole="User" ToRole="Document" />
           <NavigationProperty Name="Role" Relationship="RP.Model.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_User" FromRole="User" ToRole="Document" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -2340,18 +2367,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Document_Customer">
-          <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
-          <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Document">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PatternImage_Customer">
           <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
           <End Type="RP.Model.PatternImage" Role="PatternImage" Multiplicity="*" />
@@ -2364,18 +2379,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Document_CustomerContact">
-          <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="0..1" />
-          <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomerContact">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Document">
-              <PropertyRef Name="ContactId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_Department">
           <End Type="RP.Model.Department" Role="Department" Multiplicity="1" />
           <End Type="RP.Model.User" Role="User" Multiplicity="*" />
@@ -2385,54 +2388,6 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Document_User">
-          <End Type="RP.Model.User" Role="User" Multiplicity="0..1" />
-          <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Document">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DocumentAttachment_Document">
-          <End Type="RP.Model.Document" Role="Document" Multiplicity="0..1" />
-          <End Type="RP.Model.DocumentAttachment" Role="DocumentAttachment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Document">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DocumentAttachment">
-              <PropertyRef Name="DocumentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DocumentDelivery_Document">
-          <End Type="RP.Model.Document" Role="Document" Multiplicity="0..1" />
-          <End Type="RP.Model.DocumentDelivery" Role="DocumentDelivery" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Document">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DocumentDelivery">
-              <PropertyRef Name="DocumentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DocumentProductItems_Document">
-          <End Type="RP.Model.Document" Role="Document" Multiplicity="0..1" />
-          <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Document">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DocumentProductItem">
-              <PropertyRef Name="DocumentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2680,6 +2635,155 @@
           <End Type="RP.Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RegionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CustomerBranches" Relationship="RP.Model.FK_CustomerBranch_Region" FromRole="Region" ToRole="CustomerBranch" />
+        </EntityType>
+        <Association Name="FK_CustomerBranch_Customer">
+          <End Type="RP.Model.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="RP.Model.CustomerBranch" Role="CustomerBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerBranch">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerBranch_Region">
+          <End Type="RP.Model.Region" Role="Region" Multiplicity="1" />
+          <End Type="RP.Model.CustomerBranch" Role="CustomerBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerBranch">
+              <PropertyRef Name="RegionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssueDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpectedDeliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerId" Type="Guid" />
+          <Property Name="ContactId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="DocumentStatusId" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryContactId" Type="Guid" />
+          <Property Name="BiddingStatusId" Type="Int32" />
+          <Property Name="ConfirmedPriceDays" Type="Int32" />
+          <Property Name="DocumentType" Type="Int32" />
+          <Property Name="RefPriceAndRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PoNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerBranchId" Type="Guid" />
+          <NavigationProperty Name="Customer" Relationship="RP.Model.FK_Document_Customer" FromRole="Document" ToRole="Customer" />
+          <NavigationProperty Name="CustomerBranch" Relationship="RP.Model.FK_Document_CustomerBranch" FromRole="Document" ToRole="CustomerBranch" />
+          <NavigationProperty Name="CustomerContact" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="Document" ToRole="CustomerContact" />
+          <NavigationProperty Name="User" Relationship="RP.Model.FK_Document_User" FromRole="Document" ToRole="User" />
+          <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
+          <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
+          <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
+        </EntityType>
+        <Association Name="FK_Document_Customer">
+          <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_CustomerBranch">
+          <End Type="RP.Model.CustomerBranch" Role="CustomerBranch" Multiplicity="0..1" />
+          <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerBranch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="CustomerBranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_CustomerContact">
+          <End Type="RP.Model.CustomerContact" Role="CustomerContact" Multiplicity="0..1" />
+          <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerContact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_User">
+          <End Type="RP.Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentAttachment_Document">
+          <End Type="RP.Model.Document" Role="Document" Multiplicity="0..1" />
+          <End Type="RP.Model.DocumentAttachment" Role="DocumentAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentAttachment">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentDelivery_Document">
+          <End Type="RP.Model.Document" Role="Document" Multiplicity="0..1" />
+          <End Type="RP.Model.DocumentDelivery" Role="DocumentDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentDelivery">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentProductItems_Document">
+          <End Type="RP.Model.Document" Role="Document" Multiplicity="0..1" />
+          <End Type="RP.Model.DocumentProductItem" Role="DocumentProductItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentProductItem">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2860,14 +2964,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CustomerRegions">
-            <EntityTypeMapping TypeName="RP.Model.CustomerRegion">
-              <MappingFragment StoreEntitySet="CustomerRegion">
-                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CustomerTypes">
             <EntityTypeMapping TypeName="RP.Model.CustomerType">
               <MappingFragment StoreEntitySet="CustomerType">
@@ -2888,32 +2984,6 @@
             <EntityTypeMapping TypeName="RP.Model.Department">
               <MappingFragment StoreEntitySet="Department">
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Documents">
-            <EntityTypeMapping TypeName="RP.Model.Document">
-              <MappingFragment StoreEntitySet="Document">
-                <ScalarProperty Name="PoNumber" ColumnName="PoNumber" />
-                <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
-                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
-                <ScalarProperty Name="ConfirmedPriceDays" ColumnName="ConfirmedPriceDays" />
-                <ScalarProperty Name="BiddingStatusId" ColumnName="BiddingStatusId" />
-                <ScalarProperty Name="DeliveryContactId" ColumnName="DeliveryContactId" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="DocumentStatusId" ColumnName="DocumentStatusId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="ExpectedDeliveryDate" ColumnName="ExpectedDeliveryDate" />
-                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
-                <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3174,6 +3244,41 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="RP.Model.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="RP.Model.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="CustomerBranchId" ColumnName="CustomerBranchId" />
+                <ScalarProperty Name="PoNumber" ColumnName="PoNumber" />
+                <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="ConfirmedPriceDays" ColumnName="ConfirmedPriceDays" />
+                <ScalarProperty Name="BiddingStatusId" ColumnName="BiddingStatusId" />
+                <ScalarProperty Name="DeliveryContactId" ColumnName="DeliveryContactId" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="DocumentStatusId" ColumnName="DocumentStatusId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ExpectedDeliveryDate" ColumnName="ExpectedDeliveryDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

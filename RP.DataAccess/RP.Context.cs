@@ -37,11 +37,9 @@ namespace RP.DataAccess
         public virtual DbSet<CustomerBranch> CustomerBranches { get; set; }
         public virtual DbSet<CustomerContact> CustomerContacts { get; set; }
         public virtual DbSet<CustomerContactBranch> CustomerContactBranches { get; set; }
-        public virtual DbSet<CustomerRegion> CustomerRegions { get; set; }
         public virtual DbSet<CustomerType> CustomerTypes { get; set; }
         public virtual DbSet<DeliveryCondition> DeliveryConditions { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual DbSet<DocumentDelivery> DocumentDeliveries { get; set; }
         public virtual DbSet<DocumentProductItem> DocumentProductItems { get; set; }
@@ -66,6 +64,8 @@ namespace RP.DataAccess
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
+        public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
     
         public virtual int aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
         {

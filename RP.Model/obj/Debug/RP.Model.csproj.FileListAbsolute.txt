@@ -39,6 +39,7 @@ C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\EntityFramework.SqlServer.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csprojAssemblyReference.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CoreCompileInputs.cache
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.csproj.CopyComplete
 C:\MY FILES\Public\Work\Git\rp\rp\RP.Model\obj\Debug\RP.Model.dll

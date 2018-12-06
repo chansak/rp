@@ -14,9 +14,20 @@ namespace RP.DataAccess
     
     public partial class CustomerBranch
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CustomerBranch()
+        {
+            this.Documents = new HashSet<Document>();
+        }
+    
         public System.Guid Id { get; set; }
         public string CustomerBranchName { get; set; }
         public System.Guid CustomerId { get; set; }
         public System.Guid RegionId { get; set; }
+    
+        public virtual Customer Customer { get; set; }
+        public virtual Region Region { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Document> Documents { get; set; }
     }
 }

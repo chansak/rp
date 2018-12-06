@@ -119,13 +119,6 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="250" />
   </EntityType>
-  <EntityType Name="CustomerRegion">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="RegionName" Type="nvarchar" MaxLength="250" />
-  </EntityType>
   <EntityType Name="CustomerType">
     <Key>
       <PropertyRef Name="Id" />
@@ -171,6 +164,7 @@
     <Property Name="DocumentType" Type="int" />
     <Property Name="RefPriceAndRemark" Type="nvarchar(max)" />
     <Property Name="PoNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerBranchId" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="DocumentAttachment">
     <Key>
@@ -343,6 +337,13 @@
     <Property Name="ProductId" Type="uniqueidentifier" />
     <Property Name="UnitId" Type="uniqueidentifier" />
   </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RegionName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="Id" />
@@ -405,6 +406,30 @@
       </Principal>
       <Dependent Role="Customer">
         <PropertyRef Name="CustomerTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerBranch_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerBranch" Type="Self.CustomerBranch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerBranch">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerBranch_Region">
+    <End Role="Region" Type="Self.Region" Multiplicity="1" />
+    <End Role="CustomerBranch" Type="Self.CustomerBranch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerBranch">
+        <PropertyRef Name="RegionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -485,6 +510,18 @@
       </Principal>
       <Dependent Role="Document">
         <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_CustomerBranch">
+    <End Role="CustomerBranch" Type="Self.CustomerBranch" Multiplicity="0..1" />
+    <End Role="Document" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerBranch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="CustomerBranchId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1155,7 +1192,6 @@
     <EntitySet Name="CustomerBranch" EntityType="Self.CustomerBranch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerContact" EntityType="Self.CustomerContact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerContactBranch" EntityType="Self.CustomerContactBranch" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CustomerRegion" EntityType="Self.CustomerRegion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DeliveryCondition" EntityType="Self.DeliveryCondition" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -1178,6 +1214,7 @@
     <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransportationType" EntityType="Self.TransportationType" Schema="dbo" store:Type="Tables" />
@@ -1187,6 +1224,14 @@
     <AssociationSet Name="FK_Customer_CustomerType" Association="Self.FK_Customer_CustomerType">
       <End Role="CustomerType" EntitySet="CustomerType" />
       <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerBranch_Customer" Association="Self.FK_CustomerBranch_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerBranch" EntitySet="CustomerBranch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerBranch_Region" Association="Self.FK_CustomerBranch_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="CustomerBranch" EntitySet="CustomerBranch" />
     </AssociationSet>
     <AssociationSet Name="FK_CustomerContact_Customer" Association="Self.FK_CustomerContact_Customer">
       <End Role="Customer" EntitySet="Customer" />
@@ -1210,6 +1255,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Document_Customer" Association="Self.FK_Document_Customer">
       <End Role="Customer" EntitySet="Customer" />
+      <End Role="Document" EntitySet="Document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_CustomerBranch" Association="Self.FK_Document_CustomerBranch">
+      <End Role="CustomerBranch" EntitySet="CustomerBranch" />
       <End Role="Document" EntitySet="Document" />
     </AssociationSet>
     <AssociationSet Name="FK_Document_CustomerContact" Association="Self.FK_Document_CustomerContact">
