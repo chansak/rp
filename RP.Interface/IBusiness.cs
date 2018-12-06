@@ -42,6 +42,7 @@ namespace RP.Interfaces
         IList<CustomerContact> GetContactByCustomerId(string id);
         Customer GetCustomerById(string id);
         CustomerContact GetContactById(string id);
+        List<CustomerBranch> GetCustomerBranches(string id);
         #endregion
 
         #region Common

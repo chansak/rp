@@ -192,7 +192,8 @@ namespace RP.Website.Controllers
                 var data = customer.ToViewModel();
                 return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 var msg = ex.Message;
             }
             return new JsonCamelCaseResult(null, JsonRequestBehavior.AllowGet);
@@ -220,10 +221,29 @@ namespace RP.Website.Controllers
             }));
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetProductItemByItemId(string id) {
+        public ActionResult GetProductItemByItemId(string id)
+        {
             var item = GenericFactory.Business.GetProductItemByItemId(id);
             var data = item.ToViewModel();
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetCustomerBranchByCustomerId(string id)
+        {
+            try
+            {
+                var customerBranches = GenericFactory.Business.GetCustomerBranches(id);
+                var data = customerBranches.Select(i => new
+                {
+                    Id = i.Id.ToString(),
+                    BranchName = i.CustomerBranchName
+                });
+                return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return new JsonCamelCaseResult(null, JsonRequestBehavior.AllowGet);
         }
     }
 }

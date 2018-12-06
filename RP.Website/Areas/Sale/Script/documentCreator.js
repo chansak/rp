@@ -42,8 +42,9 @@
                 updater: function (item) {
                     $("#auto_customerId").val(item.id);
                     $("#auto_customerType").val(item.customerTypeName);
-                    $("#auto_customerHospitalName").val(item.hospitalName);
+                    //$("#auto_customerHospitalName").val(item.hospitalName);
                     _bindingContact(item.id);
+                    _bindingCustomerBranch(item.id);
                     return item;
                 }
             });
@@ -53,6 +54,39 @@
             //alert(errorThrown);
         }
         var xhr = RPService.GetCustomers(success, failure);
+    };
+    var _bindingCustomerBranch = function (id) {
+        var success = function (data, textStatus, jqXHR) {
+            //hospitals
+            $(data).each(function (index, item) {
+                $('#hospitals').empty().append($('<option>', {
+                    value: item.id,
+                    text: item.branchName
+                }));
+            });
+            $("#hospitals").prepend("<option value='' selected='selected'>เลือกสาขา</option>");
+            $("#hospitals").unbind();
+
+
+            //$(data).each(function (index, value) {
+            //    customers.push(value);
+            //});
+            //$('#auto_customerName').typeahead({
+            //    source: customers,
+            //    updater: function (item) {
+            //        $("#auto_customerId").val(item.id);
+            //        $("#auto_customerType").val(item.customerTypeName);
+            //        $("#auto_customerHospitalName").val(item.hospitalName);
+            //        _bindingContact(item.id);
+            //        return item;
+            //    }
+            //});
+        }
+
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetCustomerBranchByCustomerId(id,success, failure);
     };
     var _bindingContact = function (id) {
         console.log(id);
@@ -197,7 +231,8 @@
             items: allItems,
             deliveryAddress: $("#deliveryAddress").val(),
             //deliveryContactId: $("#auto_deliveryContactId").val(),
-            remark: $("#documentRemark").val()
+            remark: $("#documentRemark").val(),
+            customerBranchId: $("#hospitals").val()
         };
         formData.append("document", JSON.stringify(document));
         //for (var i = 0; i < files.length; i++) {

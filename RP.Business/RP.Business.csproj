@@ -57,6 +57,7 @@
     <Compile Include="BaseBusiness.cs" />
     <Compile Include="ColorBusiness.cs" />
     <Compile Include="ContactBusiness.cs" />
+    <Compile Include="CustomerBranchBusiness.cs" />
     <Compile Include="CustomerBusiness.cs" />
     <Compile Include="DocumentBusiness.cs" />
     <Compile Include="DocumentProductItemBusiness.cs" />
