@@ -1,10 +1,14 @@
-﻿<nav class="navbar-default navbar-static-side" role="navigation">
+﻿@using RP.Model
+@{
+    ApplicationUser user = Session["CurrentUser"] as ApplicationUser;
+    string roleName = Session["CurrentRoleName"].ToString();
+}
+<nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
                     <span>
-                        @*<img alt="image" class="img-circle" src="~/Images/profile_small.jpg" />*@
                         <img alt="image" class="img-circle small" src="~/Images/profile/user1.jpg" width="48" height="48" />
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -24,82 +28,118 @@
                 </div>
                 <div class="logo-element">
                     <img alt="image" class="img-circle" src="~/Images/logo.png" />
-                    @*<img src="~/Images/logo.png" />*@
                 </div>
             </li>
-            <li class="@Html.IsSelected(controller: "Document")">
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">งานขาย</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Sale", cssClass: "in")">
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Document",new { area = "Sale" })">ใบขอราคา</a></li>
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "ApprovalDocument",new { area = "Manager" })">รายการอนุมัติ <span class="label label-warning pull-right">16/24</span></a></li>
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Assigment",new { area = "Sale" })">รายการมอบหมาย</a></li>
-                </ul>
-            </li>
-            <li class="@Html.IsSelected(controller: "Report")">
-                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">รายงาน</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Report", cssClass: "in")">
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Report")">รายงาน1</a></li>
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Report")">รายงาน1</a></li>
-                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Report")">รายงาน1</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-gears"></i> <span class="nav-label">ตั้งค่า</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">ตั้งค่าข้อมูลผู้ใช้ <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#">รายการผู้ใช้</a>
+            @{
+                switch (roleName)
+                {
+                    case "Sale":
+                        {
+                            <li class="@Html.IsSelected(controller: "Document")">
+                                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">งานขาย</span><span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Sale", cssClass: "in")">
+                                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Document",new { area = "Sale" })">ใบขอราคา</a></li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="#">สิทธิ์การเข้าใช้</a>
+                            break;
+                        }
+                    case "Backoffice":
+                        {
+                            <li class="@Html.IsSelected(controller: "Document")">
+                                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">งานขาย</span><span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Backoffice", cssClass: "in")">
+                                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Document",new { area = "Backoffice" })">ใบขอราคา</a></li>
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
-                    @*<li>
-                        <a href="#">ตั้งค่าข้อมูลสินค้า <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#">รายการสินค้า</a>
+                            break;
+                        }
+                    case "Manager":
+                        {
+                            <li class="@Html.IsSelected(controller: "Document")">
+                                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">งานขาย</span><span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Manager", cssClass: "in")">
+                                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Document",new { area = "Manager" })">ใบขอราคา</a></li>
+                                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "ApprovalDocument",new { area = "Manager" })">รายการอนุมัติ <span class="label label-warning pull-right">16/24</span></a></li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="#">หน่วยสินค้า</a>
+                            <li class="@Html.IsSelected(controller: "Report")">
+                                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">รายงาน</span><span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Report", cssClass: "in")">
+                                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Report")">รายงาน1</a></li>
+                                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Report")">รายงาน1</a></li>
+                                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Report")">รายงาน1</a></li>
+                                </ul>
                             </li>
+                            break;
+                        }
+                    case "Admin":
+                        {
                             <li>
-                                <a href="#">หน่วยสินค้า</a>
+                                <a href="#"><i class="fa fa-gears"></i> <span class="nav-label">ตั้งค่า</span><span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Admin", cssClass: "in")">
+                                    <li>
+                                        <a href="#">ตั้งค่าข้อมูลผู้ใช้ <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="#">รายการผู้ใช้</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">สิทธิ์การเข้าใช้</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    @*<li>
+                                        <a href="#">ตั้งค่าข้อมูลสินค้า <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="#">รายการสินค้า</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">หน่วยสินค้า</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">หน่วยสินค้า</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">ตั้งค่าข้อมูลการขาย <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="#">กลุ่มงานขาย</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">ตั้งค่าข้อมูลลูกค้า <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="@Url.Action("CustomerList", "Setting",new { area = "Admin" })">รายการลูกค้า</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">ประเภทลูกค้า</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">ตั้งค่าข้อมูลทั่วไป <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="#">ข้อมูลผู้ใช้</a>
+                                            </li>
+                                        </ul>
+                                    </li>*@
+                                </ul>
                             </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">ตั้งค่าข้อมูลการขาย <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#">กลุ่มงานขาย</a>
-                            </li>
-                        </ul>
-                    </li>*@
-                    <li>
-                        <a href="#">ตั้งค่าข้อมูลลูกค้า <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="@Url.Action("CustomerList", "Setting",new { area = "Admin" })">รายการลูกค้า</a>
-                            </li>
-                            @*<li>
-                                <a href="#">ประเภทลูกค้า</a>
-                            </li>*@
-                        </ul>
-                    </li>
-                    @*<li>
-                        <a href="#">ตั้งค่าข้อมูลทั่วไป <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#">ข้อมูลผู้ใช้</a>
-                            </li>
-                        </ul>
-                    </li>*@
-                </ul>
-            </li>
+                            break;
+                        }
+                    case "SuperAdmin":
+                        {
+                            break;
+                        }
+                }
+
+            }
         </ul>
     </div>
 </nav>

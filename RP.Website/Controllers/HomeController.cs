@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using RP.Interfaces;
 using RP.Model;
 using RP.Website.Models;
 using System;
@@ -22,24 +23,36 @@ namespace RP.Website.Controllers
         {
             try
             {
-                //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(RP.DataAccess.ApplicationDbContext.Create()));
-                //roleManager.Create(new IdentityRole { Name = "admin" });
-
-                //var user = new ApplicationUser() { UserName = model.UserName };
-                //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(RP.DataAccess.ApplicationDbContext.Create()));
-                //var result = userManager.Create(user, model.Password);
-
-
-                //var account = new List<string>();
-                //account.Add(model.UserName);
-                //Roles.AddUsersToRole(account.ToArray(), "admin");
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(RP.DataAccess.ApplicationDbContext.Create()));
                 var user = userManager.FindByName(model.UserName);
                 var result = userManager.CheckPassword(user, model.Password);
                 if (result)
                 {
                     CurrentUser = user;
-                    return RedirectToAction("Index", "Document", new { Area = "Sale" });
+                    var roleName = this.CurrentUserRoleName;
+                    switch (roleName)
+                    {
+                        case "Sale":
+                            {
+                                return RedirectToAction("Index", "Dashboard", new { Area = "Sale" });
+                            }
+                        case "Backoffice":
+                            {
+                                return RedirectToAction("Index", "Dashboard", new { Area = "Backoffice" });
+                            }
+                        case "Manager":
+                            {
+                                return RedirectToAction("Index", "Dashboard", new { Area = "Manager" });
+                            }
+                        case "Admin":
+                            {
+                                return RedirectToAction("Index", "Dashboard", new { Area = "Admin" });
+                            }
+                        case "SuperAdmin":
+                            {
+                                return RedirectToAction("Index", "Dashboard", new { Area = "SuperAdmin" });
+                            }
+                    }
                 }
                 else
                 {

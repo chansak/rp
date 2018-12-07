@@ -32,9 +32,14 @@ namespace RP.Website.Extensions
                         documentStatusName = WorkflowStatus.Approved.DescriptionAttr();
                         break;
                     }
-                case WorkflowStatus.Rejected:
+                case WorkflowStatus.RequestForMoreInfoForBackoffice:
                     {
-                        documentStatusName = WorkflowStatus.Rejected.DescriptionAttr();
+                        documentStatusName = WorkflowStatus.RequestForMoreInfoForBackoffice.DescriptionAttr();
+                        break;
+                    }
+                case WorkflowStatus.RequestForMoreInfoForSale:
+                    {
+                        documentStatusName = WorkflowStatus.RequestForMoreInfoForSale.DescriptionAttr();
                         break;
                     }
                 case WorkflowStatus.Quotation:

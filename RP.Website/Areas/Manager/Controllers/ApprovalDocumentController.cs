@@ -87,7 +87,7 @@ namespace RP.Website.Areas.Manager.Controllers
         {
             var result = false;
             var document = GenericFactory.Business.GetDocument(id);
-            document.DocumentStatusId = (int)WorkflowStatus.Rejected;
+            document.DocumentStatusId = (int)WorkflowStatus.RequestForMoreInfoForBackoffice;
             GenericFactory.Business.UpdateDocumentStatus(document);
             return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
         }

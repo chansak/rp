@@ -9,32 +9,45 @@ namespace RP.Model
 {
     public enum WorkflowStatus
     {
+        //For Sale 
+        //-------------------------------
         [Description("Draft")]
         Draft = 0,
+        [Description("ขอข้อมุลเพิ่ม")]
+        RequestForMoreInfoForSale =10,
+        //-------------------------------
 
-        //[Description("ขอข้อมุลเพิ่มมาที่เซลล์")]
-        //RequestForMoreInfo =1,
-
+        //For Back office
+        //-------------------------------
         [Description("ลูกค้าขอราคา")]
-        RequestForPrice=1,
-
-        [Description("ขออนุมัติ")]
-        RequestedForApproval=2,
-
-        [Description("อนุมัติแล้ว")]
-        Approved =3,
-
+        RequestForPrice=20,
         [Description("ขอข้อมูลเพิ่ม")]
-        Rejected =4,
+        RequestForMoreInfoForBackoffice = 21,
+        //-------------------------------
 
+        //For Manager
+        //-------------------------------
+        [Description("ขออนุมัติ")]
+        RequestedForApproval = 30,
+        //-------------------------------
+
+        //For Admin
+        //-------------------------------
+        [Description("ขอให้มอบหมาย")]
+        RequestForAssignment = 40,
+        //-------------------------------
+
+        //Common
+        //-------------------------------
+        [Description("อนุมัติแล้ว")]
+        Approved =50,
         [Description("ออกใบเสนอราคาแล้ว")]
-        Quotation = 5,
-
+        Quotation = 51,
         [Description("ได้รับ PO แล้ว")]
-        PurchaseOrder = 6,
+        PurchaseOrder = 52,
+        //-------------------------------
 
         [Description("ยกเลิก")]
-        Cancelled =99,
-
+        Cancelled = 99,
     }
 }

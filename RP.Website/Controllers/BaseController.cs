@@ -19,8 +19,13 @@ namespace RP.Website
         }
         public ApplicationUser CurrentUser
         {
-            get { return Session["CurrentUser"] as ApplicationUser; }
-            set { Session["CurrentUser"] = value; }
+            get {
+                return Session["CurrentUser"] as ApplicationUser;
+            }
+            set {
+                Session["CurrentUser"] = value;
+                Session["CurrentRoleName"] = CurrentUserRoleName;
+            }
         }
         public string CurrentUserRoleName
         {
@@ -69,6 +74,5 @@ namespace RP.Website
                 return userRole;
             }
         }
-
     }
 }
