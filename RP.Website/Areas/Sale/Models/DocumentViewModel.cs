@@ -25,5 +25,6 @@ namespace RP.Website.Models
         public int DocumentStatusId { get; set; }
         public string PoNumber { get; set; }
         public string CustomerBranchId { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

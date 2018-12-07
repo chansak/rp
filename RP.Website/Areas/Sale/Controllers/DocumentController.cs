@@ -88,52 +88,9 @@ namespace RP.Website.Areas.Sale.Controllers
                 var json = formCollection["document"].ToString().Replace(@"\", "");
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
-                document.DocumentStatusId = (int)WorkflowStatus.Draft;
+                document.DocumentStatusId = (int)WorkflowStatus.RequestForPrice;
                 var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
-                if (document.DocumentProductItems.Count > 0)
-                {
-                    foreach (var item in document.DocumentProductItems)
-                    {
-                        if (item.ProductItemPrintOptionals.Count > 0)
-                        {
-                            var printOption = item.ProductItemPrintOptionals.FirstOrDefault();
-                            var status = (ItemOptionStatus)printOption.OptionalStatusId;
-                            if (status == ItemOptionStatus.NewPattern)
-                            {
-                                var newPatternId = Guid.NewGuid();
-                                printOption.PatternId = newPatternId;
-                                HttpPostedFileBase file = Request.Files[PRINT_NEWPATTERN];
-                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
-                            }
-                        }
-                        if (item.ProductItemScreenOptionals.Count > 0)
-                        {
-                            var screenOption = item.ProductItemScreenOptionals.FirstOrDefault();
-                            var status = (ItemOptionStatus)screenOption.OptionalStatusId;
-                            if (status == ItemOptionStatus.NewPattern)
-                            {
-                                var newPatternId = Guid.NewGuid();
-                                screenOption.PatternId = newPatternId;
-                                HttpPostedFileBase file = Request.Files[SCREEN_NEWPATTERN];
-                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
-                            }
-                        }
-                        if (item.ProductItemSewOptionals.Count > 0)
-                        {
-                            var sewOption = item.ProductItemSewOptionals.FirstOrDefault();
-                            var status = (ItemOptionStatus)sewOption.OptionalStatusId;
-                            if (status == ItemOptionStatus.NewPattern)
-                            {
-                                var newPatternId = Guid.NewGuid();
-                                sewOption.PatternId = newPatternId;
-                                HttpPostedFileBase file = Request.Files[SEW_NEWPATTERN];
-                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
-                            }
-                        }
-                    }
-                }
-                GenericFactory.Business.CreateDocument(document, customerCode);
-
+                Create(document, customerCode);
                 return Json("");
             }
             catch (Exception ex)
@@ -141,6 +98,71 @@ namespace RP.Website.Areas.Sale.Controllers
                 var msg = ex.Message;
             }
             return Json(null);
+        }
+        [HttpPost]
+        public JsonResult CreateDraftDocument(FormCollection formCollection)
+        {
+            try
+            {
+                var json = formCollection["document"].ToString().Replace(@"\", "");
+                var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                var document = model.ToEntity();
+                document.DocumentStatusId = (int)WorkflowStatus.Draft;
+                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                Create(document, customerCode);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        private void Create(Document document,string customerCode) {
+            if (document.DocumentProductItems.Count > 0)
+            {
+                foreach (var item in document.DocumentProductItems)
+                {
+                    if (item.ProductItemPrintOptionals.Count > 0)
+                    {
+                        var printOption = item.ProductItemPrintOptionals.FirstOrDefault();
+                        var status = (ItemOptionStatus)printOption.OptionalStatusId;
+                        if (status == ItemOptionStatus.NewPattern)
+                        {
+                            var newPatternId = Guid.NewGuid();
+                            printOption.PatternId = newPatternId;
+                            HttpPostedFileBase file = Request.Files[PRINT_NEWPATTERN];
+                            this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                        }
+                    }
+                    if (item.ProductItemScreenOptionals.Count > 0)
+                    {
+                        var screenOption = item.ProductItemScreenOptionals.FirstOrDefault();
+                        var status = (ItemOptionStatus)screenOption.OptionalStatusId;
+                        if (status == ItemOptionStatus.NewPattern)
+                        {
+                            var newPatternId = Guid.NewGuid();
+                            screenOption.PatternId = newPatternId;
+                            HttpPostedFileBase file = Request.Files[SCREEN_NEWPATTERN];
+                            this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                        }
+                    }
+                    if (item.ProductItemSewOptionals.Count > 0)
+                    {
+                        var sewOption = item.ProductItemSewOptionals.FirstOrDefault();
+                        var status = (ItemOptionStatus)sewOption.OptionalStatusId;
+                        if (status == ItemOptionStatus.NewPattern)
+                        {
+                            var newPatternId = Guid.NewGuid();
+                            sewOption.PatternId = newPatternId;
+                            HttpPostedFileBase file = Request.Files[SEW_NEWPATTERN];
+                            this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                        }
+                    }
+                }
+            }
+            document.CreatedBy = this.CurrentUser.Id;
+            GenericFactory.Business.CreateDocument(document, customerCode);
         }
         public ActionResult Edit(string id)
         {

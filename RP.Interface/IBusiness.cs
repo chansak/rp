@@ -32,7 +32,7 @@ namespace RP.Interfaces
         #endregion
 
         #region User
-        IList<User> GetSaleUsersList();
+        IList<AspNetUser> GetSaleUsersList();
         User GetSaleUserById(string id);
         bool AddNewUser(ApplicationUser user,string password,string role);
         #endregion

@@ -245,6 +245,127 @@
         }
         var xhr = RPService.CreateDocument(formData, success, failure);
     };
+    var _saveDraft = function (callback) {
+        var allItems = [];
+        var formData = new FormData();
+        $(items).each(function (index, item) {
+            var printOptions = item.print;
+            var screenOptions = item.screen;
+            console.log(item);
+            var sewOptions = item.sew;
+
+            //print options
+            var printData = {};
+            if (printOptions.selectedOption == 1) {
+                printData = {
+                    selectedOption: printOptions.selectedOption,
+                    patternId: printOptions.options1.patternId || 0,
+                    colorId: 0
+                };
+            } else if (printOptions.selectedOption == 2) {
+                printData = {
+                    selectedOption: printOptions.selectedOption,
+                    patternId: 0,
+                    colorId: printOptions.options2.colorId || 0
+                };
+                console.log(printOptions.file);
+                formData.append("printFile", printOptions.options2.file);
+            } else {
+                printData = {
+                    selectedOption: printOptions.selectedOption,
+                    patternId: 0,
+                    colorId: 0
+                };
+            }
+
+            //screen options
+            var screenData = {};
+            if (screenOptions.selectedOption == 1) {
+                screenData = {
+                    selectedOption: screenOptions.selectedOption,
+                    patternId: screenOptions.options1.patternId || 0,
+                    colorId: 0,
+                    positionId: 0,
+                }
+            } else if (screenOptions.selectedOption == 2) {
+                screenData = {
+                    selectedOption: screenOptions.selectedOption,
+                    patternId: 0,
+                    colorId: screenOptions.options2.colorId || 0,
+                    positionId: screenOptions.options2.positionId || 0,
+                };
+                formData.append("screenFile", screenOptions.options2.file);
+            } else {
+                screenData = {
+                    selectedOption: screenOptions.selectedOption,
+                    patternId: 0,
+                    colorId: 0,
+                    positionId: 0,
+                };
+            }
+
+            //sew options
+            var sewData = {};
+            if (sewOptions.selectedOption == 1) {
+                sewData = {
+                    selectedOption: sewOptions.selectedOption,
+                    patternId: sewOptions.options1.patternId || 0,
+                    positionId: 0,
+                    remark: ''
+                };
+            } else if (sewOptions.selectedOption == 2) {
+                sewData = {
+                    selectedOption: sewOptions.selectedOption,
+                    patternId: 0,
+                    positionId: sewOptions.options2.positionId || 0,
+                    remark: sewOptions.options2.remark
+                };
+                formData.append("sewFile", sewOptions.options2.file);
+            } else {
+                sewData = {
+                    selectedOption: sewOptions.selectedOption,
+                    patternId: 0,
+                    positionId: 0,
+                    remark: ''
+                };
+            }
+            allItems.push(
+                {
+                    productId: item.productId,
+                    productUnitId: item.productUnitId,
+                    amount: item.amount,
+                    pricePerUnit: item.pricePerUnit || 0,
+                    printOption: printData,
+                    screenOption: screenData,
+                    sewOption: sewData
+                }
+            );
+        });
+        var document = {
+            //issuedDate: $("#issuedDate").val(),
+            //createdDate: $("#createdDate").val(),
+            expirationDate: $("#expirationDate").val(),
+            //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+            saleUserId: $("#auto_saleId").val(),
+            customerId: $("#auto_customerId").val(),
+            contactId: $("#auto_contactId").val(),
+            items: allItems,
+            deliveryAddress: $("#deliveryAddress").val(),
+            //deliveryContactId: $("#auto_deliveryContactId").val(),
+            remark: $("#documentRemark").val(),
+            customerBranchId: $("#hospitals").val()
+        };
+        formData.append("document", JSON.stringify(document));
+        //for (var i = 0; i < files.length; i++) {
+        //    formData.append(files[i].name, files[i]);
+        //}
+        var success = function (data, textStatus, jqXHR) {
+            callback();
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.CreateDraftDocument(formData, success, failure);
+    };
     var _renderPreviewImage = function () {
         $(items).each(function (index, item) {
             if (item.print.selectedOption == 2) {

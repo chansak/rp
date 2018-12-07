@@ -1,4 +1,6 @@
-﻿using RP.Interfaces;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using RP.Interfaces;
 using RP.Utilities;
 using RP.Website.Enum;
 using RP.Website.Models;
@@ -16,14 +18,22 @@ namespace RP.Website.Controllers
         {
             var result = new AjaxResultModel();
             var users = GenericFactory.Business.GetSaleUsersList();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(RP.DataAccess.ApplicationDbContext.Create()));
+            var role = roleManager.FindByName(Roles.Sale);
             var data = new List<SaleUserViewModel>();
-            data.AddRange(users.Select(u => new SaleUserViewModel
+            foreach (var user in users)
             {
-                Id = u.Id.ToString(),
-                Name = u.DisplayName,
-                Code = u.UserName,
-                Branch = u.Department.DepartmentName
-            }));
+                var roles = user.AspNetRoles.ToList();
+                if (roles.Where(i => i.Id == role.Id).Count() > 0)
+                {
+                    data.AddRange(users.Select(u => new SaleUserViewModel
+                    {
+                        Id = u.Id.ToString(),
+                        Name = u.DisplayName,
+                    }));
+                }
+            }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetCustomers()

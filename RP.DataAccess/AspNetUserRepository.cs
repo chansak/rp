@@ -9,11 +9,18 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class AspNetUserRepository : EFRepository<RP.Model.AspNetUser>, IAspNetUserRepository
-	{
-		public AspNetUserRepository(DbContext context)
+    public class AspNetUserRepository : EFRepository<RP.Model.AspNetUser>, IAspNetUserRepository
+    {
+        public AspNetUserRepository(DbContext context)
             : base(context)
-		{
-		}
-	}
+        {
+
+        }
+        public override IQueryable<Model.AspNetUser> All()
+        {
+            return ObjectSet.
+                Include(i => i.AspNetRoles)
+                .AsQueryable();
+        }
+    }
 }

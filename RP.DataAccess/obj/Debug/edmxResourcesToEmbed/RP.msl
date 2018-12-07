@@ -86,6 +86,7 @@
     <EntitySetMapping Name="AspNetUsers">
       <EntityTypeMapping TypeName="RP.Model.AspNetUser">
         <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />

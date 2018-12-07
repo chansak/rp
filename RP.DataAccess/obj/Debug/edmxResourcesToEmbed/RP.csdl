@@ -564,6 +564,7 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="RP.Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="RP.Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
     <NavigationProperty Name="AspNetRoles" Relationship="RP.Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+    <Property Name="DisplayName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Color">
     <Key>

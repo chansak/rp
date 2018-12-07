@@ -11,12 +11,13 @@ namespace RP.Business
 {
     partial class Business : BaseBusiness, IBusiness
     {
-        public IList<User> GetSaleUsersList()
+        public IList<AspNetUser> GetSaleUsersList()
         {
             using (var uow = UnitOfWork.Create())
             {
-                return uow.UserRepository.All().ToList();
+                return uow.AspNetUserRepository.All().ToList();
             }
+
         }
         public User GetSaleUserById(string id)
         {
