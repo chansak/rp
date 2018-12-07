@@ -109,7 +109,6 @@
     <Compile Include="Enum\BiddingStatus.cs" />
     <Compile Include="Enum\DocumentType.cs" />
     <Compile Include="Enum\ItemOptionStatus.cs" />
-    <Compile Include="Enum\UserRoles.cs" />
     <Compile Include="Enum\WorkflowStatus.cs" />
     <Compile Include="Material.cs">
       <DependentUpon>RPModel.tt</DependentUpon>

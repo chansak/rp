@@ -1612,6 +1612,7 @@
     <Compile Include="Areas\Sale\SaleAreaRegistration.cs" />
     <Compile Include="Areas\SuperAdmin\SuperAdminAreaRegistration.cs" />
     <Compile Include="Areas\SuperAdmin\Controllers\DashboardController.cs" />
+    <Compile Include="Attributes\LoggedOrAuthorizedAttribute .cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -1620,6 +1621,7 @@
     <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Enum\AjaxResultStatus.cs" />
+    <Compile Include="Enum\AuthorizeRoles.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Extensions\EnumHelperExtension.cs" />
     <Compile Include="Extensions\StatusExtension.cs" />

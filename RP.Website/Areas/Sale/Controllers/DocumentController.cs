@@ -3,6 +3,7 @@ using Newtonsoft.Json.Converters;
 using RP.Interfaces;
 using RP.Model;
 using RP.Utilities;
+using RP.Website.Attributes;
 using RP.Website.Extensions;
 using RP.Website.Helpers;
 using RP.Website.Models;
@@ -16,6 +17,7 @@ using System.Web.Routing;
 
 namespace RP.Website.Areas.Sale.Controllers
 {
+    [LoggedOrAuthorized(Roles = Roles.Sale)]
     public class DocumentController : BaseController
     {
         public const string PRINT_NEWPATTERN = "printFile";
@@ -33,7 +35,6 @@ namespace RP.Website.Areas.Sale.Controllers
                 keyword = keyword.Trim();
             }
 
-            var userRole = this.CurrentUserRole;
             var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToList();
@@ -334,7 +335,7 @@ namespace RP.Website.Areas.Sale.Controllers
             GenericFactory.Business.UpdateDocumentStatus(document);
             return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
         }
-        
+
         [HttpPost]
         public ActionResult GetCurrentWorkflowStatus(string id)
         {
