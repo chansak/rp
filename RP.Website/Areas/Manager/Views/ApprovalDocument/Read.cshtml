@@ -345,8 +345,9 @@
             </div>
 
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary btnSaveReasonThenBackToSale">ขอข้อมูลเพิ่มจากพนักงานขาย</button>
+                <button type="button" class="btn btn-primary btnSaveReasonThenBackToBackoffice">ขอข้อมูลเพิ่มจากเจ้าหน้าที่ประจำออฟฟิศ</button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary btnSaveReason">บันทึก</button>
             </div>
         </div>
     </div>
@@ -757,8 +758,20 @@
                 $("#rejectReason").modal("show");
 
             });
-            $('.btnSaveReason').click(function () {
-                documentViewer.Reject(function () {
+            $('.btnSaveReasonThenBackToSale').click(function () {
+                documentViewer.RejectToSale(function () {
+                    swal({
+                        title: "ไม่อนุมัติรายการเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        $('#rejectReason').modal('toggle');
+                        utilities.RedirectToAction("/Manager/ApprovalDocument/Index");
+                    });
+                });
+            });
+            $('.btnSaveReasonThenBackToBackoffice').click(function () {
+                documentViewer.RejectToBackOffice(function () {
                     swal({
                         title: "ไม่อนุมัติรายการเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",

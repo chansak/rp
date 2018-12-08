@@ -180,7 +180,12 @@
     <Content Include="Areas\Backoffice\Script\productCreator.js" />
     <Content Include="Areas\Backoffice\Script\productEditor.js" />
     <Content Include="Areas\Manager\Script\approvalDocumentList.js" />
+    <Content Include="Areas\Manager\Script\documentCreator.js" />
+    <Content Include="Areas\Manager\Script\documentEditor.js" />
+    <Content Include="Areas\Manager\Script\documentList.js" />
     <Content Include="Areas\Manager\Script\documentViewer.js" />
+    <Content Include="Areas\Manager\Script\productCreator.js" />
+    <Content Include="Areas\Manager\Script\productEditor.js" />
     <Content Include="Areas\Manager\Views\ApprovalDocument\Index.cshtml" />
     <Content Include="Areas\Manager\Views\ApprovalDocument\DocumentDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Shared\_Layout.cshtml" />
@@ -1236,6 +1241,9 @@
     <Content Include="Areas\Backoffice\Views\Document\AddNew.cshtml" />
     <Content Include="Areas\Backoffice\Views\Document\Edit.cshtml" />
     <Content Include="Areas\Backoffice\Views\Document\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Document\AddNew.cshtml" />
+    <Content Include="Areas\Manager\Views\Document\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\Document\Index.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1609,6 +1617,7 @@
     <Compile Include="Areas\Backoffice\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Manager\Controllers\ApprovalDocumentController.cs" />
     <Compile Include="Areas\Manager\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Manager\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Sale\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Sale\Controllers\DocumentController.cs" />

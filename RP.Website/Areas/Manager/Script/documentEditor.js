@@ -1,4 +1,11 @@
-﻿var documentViewer = new function () {
+﻿var documentEditorForManager = new function () {
+    var message = {
+        info: {
+            permissionDinyToSave: "รายการนี้ไม่สามารถแก้ไขได้เนื่องจากอยู่ขั้นตอนการขออนุมัติ",
+        },
+        error: {}
+    };
+
     var items = [];
     var sales = [];
     var customers = [];
@@ -136,9 +143,8 @@
             var total = parseFloat((item.amount * item.pricePerUnit));
             var id = "'" + item.itemId + "'";
             if (item.print != null || item.screen != null || item.sew != null) {
-                console.log(item.itemId);
                 if (item.itemId != null) {
-                    html += '<tr onclick="documentViewer.showItemDetail(' + id + ')">';
+                    html += '<tr onclick="documentEditor.showItemDetail(' + id + ')">';
                     html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
                 } else {
                     html += '<tr>';
@@ -187,7 +193,6 @@
                 html += '   <td colspan="2" style="border-right:dashed 1px #e6e6e6">';
                 html += '       <h4>สกรีน</h4>';
                 if (item.screen != null) {
-                    console.log(item);
                     if (item.screen.selectedOption == 1) {
                         html += '       <div class="list-group">';
                         html += '           <a href="#" class="list-group-item">';
@@ -252,8 +257,13 @@
     };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
-            var issuedDate = utilities.ConvertToDate(data.issuedDate);
             console.log(data);
+            $("#gotPO").hide();
+            if (data.documentStatusId == 6) {
+                $("#gotPO").show();
+                $("#poNumber").val(data.poNumber);
+            }
+            var issuedDate = utilities.ConvertToDate(data.issuedDate);
             var expirationDate = utilities.ConvertToDate(data.expirationDate);
             var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
             $("#documentCode").val(data.documentCode);
@@ -281,6 +291,10 @@
                             patternImage: printOption.patternImagePath
                         },
                         options2: {
+                            patternId: printOption.patternId,
+                            patternName: printOption.patternName,
+                            patternImage: printOption.patternImagePath
+
                         },
                         options3: {
                         },
@@ -295,6 +309,10 @@
                             patternImage: screenOption.patternImagePath
                         },
                         options2: {
+                            patternId: screenOption.patternId,
+                            patternName: screenOption.patternName,
+                            patternImage: screenOption.patternImagePath
+
                         },
                         options3: {
                         },
@@ -309,6 +327,10 @@
                             patternImage: sewOption.patternImagePath
                         },
                         options2: {
+                            patternId: sewOption.patternId,
+                            patternName: sewOption.patternName,
+                            patternImage: sewOption.patternImagePath
+
                         },
                         options3: {
                         },
@@ -373,6 +395,20 @@
             //alert(errorThrown);
         }
         var xhr = RPService.IsExistingItemForManager(itemId, success, failure);
+    };
+    var _validation = function (id, callback) {
+        var success = function (result, textStatus, jqXHR) {
+            //RequestedForApproval = 2,
+            var documentStatusId = parseInt(result);
+            if (documentStatusId == 2) {
+                toastr.info(message.info.permissionDinyToSave, 'Infomration');
+            } else {
+                callback();
+            }
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.GetCurrentWorkflowStatusForManager(id, success, failure);
     };
     var _save = function (callback) {
         var allItems = [];
@@ -474,30 +510,34 @@
                 }
             );
         });
-        var document = {
-            id: $("#documentId").val(),
-            //issuedDate: $("#issuedDate").val(),
-            //createdDate: $("#createdDate").val(),
-            expirationDate: $("#expirationDate").val(),
-            //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
-            saleUserId: $("#auto_saleId").val(),
-            customerId: $("#auto_customerId").val(),
-            contactId: $("#auto_contactId").val(),
-            items: allItems,
-            deliveryAddress: $("#deliveryAddress").val(),
-            //deliveryContactId: $("#auto_deliveryContactId").val(),
-            remark: $("#documentRemark").val()
-        };
-        formData.append("document", JSON.stringify(document));
-        //for (var i = 0; i < files.length; i++) {
-        //    formData.append(files[i].name, files[i]);
-        //}
-        var success = function (data, textStatus, jqXHR) {
-            callback();
-        }
-        var failure = function (jqXHR, textStatus, errorThrown) {
-        }
-        var xhr = RPService.UpdateDocument(formData, success, failure);
+        var documentId = $("#documentId").val();
+        if (_validation(documentId, function () {
+            var document = {
+                id: documentId,
+                poNumber: $("#poNumber").val(),
+                //issuedDate: $("#issuedDate").val(),
+                //createdDate: $("#createdDate").val(),
+                expirationDate: $("#expirationDate").val(),
+                //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+                saleUserId: $("#auto_saleId").val(),
+                customerId: $("#auto_customerId").val(),
+                contactId: $("#auto_contactId").val(),
+                items: allItems,
+                deliveryAddress: $("#deliveryAddress").val(),
+                //deliveryContactId: $("#auto_deliveryContactId").val(),
+                remark: $("#documentRemark").val()
+            };
+            formData.append("document", JSON.stringify(document));
+            //for (var i = 0; i < files.length; i++) {
+            //    formData.append(files[i].name, files[i]);
+            //}
+            var success = function (data, textStatus, jqXHR) {
+                callback();
+            }
+            var failure = function (jqXHR, textStatus, errorThrown) {
+            }
+            var xhr = RPService.UpdateDocumentForManager(formData, success, failure);
+        }));
     };
     var _saveWithComments = function (callback) {
         var allItems = [];
@@ -594,59 +634,35 @@
                 }
             );
         });
-        var document = {
-            id: $("#documentId").val(),
-            //issuedDate: $("#issuedDate").val(),
-            //createdDate: $("#createdDate").val(),
-            expirationDate: $("#expirationDate").val(),
-            //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
-            saleUserId: $("#auto_saleId").val(),
-            customerId: $("#auto_customerId").val(),
-            contactId: $("#auto_contactId").val(),
-            items: allItems,
-            deliveryAddress: $("#deliveryAddress").val(),
-            //deliveryContactId: $("#auto_deliveryContactId").val(),
-            remark: $("#documentRemark").val(),
-            comments: $("#comments").val()
-        };
-        formData.append("document", JSON.stringify(document));
-        //for (var i = 0; i < files.length; i++) {
-        //    formData.append(files[i].name, files[i]);
-        //}
-        var success = function (data, textStatus, jqXHR) {
-            callback();
-        }
-        var failure = function (jqXHR, textStatus, errorThrown) {
-        }
-        var xhr = RPService.UpdateDocumentWithComments(formData, success, failure);
-    };
-    var _approve = function (callback) {
-        var id = $("#documentId").val();
-        var success = function (data, textStatus, jqXHR) {
-            callback();
-        }
-
-        var failure = function (jqXHR, textStatus, errorThrown) {
-        }
-        var xhr = RPService.ApprovedRequest(id,success, failure);
-    };
-    var _rejectToSale = function (callback) {
-        var id = $("#documentId").val();
-        var success = function (data, textStatus, jqXHR) {
-            callback();
-        }
-        var failure = function (jqXHR, textStatus, errorThrown) {
-        }
-        var xhr = RPService.RejectedRequestToSale(id,success, failure);
-    };
-    var _rejectToBackOffice = function (callback) {
-        var id = $("#documentId").val();
-        var success = function (data, textStatus, jqXHR) {
-            callback();
-        }
-        var failure = function (jqXHR, textStatus, errorThrown) {
-        }
-        var xhr = RPService.RejectedRequestToBackOffice(id, success, failure);
+        var documentId = $("#documentId").val();
+        _validation(documentId, function () {
+            var document = {
+                id: documentId,
+                poNumber: $("#poNumber").val(),
+                //issuedDate: $("#issuedDate").val(),
+                //createdDate: $("#createdDate").val(),
+                expirationDate: $("#expirationDate").val(),
+                //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+                saleUserId: $("#auto_saleId").val(),
+                customerId: $("#auto_customerId").val(),
+                contactId: $("#auto_contactId").val(),
+                items: allItems,
+                deliveryAddress: $("#deliveryAddress").val(),
+                //deliveryContactId: $("#auto_deliveryContactId").val(),
+                remark: $("#documentRemark").val(),
+                comments: $("#comments").val()
+            };
+            formData.append("document", JSON.stringify(document));
+            //for (var i = 0; i < files.length; i++) {
+            //    formData.append(files[i].name, files[i]);
+            //}
+            var success = function (data, textStatus, jqXHR) {
+                callback();
+            }
+            var failure = function (jqXHR, textStatus, errorThrown) {
+            }
+            var xhr = RPService.UpdateDocumentWithCommentsForManager(formData, success, failure);
+        });
     };
     return {
         init: function () {
@@ -665,7 +681,7 @@
                 $("#icon_" + itemId).html(html);
             } else {
                 $("#" + itemId).show();
-                //var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>';var html = '<div class="checkbox i-checks"><label> <input type="checkbox" value="' + itemId +'" > <i></i></label></div>';
+                var html = '<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>'; var html = '<div class="checkbox i-checks"><label> <input type="checkbox" value="' + itemId + '" > <i></i></label></div>';
                 $("#icon_" + itemId).html(html);
             }
             $('.i-checks').iCheck({
@@ -695,14 +711,5 @@
         SaveDocumentWithComments: function (callback) {
             _saveWithComments(callback);
         },
-        Approve: function (callback) {
-            _approve(callback);
-        },
-        RejectToSale: function (callback) {
-            _rejectToSale(callback);
-        },
-        RejectToBackOffice: function (callback) {
-            _rejectToBackOffice(callback);
-        }
     }
 };

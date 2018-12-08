@@ -83,7 +83,16 @@ namespace RP.Website.Areas.Manager.Controllers
             return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult RejectedRequest(string id)
+        public ActionResult RejectedRequestToSale(string id)
+        {
+            var result = false;
+            var document = GenericFactory.Business.GetDocument(id);
+            document.DocumentStatusId = (int)WorkflowStatus.RequestForMoreInfoForSale;
+            GenericFactory.Business.UpdateDocumentStatus(document);
+            return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult RejectedRequestToBackOffice(string id)
         {
             var result = false;
             var document = GenericFactory.Business.GetDocument(id);

@@ -9,10 +9,10 @@
             <h2>สร้างใบขอราคา</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="@Url.Action("Index", "Document",new { area = "Backoffice" })">หน้าแรก</a>
+                    <a href="@Url.Action("Index", "Document",new { area = "Manager" })">หน้าแรก</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Document",new { area = "Backoffice" })">รายการใบขอราคา</a>
+                    <a href="@Url.Action("Index", "Document",new { area = "Manager" })">รายการใบขอราคา</a>
                 </li>
                 <li class="active">
                     <strong>สร้างใบขอราคา</strong>
@@ -703,24 +703,24 @@
                 }
             });
             $(".btnSave").click(function () {
-                documentCreatorForBackoffice.SaveDocument(function () {
+                documentCreatorForManager.SaveDocument(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",
                         icon: "success"
                     }).then((value) => {
-                        utilities.RedirectToAction("/Backoffice/Document/Index");
+                        utilities.RedirectToAction("/Manager/Document/Index");
                     });
                 });
             });
             $(".btnSaveDraft").click(function () {
-                documentCreatorForBackoffice.SaveDraftDocument(function () {
+                documentCreatorForManager.SaveDraftDocument(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",
                         icon: "success"
                     }).then((value) => {
-                        utilities.RedirectToAction("/Backoffice/Document/Index");
+                        utilities.RedirectToAction("/Manager/Document/Index");
                     });
                 });
             });
@@ -736,15 +736,15 @@
             $("#btnAddNewItem").click(function () {
                 $("#addProductModal").modal("hide");
                 productCreator.AddNewItem();
-                documentCreatorForBackoffice.RenderProducts();
+                documentCreatorForManager.RenderProducts();
             });
             $("#materials").change(function () {
                 productCreator.MaterialStockCheck();
             });
             $("#priceValidityDays").change(function () {
-                documentCreatorForBackoffice.ExpirationCalculation();
+                documentCreatorForManager.ExpirationCalculation();
             });
-            documentCreatorForBackoffice.init();
+            documentCreatorForManager.init();
         });
     </script>
 }
