@@ -19,6 +19,7 @@ namespace RP.Model
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.Documents = new HashSet<Document>();
         }
     
         public string Id { get; set; }
@@ -38,6 +39,7 @@ namespace RP.Model
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
     }
     
 }

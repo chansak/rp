@@ -29,7 +29,6 @@ namespace RP.DataAccess
         public Nullable<System.DateTime> ExpectedDeliveryDate { get; set; }
         public Nullable<System.Guid> CustomerId { get; set; }
         public Nullable<System.Guid> ContactId { get; set; }
-        public Nullable<System.Guid> UserId { get; set; }
         public Nullable<int> DocumentStatusId { get; set; }
         public bool IsDelete { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
@@ -43,11 +42,12 @@ namespace RP.DataAccess
         public string RefPriceAndRemark { get; set; }
         public string PoNumber { get; set; }
         public Nullable<System.Guid> CustomerBranchId { get; set; }
+        public string UserId { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual CustomerBranch CustomerBranch { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentAttachment> DocumentAttachments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -50,7 +50,7 @@ namespace RP.Website.Areas.Sale.Controllers
                     CustomerType = d.Customer.CustomerType.CustomerTypeName,
                     CustomerName = d.Customer.Name,
                     DocumentCode = d.FileNumber,
-                    SaleUserName = d.User.DisplayName,
+                    SaleUserName = d.AspNetUser.DisplayName,
                     WorkflowStatus = (int)d.DocumentStatusId,
                     WorkflowStatusName = statusName,
                     BiddingStatus = (int)d.BiddingStatusId,

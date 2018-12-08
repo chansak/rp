@@ -467,6 +467,7 @@
     <EntitySetMapping Name="Documents">
       <EntityTypeMapping TypeName="RP.Model.Document">
         <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="CustomerBranchId" ColumnName="CustomerBranchId" />
           <ScalarProperty Name="PoNumber" ColumnName="PoNumber" />
           <ScalarProperty Name="RefPriceAndRemark" ColumnName="RefPriceAndRemark" />
@@ -480,7 +481,6 @@
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
           <ScalarProperty Name="DocumentStatusId" ColumnName="DocumentStatusId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ContactId" ColumnName="ContactId" />
           <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="ExpectedDeliveryDate" ColumnName="ExpectedDeliveryDate" />

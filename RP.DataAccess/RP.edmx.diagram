@@ -72,15 +72,15 @@
         <EntityTypeShape EntityType="RP.Model.Region" Width="1.5" PointX="0.75" PointY="0.875" />
         <AssociationConnector Association="RP.Model.FK_CustomerBranch_Customer" />
         <AssociationConnector Association="RP.Model.FK_CustomerBranch_Region" />
-        <EntityTypeShape EntityType="RP.Model.Document" Width="1.5" PointX="15" PointY="18.25" />
+        <EntityTypeShape EntityType="RP.Model.Document" Width="1.5" PointX="17.25" PointY="10.5" />
+        <AssociationConnector Association="RP.Model.FK_Document_AspNetUsers" />
         <AssociationConnector Association="RP.Model.FK_Document_Customer" />
         <AssociationConnector Association="RP.Model.FK_Document_CustomerBranch" />
         <AssociationConnector Association="RP.Model.FK_Document_CustomerContact" />
-        <AssociationConnector Association="RP.Model.FK_Document_User" />
         <AssociationConnector Association="RP.Model.FK_DocumentAttachment_Document" />
         <AssociationConnector Association="RP.Model.FK_DocumentDelivery_Document" />
         <AssociationConnector Association="RP.Model.FK_DocumentProductItems_Document" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -546,6 +546,9 @@
         SaveDocument: function (callback) {
             _save(callback);
         },
+        SaveDraftDocument: function (callback) {
+            _saveDraft(callback);
+        },
         showItemDetail: function (itemId) {
             var isVisible = $("#" + itemId).is(":visible");
             if (isVisible) {

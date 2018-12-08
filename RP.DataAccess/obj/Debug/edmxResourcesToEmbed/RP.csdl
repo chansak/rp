@@ -487,6 +487,10 @@
       <End Role="CustomerBranch" EntitySet="CustomerBranches" />
     </AssociationSet>
     <EntitySet Name="Documents" EntityType="RP.Model.Document" />
+    <AssociationSet Name="FK_Document_AspNetUsers" Association="RP.Model.FK_Document_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
     <AssociationSet Name="FK_Document_Customer" Association="RP.Model.FK_Document_Customer">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Document" EntitySet="Documents" />
@@ -497,10 +501,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Document_CustomerContact" Association="RP.Model.FK_Document_CustomerContact">
       <End Role="CustomerContact" EntitySet="CustomerContacts" />
-      <End Role="Document" EntitySet="Documents" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Document_User" Association="RP.Model.FK_Document_User">
-      <End Role="User" EntitySet="Users" />
       <End Role="Document" EntitySet="Documents" />
     </AssociationSet>
     <AssociationSet Name="FK_DocumentAttachment_Document" Association="RP.Model.FK_DocumentAttachment_Document">
@@ -565,6 +565,7 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="RP.Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
     <NavigationProperty Name="AspNetRoles" Relationship="RP.Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
     <Property Name="DisplayName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="AspNetUser" ToRole="Document" />
   </EntityType>
   <EntityType Name="Color">
     <Key>
@@ -926,7 +927,6 @@
     <Property Name="DepartmentId" Type="Guid" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="RP.Model.FK_User_Department" FromRole="User" ToRole="Department" />
     <NavigationProperty Name="Role" Relationship="RP.Model.FK_User_Role" FromRole="User" ToRole="Role" />
-    <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_User" FromRole="User" ToRole="Document" />
   </EntityType>
   <EntityType Name="Warehouse">
     <Key>
@@ -1300,7 +1300,6 @@
     <Property Name="ExpectedDeliveryDate" Type="DateTime" Precision="3" />
     <Property Name="CustomerId" Type="Guid" />
     <Property Name="ContactId" Type="Guid" />
-    <Property Name="UserId" Type="Guid" />
     <Property Name="DocumentStatusId" Type="Int32" />
     <Property Name="IsDelete" Type="Boolean" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -1314,14 +1313,27 @@
     <Property Name="RefPriceAndRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PoNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CustomerBranchId" Type="Guid" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="Document" ToRole="AspNetUser" />
     <NavigationProperty Name="Customer" Relationship="RP.Model.FK_Document_Customer" FromRole="Document" ToRole="Customer" />
     <NavigationProperty Name="CustomerBranch" Relationship="RP.Model.FK_Document_CustomerBranch" FromRole="Document" ToRole="CustomerBranch" />
     <NavigationProperty Name="CustomerContact" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="Document" ToRole="CustomerContact" />
-    <NavigationProperty Name="User" Relationship="RP.Model.FK_Document_User" FromRole="Document" ToRole="User" />
     <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
     <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
   </EntityType>
+  <Association Name="FK_Document_AspNetUsers">
+    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Document_Customer">
     <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
     <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
@@ -1355,18 +1367,6 @@
       </Principal>
       <Dependent Role="Document">
         <PropertyRef Name="ContactId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Document_User">
-    <End Type="RP.Model.User" Role="User" Multiplicity="0..1" />
-    <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Document">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

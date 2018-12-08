@@ -309,6 +309,7 @@
                     </div>
                     <div class="ibox-content">
                         <button type="button" class="btn btn-primary btnSave">บันทึก</button>
+                        <button type="button" class="btn btn-primary btnSaveDraft">บันทึกแบบร่าง</button>
                         <button type="button" class="btn btn-white">ยกเลิก</button>
                     </div>
                     <div class="ibox-footer">
@@ -701,8 +702,19 @@
                         }
                 }
             });
-            $('.btnSave').click(function () {
+            $(".btnSave").click(function () {
                 documentCreator.SaveDocument(function () {
+                    swal({
+                        title: "บันทึกเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("/Sale/Document/Index");
+                    });
+                });
+            });
+            $(".btnSaveDraft").click(function () {
+                documentCreator.SaveDraftDocument(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",

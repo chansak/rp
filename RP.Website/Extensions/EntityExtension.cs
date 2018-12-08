@@ -27,7 +27,7 @@ namespace RP.Website
             //document.IssueDate = viewModel.IssuedDate;
             document.ExpiryDate = viewModel.ExpirationDate;
             //document.ExpectedDeliveryDate = viewModel.ExpectedDeliveryDate;
-            document.UserId = new System.Guid(viewModel.SaleUserId);
+            document.UserId = viewModel.SaleUserId;
             document.CustomerId = new System.Guid(viewModel.CustomerId);
             document.ContactId = new System.Guid(viewModel.ContactId);
             document.PoNumber = viewModel.PoNumber;

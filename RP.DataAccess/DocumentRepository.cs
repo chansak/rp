@@ -20,7 +20,7 @@ namespace RP.DataAccess
             return ObjectSet.
                 Include(i => i.Customer).
                 Include(i => i.Customer.CustomerType).
-                Include(i => i.User)
+                Include(i => i.AspNetUser)
                 .AsQueryable();
         }
         public override Model.Document GetById(string id)
