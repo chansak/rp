@@ -15,11 +15,14 @@ namespace RP.Business
                 return uow.DocumentRepository.All().ToList();
             }
         }
-        public IList<Document> GetDocumentsListBySearch(string searchBy, string keyword)
+        public IList<Document> GetDocumentsListBySearch(string searchBy, string keyword,string userId =null)
         {
             using (var uow = UnitOfWork.Create())
             {
                 var documents = uow.DocumentRepository.All().AsEnumerable();
+                if (userId != null) {
+                    documents = documents.Where(i =>  i.UserId.ToLower() == userId.ToLower());
+                }
                 if (!string.IsNullOrWhiteSpace(searchBy) && !string.IsNullOrWhiteSpace(keyword))
                 {
                     switch (searchBy)

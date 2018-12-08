@@ -35,7 +35,7 @@ namespace RP.Website.Areas.Sale.Controllers
                 keyword = keyword.Trim();
             }
 
-            var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword)
+            var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword,this.CurrentUser.Id)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToList();
             int totalCount = documents.Count;

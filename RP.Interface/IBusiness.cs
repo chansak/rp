@@ -17,7 +17,7 @@ namespace RP.Interfaces
 
         #region Documents
         IList<Document> GetDocumentsList();
-        IList<Document> GetDocumentsListBySearch(string searchBy, string keyword);
+        IList<Document> GetDocumentsListBySearch(string searchBy, string keyword,string userId=null);
         Document GetDocument(string id);
         void CreateDocument(Document document, string customerCode);
         void UpdateDocument(Document document);
