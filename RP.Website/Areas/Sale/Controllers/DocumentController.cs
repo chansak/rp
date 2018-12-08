@@ -35,9 +35,13 @@ namespace RP.Website.Areas.Sale.Controllers
                 keyword = keyword.Trim();
             }
 
-            var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword,this.CurrentUser.Id)
+            var items = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword,this.CurrentUser.Id)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToList();
+            var allowedStatus = new List<int>();
+            allowedStatus.Add((int)WorkflowStatus.Draft);
+            allowedStatus.Add((int)WorkflowStatus.RequestForMoreInfoForSale);
+            var documents = items.Where(i => allowedStatus.Contains(i.DocumentStatusId.Value)).ToList();
             int totalCount = documents.Count;
             var result = new List<DocumentListItemViewModel>();
             foreach (var d in documents)
