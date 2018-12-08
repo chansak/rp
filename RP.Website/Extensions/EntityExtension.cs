@@ -31,7 +31,7 @@ namespace RP.Website
             document.CustomerId = new System.Guid(viewModel.CustomerId);
             document.ContactId = new System.Guid(viewModel.ContactId);
             document.PoNumber = viewModel.PoNumber;
-            document.CustomerBranchId = new System.Guid(viewModel.CustomerBranchId);
+            //document.CustomerBranchId = new System.Guid(viewModel.CustomerBranchId);
             foreach (var i in viewModel.Items)
             {
                 var itemId = Guid.NewGuid();
@@ -345,12 +345,11 @@ namespace RP.Website
             contact.Fax = entity.Fax;
             return contact;
         }
-        public static SaleUserViewModel ToViewModel(this User entity)
+        public static SaleUserViewModel ToViewModel(this AspNetUser entity)
         {
             var user = new SaleUserViewModel();
             user.Id = entity.Id.ToString();
             user.Name = entity.DisplayName;
-            user.Branch = entity.Department.DepartmentName;
             return user;
         }
 

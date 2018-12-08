@@ -15,9 +15,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace RP.Website.Areas.Sale.Controllers
+namespace RP.Website.Areas.Backoffice.Controllers
 {
-    [LoggedOrAuthorized(Roles = Roles.Sale)]
+    [LoggedOrAuthorized(Roles = Roles.Backoffice)]
     public class DocumentController : BaseController
     {
         public const string PRINT_NEWPATTERN = "printFile";
@@ -35,7 +35,7 @@ namespace RP.Website.Areas.Sale.Controllers
                 keyword = keyword.Trim();
             }
 
-            var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword,this.CurrentUser.Id)
+            var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToList();
             int totalCount = documents.Count;
@@ -286,68 +286,6 @@ namespace RP.Website.Areas.Sale.Controllers
                 var json = formCollection["document"].ToString().Replace(@"\", "");
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
-                document.DocumentStatusId = (int)WorkflowStatus.RequestForPrice;
-                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
-                if (document.DocumentProductItems.Count > 0)
-                {
-                    foreach (var item in document.DocumentProductItems)
-                    {
-                        if (item.ProductItemPrintOptionals.Count > 0)
-                        {
-                            var printOption = item.ProductItemPrintOptionals.FirstOrDefault();
-                            var status = (ItemOptionStatus)printOption.OptionalStatusId;
-                            if (status == ItemOptionStatus.NewPattern)
-                            {
-                                var newPatternId = Guid.NewGuid();
-                                printOption.PatternId = newPatternId;
-                                HttpPostedFileBase file = Request.Files[PRINT_NEWPATTERN];
-                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
-                            }
-                        }
-                        if (item.ProductItemScreenOptionals.Count > 0)
-                        {
-                            var screenOption = item.ProductItemScreenOptionals.FirstOrDefault();
-                            var status = (ItemOptionStatus)screenOption.OptionalStatusId;
-                            if (status == ItemOptionStatus.NewPattern)
-                            {
-                                var newPatternId = Guid.NewGuid();
-                                screenOption.PatternId = newPatternId;
-                                HttpPostedFileBase file = Request.Files[SCREEN_NEWPATTERN];
-                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
-                            }
-                        }
-                        if (item.ProductItemSewOptionals.Count > 0)
-                        {
-                            var sewOption = item.ProductItemSewOptionals.FirstOrDefault();
-                            var status = (ItemOptionStatus)sewOption.OptionalStatusId;
-                            if (status == ItemOptionStatus.NewPattern)
-                            {
-                                var newPatternId = Guid.NewGuid();
-                                sewOption.PatternId = newPatternId;
-                                HttpPostedFileBase file = Request.Files[SEW_NEWPATTERN];
-                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
-                            }
-                        }
-                    }
-                }
-                GenericFactory.Business.UpdateDocument(document);
-
-                return Json("");
-            }
-            catch (Exception ex)
-            {
-                var msg = ex.Message;
-            }
-            return Json(null);
-        }
-        public JsonResult UpdateDraftDocumentWithComments(FormCollection formCollection)
-        {
-            try
-            {
-                var json = formCollection["document"].ToString().Replace(@"\", "");
-                var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-                var document = model.ToEntity();
-                document.DocumentStatusId = (int)WorkflowStatus.Draft;
                 var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
                 if (document.DocumentProductItems.Count > 0)
                 {

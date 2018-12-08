@@ -47,6 +47,11 @@ namespace RP.Website
                       "~/Areas/Sale/Script/productCreator.js",
                       "~/Areas/Sale/Script/documentEditor.js",
                       "~/Areas/Sale/Script/productEditor.js",
+                        "~/Areas/Backoffice/Script/documentList.js",
+                      "~/Areas/Backoffice/Script/documentCreator.js",
+                      "~/Areas/Backoffice/Script/productCreator.js",
+                      "~/Areas/Backoffice/Script/documentEditor.js",
+                      "~/Areas/Backoffice/Script/productEditor.js",
                       "~/Areas/Manager/Script/approvalDocumentList.js",
                       "~/Areas/Manager/Script/documentViewer.js"));
 

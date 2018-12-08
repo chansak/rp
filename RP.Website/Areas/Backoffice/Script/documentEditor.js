@@ -1,4 +1,4 @@
-﻿var documentEditor = new function () {
+﻿var documentEditorForBackoffice = new function () {
     var message = {
         info: {
             permissionDinyToSave: "รายการนี้ไม่สามารถแก้ไขได้เนื่องจากอยู่ขั้นตอนการขออนุมัติ",
@@ -664,131 +664,6 @@
             var xhr = RPService.UpdateDocumentWithComments(formData, success, failure);
         });
     };
-    var _saveDraftWithComments = function (callback) {
-        var allItems = [];
-        var formData = new FormData();
-        $(items).each(function (index, item) {
-            var printOptions = item.print;
-            var screenOptions = item.screen;
-            var sewOptions = item.sew;
-
-            var printData = {};
-            if (printOptions != null) {
-                if (printOptions.selectedOption == 1) {
-                    printData = {
-                        selectedOption: printOptions.selectedOption,
-                        patternId: printOptions.options1.patternId || 0,
-                        colorId: 0
-                    };
-                } else if (printOptions.selectedOption == 2) {
-                    printData = {
-                        selectedOption: printOptions.selectedOption,
-                        patternId: 0,
-                        colorId: printOptions.options2.colorId || 0
-                    };
-                    formData.append("printFile", printOptions.options2.file);
-                } else {
-                    printData = {
-                        selectedOption: printOptions.selectedOption,
-                        patternId: 0,
-                        colorId: 0
-                    };
-                }
-            }
-            var screenData = {};
-            if (screenOptions != null) {
-                if (screenOptions.selectedOption == 1) {
-                    screenData = {
-                        selectedOption: screenOptions.selectedOption,
-                        patternId: screenOptions.options1.patternId || 0,
-                        colorId: 0,
-                        positionId: 0,
-                    }
-                } else if (screenOptions.selectedOption == 2) {
-                    screenData = {
-                        selectedOption: screenOptions.selectedOption,
-                        patternId: 0,
-                        colorId: screenOptions.options2.colorId || 0,
-                        positionId: screenOptions.options2.positionId || 0,
-                    };
-                    formData.append("screenFile", screenOptions.options2.file);
-                } else {
-                    screenData = {
-                        selectedOption: screenOptions.selectedOption,
-                        patternId: 0,
-                        colorId: 0,
-                        positionId: 0,
-                    };
-                }
-            }
-            var sewData = {};
-            if (sewOptions != null) {
-                if (sewOptions.selectedOption == 1) {
-                    sewData = {
-                        selectedOption: sewOptions.selectedOption,
-                        patternId: sewOptions.options1.patternId || 0,
-                        positionId: 0,
-                        remark: ''
-                    };
-                } else if (sewOptions.selectedOption == 2) {
-                    sewData = {
-                        selectedOption: sewOptions.selectedOption,
-                        patternId: 0,
-                        positionId: sewOptions.options2.positionId || 0,
-                        remark: sewOptions.options2.remark
-                    };
-                    formData.append("sewFile", sewOptions.options2.file);
-                } else {
-                    sewData = {
-                        selectedOption: sewOptions.selectedOption,
-                        patternId: 0,
-                        positionId: 0,
-                        remark: ''
-                    };
-                }
-            }
-            allItems.push(
-                {
-                    productId: item.productId,
-                    productUnitId: item.productUnitId,
-                    amount: item.amount,
-                    pricePerUnit: item.pricePerUnit || 0,
-                    printOption: printData,
-                    screenOption: screenData,
-                    sewOption: sewData
-                }
-            );
-        });
-        var documentId = $("#documentId").val();
-        _validation(documentId, function () {
-            var document = {
-                id: documentId,
-                poNumber: $("#poNumber").val(),
-                //issuedDate: $("#issuedDate").val(),
-                //createdDate: $("#createdDate").val(),
-                expirationDate: $("#expirationDate").val(),
-                //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
-                saleUserId: $("#auto_saleId").val(),
-                customerId: $("#auto_customerId").val(),
-                contactId: $("#auto_contactId").val(),
-                items: allItems,
-                deliveryAddress: $("#deliveryAddress").val(),
-                //deliveryContactId: $("#auto_deliveryContactId").val(),
-                remark: $("#documentRemark").val(),
-                comments: $("#comments").val()
-            };
-            formData.append("document", JSON.stringify(document));
-            //for (var i = 0; i < files.length; i++) {
-            //    formData.append(files[i].name, files[i]);
-            //}
-            var success = function (data, textStatus, jqXHR) {
-                callback();
-            }
-            var failure = function (jqXHR, textStatus, errorThrown) {
-            }
-            var xhr = RPService.UpdateDraftDocumentWithComments(formData, success, failure);
-        });
-    };
     return {
         init: function () {
             var id = $("#documentId").val();
@@ -835,9 +710,6 @@
         },
         SaveDocumentWithComments: function (callback) {
             _saveWithComments(callback);
-        },
-        SaveDraftDocument: function (callback) {
-            _saveDraftWithComments(callback);
         },
     }
 };

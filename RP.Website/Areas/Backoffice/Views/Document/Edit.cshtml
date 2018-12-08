@@ -308,7 +308,6 @@
                     <div class="ibox-content">
                         @*<button type="button" class="btn btn-primary btnSave">บันทึก</button>*@
                         <button type="button" class="btn btn-primary  btn-xs btnShowHistory">บันทึกและเพิ่มประวัติ</button>
-                        <button type="button" class="btn btn-primary btn-xs btnSaveDraft">บันทึกแบบร่าง</button>
                         <button type="button" class="btn btn-white  btn-xs">ยกเลิก</button>
                     </div>
                     <div class="ibox-footer">
@@ -664,23 +663,28 @@
                 });
             });
             $('.btnShowHistory').click(function () {
+                //swal({
+                //    title: "ยืนยันการบันทึกการแก้ไขและเพิ่มประวัติ?",
+                //    text: "",
+                //    icon: "info",
+                //    buttons: true,
+                //    dangerMode: true,
+                //    buttons: ["ปิด", "ตกลง"]
+                //}).then((isConfirm) => {
+                //    if (isConfirm) {
+                //        swal.close();
+                //        $("#myModal").modal("show");
+                //    } else {
+                //        swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                //            utilities.RedirectToAction("../");
+                //        });
+                //    }
+                //});
                 $("#myModal").modal("show");
             });
             $('.btnSaveHistory').click(function () {
                 $('#myModal').modal('toggle');
                 documentEditor.SaveDocumentWithComments(function () {
-                    swal({
-                        title: "บันทึกเรียบร้อย!",
-                        text: "กดปุ่ม OK เพื่อปิด!",
-                        icon: "success"
-                    }).then((value) => {
-                        utilities.RedirectToAction("../");
-                    });
-                });
-
-            });
-            $('.btnSaveDraft').click(function () {
-                documentEditor.SaveDraftDocument(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",

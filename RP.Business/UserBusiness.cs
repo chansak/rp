@@ -19,11 +19,12 @@ namespace RP.Business
             }
 
         }
-        public User GetSaleUserById(string id)
+        public AspNetUser GetSaleUserById(string id)
         {
             using (var uow = UnitOfWork.Create())
             {
-                return uow.UserRepository.GetById(id);
+                //return uow.UserRepository.GetById(id);
+                return uow.AspNetUserRepository.GetById(id);
             }
         }
         public bool AddNewUser(ApplicationUser user, string password, string role)

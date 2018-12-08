@@ -27,11 +27,11 @@ namespace RP.Website.Controllers
                 var roles = user.AspNetRoles.ToList();
                 if (roles.Where(i => i.Id == role.Id).Count() > 0)
                 {
-                    data.AddRange(users.Select(u => new SaleUserViewModel
+                    data.Add(new SaleUserViewModel
                     {
-                        Id = u.Id.ToString(),
-                        Name = u.DisplayName,
-                    }));
+                        Id = user.Id.ToString(),
+                        Name = user.DisplayName,
+                    });
                 }
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);

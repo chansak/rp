@@ -327,10 +327,31 @@
         });
         return XHR;
     },
+    UpdateDraftDocumentWithComments: function (formData, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Sale/document/UpdateDraftDocumentWithComments",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
     GetDocumentDetail: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/document/GetDocumentDetail",
+            url: "/Sale/document/GetDocumentDetail",
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -410,7 +431,27 @@
     GetDocumentsListBySearch: function (searchBy, keyword, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/document/Search",
+            url: "/Sale/document/Search",
+            data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    GetDocumentsListBySearchForBackoffice: function (searchBy, keyword, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/Search",
             data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -490,7 +531,27 @@
     RequestApproval: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/Document/RequestApprove",
+            url: "/Sale/Document/RequestApprove",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    RequestApprovalForBackoffice: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/Document/RequestApprove",
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -570,7 +631,27 @@
     GotPO: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/Document/GotPO",
+            url: "/Sale/Document/GotPO",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    GotPOForBackoffice: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/Document/GotPO",
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -590,7 +671,27 @@
     GetCurrentWorkflowStatus : function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/Document/GetCurrentWorkflowStatus",
+            url: "/Sale/Document/GetCurrentWorkflowStatus",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    GetCurrentWorkflowStatusForBackoffice: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/Document/GetCurrentWorkflowStatus",
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
