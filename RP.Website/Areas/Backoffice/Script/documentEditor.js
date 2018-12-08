@@ -357,7 +357,7 @@
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetDocumentDetail(id, success, failure);
+        var xhr = RPService.GetDocumentDetailForBackoffice(id, success, failure);
     };
     var _updateItem = function (item) {
         $(items).each(function (index, value) {
@@ -394,7 +394,7 @@
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.IsExistingItem(itemId, success, failure);
+        var xhr = RPService.IsExistingItemForBackoffice(itemId, success, failure);
     };
     var _validation = function (id, callback) {
         var success = function (result, textStatus, jqXHR) {
@@ -408,7 +408,7 @@
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
-        var xhr = RPService.GetCurrentWorkflowStatus(id, success, failure);
+        var xhr = RPService.GetCurrentWorkflowStatusForBackoffice(id, success, failure);
     };
     var _save = function (callback) {
         var allItems = [];
@@ -536,7 +536,7 @@
             }
             var failure = function (jqXHR, textStatus, errorThrown) {
             }
-            var xhr = RPService.UpdateDocument(formData, success, failure);
+            var xhr = RPService.UpdateDocumentForBackoffice(formData, success, failure);
         }));
     };
     var _saveWithComments = function (callback) {
@@ -661,7 +661,7 @@
             }
             var failure = function (jqXHR, textStatus, errorThrown) {
             }
-            var xhr = RPService.UpdateDocumentWithComments(formData, success, failure);
+            var xhr = RPService.UpdateDocumentWithCommentsForBackoffice(formData, success, failure);
         });
     };
     return {

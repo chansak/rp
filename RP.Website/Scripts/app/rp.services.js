@@ -264,10 +264,52 @@
         });
         return XHR;
     },
+    CreateDocumentForBackoffice: function (formData, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/CreateDocument",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
     CreateDraftDocument: function (formData, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
             url: "/Sale/document/CreateDraftDocument",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    CreateDraftDocumentForBackoffice: function (formData, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/CreateDraftDocument",
             data: formData,
             cache: false,
             contentType: false,
@@ -306,10 +348,52 @@
         });
         return XHR;
     },
+    UpdateDocumentForBackoffice: function (formData, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/UpdateDocument",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
     UpdateDocumentWithComments: function (formData, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
             url: "/Sale/document/UpdateDocumentWithComments",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    UpdateDocumentWithCommentsForBackoffice: function (formData, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/UpdateDocumentWithComments",
             data: formData,
             cache: false,
             contentType: false,
@@ -352,6 +436,26 @@
         var XHR = $.ajax({
             type: "POST",
             url: "/Sale/document/GetDocumentDetail",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    GetDocumentDetailForBackoffice: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/GetDocumentDetail",
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -512,6 +616,26 @@
         var XHR = $.ajax({
             type: "POST",
             url: "/Sale/document/IsExistingItem",
+            data: JSON.stringify({ id: itemId }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    IsExistingItemForBackoffice: function (itemId, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/IsExistingItem",
             data: JSON.stringify({ id: itemId }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",

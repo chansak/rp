@@ -243,7 +243,7 @@
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
-        var xhr = RPService.CreateDocument(formData, success, failure);
+        var xhr = RPService.CreateDocumentForBackoffice(formData, success, failure);
     };
     var _saveDraft = function (callback) {
         var allItems = [];
@@ -364,7 +364,7 @@
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
-        var xhr = RPService.CreateDraftDocument(formData, success, failure);
+        var xhr = RPService.CreateDraftDocumentForBackoffice(formData, success, failure);
     };
     var _renderPreviewImage = function () {
         $(items).each(function (index, item) {

@@ -703,24 +703,24 @@
                 }
             });
             $(".btnSave").click(function () {
-                documentCreator.SaveDocument(function () {
+                documentCreatorForBackoffice.SaveDocument(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",
                         icon: "success"
                     }).then((value) => {
-                        utilities.RedirectToAction("/Sale/Document/Index");
+                        utilities.RedirectToAction("/Backoffice/Document/Index");
                     });
                 });
             });
             $(".btnSaveDraft").click(function () {
-                documentCreator.SaveDraftDocument(function () {
+                documentCreatorForBackoffice.SaveDraftDocument(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",
                         icon: "success"
                     }).then((value) => {
-                        utilities.RedirectToAction("/Sale/Document/Index");
+                        utilities.RedirectToAction("/Backoffice/Document/Index");
                     });
                 });
             });
@@ -736,15 +736,15 @@
             $("#btnAddNewItem").click(function () {
                 $("#addProductModal").modal("hide");
                 productCreator.AddNewItem();
-                documentCreator.RenderProducts();
+                documentCreatorForBackoffice.RenderProducts();
             });
             $("#materials").change(function () {
                 productCreator.MaterialStockCheck();
             });
             $("#priceValidityDays").change(function () {
-                documentCreator.ExpirationCalculation();
+                documentCreatorForBackoffice.ExpirationCalculation();
             });
-            documentCreator.init();
+            documentCreatorForBackoffice.init();
         });
     </script>
 }

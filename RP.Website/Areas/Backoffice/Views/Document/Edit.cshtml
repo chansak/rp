@@ -9,10 +9,10 @@
             <h2>แก้ไขใบขอราคา</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="@Url.Action("Index", "Document",new { area = "Sale" })">หน้าแรก</a>
+                    <a href="@Url.Action("Index", "Document",new { area = "Backoffice" })">หน้าแรก</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Document",new { area = "Sale" })">รายการใบขอราคา</a>
+                    <a href="@Url.Action("Index", "Document",new { area = "Backoffice" })">รายการใบขอราคา</a>
                 </li>
                 <li class="active">
                     <strong>แก้ไขใบขอราคา</strong>
@@ -652,7 +652,7 @@
             });
 
             $('.btnSave').click(function () {
-                documentEditor.SaveDocument(function () {
+                documentEditorForBackoffice.SaveDocument(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",
@@ -684,7 +684,7 @@
             });
             $('.btnSaveHistory').click(function () {
                 $('#myModal').modal('toggle');
-                documentEditor.SaveDocumentWithComments(function () {
+                documentEditorForBackoffice.SaveDocumentWithComments(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",
@@ -708,7 +708,7 @@
                 } else {
                     $("#editProductModal").modal({ backdrop: "static" });
                     var selectedItemId = $(selectedProductItems[0]).val();
-                    var selectedItem = documentEditor.getItemsById(selectedItemId);
+                    var selectedItem = documentEditorForBackoffice.getItemsById(selectedItemId);
                     productEditor.copy(cid, selectedItem);
                 }
             });
@@ -724,7 +724,7 @@
                     return;
                 } else {
                     var selectedItemId = $(selectedProductItems[0]).val();
-                    documentEditor.OpenEditor(customerId, selectedItemId);
+                    documentEditorForBackoffice.OpenEditor(customerId, selectedItemId);
                 }
             });
             $("#btnAddNew").unbind("click");
@@ -748,9 +748,9 @@
                     $("#editProductModal").modal("hide");
                     productEditor.CopyItem(selectedItem.itemId);
                 }
-                documentEditor.RenderProducts();
+                documentEditorForBackoffice.RenderProducts();
             });
-            documentEditor.init();
+            documentEditorForBackoffice.init();
         });
     </script>
 }

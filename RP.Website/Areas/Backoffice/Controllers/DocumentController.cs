@@ -226,6 +226,7 @@ namespace RP.Website.Areas.Backoffice.Controllers
                 var json = formCollection["document"].ToString().Replace(@"\", "");
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
+                document.DocumentStatusId = (int)WorkflowStatus.RequestForPrice;
                 var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
                 if (document.DocumentProductItems.Count > 0)
                 {
@@ -286,6 +287,7 @@ namespace RP.Website.Areas.Backoffice.Controllers
                 var json = formCollection["document"].ToString().Replace(@"\", "");
                 var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
+                document.DocumentStatusId = (int)WorkflowStatus.RequestForPrice;
                 var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
                 if (document.DocumentProductItems.Count > 0)
                 {
