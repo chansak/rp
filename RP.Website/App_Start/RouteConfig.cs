@@ -12,11 +12,17 @@ namespace RP.Website
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            #region Routing
             routes.MapRoute("mobileLogin",
                 "api/Login",
                 new { controller = "Mobile", action = "Login" }
             );
-
+            routes.MapRoute("mobileSearchWorkList",
+                "api/getWorkList",
+                new { controller = "Mobile", action = "GetWorkList" }
+            );
+            #endregion
             #region Common
             routes.MapRoute(
                 name: "404-NotFound",
@@ -37,11 +43,11 @@ namespace RP.Website
             );
             #endregion
 
-            //routes.MapRoute(
-            //    name: "NotFound",
-            //    url: "{*url}",
-            //    defaults: new { controller = "Error", action = "NotFound" }
-            //);
+            routes.MapRoute(
+                name: "NotFound",
+                url: "{*url}",
+                defaults: new { controller = "Error", action = "NotFound" }
+            );
         }
     }
 }

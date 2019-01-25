@@ -1657,6 +1657,7 @@
     <Compile Include="Models\MaterialViewModel.cs" />
     <Compile Include="Models\Mobile\MobileResponseModel.cs" />
     <Compile Include="Models\Mobile\MobileUserAccountViewModel.cs" />
+    <Compile Include="Models\Mobile\MobileWorkListSearchCriteria.cs" />
     <Compile Include="Models\PatternColorViewModel.cs" />
     <Compile Include="Models\PatternImageViewModel.cs" />
     <Compile Include="Models\PatternPositionViewModel.cs" />
