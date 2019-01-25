@@ -3477,11 +3477,12 @@ body.tour-open .animated {
   border-bottom: 1px solid #e7eaec;
 }
 body {
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #2f4050;
-  font-size: 13px;
-  color: #676a6c;
-  overflow-x: hidden;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #2f4050;
+    font-size: 13px;
+    /*color: #676a6c;*/
+    color: #000;
+    overflow-x: hidden;
 }
 html,
 body {
@@ -3637,6 +3638,10 @@ video {
 }
 .wrapper-content {
   padding: 20px 10px 40px;
+}
+.wrapper-login {
+    padding:0px !important;
+    /*padding: 100px 10px 40px;*/
 }
 #page-wrapper {
   padding: 0 15px;
@@ -5317,10 +5322,10 @@ dd.project-people {
   display: block;
 }
 .chat-discussion {
-  background: #eee;
+  /*background: #eee;*/
   padding: 15px;
   height: 400px;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
 }
 .chat-users {
   overflow-y: auto;
@@ -8559,4 +8564,7 @@ body.md-skin {
   #page-wrapper {
     margin: 0;
   }
+}
+.thumb-image {
+    width: 200px;
 }

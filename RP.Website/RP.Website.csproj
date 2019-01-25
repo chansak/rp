@@ -1640,6 +1640,7 @@
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Enum\AjaxResultStatus.cs" />
     <Compile Include="Enum\AuthorizeRoles.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Extensions\EntityExtension.cs" />
     <Compile Include="Extensions\EnumHelperExtension.cs" />
     <Compile Include="Extensions\StatusExtension.cs" />
@@ -1654,6 +1655,8 @@
     <Compile Include="Models\ListViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MaterialViewModel.cs" />
+    <Compile Include="Models\Mobile\MobileResponseModel.cs" />
+    <Compile Include="Models\Mobile\MobileUserAccountViewModel.cs" />
     <Compile Include="Models\PatternColorViewModel.cs" />
     <Compile Include="Models\PatternImageViewModel.cs" />
     <Compile Include="Models\PatternPositionViewModel.cs" />

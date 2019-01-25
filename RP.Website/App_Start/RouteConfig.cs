@@ -12,7 +12,12 @@ namespace RP.Website
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute("mobileLogin",
+                "api/Login",
+                new { controller = "Mobile", action = "Login" }
+            );
 
+            #region Common
             routes.MapRoute(
                 name: "404-NotFound",
                 url: "NotFound",
@@ -30,12 +35,13 @@ namespace RP.Website
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            #endregion
 
-            routes.MapRoute(
-                name: "NotFound",
-                url: "{*url}",
-                defaults: new { controller = "Error", action = "NotFound" }
-            );
+            //routes.MapRoute(
+            //    name: "NotFound",
+            //    url: "{*url}",
+            //    defaults: new { controller = "Error", action = "NotFound" }
+            //);
         }
     }
 }

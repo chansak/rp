@@ -20,7 +20,6 @@ namespace RP.Utilities
                 return pageSize;
             }
         }
-
         public static int PageTotalCount
         {
             get
@@ -32,7 +31,6 @@ namespace RP.Utilities
                 return pageTotalCount;
             }
         }
-
         public static string PageDirection
         {
             get
@@ -44,7 +42,6 @@ namespace RP.Utilities
                 return pageDirection;
             }
         }
-
         public static string GetDefaultWarehouseId
         {
             get
@@ -52,7 +49,6 @@ namespace RP.Utilities
                 return "46EE6B5A-5E68-4CF8-844B-F3095878C8B2";
             }
         }
-
         public static int DefaultPriceValidityDays
         {
             get
