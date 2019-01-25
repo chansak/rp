@@ -1655,6 +1655,7 @@
     <Compile Include="Models\ListViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MaterialViewModel.cs" />
+    <Compile Include="Models\Mobile\MobileCalculateDateViewModel.cs" />
     <Compile Include="Models\Mobile\MobileResponseModel.cs" />
     <Compile Include="Models\Mobile\MobileUserAccountViewModel.cs" />
     <Compile Include="Models\Mobile\MobileWorkListSearchCriteria.cs" />

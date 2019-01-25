@@ -121,5 +121,240 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult GetCustomers() {
+            var data = new MobileResponseModel();
+            try {
+                var items = GenericFactory.Business.GetCustomersList();
+                var result = new List<CustomerViewModel>();
+                result.AddRange(items.Select(c => new CustomerViewModel
+                {
+                    Id = c.Id.ToString(),
+                    Name = c.Name,
+                    HospitalName = c.CustomerBranches.FirstOrDefault().CustomerBranchName,
+                    CustomerTypeName = c.CustomerType.CustomerTypeName
+                }));
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetFabricType()
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var materials = GenericFactory.Business.GetMaterials();
+                var result = new List<MaterialViewModel>();
+                result.AddRange(materials.Select(m => new MaterialViewModel
+                {
+                    Id = m.Id.ToString(),
+                    MaterialName = m.Name
+                }));
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetCustomerBranchByCustomerId(string id)
+        {
+            var data = new MobileResponseModel();
+            try {
+                var customerBranches = GenericFactory.Business.GetCustomerBranches(id);
+                var result = customerBranches.Select(i => new
+                {
+                    Id = i.Id.ToString(),
+                    BranchName = i.CustomerBranchName
+                });
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetContact(string id)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var contacts = GenericFactory.Business.GetContactByCustomerId(id);
+                var result = new List<ContactViewModel>();
+                result.AddRange(contacts.Select(c => new ContactViewModel
+                {
+                    Id = c.Id.ToString(),
+                    Name = c.Name,
+                    Phone = c.Phone,
+                    Email = c.Email,
+                    Fax = c.Fax,
+                    Mobile = c.Mobile
+                }));
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetCategoriesProduct()
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var categories = GenericFactory.Business.GetProductCategories();
+                var result = new List<ProductCategoryViewModel>();
+                result.AddRange(categories.Select(c => new ProductCategoryViewModel
+                {
+                    Id = c.Id.ToString(),
+                    CategoryName = c.CategoryName
+                }));
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetProducts(string id)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var products = GenericFactory.Business.GetProductsByCategoryId(id);
+                var result = new List<ProductViewModel>();
+                result.AddRange(products.Select(p => new ProductViewModel
+                {
+                    Id = p.Id.ToString(),
+                    ProductCode = p.ProductCode,
+                    ProductName = p.Name
+                }));
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetUnitByProduct(string id)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var units = GenericFactory.Business.GetUnitsByProductId(id);
+                var result = new List<UnitViewModel>();
+                result.AddRange(units.Select(u => new UnitViewModel
+                {
+                    Id = u.UnitId.ToString(),
+                    UnitName = u.Unit.UnitName
+                }));
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult GetCalculateDate(MobileCalculateDateViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var productId = model.ProductId;
+                var productUnitId = model.ProductUnitId;
+                var materialId = model.MaterialId;
+                var amount = model.Amount;
+                var result = new List<StockCheckViewModel>();
+                var material = GenericFactory.Business.GetMaterialUsageByProductId(productId, productUnitId).FirstOrDefault();
+                var selectedMaterial = GenericFactory.Business.GetMaterialById(materialId);
+                var stock = GenericFactory.Business.GetStockCheck(AppSettingHelper.GetDefaultWarehouseId, materialId, material.MaterialUnitId.ToString()).FirstOrDefault();
+                if (stock != null)
+                {
+                    var usageAmount = material.Amount.Value;
+                    var totalAmount = stock.Amount.Value;
+                    result.Add(new StockCheckViewModel
+                    {
+                        MaterialName = string.Format("{0}", stock.Material.Name, stock.Material.MaterialCode),
+                        MaterialInStock = totalAmount,
+                        MaterialUsaged = (usageAmount * amount),
+                        MaterialInStockAfterWithdraw = (totalAmount - (usageAmount * amount))
+                    });
+                }
+                else
+                {
+                    var usageAmount = material.Amount.Value;
+                    var totalAmount = 0;
+                    result.Add(new StockCheckViewModel
+                    {
+                        MaterialName = selectedMaterial.Name,
+                        MaterialInStock = 0,
+                        MaterialUsaged = (usageAmount * amount),
+                        MaterialInStockAfterWithdraw = (totalAmount - (usageAmount * amount))
+                    });
+                }
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }
