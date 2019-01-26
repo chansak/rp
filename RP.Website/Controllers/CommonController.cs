@@ -210,9 +210,16 @@ namespace RP.Website.Controllers
         }
         public ActionResult GetContactById(string id)
         {
-            var contact = GenericFactory.Business.GetContactById(id);
-            var data = contact.ToViewModel();
-            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+            if (!string.IsNullOrEmpty(id))
+            {
+                var contact = GenericFactory.Business.GetContactById(id);
+                var data = contact.ToViewModel();
+                return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return new JsonCamelCaseResult("", JsonRequestBehavior.AllowGet);
+            }
         }
         public ActionResult GetSaleUserById(string id)
         {
