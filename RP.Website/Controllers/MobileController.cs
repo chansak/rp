@@ -452,6 +452,13 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult UpdateLocation(LocationTrackingViewModel model) {
+
+        }
+
         private void Create(Document document, string customerCode)
         {
             if (document.DocumentProductItems.Count > 0)
