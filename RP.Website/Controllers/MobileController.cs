@@ -22,6 +22,10 @@ namespace RP.Website.Controllers
 {
     public class MobileController : Controller
     {
+        public const string PRINT_NEWPATTERN = "printFile";
+        public const string SCREEN_NEWPATTERN = "screenFile";
+        public const string SEW_NEWPATTERN = "sewFile";
+
         private UserManager<ApplicationUser> UserManager
         {
             get
@@ -35,6 +39,15 @@ namespace RP.Website.Controllers
             get
             {
                 return new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(RP.DataAccess.ApplicationDbContext.Create()));
+            }
+        }
+        public string CurrentUserId
+        {
+            get
+            {
+                var token = HttpContext.Request.Headers["Token"];
+                var cacheToken = (AuthenticationToken)GlobalCachingProvider.Instance.GetItem(token);
+                return cacheToken.UserId;
             }
         }
         [HttpPost]
@@ -56,7 +69,7 @@ namespace RP.Website.Controllers
                         DisplayName = user.DisplayName,
                         RoleName = role.Name
                     };
-                    data.Token = new TokenBuilder().Build(new Credentials { User = model.UserName, Password = model.Password });
+                    data.Token = new TokenBuilder().Build(new Credentials { UserId = user.Id, UserName = model.UserName, Password = model.Password });
                 }
                 else
                 {
@@ -77,6 +90,7 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         [TokenValidation]
         public ActionResult GetWorkList(MobileWorkListSearchCriteria criteria)
@@ -130,7 +144,9 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
+        [TokenValidation]
         public ActionResult GetCustomers()
         {
             var data = new MobileResponseModel();
@@ -158,7 +174,9 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
+        [TokenValidation]
         public ActionResult GetFabricType()
         {
             var data = new MobileResponseModel();
@@ -184,7 +202,9 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
+        [TokenValidation]
         public ActionResult GetCustomerBranchByCustomerId(string id)
         {
             var data = new MobileResponseModel();
@@ -209,7 +229,9 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
+        [TokenValidation]
         public ActionResult GetContact(string id)
         {
             var data = new MobileResponseModel();
@@ -239,7 +261,9 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
+        [TokenValidation]
         public ActionResult GetCategoriesProduct()
         {
             var data = new MobileResponseModel();
@@ -265,7 +289,9 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
+        [TokenValidation]
         public ActionResult GetProducts(string id)
         {
             var data = new MobileResponseModel();
@@ -292,7 +318,9 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpGet]
+        [TokenValidation]
         public ActionResult GetUnitByProduct(string id)
         {
             var data = new MobileResponseModel();
@@ -318,7 +346,9 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
+        [TokenValidation]
         public ActionResult CheckStock(MobileCalculateDateViewModel model)
         {
             var data = new MobileResponseModel();
@@ -367,6 +397,142 @@ namespace RP.Website.Controllers
                 data.TimeStamp = "";
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult CreateDocument(DocumentViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = model.ToEntity();
+                document.DocumentStatusId = (int)WorkflowStatus.RequestForPrice;
+                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                Create(document, customerCode);
+                data.Datas = new
+                {
+                    documentId = document.Id
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult CreateDraftDocument(DocumentViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = model.ToEntity();
+                document.DocumentStatusId = (int)WorkflowStatus.Draft;
+                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                Create(document, customerCode);
+                data.Datas = new
+                {
+                    documentId = document.Id
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+        private void Create(Document document, string customerCode)
+        {
+            if (document.DocumentProductItems.Count > 0)
+            {
+                foreach (var item in document.DocumentProductItems)
+                {
+                    if (item.ProductItemPrintOptionals.Count > 0)
+                    {
+                        var printOption = item.ProductItemPrintOptionals.FirstOrDefault();
+                        var status = (ItemOptionStatus)printOption.OptionalStatusId;
+                        if (status == ItemOptionStatus.NewPattern)
+                        {
+                            var newPatternId = Guid.NewGuid();
+                            printOption.PatternId = newPatternId;
+                            HttpPostedFileBase file = Request.Files[PRINT_NEWPATTERN];
+                            this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                        }
+                    }
+                    if (item.ProductItemScreenOptionals.Count > 0)
+                    {
+                        var screenOption = item.ProductItemScreenOptionals.FirstOrDefault();
+                        var status = (ItemOptionStatus)screenOption.OptionalStatusId;
+                        if (status == ItemOptionStatus.NewPattern)
+                        {
+                            var newPatternId = Guid.NewGuid();
+                            screenOption.PatternId = newPatternId;
+                            HttpPostedFileBase file = Request.Files[SCREEN_NEWPATTERN];
+                            this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                        }
+                    }
+                    if (item.ProductItemSewOptionals.Count > 0)
+                    {
+                        var sewOption = item.ProductItemSewOptionals.FirstOrDefault();
+                        var status = (ItemOptionStatus)sewOption.OptionalStatusId;
+                        if (status == ItemOptionStatus.NewPattern)
+                        {
+                            var newPatternId = Guid.NewGuid();
+                            sewOption.PatternId = newPatternId;
+                            HttpPostedFileBase file = Request.Files[SEW_NEWPATTERN];
+                            this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                        }
+                    }
+                }
+            }
+            document.CreatedBy = this.CurrentUserId;
+            GenericFactory.Business.CreateDocument(document, customerCode);
+        }
+        private bool SaveAttachFiles(string customerId, string patternId, HttpPostedFileBase file)
+        {
+            try
+            {
+                var directory = HttpContext.Server.MapPath("~/FileUpload/pattern/");
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                var subDirectory = Path.Combine(directory, customerId.ToString());
+                if (!Directory.Exists(subDirectory))
+                {
+                    Directory.CreateDirectory(subDirectory);
+                }
+                var filesDirectory = Path.Combine(subDirectory, patternId.ToString());
+                if (!Directory.Exists(filesDirectory))
+                {
+                    Directory.CreateDirectory(filesDirectory);
+                }
+                var path = Path.Combine(filesDirectory, file.FileName);
+                file.SaveAs(path);
+                GenericFactory.Business.CreateNewPattern(new PatternImage
+                {
+                    Id = new Guid(patternId),
+                    CustomerId = new Guid(customerId),
+                    PatternName = file.FileName,
+                    PatternImagePath = path
+                });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

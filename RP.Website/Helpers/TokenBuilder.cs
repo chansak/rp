@@ -15,7 +15,7 @@ namespace RP.Website.Helpers
         {
 
             var token = Guid.NewGuid().ToString();
-            GlobalCachingProvider.Instance.AddItem(token, new AuthenticationToken { Token = token });
+            GlobalCachingProvider.Instance.AddItem(token, new AuthenticationToken { Token = token, UserId = creds.UserId });
             var result = GlobalCachingProvider.Instance.GetItem(token);
             return result;
         }

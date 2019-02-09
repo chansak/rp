@@ -53,6 +53,14 @@ namespace RP.Website
             routes.MapRoute("CheckStock",
                "api/CheckStock",
                new { controller = "Mobile", action = "CheckStock" }
+            );
+            routes.MapRoute("createDraft",
+               "api/createDraftDocument",
+               new { controller = "Mobile", action = "CreateDraftDocument" }
+            );
+            routes.MapRoute("createDocument",
+               "api/createDocument",
+               new { controller = "Mobile", action = "CreateDocument" }
            );
             #endregion
             #region Common
