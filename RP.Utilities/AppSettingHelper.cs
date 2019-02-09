@@ -71,5 +71,16 @@ namespace RP.Utilities
                 return number;
             }
         }
+        public static string CacheExpirationMinute
+        {
+            get
+            {
+                string cacheExpirationMinute = "60";
+                if (ConfigurationManager.AppSettings["CacheExpirationMinute"] != null)
+                    cacheExpirationMinute = ConfigurationManager.AppSettings["CacheExpirationMinute"];
+
+                return cacheExpirationMinute;
+            }
+        }
     }
 }

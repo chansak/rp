@@ -22,8 +22,10 @@ namespace RP.Website.Controllers
 {
     public class MobileController : Controller
     {
-        private UserManager<ApplicationUser> UserManager {
-            get {
+        private UserManager<ApplicationUser> UserManager
+        {
+            get
+            {
                 return new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(RP.DataAccess.ApplicationDbContext.Create()));
             }
 
@@ -36,9 +38,11 @@ namespace RP.Website.Controllers
             }
         }
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult LogIn(LoginViewModel model)
         {
-            var data = new MobileResponseModel();
+            var data = new MobileWithTokenResponseModel();
+            var response = new AuthenticationToken();
             try
             {
                 var user = UserManager.FindByName(model.UserName);
@@ -52,7 +56,7 @@ namespace RP.Website.Controllers
                         DisplayName = user.DisplayName,
                         RoleName = role.Name
                     };
-
+                    data.Token = new TokenBuilder().Build(new Credentials { User = model.UserName, Password = model.Password });
                 }
                 else
                 {
@@ -62,7 +66,9 @@ namespace RP.Website.Controllers
                     data.MessageId = "";
                     data.TimeStamp = "";
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 data.Status = false;
                 data.ErrorCode = "001";
                 data.ErrorMessage = ex.Message;
@@ -72,7 +78,9 @@ namespace RP.Website.Controllers
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult GetWorkList(MobileWorkListSearchCriteria criteria) {
+        [TokenValidation]
+        public ActionResult GetWorkList(MobileWorkListSearchCriteria criteria)
+        {
             var data = new MobileResponseModel();
             int pageSize = AppSettingHelper.PageSize;
             try
@@ -111,7 +119,8 @@ namespace RP.Website.Controllers
                 }
                 data.Datas = result;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 data.Status = false;
                 data.ErrorCode = "001";
                 data.ErrorMessage = ex.Message;
@@ -122,9 +131,11 @@ namespace RP.Website.Controllers
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public ActionResult GetCustomers() {
+        public ActionResult GetCustomers()
+        {
             var data = new MobileResponseModel();
-            try {
+            try
+            {
                 var items = GenericFactory.Business.GetCustomersList();
                 var result = new List<CustomerViewModel>();
                 result.AddRange(items.Select(c => new CustomerViewModel
@@ -177,7 +188,8 @@ namespace RP.Website.Controllers
         public ActionResult GetCustomerBranchByCustomerId(string id)
         {
             var data = new MobileResponseModel();
-            try {
+            try
+            {
                 var customerBranches = GenericFactory.Business.GetCustomerBranches(id);
                 var result = customerBranches.Select(i => new
                 {
@@ -307,7 +319,7 @@ namespace RP.Website.Controllers
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult GetCalculateDate(MobileCalculateDateViewModel model)
+        public ActionResult CheckStock(MobileCalculateDateViewModel model)
         {
             var data = new MobileResponseModel();
             try

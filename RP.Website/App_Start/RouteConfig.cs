@@ -50,9 +50,9 @@ namespace RP.Website
                 "api/getUnitByProduct/{id}",
                 new { controller = "Mobile", action = "GetUnitByProduct", id = UrlParameter.Optional }
             );
-            routes.MapRoute("GetCalculateDate",
-               "api/GetCalculateDate",
-               new { controller = "Mobile", action = "GetCalculateDate" }
+            routes.MapRoute("CheckStock",
+               "api/CheckStock",
+               new { controller = "Mobile", action = "CheckStock" }
            );
             #endregion
             #region Common

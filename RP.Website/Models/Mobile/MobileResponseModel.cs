@@ -22,4 +22,8 @@ namespace RP.Website.Models
             this.TimeStamp = DateTime.Now.ToDateString();
         }
     }
+    public class MobileWithTokenResponseModel : MobileResponseModel
+    {
+        public AuthenticationToken Token { get; set; }
+    }
 }
