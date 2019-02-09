@@ -455,8 +455,29 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult UpdateLocation(LocationTrackingViewModel model) {
-
+        public ActionResult UpdateLocation(LocationTrackingViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                GenericFactory.Business.UpdateLocation(new LocationTracking
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = model.UserId,
+                    Latitude = Decimal.Parse(model.Location.Lat),
+                    Longitude = decimal.Parse(model.Location.Long),
+                    TimeStamp = DateTime.Now
+                });
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
 
         private void Create(Document document, string customerCode)

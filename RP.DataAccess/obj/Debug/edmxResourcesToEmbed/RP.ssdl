@@ -203,6 +203,16 @@
     <Property Name="ProductOptionId" Type="uniqueidentifier" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="LocationTracking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Latitude" Type="decimal" Precision="17" Scale="14" />
+    <Property Name="Longitude" Type="decimal" Precision="17" Scale="14" />
+    <Property Name="TimeStamp" Type="date" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+  </EntityType>
   <EntityType Name="Material">
     <Key>
       <PropertyRef Name="Id" />
@@ -631,6 +641,18 @@
       </Principal>
       <Dependent Role="DocumentProductItems">
         <PropertyRef Name="FromWarehouseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationTracking_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="LocationTracking" Type="Self.LocationTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationTracking">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1200,6 +1222,7 @@
     <EntitySet Name="DocumentAttachment" EntityType="Self.DocumentAttachment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DocumentDelivery" EntityType="Self.DocumentDelivery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DocumentProductItems" EntityType="Self.DocumentProductItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationTracking" EntityType="Self.LocationTracking" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MaterialType" EntityType="Self.MaterialType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MaterialUnit" EntityType="Self.MaterialUnit" Schema="dbo" store:Type="Tables" />
@@ -1297,6 +1320,10 @@
     <AssociationSet Name="FK_DocumentProductItems_Warehouse" Association="Self.FK_DocumentProductItems_Warehouse">
       <End Role="Warehouse" EntitySet="Warehouse" />
       <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationTracking_AspNetUsers" Association="Self.FK_LocationTracking_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="LocationTracking" EntitySet="LocationTracking" />
     </AssociationSet>
     <AssociationSet Name="FK_Option_Product" Association="Self.FK_Option_Product">
       <End Role="Product" EntitySet="Product" />

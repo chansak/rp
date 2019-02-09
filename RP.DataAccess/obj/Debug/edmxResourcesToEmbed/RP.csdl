@@ -335,7 +335,6 @@
     <EntitySet Name="AspNetRoles" EntityType="RP.Model.AspNetRole" />
     <EntitySet Name="AspNetUserClaims" EntityType="RP.Model.AspNetUserClaim" />
     <EntitySet Name="AspNetUserLogins" EntityType="RP.Model.AspNetUserLogin" />
-    <EntitySet Name="AspNetUsers" EntityType="RP.Model.AspNetUser" />
     <EntitySet Name="Colors" EntityType="RP.Model.Color" />
     <EntitySet Name="Customers" EntityType="RP.Model.Customer" />
     <EntitySet Name="CustomerAddresses" EntityType="RP.Model.CustomerAddress" />
@@ -369,14 +368,6 @@
     <EntitySet Name="Units" EntityType="RP.Model.Unit" />
     <EntitySet Name="Users" EntityType="RP.Model.User" />
     <EntitySet Name="Warehouses" EntityType="RP.Model.Warehouse" />
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="RP.Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="RP.Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
     <AssociationSet Name="FK_Customer_CustomerType" Association="RP.Model.FK_Customer_CustomerType">
       <End Role="CustomerType" EntitySet="CustomerTypes" />
       <End Role="Customer" EntitySet="Customers" />
@@ -473,10 +464,6 @@
       <End Role="Warehouse" EntitySet="Warehouses" />
       <End Role="Stock" EntitySet="Stocks" />
     </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="RP.Model.AspNetUserRoles">
-      <End Role="AspNetRole" EntitySet="AspNetRoles" />
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-    </AssociationSet>
     <EntitySet Name="Regions" EntityType="RP.Model.Region" />
     <AssociationSet Name="FK_CustomerBranch_Customer" Association="RP.Model.FK_CustomerBranch_Customer">
       <End Role="Customer" EntitySet="Customers" />
@@ -487,10 +474,6 @@
       <End Role="CustomerBranch" EntitySet="CustomerBranches" />
     </AssociationSet>
     <EntitySet Name="Documents" EntityType="RP.Model.Document" />
-    <AssociationSet Name="FK_Document_AspNetUsers" Association="RP.Model.FK_Document_AspNetUsers">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="Document" EntitySet="Documents" />
-    </AssociationSet>
     <AssociationSet Name="FK_Document_Customer" Association="RP.Model.FK_Document_Customer">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Document" EntitySet="Documents" />
@@ -514,6 +497,28 @@
     <AssociationSet Name="FK_DocumentProductItems_Document" Association="RP.Model.FK_DocumentProductItems_Document">
       <End Role="Document" EntitySet="Documents" />
       <End Role="DocumentProductItem" EntitySet="DocumentProductItems" />
+    </AssociationSet>
+    <EntitySet Name="AspNetUsers" EntityType="RP.Model.AspNetUser" />
+    <EntitySet Name="LocationTrackings" EntityType="RP.Model.LocationTracking" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="RP.Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="RP.Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Document_AspNetUsers" Association="RP.Model.FK_Document_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Document" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationTracking_AspNetUsers" Association="RP.Model.FK_LocationTracking_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="LocationTracking" EntitySet="LocationTrackings" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="RP.Model.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="AspNetRole">
@@ -544,28 +549,6 @@
     <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
-  </EntityType>
-  <EntityType Name="AspNetUser">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUserClaims" Relationship="RP.Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
-    <NavigationProperty Name="AspNetUserLogins" Relationship="RP.Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-    <NavigationProperty Name="AspNetRoles" Relationship="RP.Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
-    <Property Name="DisplayName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="AspNetUser" ToRole="Document" />
   </EntityType>
   <EntityType Name="Color">
     <Key>
@@ -937,34 +920,6 @@
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Warehouse" FromRole="Warehouse" ToRole="DocumentProductItem" />
     <NavigationProperty Name="Stocks" Relationship="RP.Model.FK_Stock_Warehouse" FromRole="Warehouse" ToRole="Stock" />
   </EntityType>
-  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="RP.Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserClaim">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="RP.Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserLogin">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Customer_CustomerType">
     <End Type="RP.Model.CustomerType" Role="CustomerType" Multiplicity="1" />
     <End Type="RP.Model.Customer" Role="Customer" Multiplicity="*" />
@@ -1253,10 +1208,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AspNetUserRoles">
-    <End Type="RP.Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-  </Association>
   <EntityType Name="Region">
     <Key>
       <PropertyRef Name="Id" />
@@ -1314,26 +1265,14 @@
     <Property Name="PoNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CustomerBranchId" Type="Guid" />
     <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="Document" ToRole="AspNetUser" />
     <NavigationProperty Name="Customer" Relationship="RP.Model.FK_Document_Customer" FromRole="Document" ToRole="Customer" />
     <NavigationProperty Name="CustomerBranch" Relationship="RP.Model.FK_Document_CustomerBranch" FromRole="Document" ToRole="CustomerBranch" />
     <NavigationProperty Name="CustomerContact" Relationship="RP.Model.FK_Document_CustomerContact" FromRole="Document" ToRole="CustomerContact" />
     <NavigationProperty Name="DocumentAttachments" Relationship="RP.Model.FK_DocumentAttachment_Document" FromRole="Document" ToRole="DocumentAttachment" />
     <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
+    <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="Document" ToRole="AspNetUser" />
   </EntityType>
-  <Association Name="FK_Document_AspNetUsers">
-    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-    <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Document">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Document_Customer">
     <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
     <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
@@ -1405,5 +1344,95 @@
         <PropertyRef Name="DocumentId" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="RP.Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="RP.Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="AspNetUser" ToRole="Document" />
+    <NavigationProperty Name="LocationTrackings" Relationship="RP.Model.FK_LocationTracking_AspNetUsers" FromRole="AspNetUser" ToRole="LocationTracking" />
+    <NavigationProperty Name="AspNetRoles" Relationship="RP.Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="LocationTracking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Latitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="Longitude" Type="Decimal" Precision="17" Scale="14" />
+    <Property Name="TimeStamp" Type="DateTime" Precision="0" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_LocationTracking_AspNetUsers" FromRole="LocationTracking" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RP.Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RP.Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Document_AspNetUsers">
+    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="RP.Model.Document" Role="Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Document">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationTracking_AspNetUsers">
+    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="RP.Model.LocationTracking" Role="LocationTracking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationTracking">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="RP.Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
 </Schema>

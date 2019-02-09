@@ -30,7 +30,6 @@ namespace RP.DataAccess
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
@@ -66,6 +65,8 @@ namespace RP.DataAccess
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<LocationTracking> LocationTrackings { get; set; }
     
         public virtual int aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
         {

@@ -61,6 +61,7 @@ namespace RP.Interfaces
         Color GetColorById(string id);
         PatternPosition GetPositionById(string id);
         PatternImage GetPatternImageById(string id);
+        void UpdateLocation(RP.Model.LocationTracking location);
         #endregion
 
 

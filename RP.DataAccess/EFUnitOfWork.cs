@@ -250,6 +250,17 @@ namespace RP.DataAccess
 				return _DocumentProductItemRepository;
 			}
 		}
+		ILocationTrackingRepository _LocationTrackingRepository;
+		public ILocationTrackingRepository LocationTrackingRepository
+		{
+			get
+			{
+				if (_LocationTrackingRepository == null)
+					_LocationTrackingRepository = new LocationTrackingRepository(context);
+				
+				return _LocationTrackingRepository;
+			}
+		}
 		IMaterialRepository _MaterialRepository;
 		public IMaterialRepository MaterialRepository
 		{

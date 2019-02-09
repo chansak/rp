@@ -110,6 +110,9 @@
     <Compile Include="Enum\DocumentType.cs" />
     <Compile Include="Enum\ItemOptionStatus.cs" />
     <Compile Include="Enum\WorkflowStatus.cs" />
+    <Compile Include="LocationTracking.cs">
+      <DependentUpon>RPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Material.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>

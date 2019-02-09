@@ -61,6 +61,10 @@ namespace RP.Website
             routes.MapRoute("createDocument",
                "api/createDocument",
                new { controller = "Mobile", action = "CreateDocument" }
+            );
+            routes.MapRoute("updateLocation",
+               "api/updateLocation",
+               new { controller = "Mobile", action = "UpdateLocation" }
            );
             #endregion
             #region Common

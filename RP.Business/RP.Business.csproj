@@ -61,6 +61,7 @@
     <Compile Include="CustomerBusiness.cs" />
     <Compile Include="DocumentBusiness.cs" />
     <Compile Include="DocumentProductItemBusiness.cs" />
+    <Compile Include="LocationTrackingBusiness.cs" />
     <Compile Include="MaterialBusiness.cs" />
     <Compile Include="PatternImageBusiness.cs" />
     <Compile Include="PatternPositionBusiness.cs" />

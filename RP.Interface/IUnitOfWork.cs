@@ -30,6 +30,7 @@ namespace RP.Interfaces
 		IDocumentAttachmentRepository DocumentAttachmentRepository  { get; }
 		IDocumentDeliveryRepository DocumentDeliveryRepository  { get; }
 		IDocumentProductItemRepository DocumentProductItemRepository  { get; }
+		ILocationTrackingRepository LocationTrackingRepository  { get; }
 		IMaterialRepository MaterialRepository  { get; }
 		IMaterialTypeRepository MaterialTypeRepository  { get; }
 		IMaterialUnitRepository MaterialUnitRepository  { get; }

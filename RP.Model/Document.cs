@@ -43,13 +43,13 @@ namespace RP.Model
         public Nullable<System.Guid> CustomerBranchId { get; set; }
         public string UserId { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual CustomerBranch CustomerBranch { get; set; }
         public virtual CustomerContact CustomerContact { get; set; }
         public virtual ICollection<DocumentAttachment> DocumentAttachments { get; set; }
         public virtual ICollection<DocumentDelivery> DocumentDeliveries { get; set; }
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
     
 }
