@@ -171,6 +171,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Script\userList.js" />
     <Content Include="Areas\Admin\Views\Setting\AddNewCustomer.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\CustomerList.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -1245,6 +1246,7 @@
     <Content Include="Areas\Manager\Views\Document\AddNew.cshtml" />
     <Content Include="Areas\Manager\Views\Document\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Document\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1613,6 +1615,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Backoffice\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
     <Compile Include="Areas\Backoffice\Controllers\DocumentController.cs" />
@@ -1679,6 +1682,7 @@
     <Compile Include="Models\StockCheckViewModel.cs" />
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\UnitViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>จัดการผู้ใช้</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Users",new { area = "Admin" })">หน้าแรก</a>
+            </li>
+            <li class="active">
+                <strong>รายการผู้ใช้ทั้งหมด</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span>
+                    <h2>&nbsp;</h2>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <select class="form-control m-b" id="ddSearch">
+                                <option value="UserName">ชื่อ</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" id="keyword" placeholder="ค้นหา" class="input form-control">
+                                <span class="input-group-btn">
+                                    <button type="button" id="btnSearch" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clients-list">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="full-height-scroll">
+                                <div class="table-responsive">
+                                    <table id="table-quotation" class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></th>
+                                                <th>User</th>
+                                                <th>Display name</th>
+                                                <th>Role</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                    <div id="pager_users"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>จัดการ</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content float-e-margins">
+                    @Html.ActionLink("สร้างใบขอราคา", "AddNew", null, new { @class = "btn btn-primary btn-xs" })
+                    <button type="button" id="btnEdit" class="btn btn-white btn-xs">แก้ไข</button>
+                    <button type="button" class="btn btn-white btn-xs btnDelete">ลบ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+    @Styles.Render("~/Content/plugins/jqGrid/jqGridStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/jqGrid")
+    @Scripts.Render("~/plugins/toastr")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            userList.init();
+            $('.scroll_content').slimscroll({
+                height: '500px'
+            });
+            $('.btnDelete').click(function () {
+                swal({
+                    title: "ยืนยันการลบข้อมูล?",
+                    text: "คุณจะไม่สามารถกู้รายการนี้หลังจากลบไปแล้ว!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "ลบ!",
+                    cancelButtonText: "ยกเลิก!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success");
+                        } else {
+                            swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error");
+                        }
+                    });
+            });
+            $("#btnEdit").unbind("click");
+            $("#btnEdit").click(function () {
+                userList.edit();
+            });
+            $("#btnSearch").click(function () {
+                userList.search();
+            });
+        });
+    </script>
+}

@@ -15,16 +15,54 @@ namespace RP.Business
         {
             using (var uow = UnitOfWork.Create())
             {
-                return uow.AspNetUserRepository.All().ToList();
+                var users = new List<AspNetUser>();
+                var data = uow.AspNetUserRepository.All();
+                foreach (var user in users)
+                {
+                    var role = user.AspNetRoles.FirstOrDefault();
+                    if (role.Name.ToLower().Equals("sale"))
+                    {
+                        users.Add(user);
+                    }
+                }
+                return users;
             }
 
+        }
+        public IList<AspNetUser> GetAllUsers(string searchBy, string keyword)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                var users = uow.AspNetUserRepository.All().AsEnumerable();
+                if (!string.IsNullOrWhiteSpace(searchBy) && !string.IsNullOrWhiteSpace(keyword))
+                {
+                    switch (searchBy)
+                    {
+                        case "UserName":
+                            {
+                                users = users.Where(i => i.UserName.ToLower().Contains(keyword.ToLower()));
+                                break;
+                            }
+                        case "DisplayName":
+                            {
+                                users = users.Where(i => i.DisplayName.ToLower().Contains(keyword.ToLower()));
+                                break;
+                            }
+                        default:
+                            {
+                                break;
+                            }
+                    }
+                }
+                return users.ToList();
+            }
         }
         public AspNetUser GetSaleUserById(string id)
         {
             using (var uow = UnitOfWork.Create())
             {
-                //return uow.UserRepository.GetById(id);
-                return uow.AspNetUserRepository.GetById(id);
+                var sales = this.GetSaleUsersList();
+                return sales.First(s => s.Id == id);
             }
         }
         public bool AddNewUser(ApplicationUser user, string password, string role)

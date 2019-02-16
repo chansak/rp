@@ -35,6 +35,7 @@ namespace RP.Interfaces
         IList<AspNetUser> GetSaleUsersList();
         AspNetUser GetSaleUserById(string id);
         bool AddNewUser(ApplicationUser user,string password,string role);
+        IList<AspNetUser> GetAllUsers(string searchBy, string keyword);
         #endregion
 
         #region Customer
