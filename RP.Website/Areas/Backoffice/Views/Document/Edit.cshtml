@@ -750,6 +750,9 @@
                 }
                 documentEditorForBackoffice.RenderProducts();
             });
+            $("#editMaterials").change(function () {
+                productEditorForBackoffice.MaterialStockCheck();
+            });
             documentEditorForBackoffice.init();
         });
     </script>

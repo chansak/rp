@@ -750,6 +750,9 @@
                 }
                 documentEditorForManager.RenderProducts();
             });
+            $("#editMaterials").change(function () {
+                documentEditorForManager.MaterialStockCheck();
+            });
             documentEditorForManager.init();
         });
     </script>

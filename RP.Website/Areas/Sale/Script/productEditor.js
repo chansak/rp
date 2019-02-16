@@ -307,12 +307,12 @@ var productEditor = new function () {
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var productId = $("#products").val();
-        var amount = parseInt($("#productNumberOfProducts").val());
+        var productId = $("#editProducts").val();
+        var amount = parseInt($("#editProductNumberOfProducts").val());
         var productUnitId = '';
-        productUnitId = $('#productsUnit').val();
+        productUnitId = $('#editProductsUnit').val();
         var materialId = '';
-        materialId = $('#materials').val();
+        materialId = $('#editMaterials').val();
         if (amount < 0) { amount = 0; }
         if (productUnitId != '' && materialId != '') {
             var xhr = RPService.GetMaterialStockCheck(productId, productUnitId, materialId, amount, success, failure);

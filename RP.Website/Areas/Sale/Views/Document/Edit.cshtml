@@ -847,6 +847,9 @@
                 }
                 documentEditor.RenderProducts();
             });
+            $("#editMaterials").change(function () {
+                documentEditor.MaterialStockCheck();
+            });
             documentEditor.init();
         });
     </script>
