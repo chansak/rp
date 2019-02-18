@@ -17,7 +17,7 @@ namespace RP.Business
             {
                 var users = new List<AspNetUser>();
                 var data = uow.AspNetUserRepository.All();
-                foreach (var user in users)
+                foreach (var user in data)
                 {
                     var role = user.AspNetRoles.FirstOrDefault();
                     if (role.Name.ToLower().Equals("sale"))
