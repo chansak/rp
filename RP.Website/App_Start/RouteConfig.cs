@@ -58,9 +58,13 @@ namespace RP.Website
                "api/createDraftDocument",
                new { controller = "Mobile", action = "CreateDraftDocument" }
             );
-            routes.MapRoute("createDocument",
-               "api/createDocument",
-               new { controller = "Mobile", action = "CreateDocument" }
+            routes.MapRoute("addOrUpdateDocument",
+               "api/addOrUpdateDocument",
+               new { controller = "Mobile", action = "AddOrUpdateDocument" }
+            );
+            routes.MapRoute("getDocumentDetail",
+               "api/getDocumentDetail/{id}",
+               new { controller = "Mobile", action = "GetDocumentDetail", id = UrlParameter.Optional }
             );
             routes.MapRoute("updateLocation",
                "api/updateLocation",

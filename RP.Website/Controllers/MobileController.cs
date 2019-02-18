@@ -401,18 +401,28 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult CreateDocument(DocumentViewModel model)
+        public ActionResult AddOrUpdateDocument(FormCollection formCollection)
         {
             var data = new MobileResponseModel();
             try
             {
+                var json = formCollection["document"].ToString().Replace(@"\", "");
+                var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 var document = model.ToEntity();
-                document.DocumentStatusId = (int)WorkflowStatus.RequestForPrice;
                 var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
-                Create(document, customerCode);
+                if (string.IsNullOrEmpty(document.Id.ToString()))
+                {
+                    //Insert
+                    this.CreateDocument(document, customerCode);
+                }
+                else
+                {
+                    //Update
+                    this.UpdateDocument(document, customerCode);
+                }
                 data.Datas = new
                 {
-                    documentId = document.Id
+                    Id = document.Id.ToString()
                 };
             }
             catch (Exception ex)
@@ -424,6 +434,15 @@ namespace RP.Website.Controllers
                 data.TimeStamp = "";
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [TokenValidation]
+        public ActionResult GetDocumentDetail(string id)
+        {
+            var document = GenericFactory.Business.GetDocument(id);
+            var viewModel = document.ToViewModel();
+            return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -480,6 +499,94 @@ namespace RP.Website.Controllers
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
 
+        private JsonResult CreateDocument(Document document, string customerCode)
+        {
+            try
+            {
+                document.DocumentStatusId = (int)WorkflowStatus.RequestForPrice;
+                Create(document, customerCode);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        private JsonResult CreateDraftDocument(FormCollection formCollection)
+        {
+            try
+            {
+                var json = formCollection["document"].ToString().Replace(@"\", "");
+                var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                var document = model.ToEntity();
+                document.DocumentStatusId = (int)WorkflowStatus.Draft;
+                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                Create(document, customerCode);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        private JsonResult UpdateDocument(Document document, string customerCode)
+        {
+            try
+            {
+                if (document.DocumentProductItems.Count > 0)
+                {
+                    foreach (var item in document.DocumentProductItems)
+                    {
+                        if (item.ProductItemPrintOptionals.Count > 0)
+                        {
+                            var printOption = item.ProductItemPrintOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)printOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                printOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[PRINT_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                        if (item.ProductItemScreenOptionals.Count > 0)
+                        {
+                            var screenOption = item.ProductItemScreenOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)screenOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                screenOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[SCREEN_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                        if (item.ProductItemSewOptionals.Count > 0)
+                        {
+                            var sewOption = item.ProductItemSewOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)sewOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                sewOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[SEW_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                    }
+                }
+                GenericFactory.Business.UpdateDocument(document);
+
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
         private void Create(Document document, string customerCode)
         {
             if (document.DocumentProductItems.Count > 0)
