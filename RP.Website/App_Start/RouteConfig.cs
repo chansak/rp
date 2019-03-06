@@ -54,9 +54,9 @@ namespace RP.Website
                "api/CheckStock",
                new { controller = "Mobile", action = "CheckStock" }
             );
-            routes.MapRoute("createDraft",
-               "api/createDraftDocument",
-               new { controller = "Mobile", action = "CreateDraftDocument" }
+            routes.MapRoute("getOptionsByProductId",
+                "api/getOptionsByProductId/{id}",
+                new { controller = "Mobile", action = "GetOptionsByProductId", id = UrlParameter.Optional }
             );
             routes.MapRoute("addOrUpdateDocument",
                "api/addOrUpdateDocument",
