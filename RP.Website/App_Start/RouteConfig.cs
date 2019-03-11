@@ -66,6 +66,10 @@ namespace RP.Website
                "api/getDocumentDetail/{id}",
                new { controller = "Mobile", action = "GetDocumentDetail", id = UrlParameter.Optional }
             );
+            routes.MapRoute("getProductItemsByDocumentId",
+               "api/getProductItemsByDocumentId/{id}",
+               new { controller = "Mobile", action = "GetProductItemsByDocumentId", id = UrlParameter.Optional }
+            );
             routes.MapRoute("updateLocation",
                "api/updateLocation",
                new { controller = "Mobile", action = "UpdateLocation" }

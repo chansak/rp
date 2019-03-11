@@ -322,6 +322,18 @@ namespace RP.Website
             document.DeliveryAddress = entity.DocumentDeliveries.FirstOrDefault().Address1;
             document.DeliveryContactId = entity.DeliveryContactId.ToString();
             document.Remark = entity.RefPriceAndRemark;
+
+            document.SaleName = entity.AspNetUser.DisplayName;
+
+            document.CustomerName = entity.Customer.Name;
+            document.HospitalName = entity.Customer.CustomerBranches.FirstOrDefault().CustomerBranchName;
+            document.CustomerType = entity.Customer.CustomerType.CustomerTypeName;
+
+            document.ContactName = entity.CustomerContact.Name;
+            document.ContactTel = entity.CustomerContact.Phone;
+            document.ContactFax = entity.CustomerContact.Fax;
+            document.ContactMobile = entity.CustomerContact.Mobile;
+            document.ContactEmail = entity.CustomerContact.Email;
             return document;
         }
 
@@ -434,5 +446,6 @@ namespace RP.Website
             item.ProductOptionId = entity.ProductOptionId.ToString();
             return item;
         }
+
     }
 }

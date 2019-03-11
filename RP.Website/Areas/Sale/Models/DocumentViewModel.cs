@@ -27,5 +27,20 @@ namespace RP.Website.Models
         public string CustomerBranchId { get; set; }
         public string CreatedBy { get; set; }
         public bool IsDraft { get; set; }
+
+        public string SaleName { get; set; }
+        public string SaleCode { get; set; }
+        public string SaleBranch { get; set; }
+
+        public string CustomerName { get; set; }
+        public string CustomerType { get; set; }
+        public string HospitalName { get; set; }
+
+        public string ContactName { get; set; }
+        public string ContactTel { get; set; }
+        public string ContactFax { get; set; }
+        public string ContactMobile { get; set; }
+        public string ContactEmail { get; set; }
+
     }
 }

@@ -487,6 +487,54 @@ namespace RP.Website.Controllers
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        [TokenValidation]
+        public ActionResult GetProductItemsByDocumentId(string id)
+        {
+            var document = GenericFactory.Business.GetDocument(id);
+            var viewModel = document.DocumentProductItems.Where(i=>!i.IsDeleted).Select(i => i.ToViewModel()).ToList();
+            return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddOrUpdateGeneralAndSaleInfo(FormCollection formCollection)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var json = formCollection["document"].ToString().Replace(@"\", "");
+                var model = JsonConvert.DeserializeObject<GeneralAndSaleInfoViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                //var document = model.ToEntity();
+                //document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
+                //var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                //if (string.IsNullOrEmpty(document.Id.ToString()))
+                //{
+                //    //Insert
+                //    this.CreateDocument(document, customerCode);
+                //}
+                //else
+                //{
+                //    //Update
+                //    this.UpdateDocument(document, customerCode);
+                //}
+                //data.Datas = new
+                //{
+                //    Id = document.Id.ToString()
+                //};
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+
         private JsonResult CreateDocument(Document document, string customerCode)
         {
             try

@@ -27,6 +27,10 @@ namespace RP.DataAccess
         {
             return ObjectSet.Where(i => i.Id.ToString() == id && !i.IsDelete).
                 Include(i => i.Customer).
+                Include(i => i.Customer.CustomerType).
+                Include(i => i.Customer.CustomerBranches).
+                Include(i => i.Customer.CustomerContacts).
+                Include(i => i.AspNetUser).
                 Include(i => i.DocumentProductItems).
                 Include(i => i.DocumentProductItems.Select(p => p.Product)).
                 Include(i=>i.DocumentProductItems.Select(p=>p.Product).Select(c=>c.ProductCategory)).

@@ -1666,6 +1666,7 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MaterialViewModel.cs" />
     <Compile Include="Models\Mobile\AuthenticationToken.cs" />
+    <Compile Include="Models\Mobile\GeneralAndSaleInfoViewModel.cs" />
     <Compile Include="Models\Mobile\MobileCalculateDateViewModel.cs" />
     <Compile Include="Models\Mobile\MobileResponseModel.cs" />
     <Compile Include="Models\Mobile\MobileUserAccountViewModel.cs" />
