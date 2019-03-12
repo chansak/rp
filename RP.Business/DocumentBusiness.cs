@@ -43,7 +43,8 @@ namespace RP.Business
                             }
                     }
                 }
-                return documents.ToList();
+                var d =  documents.ToList();
+                return d.Where(i => !i.IsDelete).ToList();
             }
         }
         public Document GetDocument(string id)

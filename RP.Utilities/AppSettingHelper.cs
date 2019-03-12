@@ -82,5 +82,26 @@ namespace RP.Utilities
                 return cacheExpirationMinute;
             }
         }
+
+        public static string DummyCustomerId
+        {
+            get
+            {
+                string customerId = "";
+                if (ConfigurationManager.AppSettings["DummyCustomerId"] != null)
+                    customerId = ConfigurationManager.AppSettings["DummyCustomerId"];
+                return customerId;
+            }
+        }
+        public static string DummyContactId
+        {
+            get
+            {
+                string contactId = "";
+                if (ConfigurationManager.AppSettings["DummyContactId"] != null)
+                    contactId = ConfigurationManager.AppSettings["DummyContactId"];
+                return contactId;
+            }
+        }
     }
 }

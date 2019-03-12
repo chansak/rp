@@ -20,13 +20,8 @@ namespace RP.Website
             }
             var document = new Document();
             document.Id = _documentId;
-            //document.DocumentStatusId = (int)WorkflowStatus.RequestedForApproval;
             document.BiddingStatusId = (int)BiddingStatus.Waiting;
-            //document.FileNumber = viewModel.DocumentCode;
-            //document.CreatedDate = viewModel.CreatedDate;
-            //document.IssueDate = viewModel.IssuedDate;
             document.ExpiryDate = viewModel.ExpirationDate;
-            //document.ExpectedDeliveryDate = viewModel.ExpectedDeliveryDate;
             document.UserId = viewModel.SaleUserId;
             document.CustomerId = new System.Guid(viewModel.CustomerId);
             document.ContactId = new System.Guid(viewModel.ContactId);
@@ -326,14 +321,14 @@ namespace RP.Website
             document.SaleName = entity.AspNetUser.DisplayName;
 
             document.CustomerName = entity.Customer.Name;
-            document.HospitalName = entity.Customer.CustomerBranches.FirstOrDefault().CustomerBranchName;
+            document.HospitalName = (entity.Customer.CustomerBranches.Count() == 0) ? "" : entity.Customer.CustomerBranches.FirstOrDefault().CustomerBranchName;
             document.CustomerType = entity.Customer.CustomerType.CustomerTypeName;
 
-            document.ContactName = entity.CustomerContact.Name;
-            document.ContactTel = entity.CustomerContact.Phone;
-            document.ContactFax = entity.CustomerContact.Fax;
-            document.ContactMobile = entity.CustomerContact.Mobile;
-            document.ContactEmail = entity.CustomerContact.Email;
+            document.ContactName = entity.CustomerContact == null ? "" : entity.CustomerContact.Name;
+            document.ContactTel = entity.CustomerContact == null ? "" : entity.CustomerContact.Phone;
+            document.ContactFax = entity.CustomerContact == null ? "" : entity.CustomerContact.Fax;
+            document.ContactMobile = entity.CustomerContact == null ? "" : entity.CustomerContact.Mobile;
+            document.ContactEmail = entity.CustomerContact == null ? "" : entity.CustomerContact.Email;
             return document;
         }
 

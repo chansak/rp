@@ -492,36 +492,53 @@ namespace RP.Website.Controllers
         public ActionResult GetProductItemsByDocumentId(string id)
         {
             var document = GenericFactory.Business.GetDocument(id);
-            var viewModel = document.DocumentProductItems.Where(i=>!i.IsDeleted).Select(i => i.ToViewModel()).ToList();
+            var viewModel = document.DocumentProductItems.Where(i => !i.IsDeleted).Select(i => i.ToViewModel()).ToList();
             return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult AddOrUpdateGeneralAndSaleInfo(FormCollection formCollection)
+        public ActionResult AddOrUpdateGeneralAndSaleInfo(GeneralAndSaleInfoViewModel model)
         {
             var data = new MobileResponseModel();
             try
             {
-                var json = formCollection["document"].ToString().Replace(@"\", "");
-                var model = JsonConvert.DeserializeObject<GeneralAndSaleInfoViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-                //var document = model.ToEntity();
-                //document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
-                //var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
-                //if (string.IsNullOrEmpty(document.Id.ToString()))
-                //{
-                //    //Insert
-                //    this.CreateDocument(document, customerCode);
-                //}
-                //else
-                //{
-                //    //Update
-                //    this.UpdateDocument(document, customerCode);
-                //}
-                //data.Datas = new
-                //{
-                //    Id = document.Id.ToString()
-                //};
+                var document = GenericFactory.Business.GetDocument(model.Id);
+                var customerCode = "";
+                if (document != null)
+                {
+                    document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
+                    document.ExpiryDate = model.ExpirationDate;
+                    document.UserId = model.SaleUserId;
+                    document.CustomerId = new Guid(AppSettingHelper.DummyCustomerId);
+                    document.ContactId = new Guid(AppSettingHelper.DummyContactId);
+                    this.UpdateDocument(document, customerCode);
+                }
+                else
+                {
+                    var _documentId = Guid.NewGuid();
+                    document = new Document
+                    {
+                        Id = _documentId,
+                        BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice,
+                        ExpiryDate = model.ExpirationDate,
+                        UserId = model.SaleUserId,
+                        CustomerId = new Guid(AppSettingHelper.DummyCustomerId),
+                        ContactId = new Guid(AppSettingHelper.DummyContactId)
+                    };
+                    var delivery = new DocumentDelivery
+                    {
+                        Id = Guid.NewGuid(),
+                        DocumentId = _documentId,
+                        Address1 = "Dummy"
+                    };
+                    document.DocumentDeliveries.Add(delivery);
+                    this.CreateDocument(document, customerCode);
+                }
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
             }
             catch (Exception ex)
             {
