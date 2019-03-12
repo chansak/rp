@@ -29,6 +29,7 @@ namespace RP.Interfaces
         void DeleteProductItemsByDocumentId(IUnitOfWork uow, string id);
         void DeleteProductItemsByDocument(Document document);
         IList<Document> GetApprovalDocumentsListBySearch(string searchBy, string keyword);
+        void DeleteProductItemByDocumentId(string documentId);
         #endregion
 
         #region User

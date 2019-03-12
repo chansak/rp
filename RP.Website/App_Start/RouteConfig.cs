@@ -36,7 +36,7 @@ namespace RP.Website
             );
             routes.MapRoute("GetCustomerBranchByCustomerId",
                 "api/GetCustomerBranchByCustomerId/{id}",
-                new { controller = "Mobile", action = "GetCustomerBranchByCustomerId",id=UrlParameter.Optional }
+                new { controller = "Mobile", action = "GetCustomerBranchByCustomerId", id = UrlParameter.Optional }
             );
             routes.MapRoute("GetContact",
                 "api/GetContact/{id}",
@@ -77,6 +77,10 @@ namespace RP.Website
             routes.MapRoute("addOrUpdateGeneralAndSaleInfo",
                "api/addOrUpdateGeneralAndSaleInfo",
                new { controller = "Mobile", action = "AddOrUpdateGeneralAndSaleInfo" }
+            );
+            routes.MapRoute("addOrUpdateCustomerAndContact",
+               "api/addOrUpdateCustomerAndContact",
+               new { controller = "Mobile", action = "AddOrUpdateCustomerAndContact" }
             );
             #endregion
             #region Common

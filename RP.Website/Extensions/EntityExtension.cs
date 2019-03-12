@@ -442,5 +442,109 @@ namespace RP.Website
             return item;
         }
 
+        public static DocumentProductItem ToViewModel(this ProductAndOptionViewModel model)
+        {
+            var itemId = Guid.NewGuid();
+            var item = new DocumentProductItem
+            {
+                Id = itemId,
+                ProductId = new System.Guid(model.ProductId),
+                ProductUnitId = new System.Guid(model.ProductUnitId),
+                Amount = model.Amount,
+                PricePerUnit = (decimal)model.PricePerUnit
+            };
+            var printOption1 = new ProductItemPrintOptional();
+            var printOption2 = new ProductItemScreenOptional();
+            var printOption3 = new ProductItemSewOptional();
+            var printStatus = (ItemOptionStatus)model.PrintOption.SelectedOption;
+            switch (printStatus)
+            {
+                case ItemOptionStatus.ExistingPattern:
+                    {
+                        printOption1.Id = Guid.NewGuid();
+                        printOption1.OptionalStatusId = 1;
+                        printOption1.ProductItemId = itemId;
+                        printOption1.PatternId = new Guid(model.PrintOption.PatternId.ToString());
+                        break;
+                    }
+                case ItemOptionStatus.NewPattern:
+                    {
+                        printOption1.Id = Guid.NewGuid();
+                        printOption1.OptionalStatusId = 2;
+                        printOption1.ColorCodeId = new Guid(model.PrintOption.ColorId);
+                        printOption1.ProductItemId = itemId;
+
+                        break;
+                    }
+                case 0:
+                    {
+                        break;
+                    }
+            }
+            var screenStatus = (ItemOptionStatus)model.ScreenOption.SelectedOption;
+            switch (screenStatus)
+            {
+                case ItemOptionStatus.ExistingPattern:
+                    {
+                        printOption2.Id = Guid.NewGuid();
+                        printOption2.OptionalStatusId = 1;
+                        printOption2.ProductItemId = itemId;
+                        printOption2.PatternId = new Guid(model.ScreenOption.PatternId.ToString());
+                        break;
+                    }
+                case ItemOptionStatus.NewPattern:
+                    {
+                        printOption2.Id = Guid.NewGuid();
+                        printOption2.OptionalStatusId = 2;
+                        printOption2.ColorCodeId = new Guid(model.ScreenOption.ColorId);
+                        printOption2.PatternPositionId = new Guid(model.ScreenOption.ColorId);
+                        printOption2.ProductItemId = itemId;
+
+                        break;
+                    }
+                case 0:
+                    {
+                        break;
+                    }
+            }
+            var sewStatus = (ItemOptionStatus)model.SewOption.SelectedOption;
+            switch (sewStatus)
+            {
+                case ItemOptionStatus.ExistingPattern:
+                    {
+                        printOption3.Id = Guid.NewGuid();
+                        printOption3.OptionalStatusId = 1;
+                        printOption3.ProductItemId = itemId;
+                        printOption3.PatternId = new Guid(model.SewOption.PatternId.ToString());
+                        break;
+                    }
+                case ItemOptionStatus.NewPattern:
+                    {
+                        printOption3.Id = Guid.NewGuid();
+                        printOption3.OptionalStatusId = 2;
+                        printOption3.PatternPositionId = new Guid(model.SewOption.PositionId);
+                        printOption3.ProductItemId = itemId;
+                        printOption3.Remark = model.SewOption.Remark;
+                        break;
+                    }
+                case 0:
+                    {
+                        break;
+                    }
+            }
+            if (model.PrintOption.SelectedOption > 0)
+            {
+                item.ProductItemPrintOptionals.Add(printOption1);
+            }
+            if (model.ScreenOption.SelectedOption > 0)
+            {
+                item.ProductItemScreenOptionals.Add(printOption2);
+            }
+            if (model.SewOption.SelectedOption > 0)
+            {
+                item.ProductItemSewOptionals.Add(printOption3);
+            }
+            return item;
+        }
     }
 }
