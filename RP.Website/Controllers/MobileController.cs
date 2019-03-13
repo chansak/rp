@@ -790,7 +790,7 @@ namespace RP.Website.Controllers
             try
             {
                 if (model.ItemId != null) {
-                    GenericFactory.Business.DeleteProductItemByDocumentId(model.Id);
+                    GenericFactory.Business.MarkDeleteProductItemByItemId(model.ItemId);
                 }
                 var document = GenericFactory.Business.GetDocument(model.Id);
                 document.DocumentProductItems.Add(model.ToViewModel());

@@ -25,9 +25,10 @@ namespace RP.Business
                 {
                     uow.DocumentProductItemRepository.Delete(item);
                 }
+                uow.Commit();
             }
         }
-        public void DeleteProductItemsByDocumentId(IUnitOfWork uow, string id)
+        public void MarkDeleteProductItemsByDocumentId(IUnitOfWork uow, string id)
         {
 
             var document = uow.DocumentRepository.GetById(id);
@@ -35,6 +36,15 @@ namespace RP.Business
             {
                 var existingItem = uow.DocumentProductItemRepository.GetById(item.Id);
                 existingItem.IsDeleted = true;
+            }
+            uow.Commit();
+        }
+        public void MarkDeleteProductItemByItemId(string itemId) {
+            using (var uow = UnitOfWork.Create())
+            {
+                var item = uow.DocumentProductItemRepository.GetById(itemId);
+                item.IsDeleted = true;
+                uow.Commit();
             }
         }
     }

@@ -20,16 +20,18 @@ namespace RP.Interfaces
         IList<Document> GetDocumentsListBySearch(string searchBy, string keyword,string userId=null);
         Document GetDocument(string id);
         void CreateDocument(Document document, string customerCode);
+        void UpdateDocumentWithMarkDeleteItems(Document document);
         void UpdateDocument(Document document);
         void UpdateDocumentStatus(Document document);
         DocumentProductItem GetProductItemByItemId(string id);
         ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
         ProductItemScreenOptional GetProductItemScreenOptionalByItemId(string id);
         ProductItemSewOptional GetProductItemSewOptionalByItemId(string id);
-        void DeleteProductItemsByDocumentId(IUnitOfWork uow, string id);
+        void MarkDeleteProductItemsByDocumentId(IUnitOfWork uow, string id);
         void DeleteProductItemsByDocument(Document document);
         IList<Document> GetApprovalDocumentsListBySearch(string searchBy, string keyword);
-        void DeleteProductItemByDocumentId(string documentId);
+        void MarkDeleteProductItemByItemId(string itemId);
+
         #endregion
 
         #region User

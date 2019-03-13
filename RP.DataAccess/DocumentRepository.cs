@@ -33,7 +33,7 @@ namespace RP.DataAccess
                 Include(i => i.AspNetUser).
                 Include(i => i.DocumentProductItems).
                 Include(i => i.DocumentProductItems.Select(p => p.Product)).
-                Include(i=>i.DocumentProductItems.Select(p=>p.Product).Select(c=>c.ProductCategory)).
+                Include(i => i.DocumentProductItems.Select(p => p.Product).Select(c => c.ProductCategory)).
                 Include(i => i.DocumentProductItems.Select(p => p.Unit)).
                 Include(i => i.DocumentProductItems.Select(p => p.ProductItemPrintOptionals)).
                 Include(i => i.DocumentProductItems.Select(p => p.ProductItemScreenOptionals)).
@@ -58,9 +58,15 @@ namespace RP.DataAccess
             existingDocument.UserId = document.UserId;
             existingDocument.ExpiryDate = document.ExpiryDate;
             existingDocument.PoNumber = document.PoNumber;
-            if (document.DocumentProductItems.Count > 0) {
-                foreach (var item in document.DocumentProductItems){
-                    existingDocument.DocumentProductItems.Add(item);
+            if (document.DocumentProductItems.Count > 0)
+            {
+                foreach (var item in document.DocumentProductItems.Where(i => !i.IsDeleted))
+                {
+                    var exisingItem = existingDocument.DocumentProductItems.FirstOrDefault(i => i.Id == item.Id);
+                    if (exisingItem == null)
+                    {
+                        existingDocument.DocumentProductItems.Add(item);
+                    }
                 }
             }
             existingDocument.UpdatedDate = DateTime.Now;

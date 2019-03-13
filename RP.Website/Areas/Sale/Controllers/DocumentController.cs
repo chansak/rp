@@ -273,7 +273,7 @@ namespace RP.Website.Areas.Sale.Controllers
                         }
                     }
                 }
-                GenericFactory.Business.UpdateDocument(document);
+                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document);
 
                 return Json("");
             }
@@ -334,7 +334,7 @@ namespace RP.Website.Areas.Sale.Controllers
                         }
                     }
                 }
-                GenericFactory.Business.UpdateDocument(document);
+                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document);
 
                 return Json("");
             }
@@ -395,7 +395,7 @@ namespace RP.Website.Areas.Sale.Controllers
                         }
                     }
                 }
-                GenericFactory.Business.UpdateDocument(document);
+                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document);
 
                 return Json("");
             }

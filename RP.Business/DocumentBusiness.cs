@@ -69,12 +69,30 @@ namespace RP.Business
                 }
             }
         }
-        public void DeleteProductItemByDocumentId(string documentId) {
+        public void DeleteProductItemsByDocumentId(string documentId) {
             using (var uow = UnitOfWork.Create())
             {
                 try
                 {
-                    this.DeleteProductItemsByDocumentId(uow, documentId);
+                    this.MarkDeleteProductItemsByDocumentId(uow, documentId);
+                    uow.Commit();
+                }
+                catch (Exception ex)
+                {
+                    uow.Rollback();
+                    var msg = ex.Message;
+                }
+            }
+        }
+        public void UpdateDocumentWithMarkDeleteItems(Document document)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                try
+                {
+                    //Would be update IsDelete instread of delete them
+                    this.MarkDeleteProductItemsByDocumentId(uow, document.Id.ToString());
+                    uow.DocumentRepository.UpdateDocument(document);
                     uow.Commit();
                 }
                 catch (Exception ex)
@@ -90,8 +108,6 @@ namespace RP.Business
             {
                 try
                 {
-                    //Would be update IsDelete instread of delete them
-                    this.DeleteProductItemsByDocumentId(uow, document.Id.ToString());
                     uow.DocumentRepository.UpdateDocument(document);
                     uow.Commit();
                 }
