@@ -90,7 +90,6 @@ namespace RP.Business
             {
                 try
                 {
-                    //Would be update IsDelete instread of delete them
                     this.MarkDeleteProductItemsByDocumentId(uow, document.Id.ToString());
                     uow.DocumentRepository.UpdateDocument(document);
                     uow.Commit();
