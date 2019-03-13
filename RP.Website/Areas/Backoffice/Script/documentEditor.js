@@ -270,6 +270,8 @@
             $("#issuedDate").datepicker('setDate', issuedDate);
             $("#expirationDate").datepicker('setDate', expirationDate);
             $("#expectedDeliveryDate").datepicker('setDate', expectedDeliveryDate);
+            $("#deliveryAddress").val(data.deliveryAddress);
+            $("#documentRemark").val(data.remark);
             _getCustomerDetail(data.customerId);
             _getContactDetail(data.contactId);
             _getSaleDetail(data.saleUserId);
