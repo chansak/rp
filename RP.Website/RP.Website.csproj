@@ -1668,6 +1668,7 @@
     <Compile Include="Models\Mobile\AuthenticationToken.cs" />
     <Compile Include="Models\Mobile\BaseDocumentViewModel.cs" />
     <Compile Include="Models\Mobile\CustomerAndContactViewModel.cs" />
+    <Compile Include="Models\Mobile\DeliveryViewModel.cs" />
     <Compile Include="Models\Mobile\GeneralAndSaleInfoViewModel.cs" />
     <Compile Include="Models\Mobile\MobileCalculateDateViewModel.cs" />
     <Compile Include="Models\Mobile\MobileResponseModel.cs" />
@@ -1675,6 +1676,7 @@
     <Compile Include="Models\Mobile\MobileWorkListSearchCriteria.cs" />
     <Compile Include="Models\Mobile\LocationTrackingViewModel.cs" />
     <Compile Include="Models\Mobile\ProductAndOptionViewModel.cs" />
+    <Compile Include="Models\Mobile\RemarkViewModel.cs" />
     <Compile Include="Models\PatternColorViewModel.cs" />
     <Compile Include="Models\PatternImageViewModel.cs" />
     <Compile Include="Models\PatternPositionViewModel.cs" />

@@ -811,5 +811,59 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddOrUpdateDelivery(DeliveryViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = GenericFactory.Business.GetDocument(model.Id);
+                document.DocumentDeliveries.FirstOrDefault().Address1 = model.DeliveryAddress;
+                this.UpdateDocument(document, document.FileNumber);
+
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddOrUpdateRemark(RemarkViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = GenericFactory.Business.GetDocument(model.Id);
+                document.RefPriceAndRemark = model.Remark;
+                this.UpdateDocument(document, document.FileNumber);
+
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }
