@@ -26,6 +26,7 @@ namespace RP.Website.Controllers
         public const string SCREEN_NEWPATTERN = "screenFile";
         public const string SEW_NEWPATTERN = "sewFile";
 
+        #region Public services
         private UserManager<ApplicationUser> UserManager
         {
             get
@@ -403,14 +404,27 @@ namespace RP.Website.Controllers
         [TokenValidation]
         public ActionResult GetOptionsByProductId(string id)
         {
-            var result = new AjaxResultModel();
-            var products = GenericFactory.Business.GetOptionsByProductId(id);
-            var data = new List<ProductOptionViewModel>();
-            data.AddRange(products.Select(o => new ProductOptionViewModel
+            var data = new MobileResponseModel();
+            try
             {
-                Id = o.Id.ToString(),
-                OptionName = o.OptionName
-            }));
+                var products = GenericFactory.Business.GetOptionsByProductId(id);
+                var result = new List<ProductOptionViewModel>();
+                result.AddRange(products.Select(o => new ProductOptionViewModel
+                {
+                    Id = o.Id.ToString(),
+                    OptionName = o.OptionName
+                }));
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
 
@@ -456,9 +470,23 @@ namespace RP.Website.Controllers
         [TokenValidation]
         public ActionResult GetDocumentDetail(string id)
         {
-            var document = GenericFactory.Business.GetDocument(id);
-            var viewModel = document.ToViewModel();
-            return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = GenericFactory.Business.GetDocument(id);
+                var result = document.ToViewModel();
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         [TokenValidation]
@@ -491,11 +519,200 @@ namespace RP.Website.Controllers
         [TokenValidation]
         public ActionResult GetProductItemsByDocumentId(string id)
         {
-            var document = GenericFactory.Business.GetDocument(id);
-            var viewModel = document.DocumentProductItems.Where(i => !i.IsDeleted).Select(i => i.ToViewModel()).ToList();
-            return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = GenericFactory.Business.GetDocument(id);
+                var result = document.DocumentProductItems.Where(i => !i.IsDeleted).Select(i => i.ToViewModel()).ToList();
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddOrUpdateGeneralAndSaleInfo(GeneralAndSaleInfoViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = GenericFactory.Business.GetDocument(model.Id);
+                var customerCode = "";
+                if (document != null)
+                {
+                    document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
+                    document.ExpiryDate = model.ExpirationDate;
+                    document.UserId = model.SaleUserId;
+                    document.CustomerId = new Guid(AppSettingHelper.DummyCustomerId);
+                    document.ContactId = new Guid(AppSettingHelper.DummyContactId);
+                    this.UpdateDocument(document, customerCode);
+                }
+                else
+                {
+                    var _documentId = Guid.NewGuid();
+                    document = new Document
+                    {
+                        Id = _documentId,
+                        BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice,
+                        ExpiryDate = model.ExpirationDate,
+                        UserId = model.SaleUserId,
+                        CustomerId = new Guid(AppSettingHelper.DummyCustomerId),
+                        ContactId = new Guid(AppSettingHelper.DummyContactId)
+                    };
+                    var delivery = new DocumentDelivery
+                    {
+                        Id = Guid.NewGuid(),
+                        DocumentId = _documentId,
+                        Address1 = "Dummy"
+                    };
+                    document.DocumentDeliveries.Add(delivery);
+                    this.CreateDocument(document, customerCode);
+                }
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddOrUpdateCustomerAndContact(CustomerAndContactViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = GenericFactory.Business.GetDocument(model.Id);
+                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
+                document.CustomerId = new Guid(model.CustomerId);
+                document.ContactId = new Guid(model.ContactId);
+                this.UpdateDocument(document, customerCode);
+
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddOrUpdateProductItems(FormCollection formCollection)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var json = formCollection["document"].ToString().Replace(@"\", "");
+                var model = JsonConvert.DeserializeObject<ProductAndOptionViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                if (model.ItemId != null)
+                {
+                    GenericFactory.Business.MarkDeleteProductItemByItemId(model.ItemId);
+                }
+                var document = GenericFactory.Business.GetDocument(model.Id);
+                document.DocumentProductItems.Add(model.ToViewModel());
+                this.UpdateDocument(document, document.FileNumber);
+
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddOrUpdateDelivery(DeliveryViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = GenericFactory.Business.GetDocument(model.Id);
+                document.DocumentDeliveries.FirstOrDefault().Address1 = model.DeliveryAddress;
+                this.UpdateDocument(document, document.FileNumber);
+
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddOrUpdateRemark(RemarkViewModel model)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var document = GenericFactory.Business.GetDocument(model.Id);
+                document.RefPriceAndRemark = model.Remark;
+                this.UpdateDocument(document, document.FileNumber);
+
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Private method
         private JsonResult CreateDocument(Document document, string customerCode)
         {
             try
@@ -510,54 +727,6 @@ namespace RP.Website.Controllers
             }
             return Json(null);
         }
-
-        #region OBSOLETE
-        //[HttpPost]
-        //[TokenValidation]
-        //public ActionResult CreateDraftDocument(DocumentViewModel model)
-        //{
-        //    var data = new MobileResponseModel();
-        //    try
-        //    {
-        //        var document = model.ToEntity();
-        //        document.DocumentStatusId = (int)WorkflowStatus.Draft;
-        //        var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
-        //        Create(document, customerCode);
-        //        data.Datas = new
-        //        {
-        //            documentId = document.Id
-        //        };
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        data.Status = false;
-        //        data.ErrorCode = "001";
-        //        data.ErrorMessage = ex.Message;
-        //        data.MessageId = "";
-        //        data.TimeStamp = "";
-        //    }
-        //    return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
-        //}
-        //private JsonResult CreateDraftDocument(FormCollection formCollection)
-        //{
-        //    try
-        //    {
-        //        var json = formCollection["document"].ToString().Replace(@"\", "");
-        //        var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
-        //        var document = model.ToEntity();
-        //        document.DocumentStatusId = (int)WorkflowStatus.Draft;
-        //        var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
-        //        Create(document, customerCode);
-        //        return Json("");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        var msg = ex.Message;
-        //    }
-        //    return Json(null);
-        //}
-        #endregion
-
         private JsonResult UpdateDocument(Document document, string customerCode)
         {
             try
@@ -696,174 +865,53 @@ namespace RP.Website.Controllers
                 return false;
             }
         }
+        #endregion
 
-        [HttpPost]
-        [TokenValidation]
-        public ActionResult AddOrUpdateGeneralAndSaleInfo(GeneralAndSaleInfoViewModel model)
-        {
-            var data = new MobileResponseModel();
-            try
-            {
-                var document = GenericFactory.Business.GetDocument(model.Id);
-                var customerCode = "";
-                if (document != null)
-                {
-                    document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
-                    document.ExpiryDate = model.ExpirationDate;
-                    document.UserId = model.SaleUserId;
-                    document.CustomerId = new Guid(AppSettingHelper.DummyCustomerId);
-                    document.ContactId = new Guid(AppSettingHelper.DummyContactId);
-                    this.UpdateDocument(document, customerCode);
-                }
-                else
-                {
-                    var _documentId = Guid.NewGuid();
-                    document = new Document
-                    {
-                        Id = _documentId,
-                        BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice,
-                        ExpiryDate = model.ExpirationDate,
-                        UserId = model.SaleUserId,
-                        CustomerId = new Guid(AppSettingHelper.DummyCustomerId),
-                        ContactId = new Guid(AppSettingHelper.DummyContactId)
-                    };
-                    var delivery = new DocumentDelivery
-                    {
-                        Id = Guid.NewGuid(),
-                        DocumentId = _documentId,
-                        Address1 = "Dummy"
-                    };
-                    document.DocumentDeliveries.Add(delivery);
-                    this.CreateDocument(document, customerCode);
-                }
-                data.Datas = new
-                {
-                    Id = document.Id.ToString()
-                };
-            }
-            catch (Exception ex)
-            {
-                data.Status = false;
-                data.ErrorCode = "001";
-                data.ErrorMessage = ex.Message;
-                data.MessageId = "";
-                data.TimeStamp = "";
-            }
-            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [TokenValidation]
-        public ActionResult AddOrUpdateCustomerAndContact(CustomerAndContactViewModel model)
-        {
-            var data = new MobileResponseModel();
-            try
-            {
-                var document = GenericFactory.Business.GetDocument(model.Id);
-                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
-                document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
-                document.CustomerId = new Guid(model.CustomerId);
-                document.ContactId = new Guid(model.ContactId);
-                this.UpdateDocument(document, customerCode);
-
-                data.Datas = new
-                {
-                    Id = document.Id.ToString()
-                };
-            }
-            catch (Exception ex)
-            {
-                data.Status = false;
-                data.ErrorCode = "001";
-                data.ErrorMessage = ex.Message;
-                data.MessageId = "";
-                data.TimeStamp = "";
-            }
-            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [TokenValidation]
-        public ActionResult AddOrUpdateProductItems(ProductAndOptionViewModel model)
-        {
-            var data = new MobileResponseModel();
-            try
-            {
-                if (model.ItemId != null) {
-                    GenericFactory.Business.MarkDeleteProductItemByItemId(model.ItemId);
-                }
-                var document = GenericFactory.Business.GetDocument(model.Id);
-                document.DocumentProductItems.Add(model.ToViewModel());
-                this.UpdateDocument(document, document.FileNumber);
-                
-                data.Datas = new
-                {
-                    Id = document.Id.ToString()
-                };
-            }
-            catch (Exception ex)
-            {
-                data.Status = false;
-                data.ErrorCode = "001";
-                data.ErrorMessage = ex.Message;
-                data.MessageId = "";
-                data.TimeStamp = "";
-            }
-            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [TokenValidation]
-        public ActionResult AddOrUpdateDelivery(DeliveryViewModel model)
-        {
-            var data = new MobileResponseModel();
-            try
-            {
-                var document = GenericFactory.Business.GetDocument(model.Id);
-                document.DocumentDeliveries.FirstOrDefault().Address1 = model.DeliveryAddress;
-                this.UpdateDocument(document, document.FileNumber);
-
-                data.Datas = new
-                {
-                    Id = document.Id.ToString()
-                };
-            }
-            catch (Exception ex)
-            {
-                data.Status = false;
-                data.ErrorCode = "001";
-                data.ErrorMessage = ex.Message;
-                data.MessageId = "";
-                data.TimeStamp = "";
-            }
-            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [TokenValidation]
-        public ActionResult AddOrUpdateRemark(RemarkViewModel model)
-        {
-            var data = new MobileResponseModel();
-            try
-            {
-                var document = GenericFactory.Business.GetDocument(model.Id);
-                document.RefPriceAndRemark = model.Remark;
-                this.UpdateDocument(document, document.FileNumber);
-
-                data.Datas = new
-                {
-                    Id = document.Id.ToString()
-                };
-            }
-            catch (Exception ex)
-            {
-                data.Status = false;
-                data.ErrorCode = "001";
-                data.ErrorMessage = ex.Message;
-                data.MessageId = "";
-                data.TimeStamp = "";
-            }
-            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
-        }
+        #region OBSOLETE
+        //[HttpPost]
+        //[TokenValidation]
+        //public ActionResult CreateDraftDocument(DocumentViewModel model)
+        //{
+        //    var data = new MobileResponseModel();
+        //    try
+        //    {
+        //        var document = model.ToEntity();
+        //        document.DocumentStatusId = (int)WorkflowStatus.Draft;
+        //        var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+        //        Create(document, customerCode);
+        //        data.Datas = new
+        //        {
+        //            documentId = document.Id
+        //        };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        data.Status = false;
+        //        data.ErrorCode = "001";
+        //        data.ErrorMessage = ex.Message;
+        //        data.MessageId = "";
+        //        data.TimeStamp = "";
+        //    }
+        //    return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        //}
+        //private JsonResult CreateDraftDocument(FormCollection formCollection)
+        //{
+        //    try
+        //    {
+        //        var json = formCollection["document"].ToString().Replace(@"\", "");
+        //        var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+        //        var document = model.ToEntity();
+        //        document.DocumentStatusId = (int)WorkflowStatus.Draft;
+        //        var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+        //        Create(document, customerCode);
+        //        return Json("");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var msg = ex.Message;
+        //    }
+        //    return Json(null);
+        //}
+        #endregion
     }
 }
