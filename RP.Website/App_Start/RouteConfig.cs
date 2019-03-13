@@ -82,9 +82,9 @@ namespace RP.Website
                "api/addOrUpdateCustomerAndContact",
                new { controller = "Mobile", action = "AddOrUpdateCustomerAndContact" }
             );
-            routes.MapRoute("addOrUpdateProductItems",
-               "api/addOrUpdateProductItems",
-               new { controller = "Mobile", action = "AddOrUpdateProductItems" }
+            routes.MapRoute("addOrUpdateProductItem",
+               "api/addOrUpdateProductItem",
+               new { controller = "Mobile", action = "AddOrUpdateProductItem" }
             );
             routes.MapRoute("addOrUpdateDelivery",
                "api/addOrUpdateDelivery",

@@ -625,7 +625,7 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult AddOrUpdateProductItems(FormCollection formCollection)
+        public ActionResult AddOrUpdateProductItem(FormCollection formCollection)
         {
             var data = new MobileResponseModel();
             try
