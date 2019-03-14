@@ -404,6 +404,17 @@ namespace RP.DataAccess
 				return _ProductOptionRepository;
 			}
 		}
+		IProductPreviewImageRepository _ProductPreviewImageRepository;
+		public IProductPreviewImageRepository ProductPreviewImageRepository
+		{
+			get
+			{
+				if (_ProductPreviewImageRepository == null)
+					_ProductPreviewImageRepository = new ProductPreviewImageRepository(context);
+				
+				return _ProductPreviewImageRepository;
+			}
+		}
 		IProductPriceRepository _ProductPriceRepository;
 		public IProductPriceRepository ProductPriceRepository
 		{

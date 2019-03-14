@@ -520,6 +520,11 @@
       <End Role="AspNetRole" EntitySet="AspNetRoles" />
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="ProductPreviewImages" EntityType="RP.Model.ProductPreviewImage" />
+    <AssociationSet Name="FK_ProductPreviewImages_Product" Association="RP.Model.FK_ProductPreviewImages_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductPreviewImage" EntitySet="ProductPreviewImages" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AspNetRole">
     <Key>
@@ -755,6 +760,7 @@
     <NavigationProperty Name="ProductCategory" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
     <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
     <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
+    <NavigationProperty Name="ProductPreviewImages" Relationship="RP.Model.FK_ProductPreviewImages_Product" FromRole="Product" ToRole="ProductPreviewImage" />
   </EntityType>
   <EntityType Name="ProductCategory">
     <Key>
@@ -1434,5 +1440,27 @@
   <Association Name="AspNetUserRoles">
     <End Type="RP.Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
     <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="ProductPreviewImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Guid" />
+    <NavigationProperty Name="Product" Relationship="RP.Model.FK_ProductPreviewImages_Product" FromRole="ProductPreviewImage" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_ProductPreviewImages_Product">
+    <End Type="RP.Model.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="RP.Model.ProductPreviewImage" Role="ProductPreviewImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductPreviewImage">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

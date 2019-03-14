@@ -82,6 +82,8 @@
         <AssociationConnector Association="RP.Model.FK_Document_AspNetUsers" />
         <AssociationConnector Association="RP.Model.FK_LocationTracking_AspNetUsers" />
         <AssociationConnector Association="RP.Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="RP.Model.ProductPreviewImage" Width="1.5" PointX="6" PointY="22.625" />
+        <AssociationConnector Association="RP.Model.FK_ProductPreviewImages_Product" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

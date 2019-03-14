@@ -144,6 +144,9 @@
     <Compile Include="IProductOptionRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="IProductPreviewImageRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="IProductPriceRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>

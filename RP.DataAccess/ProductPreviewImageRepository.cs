@@ -9,59 +9,11 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class WarehouseRepository : EFRepository<RP.Model.Warehouse>, IWarehouseRepository
+	public class ProductPreviewImageRepository : EFRepository<RP.Model.ProductPreviewImage>, IProductPreviewImageRepository
 	{
-		public WarehouseRepository(DbContext context)
+		public ProductPreviewImageRepository(DbContext context)
             : base(context)
 		{
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

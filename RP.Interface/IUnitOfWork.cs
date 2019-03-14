@@ -44,6 +44,7 @@ namespace RP.Interfaces
 		IProductItemSewOptionalRepository ProductItemSewOptionalRepository  { get; }
 		IProductMaterialUsageRepository ProductMaterialUsageRepository  { get; }
 		IProductOptionRepository ProductOptionRepository  { get; }
+		IProductPreviewImageRepository ProductPreviewImageRepository  { get; }
 		IProductPriceRepository ProductPriceRepository  { get; }
 		IProductUnitRepository ProductUnitRepository  { get; }
 		IRegionRepository RegionRepository  { get; }

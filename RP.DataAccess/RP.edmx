@@ -336,6 +336,15 @@
           <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="OptionName" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="ProductPreviewImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="ProductId" Type="uniqueidentifier" />
+        </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
             <PropertyRef Name="Id" />
@@ -778,6 +787,18 @@
             </Principal>
             <Dependent Role="ProductMaterialUsage">
               <PropertyRef Name="ProductUnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPreviewImages_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductPreviewImages" Type="Self.ProductPreviewImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPreviewImages">
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1241,6 +1262,7 @@
           <EntitySet Name="ProductItemSewOptional" EntityType="Self.ProductItemSewOptional" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaterialUsage" EntityType="Self.ProductMaterialUsage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPreviewImages" EntityType="Self.ProductPreviewImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
@@ -1369,6 +1391,10 @@
           <AssociationSet Name="FK_ProductMaterialUsage_Unit" Association="Self.FK_ProductMaterialUsage_Unit">
             <End Role="Unit" EntitySet="Unit" />
             <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPreviewImages_Product" Association="Self.FK_ProductPreviewImages_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPreviewImages" EntitySet="ProductPreviewImages" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductPrice_Product" Association="Self.FK_ProductPrice_Product">
             <End Role="Product" EntitySet="Product" />
@@ -1927,6 +1953,11 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="ProductPreviewImages" EntityType="RP.Model.ProductPreviewImage" />
+          <AssociationSet Name="FK_ProductPreviewImages_Product" Association="RP.Model.FK_ProductPreviewImages_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductPreviewImage" EntitySet="ProductPreviewImages" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -2162,6 +2193,7 @@
           <NavigationProperty Name="ProductCategory" Relationship="RP.Model.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
           <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
           <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
+          <NavigationProperty Name="ProductPreviewImages" Relationship="RP.Model.FK_ProductPreviewImages_Product" FromRole="Product" ToRole="ProductPreviewImage" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -2842,6 +2874,28 @@
           <End Type="RP.Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="ProductPreviewImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="Guid" />
+          <NavigationProperty Name="Product" Relationship="RP.Model.FK_ProductPreviewImages_Product" FromRole="ProductPreviewImage" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_ProductPreviewImages_Product">
+          <End Type="RP.Model.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="RP.Model.ProductPreviewImage" Role="ProductPreviewImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPreviewImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3349,6 +3403,16 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ProductPreviewImages">
+            <EntityTypeMapping TypeName="RP.Model.ProductPreviewImage">
+              <MappingFragment StoreEntitySet="ProductPreviewImages">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

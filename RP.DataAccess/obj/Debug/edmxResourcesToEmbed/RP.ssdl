@@ -331,6 +331,15 @@
     <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="OptionName" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="ProductPreviewImages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+    <Property Name="ProductId" Type="uniqueidentifier" />
+  </EntityType>
   <EntityType Name="ProductPrice">
     <Key>
       <PropertyRef Name="Id" />
@@ -773,6 +782,18 @@
       </Principal>
       <Dependent Role="ProductMaterialUsage">
         <PropertyRef Name="ProductUnitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPreviewImages_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ProductPreviewImages" Type="Self.ProductPreviewImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductPreviewImages">
+        <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1236,6 +1257,7 @@
     <EntitySet Name="ProductItemSewOptional" EntityType="Self.ProductItemSewOptional" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductMaterialUsage" EntityType="Self.ProductMaterialUsage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductPreviewImages" EntityType="Self.ProductPreviewImages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
@@ -1364,6 +1386,10 @@
     <AssociationSet Name="FK_ProductMaterialUsage_Unit" Association="Self.FK_ProductMaterialUsage_Unit">
       <End Role="Unit" EntitySet="Unit" />
       <End Role="ProductMaterialUsage" EntitySet="ProductMaterialUsage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPreviewImages_Product" Association="Self.FK_ProductPreviewImages_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductPreviewImages" EntitySet="ProductPreviewImages" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductPrice_Product" Association="Self.FK_ProductPrice_Product">
       <End Role="Product" EntitySet="Product" />

@@ -247,6 +247,12 @@
     <Compile Include="ProductOptionRepository.cs">
       <DependentUpon>Repository.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductPreviewImage.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPreviewImageRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductPrice.cs">
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>
