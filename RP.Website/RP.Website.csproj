@@ -1729,6 +1729,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Manager\Models\" />
+    <Folder Include="Content\preview\" />
     <Folder Include="Filter\" />
     <Folder Include="Views\Common\" />
   </ItemGroup>
