@@ -171,6 +171,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Script\userEditor.js" />
     <Content Include="Areas\Admin\Script\userList.js" />
     <Content Include="Areas\Admin\Views\Setting\AddNewCustomer.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\CustomerList.cshtml" />
@@ -1247,6 +1248,7 @@
     <Content Include="Areas\Manager\Views\Document\Edit.cshtml" />
     <Content Include="Areas\Manager\Views\Document\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

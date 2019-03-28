@@ -56,5 +56,17 @@ namespace RP.Website.Areas.Admin.Controllers
             };
             return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Edit(string id)
+        {
+            ViewBag.UserId = id;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GetUserById(string id) {
+            var data = GenericFactory.Business.GetUserById(id);
+            var user = data.ToViewModel();
+            return new JsonCamelCaseResult(user, JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

@@ -8,7 +8,7 @@
     };
     var _edit = function () {
         var itemId = 0;
-        var items = $("input:checkbox[name=documentId]:checked");
+        var items = $("input:checkbox[name=userId]:checked");
         if (items.length == 1) {
             itemId = $(items[0]).val();
 
@@ -23,7 +23,7 @@
         var html = '';
         $(users).each(function (index, user) {
             html += '<tr>';
-            html += '   <td><div class="checkbox i-checks"><label> <input type="checkbox" name="documentId" value=' + user.id + '> <i></i></label></div></td>';
+            html += '   <td><div class="checkbox i-checks"><label> <input type="checkbox" name="userId" value=' + user.id + '> <i></i></label></div></td>';
             html += '   <td>' + user.userName + '</td>';
             html += '   <td>' + user.displayName + '</td>';
             html += '   <td>' + user.roleName + '</td>';

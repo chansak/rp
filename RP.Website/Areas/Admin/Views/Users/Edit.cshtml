@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>แก้ไขใบขอราคา</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("Index", "Users",new { area = "Admin" })">หน้าแรก</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Users",new { area = "Admin" })">รายการใบขอราคา</a>
+                </li>
+                <li class="active">
+                    <strong>แก้ไขใบข้อมูลผู้ใช้</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <input type="hidden" id="userId" value="@ViewBag.UserId" />
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+
+            </div>
+        </div>
+    </div>
+}
+@section Styles {
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            userEditor.init();
+        });
+    </script>
+}

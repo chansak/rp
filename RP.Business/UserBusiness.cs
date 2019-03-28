@@ -65,6 +65,13 @@ namespace RP.Business
                 return sales.First(s => s.Id == id);
             }
         }
+        public AspNetUser GetUserById(string id)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                return uow.AspNetUserRepository.All().AsEnumerable().First(u => u.Id == id);
+            }
+        }
         public bool AddNewUser(ApplicationUser user, string password, string role)
         {
             bool operationResult = false;
