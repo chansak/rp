@@ -41,7 +41,7 @@ namespace RP.Website.Areas.Sale.Controllers
             var allowedStatus = new List<int>();
             allowedStatus.Add((int)WorkflowStatus.Draft);
             allowedStatus.Add((int)WorkflowStatus.RequestForMoreInfoForSale);
-            var documents = items.Where(i => allowedStatus.Contains(i.BiddingStatusId.Value)).ToList();
+            var documents = items.Where(i => allowedStatus.Contains(i.DocumentStatusId.Value)).ToList();
             int totalCount = documents.Count;
             var result = new List<DocumentListItemViewModel>();
             foreach (var d in documents)

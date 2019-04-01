@@ -59,6 +59,7 @@ namespace RP.DataAccess
             existingDocument.ExpiryDate = document.ExpiryDate;
             existingDocument.PoNumber = document.PoNumber;
             existingDocument.RefPriceAndRemark = document.RefPriceAndRemark;
+            existingDocument.IsDelete = document.IsDelete;
             if (document.DocumentProductItems.Count > 0)
             {
                 foreach (var item in document.DocumentProductItems.Where(i => !i.IsDeleted))

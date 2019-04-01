@@ -94,6 +94,10 @@ namespace RP.Website
                "api/addOrUpdateRemark",
                new { controller = "Mobile", action = "AddOrUpdateRemark" }
             );
+            routes.MapRoute("deleteDocument",
+               "api/deleteDocument/{id}",
+               new { controller = "Mobile", action = "DeleteDocument", id = UrlParameter.Optional }
+            );
             #endregion
             #region Common
             routes.MapRoute(

@@ -111,13 +111,15 @@ namespace RP.Website.Controllers
                 var allowedStatus = new List<int>();
                 allowedStatus.Add((int)WorkflowStatus.Draft);
                 allowedStatus.Add((int)WorkflowStatus.RequestForMoreInfoForSale);
-                var documents = items.Where(i => allowedStatus.Contains(i.BiddingStatusId.Value)).ToList();
+                var documents = items.Where(i => allowedStatus.Contains(i.DocumentStatusId.Value)).ToList();
                 int totalCount = documents.Count;
                 var result = new List<DocumentListItemViewModel>();
                 foreach (var d in documents)
                 {
                     var documentStatus = (WorkflowStatus)d.DocumentStatusId;
                     var statusName = documentStatus.ToWorkFlowStatusName();
+                    var biddingStatus = (d.BiddingStatusId.HasValue) ?(BiddingStatus)d.BiddingStatusId:BiddingStatus.undefined;
+                    var biddingStatusName = biddingStatus.ToBiddingStatusName();
                     var document = new DocumentListItemViewModel
                     {
                         Id = d.Id.ToString(),
@@ -127,8 +129,8 @@ namespace RP.Website.Controllers
                         SaleUserName = d.AspNetUser.DisplayName,
                         WorkflowStatus = (int)d.DocumentStatusId,
                         WorkflowStatusName = statusName,
-                        BiddingStatus = (int)d.BiddingStatusId,
-                        BiddingStatusName = "รอยืนยัน",
+                        BiddingStatus = (d.BiddingStatusId.HasValue)? (int)d.BiddingStatusId:0,
+                        BiddingStatusName = biddingStatusName,
                     };
                     result.Add(document);
                 }
@@ -562,7 +564,7 @@ namespace RP.Website.Controllers
                     document = new Document
                     {
                         Id = _documentId,
-                        BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice,
+                        DocumentStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice,
                         ExpiryDate = model.ExpirationDate,
                         UserId = model.SaleUserId,
                         CustomerId = new Guid(AppSettingHelper.DummyCustomerId),
@@ -685,19 +687,17 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult AddOrUpdateRemark(RemarkViewModel model)
+        public void DeleteDocument(string id)
         {
             var data = new MobileResponseModel();
             try
             {
-                var document = GenericFactory.Business.GetDocument(model.Id);
-                document.RefPriceAndRemark = model.Remark;
-                this.UpdateDocument(document, document.FileNumber);
-
-                data.Datas = new
+                var document = GenericFactory.Business.GetDocument(id);
+                if (document != null)
                 {
-                    Id = document.Id.ToString()
-                };
+                    document.IsDelete = true;
+                    this.UpdateDocument(document, document.FileNumber);
+                }
             }
             catch (Exception ex)
             {
@@ -707,8 +707,10 @@ namespace RP.Website.Controllers
                 data.MessageId = "";
                 data.TimeStamp = "";
             }
-            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+            //return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
+
 
         #endregion
 
@@ -717,7 +719,6 @@ namespace RP.Website.Controllers
         {
             try
             {
-                document.DocumentStatusId = (int)WorkflowStatus.RequestForPrice;
                 Create(document, customerCode);
                 return Json("");
             }

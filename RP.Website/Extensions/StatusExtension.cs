@@ -55,5 +55,33 @@ namespace RP.Website.Extensions
             }
             return documentStatusName;
         }
+        public static string ToBiddingStatusName(this BiddingStatus biddingStatus)
+        {
+            var biddingStatusName = string.Empty;
+            switch (biddingStatus)
+            {
+                case BiddingStatus.undefined:
+                    {
+                        biddingStatusName = BiddingStatus.undefined.DescriptionAttr();
+                        break;
+                    }
+                case BiddingStatus.Waiting:
+                    {
+                        biddingStatusName = BiddingStatus.Waiting.DescriptionAttr();
+                        break;
+                    }
+                case BiddingStatus.Win:
+                    {
+                        biddingStatusName = BiddingStatus.Win.DescriptionAttr();
+                        break;
+                    }
+                case BiddingStatus.Lose:
+                    {
+                        biddingStatusName = BiddingStatus.Lose.DescriptionAttr();
+                        break;
+                    }
+            }
+            return biddingStatusName;
+        }
     }
 }
