@@ -572,7 +572,7 @@ namespace RP.Website.Controllers
                     {
                         Id = Guid.NewGuid(),
                         DocumentId = _documentId,
-                        Address1 = "Dummy"
+                        Address1 = ""
                     };
                     document.DocumentDeliveries.Add(delivery);
                     this.CreateDocument(document, customerCode);
