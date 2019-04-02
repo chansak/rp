@@ -627,13 +627,13 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult AddOrUpdateProductItem(FormCollection formCollection)
+        public ActionResult AddOrUpdateProductItem(ProductAndOptionViewModel model)
         {
             var data = new MobileResponseModel();
             try
             {
-                var json = formCollection["document"].ToString().Replace(@"\", "");
-                var model = JsonConvert.DeserializeObject<ProductAndOptionViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                //var json = formCollection["document"].ToString().Replace(@"\", "");
+                //var model = JsonConvert.DeserializeObject<ProductAndOptionViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 if (model.ItemId != null)
                 {
                     GenericFactory.Business.MarkDeleteProductItemByItemId(model.ItemId);
