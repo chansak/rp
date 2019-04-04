@@ -554,8 +554,8 @@ namespace RP.Website.Controllers
                     document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
                     document.ExpiryDate = model.ExpirationDate;
                     document.UserId = model.SaleUserId;
-                    document.CustomerId = new Guid(AppSettingHelper.DummyCustomerId);
-                    document.ContactId = new Guid(AppSettingHelper.DummyContactId);
+                    //document.CustomerId = new Guid(AppSettingHelper.DummyCustomerId);
+                    //document.ContactId = new Guid(AppSettingHelper.DummyContactId);
                     this.UpdateDocument(document, customerCode);
                 }
                 else
