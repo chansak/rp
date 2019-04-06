@@ -114,12 +114,15 @@ namespace RP.Website.Controllers
                 var documents = items.Where(i => allowedStatus.Contains(i.DocumentStatusId.Value)).ToList();
                 int totalCount = documents.Count;
                 var result = new List<DocumentListItemViewModel>();
+                //random number
+                Random rnd = new Random();
                 foreach (var d in documents)
                 {
                     var documentStatus = (WorkflowStatus)d.DocumentStatusId;
                     var statusName = documentStatus.ToWorkFlowStatusName();
                     var biddingStatus = (d.BiddingStatusId.HasValue) ?(BiddingStatus)d.BiddingStatusId:BiddingStatus.undefined;
                     var biddingStatusName = biddingStatus.ToBiddingStatusName();
+                    var numberOfComments = rnd.Next(1, 5);
                     var document = new DocumentListItemViewModel
                     {
                         Id = d.Id.ToString(),
@@ -129,8 +132,11 @@ namespace RP.Website.Controllers
                         SaleUserName = d.AspNetUser.DisplayName,
                         WorkflowStatus = (int)d.DocumentStatusId,
                         WorkflowStatusName = statusName,
-                        BiddingStatus = (d.BiddingStatusId.HasValue)? (int)d.BiddingStatusId:0,
+                        BiddingStatus = (d.BiddingStatusId.HasValue) ? (int)d.BiddingStatusId : 0,
                         BiddingStatusName = biddingStatusName,
+                        IssueDate = d.CreatedDate.Value.ToString("dd/MM/yyyy"),
+                        ExpiryDate = d.ExpiryDate.Value.ToString("dd/MM/yyyy"),
+                        NumberOfComments = numberOfComments
                     };
                     result.Add(document);
                 }

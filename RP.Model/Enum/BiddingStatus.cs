@@ -9,7 +9,7 @@ namespace RP.Model
 {
     public enum BiddingStatus
     {
-        [Description("Undefined")]
+        [Description("")]
         undefined =0,
         [Description("Waiting")]
         Waiting=1,

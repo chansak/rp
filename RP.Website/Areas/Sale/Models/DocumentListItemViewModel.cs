@@ -9,7 +9,6 @@ namespace RP.Website.Models
     {
         public string Id { get; set; }
         public int Priority { get; set; }
-        public DateTime IssueDate { get; set; }
         public string DocumentCode { get; set; }
         public string CustomerName { get; set; }
         public string CustomerType { get; set; }
@@ -18,6 +17,8 @@ namespace RP.Website.Models
         public string WorkflowStatusName { get; set; }
         public int BiddingStatus { get; set; }
         public string BiddingStatusName { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public string IssueDate { get; set; }
+        public string ExpiryDate { get; set; }
+        public int NumberOfComments { get; set; }
     }
 }
