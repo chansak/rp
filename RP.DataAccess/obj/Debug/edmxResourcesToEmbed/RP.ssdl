@@ -166,6 +166,7 @@
     <Property Name="PoNumber" Type="nvarchar" MaxLength="50" />
     <Property Name="CustomerBranchId" Type="uniqueidentifier" />
     <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+    <Property Name="DeliveryDays" Type="int" />
   </EntityType>
   <EntityType Name="DocumentAttachment">
     <Key>

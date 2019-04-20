@@ -14,9 +14,9 @@ namespace RP.Website.Models
         public int DeliveryDays { get; set; }
 
         //วันที่สิ้นสุดการยืนราคา
-        public DateTime ExpirationDate { get; set; }
+        //public DateTime ExpirationDate { get; set; }
         //วันที่คาดว่าจะส่งสินค้า
-        public DateTime ExpectedDeliveryDate { get; set; }
+        //public DateTime ExpectedDeliveryDate { get; set; }
 
         public string SaleUserId { get; set; }
     }

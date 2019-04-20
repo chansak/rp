@@ -1278,6 +1278,7 @@
     <NavigationProperty Name="DocumentDeliveries" Relationship="RP.Model.FK_DocumentDelivery_Document" FromRole="Document" ToRole="DocumentDelivery" />
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
     <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="Document" ToRole="AspNetUser" />
+    <Property Name="DeliveryDays" Type="Int32" />
   </EntityType>
   <Association Name="FK_Document_Customer">
     <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />

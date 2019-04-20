@@ -42,6 +42,7 @@ namespace RP.Model
         public string PoNumber { get; set; }
         public Nullable<System.Guid> CustomerBranchId { get; set; }
         public string UserId { get; set; }
+        public Nullable<int> DeliveryDays { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual CustomerBranch CustomerBranch { get; set; }

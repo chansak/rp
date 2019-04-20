@@ -558,7 +558,8 @@ namespace RP.Website.Controllers
                 if (document != null)
                 {
                     document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
-                    document.ExpiryDate = model.ExpirationDate;
+                    document.ConfirmedPriceDays = model.ConfirmPriceDays;
+                    document.DeliveryDays = model.DeliveryDays;
                     document.UserId = model.SaleUserId;
                     this.UpdateDocument(document, customerCode);
                 }
@@ -569,7 +570,8 @@ namespace RP.Website.Controllers
                     {
                         Id = _documentId,
                         DocumentStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice,
-                        ExpiryDate = model.ExpirationDate,
+                        ConfirmedPriceDays = model.ConfirmPriceDays,
+                        DeliveryDays = model.DeliveryDays,
                         UserId = model.SaleUserId,
                         CustomerId = new Guid(AppSettingHelper.DummyCustomerId),
                         ContactId = new Guid(AppSettingHelper.DummyContactId)
@@ -780,7 +782,6 @@ namespace RP.Website.Controllers
             }
             //return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
-
         #endregion
 
         #region Private method

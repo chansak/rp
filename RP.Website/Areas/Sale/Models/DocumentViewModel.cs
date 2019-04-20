@@ -13,6 +13,10 @@ namespace RP.Website.Models
         public DateTime IssuedDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public DateTime ExpectedDeliveryDate { get; set; }
+
+        public int ConfirmPriceDays { get; set; }
+        public int DeliveryDays { get; set; }
+
         public string SaleUserId { get; set; }
         public string CustomerId { get; set; }
         public string ContactId { get; set; }

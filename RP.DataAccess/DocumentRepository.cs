@@ -60,6 +60,8 @@ namespace RP.DataAccess
             existingDocument.PoNumber = document.PoNumber;
             existingDocument.RefPriceAndRemark = document.RefPriceAndRemark;
             existingDocument.IsDelete = document.IsDelete;
+            existingDocument.ConfirmedPriceDays = document.ConfirmedPriceDays;
+            existingDocument.DeliveryDays = document.DeliveryDays;
             if (document.DocumentProductItems.Count > 0)
             {
                 foreach (var item in document.DocumentProductItems.Where(i => !i.IsDeleted))

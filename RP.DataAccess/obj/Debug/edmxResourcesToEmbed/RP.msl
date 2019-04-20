@@ -440,6 +440,7 @@
     <EntitySetMapping Name="Documents">
       <EntityTypeMapping TypeName="RP.Model.Document">
         <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="DeliveryDays" ColumnName="DeliveryDays" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="CustomerBranchId" ColumnName="CustomerBranchId" />
           <ScalarProperty Name="PoNumber" ColumnName="PoNumber" />

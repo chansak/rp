@@ -150,8 +150,11 @@ namespace RP.Website
             document.Id = entity.Id.ToString();
             document.DocumentCode = entity.FileNumber;
             //document.IssuedDate = entity.IssueDate.Value;
-            document.ExpirationDate = entity.ExpiryDate.Value;
+            //document.ExpirationDate = entity.ExpiryDate.Value;
             //document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate.Value;
+            document.ConfirmPriceDays = entity.ConfirmedPriceDays == null ?0: entity.ConfirmedPriceDays.Value;
+            document.DeliveryDays = entity.DeliveryDays == null ? 0 : entity.DeliveryDays.Value;
+
             document.SaleUserId = entity.UserId.ToString();
             document.CustomerId = entity.CustomerId.ToString();
             document.ContactId = entity.ContactId.ToString();
