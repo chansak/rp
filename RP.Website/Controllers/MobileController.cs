@@ -120,7 +120,7 @@ namespace RP.Website.Controllers
                 {
                     var documentStatus = (WorkflowStatus)d.DocumentStatusId;
                     var statusName = documentStatus.ToWorkFlowStatusName();
-                    var biddingStatus = (d.BiddingStatusId.HasValue) ?(BiddingStatus)d.BiddingStatusId:BiddingStatus.undefined;
+                    var biddingStatus = (d.BiddingStatusId.HasValue) ? (BiddingStatus)d.BiddingStatusId : BiddingStatus.undefined;
                     var biddingStatusName = biddingStatus.ToBiddingStatusName();
                     var numberOfComments = rnd.Next(1, 5);
                     var document = new DocumentListItemViewModel
@@ -560,8 +560,6 @@ namespace RP.Website.Controllers
                     document.BiddingStatusId = model.IsDraft ? (int)WorkflowStatus.Draft : (int)WorkflowStatus.RequestForPrice;
                     document.ExpiryDate = model.ExpirationDate;
                     document.UserId = model.SaleUserId;
-                    //document.CustomerId = new Guid(AppSettingHelper.DummyCustomerId);
-                    //document.ContactId = new Guid(AppSettingHelper.DummyContactId);
                     this.UpdateDocument(document, customerCode);
                 }
                 else
@@ -638,8 +636,6 @@ namespace RP.Website.Controllers
             var data = new MobileResponseModel();
             try
             {
-                //var json = formCollection["document"].ToString().Replace(@"\", "");
-                //var model = JsonConvert.DeserializeObject<ProductAndOptionViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
                 if (model.ItemId != null)
                 {
                     GenericFactory.Business.MarkDeleteProductItemByItemId(model.ItemId);
@@ -652,6 +648,26 @@ namespace RP.Website.Controllers
                 {
                     Id = document.Id.ToString()
                 };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult DeleteProductItem(string id)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                GenericFactory.Business.MarkDeleteProductItemByItemId(id);
             }
             catch (Exception ex)
             {
@@ -715,8 +731,6 @@ namespace RP.Website.Controllers
             }
             //return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
-
-
 
         #endregion
 
