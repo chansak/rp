@@ -32,5 +32,12 @@ namespace RP.Business
                 uow.Commit();
             }
         }
+        public IList<PatternImage> GetPatternImageByCustomerId(string id)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                return uow.PatternImageRepository.All().Where(i => i.CustomerId.ToString() == id).ToList();
+            }
+        }
     }
 }

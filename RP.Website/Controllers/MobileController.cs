@@ -782,6 +782,43 @@ namespace RP.Website.Controllers
             }
             //return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        [TokenValidation]
+        public ActionResult GetPatternImages(string id)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var patterns = GenericFactory.Business.GetPatternImageByCustomerId(id);
+                var result = new List<PatternImageViewModel>();
+                foreach (var p1 in patterns)
+                {
+                    var path = string.Format(@"{0}/FileUpload/{1}", AppSettingHelper.Domain,
+                                                    p1.PatternImagePath.Replace(@"\", @"/")
+                                                    .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+                                                    .Remove(0, 1));
+                    result.Add(new PatternImageViewModel
+                    {
+                        Id = p1.Id.ToString(),
+                        PatternName = p1.PatternName,
+                        ImagePath = path
+                    });
+                }
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Private method

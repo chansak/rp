@@ -103,5 +103,16 @@ namespace RP.Utilities
                 return contactId;
             }
         }
+
+        public static string Domain
+        {
+            get
+            {
+                string domain = "";
+                if (ConfigurationManager.AppSettings["Domain"] != null)
+                    domain = ConfigurationManager.AppSettings["Domain"];
+                return domain;
+            }
+        }
     }
 }
