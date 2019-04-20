@@ -662,12 +662,32 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult DeleteProductItem(string id)
+        public ActionResult DeleteProductItem(DocumentAndItemViewModel model)
         {
             var data = new MobileResponseModel();
             try
             {
-                GenericFactory.Business.MarkDeleteProductItemByItemId(id);
+                GenericFactory.Business.MarkDeleteProductItemByItemId(model.ItemId);
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult CopyProductItem(string id)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                
             }
             catch (Exception ex)
             {

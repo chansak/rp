@@ -99,7 +99,7 @@ namespace RP.Website
                new { controller = "Mobile", action = "DeleteDocument", id = UrlParameter.Optional }
             );
             routes.MapRoute("deleteProductItem",
-               "api/deleteProductItem/{id}",
+               "api/deleteProductItem",
                new { controller = "Mobile", action = "DeleteProductItem", id = UrlParameter.Optional }
             );
             #endregion
