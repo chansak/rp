@@ -102,6 +102,11 @@ namespace RP.Website
                "api/deleteProductItem",
                new { controller = "Mobile", action = "DeleteProductItem", id = UrlParameter.Optional }
             );
+            routes.MapRoute("copyProductItem",
+               "api/copyProductItem",
+               new { controller = "Mobile", action = "CopyProductItem", id = UrlParameter.Optional }
+            );
+            
             #endregion
             #region Common
             routes.MapRoute(

@@ -668,6 +668,10 @@ namespace RP.Website.Controllers
             try
             {
                 GenericFactory.Business.MarkDeleteProductItemByItemId(model.ItemId);
+                data.Datas = new
+                {
+                    Id = model.DocumentId.ToString()
+                };
             }
             catch (Exception ex)
             {
@@ -682,12 +686,37 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult CopyProductItem(string id)
+        public ActionResult CopyProductItem(DocumentAndItemViewModel model)
         {
             var data = new MobileResponseModel();
             try
             {
-                
+                var document = GenericFactory.Business.GetDocument(model.DocumentId);
+                var item = document.DocumentProductItems.First(i => i.Id.ToString() == model.ItemId);
+                var copyItem = new DocumentProductItem
+                {
+                    Id = Guid.NewGuid(),
+                    DocumentId = item.DocumentId,
+                    ProductId = item.ProductId,
+                    ProductOptionId = item.ProductOptionId,
+                    ProductUnitId = item.ProductUnitId,
+                    Amount = item.Amount,
+                    DiscountAmount = item.DiscountAmount,
+                    DiscountPercentage = item.DiscountPercentage,
+                    FromWarehouseId = item.FromWarehouseId,
+                    IsDeleted = false,
+                    PricePerUnit = item.PricePerUnit,
+                    ProductItemPrintOptionals = item.ProductItemPrintOptionals,
+                    ProductItemScreenOptionals = item.ProductItemScreenOptionals,
+                    ProductItemSewOptionals = item.ProductItemSewOptionals,
+                    TotalPrice = item.TotalPrice,
+                };
+                document.DocumentProductItems.Add(copyItem);
+                GenericFactory.Business.UpdateDocument(document);
+                data.Datas = new
+                {
+                    Id = document.Id.ToString()
+                };
             }
             catch (Exception ex)
             {
