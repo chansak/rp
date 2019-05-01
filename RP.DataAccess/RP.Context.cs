@@ -68,6 +68,7 @@ namespace RP.DataAccess
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<LocationTracking> LocationTrackings { get; set; }
         public virtual DbSet<ProductPreviewImage> ProductPreviewImages { get; set; }
+        public virtual DbSet<History> Histories { get; set; }
     
         public virtual int aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
         {

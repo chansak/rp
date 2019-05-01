@@ -84,6 +84,8 @@
         <AssociationConnector Association="RP.Model.AspNetUserRoles" />
         <EntityTypeShape EntityType="RP.Model.ProductPreviewImage" Width="1.5" PointX="6" PointY="22.625" />
         <AssociationConnector Association="RP.Model.FK_ProductPreviewImages_Product" />
+        <EntityTypeShape EntityType="RP.Model.History" Width="1.5" PointX="15.25" PointY="0.75" />
+        <AssociationConnector Association="RP.Model.FK_History_AspNetUsers" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -250,6 +250,17 @@ namespace RP.DataAccess
 				return _DocumentProductItemRepository;
 			}
 		}
+		IHistoryRepository _HistoryRepository;
+		public IHistoryRepository HistoryRepository
+		{
+			get
+			{
+				if (_HistoryRepository == null)
+					_HistoryRepository = new HistoryRepository(context);
+				
+				return _HistoryRepository;
+			}
+		}
 		ILocationTrackingRepository _LocationTrackingRepository;
 		public ILocationTrackingRepository LocationTrackingRepository
 		{

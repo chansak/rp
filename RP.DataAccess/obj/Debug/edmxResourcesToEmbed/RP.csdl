@@ -525,6 +525,11 @@
       <End Role="Product" EntitySet="Products" />
       <End Role="ProductPreviewImage" EntitySet="ProductPreviewImages" />
     </AssociationSet>
+    <EntitySet Name="Histories" EntityType="RP.Model.History" />
+    <AssociationSet Name="FK_History_AspNetUsers" Association="RP.Model.FK_History_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AspNetRole">
     <Key>
@@ -1374,6 +1379,7 @@
     <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="AspNetUser" ToRole="Document" />
     <NavigationProperty Name="LocationTrackings" Relationship="RP.Model.FK_LocationTracking_AspNetUsers" FromRole="AspNetUser" ToRole="LocationTracking" />
     <NavigationProperty Name="AspNetRoles" Relationship="RP.Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+    <NavigationProperty Name="Histories" Relationship="RP.Model.FK_History_AspNetUsers" FromRole="AspNetUser" ToRole="History" />
   </EntityType>
   <EntityType Name="LocationTracking">
     <Key>
@@ -1461,6 +1467,28 @@
       </Principal>
       <Dependent Role="ProductPreviewImage">
         <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="HistoryTypeId" Type="Int32" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_History_AspNetUsers" FromRole="History" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_History_AspNetUsers">
+    <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+    <End Type="RP.Model.History" Role="History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

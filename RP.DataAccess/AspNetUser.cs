@@ -22,6 +22,7 @@ namespace RP.DataAccess
             this.Documents = new HashSet<Document>();
             this.LocationTrackings = new HashSet<LocationTracking>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.Histories = new HashSet<History>();
         }
     
         public string Id { get; set; }
@@ -48,5 +49,7 @@ namespace RP.DataAccess
         public virtual ICollection<LocationTracking> LocationTrackings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<History> Histories { get; set; }
     }
 }

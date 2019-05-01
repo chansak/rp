@@ -166,6 +166,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EFUnitOfWork.tt</DependentUpon>
     </Compile>
+    <Compile Include="History.cs">
+      <DependentUpon>RP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryRepository.cs">
+      <DependentUpon>Repository.tt</DependentUpon>
+    </Compile>
     <Compile Include="LocationTracking.cs">
       <DependentUpon>RP.tt</DependentUpon>
     </Compile>

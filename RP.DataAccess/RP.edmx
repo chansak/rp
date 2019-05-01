@@ -209,6 +209,15 @@
           <Property Name="ProductOptionId" Type="uniqueidentifier" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HistoryTypeId" Type="int" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="LocationTracking">
           <Key>
             <PropertyRef Name="Id" />
@@ -656,6 +665,18 @@
             </Principal>
             <Dependent Role="DocumentProductItems">
               <PropertyRef Name="FromWarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1249,6 +1270,7 @@
           <EntitySet Name="DocumentAttachment" EntityType="Self.DocumentAttachment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentDelivery" EntityType="Self.DocumentDelivery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentProductItems" EntityType="Self.DocumentProductItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LocationTracking" EntityType="Self.LocationTracking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaterialType" EntityType="Self.MaterialType" Schema="dbo" store:Type="Tables" />
@@ -1348,6 +1370,10 @@
           <AssociationSet Name="FK_DocumentProductItems_Warehouse" Association="Self.FK_DocumentProductItems_Warehouse">
             <End Role="Warehouse" EntitySet="Warehouse" />
             <End Role="DocumentProductItems" EntitySet="DocumentProductItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_AspNetUsers" Association="Self.FK_History_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="History" EntitySet="History" />
           </AssociationSet>
           <AssociationSet Name="FK_LocationTracking_AspNetUsers" Association="Self.FK_LocationTracking_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -1958,6 +1984,11 @@
           <AssociationSet Name="FK_ProductPreviewImages_Product" Association="RP.Model.FK_ProductPreviewImages_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductPreviewImage" EntitySet="ProductPreviewImages" />
+          </AssociationSet>
+          <EntitySet Name="Histories" EntityType="RP.Model.History" />
+          <AssociationSet Name="FK_History_AspNetUsers" Association="RP.Model.FK_History_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="History" EntitySet="Histories" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetRole">
@@ -2808,6 +2839,7 @@
           <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="AspNetUser" ToRole="Document" />
           <NavigationProperty Name="LocationTrackings" Relationship="RP.Model.FK_LocationTracking_AspNetUsers" FromRole="AspNetUser" ToRole="LocationTracking" />
           <NavigationProperty Name="AspNetRoles" Relationship="RP.Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="Histories" Relationship="RP.Model.FK_History_AspNetUsers" FromRole="AspNetUser" ToRole="History" />
         </EntityType>
         <EntityType Name="LocationTracking">
           <Key>
@@ -2895,6 +2927,28 @@
             </Principal>
             <Dependent Role="ProductPreviewImage">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="HistoryTypeId" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_History_AspNetUsers" FromRole="History" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_History_AspNetUsers">
+          <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="RP.Model.History" Role="History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3412,6 +3466,16 @@
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Histories">
+            <EntityTypeMapping TypeName="RP.Model.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="HistoryTypeId" ColumnName="HistoryTypeId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

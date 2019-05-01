@@ -105,6 +105,9 @@
     <Compile Include="IDocumentRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>
+    <Compile Include="IHistoryRepository.cs">
+      <DependentUpon>IRepository.tt</DependentUpon>
+    </Compile>
     <Compile Include="ILocationTrackingRepository.cs">
       <DependentUpon>IRepository.tt</DependentUpon>
     </Compile>

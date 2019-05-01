@@ -21,6 +21,7 @@ namespace RP.Model
             this.Documents = new HashSet<Document>();
             this.LocationTrackings = new HashSet<LocationTracking>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.Histories = new HashSet<History>();
         }
     
         public string Id { get; set; }
@@ -42,6 +43,7 @@ namespace RP.Model
         public virtual ICollection<Document> Documents { get; set; }
         public virtual ICollection<LocationTracking> LocationTrackings { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        public virtual ICollection<History> Histories { get; set; }
     }
     
 }
