@@ -110,6 +110,14 @@ namespace RP.Website
                "api/getPatternImages/{id}",
                new { controller = "Mobile", action = "GetPatternImages", id = UrlParameter.Optional }
             );
+            routes.MapRoute("addNewComment",
+               "api/addNewComment",
+               new { controller = "Mobile", action = "AddNewComment" }
+            );
+            routes.MapRoute("getAllCommentByDocumentId",
+               "api/getAllCommentByDocumentId/{id}",
+               new { controller = "Mobile", action = "GetAllCommentByDocumentId" }
+            );
             #endregion
             #region Common
             routes.MapRoute(

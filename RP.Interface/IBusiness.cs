@@ -17,7 +17,7 @@ namespace RP.Interfaces
 
         #region Documents
         IList<Document> GetDocumentsList();
-        IList<Document> GetDocumentsListBySearch(string searchBy, string keyword,string userId=null);
+        IList<Document> GetDocumentsListBySearch(string searchBy, string keyword, string userId = null);
         Document GetDocument(string id);
         void CreateDocument(Document document, string customerCode);
         void UpdateDocumentWithMarkDeleteItems(Document document);
@@ -38,7 +38,7 @@ namespace RP.Interfaces
         IList<AspNetUser> GetSaleUsersList();
         AspNetUser GetSaleUserById(string id);
         AspNetUser GetUserById(string id);
-        bool AddNewUser(ApplicationUser user,string password,string role);
+        bool AddNewUser(ApplicationUser user, string password, string role);
         IList<AspNetUser> GetAllUsers(string searchBy, string keyword);
         #endregion
 
@@ -75,7 +75,7 @@ namespace RP.Interfaces
         #endregion
 
         #region Log
-        IList<History> GetHistoryByType(int type);
+        IList<History> GetHistoryByType(string documentId, int type);
         void AddHistory(History history);
         #endregion
     }

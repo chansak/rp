@@ -1673,6 +1673,7 @@
     <Compile Include="Models\Mobile\DeliveryViewModel.cs" />
     <Compile Include="Models\Mobile\DocumentAndItemViewModel.cs" />
     <Compile Include="Models\Mobile\GeneralAndSaleInfoViewModel.cs" />
+    <Compile Include="Models\Mobile\HistoryViewModel.cs" />
     <Compile Include="Models\Mobile\MobileCalculateDateViewModel.cs" />
     <Compile Include="Models\Mobile\MobileResponseModel.cs" />
     <Compile Include="Models\Mobile\MobileUserAccountViewModel.cs" />

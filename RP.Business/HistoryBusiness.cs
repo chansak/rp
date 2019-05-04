@@ -15,12 +15,14 @@ namespace RP.Business
             using (var uow = UnitOfWork.Create())
             {
                 uow.HistoryRepository.Add(history);
+                uow.Commit();
             }
         }
-        public IList<History> GetHistoryByType(int type) {
+        public IList<History> GetHistoryByType(string documentId, int type)
+        {
             using (var uow = UnitOfWork.Create())
             {
-                return uow.HistoryRepository.All().Where(i => i.HistoryTypeId == type).ToList();
+                return uow.HistoryRepository.All().Where(i => i.DocumentId.ToString() == documentId && i.HistoryTypeId == type).ToList();
             }
         }
     }

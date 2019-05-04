@@ -783,7 +783,6 @@ namespace RP.Website.Controllers
             //return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
 
-
         [HttpGet]
         [TokenValidation]
         public ActionResult GetPatternImages(string id)
@@ -822,13 +821,14 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult AddNewHistory(HistoryViewModel model)
+        public ActionResult AddNewComment(HistoryViewModel model)
         {
             var data = new MobileResponseModel();
             var history = new HistoryViewModel
             {
                 Id = Guid.NewGuid().ToString(),
-                HistoryTypeId = model.HistoryTypeId,
+                DocumentId = model.DocumentId,
+                HistoryTypeId = 2,
                 UserId = model.UserId,
                 Text = model.Text
             }.ToEntity();
@@ -847,6 +847,65 @@ namespace RP.Website.Controllers
                 data.ErrorMessage = ex.Message;
                 data.MessageId = "";
                 data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddNewHistory(HistoryViewModel model)
+        {
+            var data = new MobileResponseModel();
+            var history = new HistoryViewModel
+            {
+                Id = Guid.NewGuid().ToString(),
+                DocumentId = model.DocumentId,
+                HistoryTypeId = 1,
+                UserId = model.UserId,
+                Text = model.Text
+            }.ToEntity();
+            try
+            {
+                GenericFactory.Business.AddHistory(history);
+                data.Datas = new
+                {
+                    Id = history.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [TokenValidation]
+        public ActionResult GetAllCommentByDocumentId(string id)
+        {
+            var data = new MobileResponseModel();
+            try
+            {
+                var comments = GenericFactory.Business.GetHistoryByType(id, 2);
+                var result = comments.Select(i => new HistoryViewModel
+                {
+                    Id = i.Id.ToString(),
+                    Text = i.Text
+                });
+                data.Datas = result;
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }

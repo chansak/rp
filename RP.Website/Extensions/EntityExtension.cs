@@ -556,6 +556,7 @@ namespace RP.Website
             return new History
             {
                 Id = new Guid(viewModel.Id),
+                DocumentId = new Guid(viewModel.DocumentId),
                 HistoryTypeId = viewModel.HistoryTypeId,
                 UserId = viewModel.UserId,
                 Text = viewModel.Text

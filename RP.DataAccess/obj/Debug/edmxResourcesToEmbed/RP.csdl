@@ -530,6 +530,10 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="History" EntitySet="Histories" />
     </AssociationSet>
+    <AssociationSet Name="FK_History_Document" Association="RP.Model.FK_History_Document">
+      <End Role="Document" EntitySet="Documents" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AspNetRole">
     <Key>
@@ -1284,6 +1288,7 @@
     <NavigationProperty Name="DocumentProductItems" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="Document" ToRole="DocumentProductItem" />
     <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="Document" ToRole="AspNetUser" />
     <Property Name="DeliveryDays" Type="Int32" />
+    <NavigationProperty Name="Histories" Relationship="RP.Model.FK_History_Document" FromRole="Document" ToRole="History" />
   </EntityType>
   <Association Name="FK_Document_Customer">
     <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
@@ -1479,6 +1484,8 @@
     <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_History_AspNetUsers" FromRole="History" ToRole="AspNetUser" />
+    <Property Name="DocumentId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Document" Relationship="RP.Model.FK_History_Document" FromRole="History" ToRole="Document" />
   </EntityType>
   <Association Name="FK_History_AspNetUsers">
     <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -1489,6 +1496,18 @@
       </Principal>
       <Dependent Role="History">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Document">
+    <End Type="RP.Model.Document" Role="Document" Multiplicity="1" />
+    <End Type="RP.Model.History" Role="History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Document">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="DocumentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

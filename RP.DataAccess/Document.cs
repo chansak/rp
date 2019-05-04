@@ -20,6 +20,7 @@ namespace RP.DataAccess
             this.DocumentAttachments = new HashSet<DocumentAttachment>();
             this.DocumentDeliveries = new HashSet<DocumentDelivery>();
             this.DocumentProductItems = new HashSet<DocumentProductItem>();
+            this.Histories = new HashSet<History>();
         }
     
         public System.Guid Id { get; set; }
@@ -55,5 +56,7 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<History> Histories { get; set; }
     }
 }

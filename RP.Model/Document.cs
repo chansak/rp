@@ -19,6 +19,7 @@ namespace RP.Model
             this.DocumentAttachments = new HashSet<DocumentAttachment>();
             this.DocumentDeliveries = new HashSet<DocumentDelivery>();
             this.DocumentProductItems = new HashSet<DocumentProductItem>();
+            this.Histories = new HashSet<History>();
         }
     
         public System.Guid Id { get; set; }
@@ -51,6 +52,7 @@ namespace RP.Model
         public virtual ICollection<DocumentDelivery> DocumentDeliveries { get; set; }
         public virtual ICollection<DocumentProductItem> DocumentProductItems { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual ICollection<History> Histories { get; set; }
     }
     
 }
