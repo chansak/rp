@@ -213,6 +213,7 @@
     <Property Name="Text" Type="nvarchar(max)" />
     <Property Name="UserId" Type="nvarchar" MaxLength="128" />
     <Property Name="DocumentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="LocationTracking">
     <Key>

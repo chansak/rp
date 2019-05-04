@@ -46,5 +46,6 @@ namespace RP.Website.Models
         public string ContactMobile { get; set; }
         public string ContactEmail { get; set; }
 
+        public List<HistoryViewModel> Histories { get; set; }
     }
 }

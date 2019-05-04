@@ -1486,6 +1486,7 @@
     <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_History_AspNetUsers" FromRole="History" ToRole="AspNetUser" />
     <Property Name="DocumentId" Type="Guid" Nullable="false" />
     <NavigationProperty Name="Document" Relationship="RP.Model.FK_History_Document" FromRole="History" ToRole="Document" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <Association Name="FK_History_AspNetUsers">
     <End Type="RP.Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />

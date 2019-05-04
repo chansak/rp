@@ -14,6 +14,7 @@ namespace RP.Business
         {
             using (var uow = UnitOfWork.Create())
             {
+                history.CreatedDate = DateTime.Now;
                 uow.HistoryRepository.Add(history);
                 uow.Commit();
             }

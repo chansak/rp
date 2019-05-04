@@ -255,9 +255,20 @@
             radioClass: 'iradio_square-green',
         });
     };
+    var _renderComments = function (histories) {
+        var html = '';
+        $(histories).each(function (index, data) {
+            html += '<div class="log-message left">';
+            html += '   <div class="log">';
+            html += '       <span class="log-date">'+ data.createdDate +'</span>';
+            html += '       <span class="log-content">' + data.text + '</span>';
+            html += '   </div>';
+            html += '</div>';
+        });
+        $("#comments").html(html);
+    };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
-            console.log(data);
             $("#gotPO").hide();
             if (data.documentStatusId == 6) {
                 $("#gotPO").show();
@@ -352,7 +363,7 @@
                 items.push(item);
             });
             _render(items);
-
+            _renderComments(data.histories)
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);

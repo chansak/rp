@@ -516,6 +516,7 @@
     <EntitySetMapping Name="Histories">
       <EntityTypeMapping TypeName="RP.Model.History">
         <MappingFragment StoreEntitySet="History">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Text" ColumnName="Text" />

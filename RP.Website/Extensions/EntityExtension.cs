@@ -332,6 +332,16 @@ namespace RP.Website
             document.ContactFax = entity.CustomerContact == null ? "" : entity.CustomerContact.Fax;
             document.ContactMobile = entity.CustomerContact == null ? "" : entity.CustomerContact.Mobile;
             document.ContactEmail = entity.CustomerContact == null ? "" : entity.CustomerContact.Email;
+
+            var histories = new List<HistoryViewModel>();
+            foreach (var history in entity.Histories) {
+                histories.Add(new HistoryViewModel
+                {
+                    Text = history.Text,
+                    CreatedDate = history.CreatedDate
+                });
+            }
+            document.Histories = histories;
             return document;
         }
 
@@ -550,7 +560,7 @@ namespace RP.Website
             return item;
         }
 
-        public static History ToEntity(this HistoryViewModel viewModel)
+        public static History ToEntity(this MobileHistoryViewModel viewModel)
         {
 
             return new History

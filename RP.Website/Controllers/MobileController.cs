@@ -821,10 +821,10 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult AddNewComment(HistoryViewModel model)
+        public ActionResult AddNewComment(MobileHistoryViewModel model)
         {
             var data = new MobileResponseModel();
-            var history = new HistoryViewModel
+            var history = new MobileHistoryViewModel
             {
                 Id = Guid.NewGuid().ToString(),
                 DocumentId = model.DocumentId,
@@ -853,10 +853,10 @@ namespace RP.Website.Controllers
 
         [HttpPost]
         [TokenValidation]
-        public ActionResult AddNewHistory(HistoryViewModel model)
+        public ActionResult AddNewHistory(MobileHistoryViewModel model)
         {
             var data = new MobileResponseModel();
-            var history = new HistoryViewModel
+            var history = new MobileHistoryViewModel
             {
                 Id = Guid.NewGuid().ToString(),
                 DocumentId = model.DocumentId,
@@ -891,10 +891,11 @@ namespace RP.Website.Controllers
             try
             {
                 var comments = GenericFactory.Business.GetHistoryByType(id, 2);
-                var result = comments.Select(i => new HistoryViewModel
+                var result = comments.Select(i => new MobileHistoryViewModel
                 {
                     Id = i.Id.ToString(),
-                    Text = i.Text
+                    Text = i.Text,
+                    CreatedDate = i.CreatedDate.ToDateString()
                 });
                 data.Datas = result;
             }
