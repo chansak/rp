@@ -114,8 +114,8 @@ namespace RP.Website
                "api/addNewComment",
                new { controller = "Mobile", action = "AddNewComment" }
             );
-            routes.MapRoute("getAllCommentByDocumentId",
-               "api/getAllCommentByDocumentId/{id}",
+            routes.MapRoute("getAllCommentsByDocumentId",
+               "api/getAllCommentsByDocumentId/{id}",
                new { controller = "Mobile", action = "GetAllCommentByDocumentId" }
             );
             #endregion

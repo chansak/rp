@@ -895,6 +895,9 @@ namespace RP.Website.Controllers
                 {
                     Id = i.Id.ToString(),
                     Text = i.Text,
+                    DocumentId = i.DocumentId.ToString(),
+                    HistoryTypeId = i.HistoryTypeId.Value,
+                    UserId = i.UserId,
                     CreatedDate = i.CreatedDate.ToDateString()
                 });
                 data.Datas = result;
