@@ -152,7 +152,7 @@ namespace RP.Website
             //document.IssuedDate = entity.IssueDate.Value;
             //document.ExpirationDate = entity.ExpiryDate.Value;
             //document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate.Value;
-            document.ConfirmPriceDays = entity.ConfirmedPriceDays == null ?0: entity.ConfirmedPriceDays.Value;
+            document.ConfirmPriceDays = entity.ConfirmedPriceDays == null ? 0 : entity.ConfirmedPriceDays.Value;
             document.DeliveryDays = entity.DeliveryDays == null ? 0 : entity.DeliveryDays.Value;
 
             document.SaleUserId = entity.UserId.ToString();
@@ -548,6 +548,18 @@ namespace RP.Website
                 item.ProductItemSewOptionals.Add(printOption3);
             }
             return item;
+        }
+
+        public static History ToEntity(this HistoryViewModel viewModel)
+        {
+
+            return new History
+            {
+                Id = new Guid(viewModel.Id),
+                HistoryTypeId = viewModel.HistoryTypeId,
+                UserId = viewModel.UserId,
+                Text = viewModel.Text
+            };
         }
     }
 }

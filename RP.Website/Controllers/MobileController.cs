@@ -819,6 +819,37 @@ namespace RP.Website.Controllers
             }
             return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [TokenValidation]
+        public ActionResult AddNewHistory(HistoryViewModel model)
+        {
+            var data = new MobileResponseModel();
+            var history = new HistoryViewModel
+            {
+                Id = Guid.NewGuid().ToString(),
+                HistoryTypeId = model.HistoryTypeId,
+                UserId = model.UserId,
+                Text = model.Text
+            }.ToEntity();
+            try
+            {
+                GenericFactory.Business.AddHistory(history);
+                data.Datas = new
+                {
+                    Id = history.Id.ToString()
+                };
+            }
+            catch (Exception ex)
+            {
+                data.Status = false;
+                data.ErrorCode = "001";
+                data.ErrorMessage = ex.Message;
+                data.MessageId = "";
+                data.TimeStamp = "";
+            }
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
+        }
         #endregion
 
         #region Private method
