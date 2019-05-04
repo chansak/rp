@@ -259,100 +259,36 @@
                                 </div>
                             </div>
                         </div>
-                        @*<div id="tab-5" class="tab-pane">
-                            <div class="panel-body">
-                                <div class="ibox-title no-borders">
-                                    <h2>คำอธิบาย</h2>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="ibox-tools">
-                                    </div>
-                                </div>
-                                <div class="ibox-content no-borders">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">หมายเหตุ</label>
-                                        <div class="col-sm-9">
-                                            <textarea class="form-control" id="documentRemark" rows="3"></textarea>
-                                            <span class="form-text">ราคาที่อ้างอิงราคาเดิมหรือใบที่ขายล่าสุด โดยระบุวันที่และราคา (กรอกข้อมูลได้สูงสุด 200 ตัวอักษร)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
                         <div id="tab-5" class="tab-pane">
                             <div class="panel-body">
-                                <div class="ibox-title no-borders">
-                                    <h2>ประวัติการทำรายการ</h2>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="ibox-tools">
-                                        @*<a href="" class="btn btn-primary btn-xs">เพิ่มสินค้า</a>*@
-                                    </div>
-                                </div>
-                                <div class="ibox-content no-borders">
-                                    <div class="form-group row">
-                                        <div class="ibox chat-view">
-                                            <div class="ibox-content">
-                                                <div class="row">
-                                                    <div class="col-md-12 ">
-                                                        <div class="chat-discussion">
-                                                            <div class="full-height-scroll">
-                                                                <div class="table-responsive">
-                                                                    <div class="chat-message left">
-                                                                        <img class="message-avatar" src="~/Images/a1.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Michael Smith (Sale)</a>
-                                                                            <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
-                                                                            <span class="message-content">
+                                <div class="tabs-container">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#tab-11">Chat</a></li>
+                                        <li class=""><a data-toggle="tab" href="#tab-12">Log</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="tab-11" class="tab-pane active">
+                                            @*<div class="ibox-content no-borders">*@
+
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <div class="log-discussion">
+                                                        <div class="full-height-scroll">
+                                                            <div class="table-responsive">
+                                                                <div class="log-box">
+                                                                    <div class="log-message left">
+                                                                        <div class="log">
+                                                                            <span class="log-date"> Mon Jan 26 2015 - 18:39:23 </span>
+                                                                            <span class="log-content">
                                                                                 สร้างแบบร่างใบขอราคา
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="chat-message right">
-                                                                        <img class="message-avatar" src="~/Images/a4.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Karl Jordan (Officer)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                แก้ไขรายละเอียดสินค้า โดยเพิ่มสินค้าเข้าไปในใบขอราคา 1 รายการ
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message right">
-                                                                        <img class="message-avatar" src="~/Images/a4.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Karl Jordan (Officer)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                แก้ไขที่อยู่การจัดส่ง
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message right">
-                                                                        <img class="message-avatar" src="~/Images/a4.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Karl Jordan (Officer)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                บันทึกใบขอราคาเตรียมรอขออนุมัติ
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message right">
-                                                                        <img class="message-avatar" src="~/Images/a4.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Karl Jordan (Officer)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                ยื่นขออนุมัติ
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="chat-message left">
-                                                                        <img class="message-avatar" src="~/Images/a5.jpg" alt="">
-                                                                        <div class="message">
-                                                                            <a class="message-author" href="#"> Alice Jordan (Manager)</a>
-                                                                            <span class="message-date">  Fri Jan 25 2015 - 11:12:36 </span>
-                                                                            <span class="message-content">
-                                                                                อนุมัติใบขอราคา
+                                                                    <div class="log-message left">
+                                                                        <div class="log">
+                                                                            <span class="log-date"> Mon Jan 26 2015 - 18:39:23 </span>
+                                                                            <span class="log-content">
+                                                                                สร้างแบบร่างใบขอราคา
                                                                             </span>
                                                                         </div>
                                                                     </div>
@@ -361,19 +297,54 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="chat-message-form">
-
-                                                            <div class="form-group">
-
-                                                                <textarea class="form-control message-input" name="message" placeholder="Enter message text"></textarea>
+                                            </div>
+                                            @*</div>*@
+                                        </div>
+                                        <div id="tab-12" class="tab-pane">
+                                            @*<div class="ibox-content no-borders">*@
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <div class="chat-discussion">
+                                                        <div class="full-height-scroll">
+                                                            <div class="table-responsive">
+                                                                <div class="chat-message left">
+                                                                    <img class="message-avatar" src="~/Images/a6.jpg" alt="">
+                                                                    <div class="message">
+                                                                        <a class="message-author" href="#"> System</a>
+                                                                        <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
+                                                                        <span class="message-content">
+                                                                            บันทึกแบบร่าง
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="chat-message left">
+                                                                    <img class="message-avatar" src="~/Images/a6.jpg" alt="">
+                                                                    <div class="message">
+                                                                        <a class="message-author" href="#"> System</a>
+                                                                        <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
+                                                                        <span class="message-content">
+                                                                            ลูกค้าขอราคา
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="chat-message-form">
+
+                                                        <div class="form-group">
+
+                                                            <textarea class="form-control message-input" name="message" placeholder="Enter message text"></textarea>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*</div>*@
                                         </div>
                                     </div>
                                 </div>
