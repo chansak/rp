@@ -70,9 +70,13 @@ namespace RP.Interfaces
         void UpdateLocation(RP.Model.LocationTracking location);
         #endregion
 
-
         #region Patrern
         void CreateNewPattern(PatternImage pattern);
+        #endregion
+
+        #region Log
+        IList<History> GetHistoryByType(int type);
+        void AddHistory(History history);
         #endregion
     }
 }
