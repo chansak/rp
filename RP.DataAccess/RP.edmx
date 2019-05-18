@@ -263,6 +263,7 @@
           <Property Name="PatternImagePath" Type="nvarchar(max)" />
           <Property Name="CustomerId" Type="uniqueidentifier" />
           <Property Name="Year" Type="int" />
+          <Property Name="PatternType" Type="int" />
         </EntityType>
         <EntityType Name="PatternPosition">
           <Key>
@@ -2228,6 +2229,7 @@
           <Property Name="CustomerId" Type="Guid" />
           <Property Name="Year" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="RP.Model.FK_PatternImage_Customer" FromRole="PatternImage" ToRole="Customer" />
+          <Property Name="PatternType" Type="Int32" />
         </EntityType>
         <EntityType Name="PatternPosition">
           <Key>
@@ -3247,6 +3249,7 @@
           <EntitySetMapping Name="PatternImages">
             <EntityTypeMapping TypeName="RP.Model.PatternImage">
               <MappingFragment StoreEntitySet="PatternImage">
+                <ScalarProperty Name="PatternType" ColumnName="PatternType" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="PatternImagePath" ColumnName="PatternImagePath" />

@@ -32,11 +32,11 @@ namespace RP.Business
                 uow.Commit();
             }
         }
-        public IList<PatternImage> GetPatternImageByCustomerId(string id)
+        public IList<PatternImage> GetPatternImageByCustomerId(string customerId, int patternType)
         {
             using (var uow = UnitOfWork.Create())
             {
-                return uow.PatternImageRepository.All().Where(i => i.CustomerId.ToString() == id).ToList();
+                return uow.PatternImageRepository.All().Where(i => i.CustomerId.ToString() == customerId && i.PatternType == patternType).ToList();
             }
         }
     }

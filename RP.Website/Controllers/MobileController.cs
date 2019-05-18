@@ -783,14 +783,14 @@ namespace RP.Website.Controllers
             //return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
+        [HttpPost]
         [TokenValidation]
-        public ActionResult GetPatternImages(string id)
+        public ActionResult GetPatternImages(MobilePatternImageViewModel model)
         {
             var data = new MobileResponseModel();
             try
             {
-                var patterns = GenericFactory.Business.GetPatternImageByCustomerId(id);
+                var patterns = GenericFactory.Business.GetPatternImageByCustomerId(model.CustomerId,model.PatternType);
                 var result = new List<PatternImageViewModel>();
                 foreach (var p1 in patterns)
                 {

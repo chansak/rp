@@ -19,6 +19,7 @@ namespace RP.Model
         public string PatternImagePath { get; set; }
         public Nullable<System.Guid> CustomerId { get; set; }
         public Nullable<int> Year { get; set; }
+        public Nullable<int> PatternType { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

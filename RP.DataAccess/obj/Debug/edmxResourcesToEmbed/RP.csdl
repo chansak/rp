@@ -749,6 +749,7 @@
     <Property Name="CustomerId" Type="Guid" />
     <Property Name="Year" Type="Int32" />
     <NavigationProperty Name="Customer" Relationship="RP.Model.FK_PatternImage_Customer" FromRole="PatternImage" ToRole="Customer" />
+    <Property Name="PatternType" Type="Int32" />
   </EntityType>
   <EntityType Name="PatternPosition">
     <Key>

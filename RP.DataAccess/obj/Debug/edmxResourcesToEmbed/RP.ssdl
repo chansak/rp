@@ -258,6 +258,7 @@
     <Property Name="PatternImagePath" Type="nvarchar(max)" />
     <Property Name="CustomerId" Type="uniqueidentifier" />
     <Property Name="Year" Type="int" />
+    <Property Name="PatternType" Type="int" />
   </EntityType>
   <EntityType Name="PatternPosition">
     <Key>

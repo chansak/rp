@@ -61,7 +61,7 @@ namespace RP.Interfaces
         IList<Material> GetMaterials();
         Material GetMaterialById(string id);
         IList<PatternImage> GetPatternImage();
-        IList<PatternImage> GetPatternImageByCustomerId(string id);
+        IList<PatternImage> GetPatternImageByCustomerId(string customerId,int patternType);
         IList<PatternPosition> GetPatternPosition();
         IList<Color> GetPatternColor();
         Color GetColorById(string id);

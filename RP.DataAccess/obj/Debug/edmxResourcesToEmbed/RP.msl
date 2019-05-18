@@ -250,6 +250,7 @@
     <EntitySetMapping Name="PatternImages">
       <EntityTypeMapping TypeName="RP.Model.PatternImage">
         <MappingFragment StoreEntitySet="PatternImage">
+          <ScalarProperty Name="PatternType" ColumnName="PatternType" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="PatternImagePath" ColumnName="PatternImagePath" />

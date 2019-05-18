@@ -1676,10 +1676,12 @@
     <Compile Include="Models\Mobile\GeneralAndSaleInfoViewModel.cs" />
     <Compile Include="Models\Mobile\MobileHistoryViewModel.cs" />
     <Compile Include="Models\Mobile\MobileCalculateDateViewModel.cs" />
+    <Compile Include="Models\Mobile\MobilePatternImageViewModel.cs" />
     <Compile Include="Models\Mobile\MobileResponseModel.cs" />
     <Compile Include="Models\Mobile\MobileUserAccountViewModel.cs" />
     <Compile Include="Models\Mobile\MobileWorkListSearchCriteria.cs" />
     <Compile Include="Models\Mobile\LocationTrackingViewModel.cs" />
+    <Compile Include="Models\Mobile\PatternImageViewModel.cs" />
     <Compile Include="Models\Mobile\ProductAndOptionViewModel.cs" />
     <Compile Include="Models\Mobile\RemarkViewModel.cs" />
     <Compile Include="Models\PatternColorViewModel.cs" />
