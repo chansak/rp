@@ -711,6 +711,7 @@
     <NavigationProperty Name="ProductItemScreenOptionals" Relationship="RP.Model.FK_ProductItemScreenOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemScreenOptional" />
     <NavigationProperty Name="ProductItemSewOptionals" Relationship="RP.Model.FK_ProductItemSewOptional_DocumentProductItems" FromRole="DocumentProductItem" ToRole="ProductItemSewOptional" />
     <NavigationProperty Name="Document" Relationship="RP.Model.FK_DocumentProductItems_Document" FromRole="DocumentProductItem" ToRole="Document" />
+    <Property Name="MaterialId" Type="Guid" />
   </EntityType>
   <EntityType Name="Material">
     <Key>

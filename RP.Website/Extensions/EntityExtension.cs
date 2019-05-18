@@ -21,7 +21,7 @@ namespace RP.Website
             var document = new Document();
             document.Id = _documentId;
             document.BiddingStatusId = (int)BiddingStatus.Waiting;
-            document.ExpiryDate = viewModel.ExpirationDate;
+            document.ExpiryDate = DateTime.Parse(viewModel.ExpirationDate);
             document.UserId = viewModel.SaleUserId;
             document.CustomerId = new System.Guid(viewModel.CustomerId);
             document.ContactId = new System.Guid(viewModel.ContactId);
@@ -149,9 +149,13 @@ namespace RP.Website
             document.DocumentStatusId = entity.DocumentStatusId.Value;
             document.Id = entity.Id.ToString();
             document.DocumentCode = entity.FileNumber;
-            //document.IssuedDate = entity.IssueDate.Value;
+            document.CreatedDate = entity.CreatedDate.HasValue ? entity.CreatedDate.Value.ToDateString() : "";
+            document.IssuedDate = entity.IssueDate.HasValue ? entity.IssueDate.Value.ToDateString() : "";
+            document.ExpirationDate = entity.ExpiryDate.HasValue ? entity.ExpiryDate.Value.ToDateString() : "";
+            document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate.HasValue ? entity.ExpectedDeliveryDate.Value.ToDateString() : "";
             //document.ExpirationDate = entity.ExpiryDate.Value;
             //document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate.Value;
+
             document.ConfirmPriceDays = entity.ConfirmedPriceDays == null ? 0 : entity.ConfirmedPriceDays.Value;
             document.DeliveryDays = entity.DeliveryDays == null ? 0 : entity.DeliveryDays.Value;
 
@@ -319,29 +323,32 @@ namespace RP.Website
             document.Items = productItems;
             document.DeliveryAddress = entity.DocumentDeliveries.FirstOrDefault().Address1;
             document.DeliveryContactId = entity.DeliveryContactId.ToString();
-            document.Remark = entity.RefPriceAndRemark;
+            document.Remark = string.IsNullOrEmpty(entity.RefPriceAndRemark) ? "" : entity.RefPriceAndRemark;
+            document.PoNumber = string.IsNullOrEmpty(entity.PoNumber) ? "" : entity.PoNumber;
 
+            document.CreatedBy = entity.AspNetUser.Id;
             document.SaleName = entity.AspNetUser.DisplayName;
-
+            document.SaleCode = "";
+            document.SaleBranch = "";
             document.CustomerName = entity.Customer.Name;
             document.HospitalName = (entity.Customer.CustomerBranches.Count() == 0) ? "" : entity.Customer.CustomerBranches.FirstOrDefault().CustomerBranchName;
             document.CustomerType = entity.Customer.CustomerType.CustomerTypeName;
 
             document.ContactName = entity.CustomerContact == null ? "" : entity.CustomerContact.Name;
-            document.ContactTel = entity.CustomerContact == null ? "" : entity.CustomerContact.Phone;
-            document.ContactFax = entity.CustomerContact == null ? "" : entity.CustomerContact.Fax;
-            document.ContactMobile = entity.CustomerContact == null ? "" : entity.CustomerContact.Mobile;
+            document.ContactTel = entity.CustomerContact == null ? "" : (string.IsNullOrEmpty(entity.CustomerContact.Phone) ? "" : entity.CustomerContact.Phone);
+            document.ContactFax = entity.CustomerContact == null ? "" : (string.IsNullOrEmpty(entity.CustomerContact.Fax) ? "" : entity.CustomerContact.Fax);
+            document.ContactMobile = entity.CustomerContact == null ? "" : (string.IsNullOrEmpty(entity.CustomerContact.Mobile) ? "" : entity.CustomerContact.Mobile);
             document.ContactEmail = entity.CustomerContact == null ? "" : entity.CustomerContact.Email;
 
-            var histories = new List<HistoryViewModel>();
-            foreach (var history in entity.Histories) {
-                histories.Add(new HistoryViewModel
-                {
-                    Text = history.Text,
-                    CreatedDate = history.CreatedDate
-                });
-            }
-            document.Histories = histories;
+            //var histories = new List<HistoryViewModel>();
+            //foreach (var history in entity.Histories) {
+            //    histories.Add(new HistoryViewModel
+            //    {
+            //        Text = history.Text,
+            //        CreatedDate = history.CreatedDate
+            //    });
+            //}
+            //document.Histories = histories;
             return document;
         }
 
@@ -452,6 +459,7 @@ namespace RP.Website
             item.SewOption = sewOption;
             item.ProductCategoryId = entity.Product.ProductCategoryId.ToString();
             item.ProductOptionId = entity.ProductOptionId.ToString();
+            item.MaterialId = entity.MaterialId.ToString();
             return item;
         }
 
@@ -463,8 +471,10 @@ namespace RP.Website
                 Id = itemId,
                 ProductId = new System.Guid(model.ProductId),
                 ProductUnitId = new System.Guid(model.ProductUnitId),
+                ProductOptionId = new System.Guid(model.ProductOptionId),
                 Amount = model.Amount,
-                PricePerUnit = (decimal)model.PricePerUnit
+                PricePerUnit = (decimal)model.PricePerUnit,
+                MaterialId = new System.Guid(model.MaterialId)
             };
             var printOption1 = new ProductItemPrintOptional();
             var printOption2 = new ProductItemScreenOptional();

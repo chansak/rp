@@ -9,6 +9,6 @@ namespace RP.Website
     {
         public string UserId { get; set; }
         public string Token { get; set; }
-        public DateTime Expiry { get; set; }
+        public string Expiry { get; set; }
     }
 }

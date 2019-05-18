@@ -5334,6 +5334,126 @@ dd.project-people {
 .chat-message-form .form-group {
   margin-bottom: 0;
 }
+/*Log view*/
+
+.log-avatar {
+    width: 36px;
+    height: 36px;
+    float: left;
+    margin-right: 10px;
+}
+
+.log-user-name {
+    padding: 10px;
+}
+
+.log-user {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e7eaec;
+}
+
+    .log-user a {
+        color: inherit;
+    }
+
+.log-view {
+    z-index: 20012;
+}
+
+.log-users,
+.log-statistic {
+    margin-left: -30px;
+}
+
+@media (max-width: 992px) {
+    .log-users,
+    .log-statistic {
+        margin-left: 0;
+    }
+}
+
+.log-view .ibox-content {
+    padding: 0;
+}
+.log-box {
+    border: 1px solid #e7eaec;
+    border-radius: 4px;
+    /*padding: 10px 20px;*/
+}
+.log-message {
+    /*padding: 10px 20px;*/
+}
+
+.log-avatar {
+    height: 48px;
+    width: 48px;
+    border: 1px solid #e7eaec;
+    border-radius: 4px;
+    margin-top: 1px;
+}
+
+.log-discussion .log-message.left .log-avatar {
+    float: left;
+    /*margin-right: 10px;*/
+}
+
+.log-discussion .log-message.right .log-avatar {
+    float: right;
+    /*margin-left: 10px;*/
+}
+
+.log {
+    background-color: #fff;
+    /*border: 1px solid #e7eaec;*/
+    text-align: left;
+    display: block;
+    padding: 10px 20px;
+    position: relative;
+    /*border-radius: 4px;*/
+}
+
+.log-discussion .log-message.left .log-date {
+    float: right;
+}
+
+.log-discussion .log-message.right .log-date {
+    float: left;
+}
+
+.log-discussion .log-message.left .log {
+    text-align: left;
+    margin-left: 0px;
+}
+
+.log-discussion .log-message.right .log {
+    text-align: right;
+    /*margin-right: 55px;*/
+}
+
+.log-date {
+    font-size: 10px;
+    color: #888888;
+}
+
+.log-content {
+    display: block;
+}
+
+.log-discussion {
+    /*background: #eee;*/
+    padding: 15px 0px 15px 0px;
+    height: 400px;
+    /*overflow-y: auto;*/
+}
+
+.log-users {
+    overflow-y: auto;
+    height: 400px;
+}
+
+.log-message-form .form-group {
+    margin-bottom: 0;
+}
 /* jsTree */
 .jstree-open > .jstree-anchor > .fa-folder:before {
   content: "\f07c";

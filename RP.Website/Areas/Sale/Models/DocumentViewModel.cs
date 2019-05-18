@@ -10,9 +10,9 @@ namespace RP.Website.Models
     {
         public string Id { get; set; }
         public string DocumentCode { get; set; }
-        public DateTime IssuedDate { get; set; }
-        public DateTime ExpirationDate { get; set; }
-        public DateTime ExpectedDeliveryDate { get; set; }
+        public string IssuedDate { get; set; }
+        public string ExpirationDate { get; set; }
+        public string ExpectedDeliveryDate { get; set; }
 
         public int ConfirmPriceDays { get; set; }
         public int DeliveryDays { get; set; }
@@ -24,11 +24,11 @@ namespace RP.Website.Models
         public string DeliveryAddress { get; set; }
         public string DeliveryContactId { get; set; }
         public string Remark { get; set; }
-        public string Comments { get; set; }
-        public DateTime CreatedDate { get; set; }
+        //public string Comments { get; set; }
+        public string CreatedDate { get; set; }
         public int DocumentStatusId { get; set; }
         public string PoNumber { get; set; }
-        public string CustomerBranchId { get; set; }
+        //public string CustomerBranchId { get; set; }
         public string CreatedBy { get; set; }
         public bool IsDraft { get; set; }
 
@@ -46,6 +46,6 @@ namespace RP.Website.Models
         public string ContactMobile { get; set; }
         public string ContactEmail { get; set; }
 
-        public List<HistoryViewModel> Histories { get; set; }
+        //public List<HistoryViewModel> Histories { get; set; }
     }
 }

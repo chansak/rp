@@ -18,7 +18,7 @@ namespace RP.Website.Helpers
         {
             CacheItemPolicy policy = new CacheItemPolicy();
             var expiry = DateTime.Now.Add(TimeSpan.FromMinutes(int.Parse(AppSettingHelper.CacheExpirationMinute)));
-            value.Expiry = expiry;
+            value.Expiry = expiry.ToString("dd/MM/yyyy HH:mm:ss");
             policy.AbsoluteExpiration = expiry;
             cache.Add(key, value, policy);
         }

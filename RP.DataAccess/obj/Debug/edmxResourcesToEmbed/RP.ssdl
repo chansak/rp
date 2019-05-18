@@ -203,6 +203,7 @@
     <Property Name="FromWarehouseId" Type="uniqueidentifier" />
     <Property Name="ProductOptionId" Type="uniqueidentifier" />
     <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="MaterialId" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="History">
     <Key>

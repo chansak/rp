@@ -74,6 +74,7 @@ namespace RP.DataAccess
                     }
                 }
             }
+            existingDocument.DocumentDeliveries.FirstOrDefault().Address1 = document.DocumentDeliveries.FirstOrDefault().Address1;
             existingDocument.UpdatedDate = DateTime.Now;
         }
         public void UpdateDocumentStatus(Model.Document document)

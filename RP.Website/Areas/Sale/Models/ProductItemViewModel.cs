@@ -18,5 +18,6 @@ namespace RP.Website.Models
 
         public string ProductCategoryId { get; set; }
         public string ProductOptionId { get; set; }
+        public string MaterialId { get; set; }
     }
 }

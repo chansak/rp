@@ -80,12 +80,7 @@
                                     <li>
                                         <a href="#">ตั้งค่าข้อมูลผู้ใช้ <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
-                                            <li>
-                                                <a href="#">รายการผู้ใช้</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">สิทธิ์การเข้าใช้</a>
-                                            </li>
+                                            <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Users",new { area = "Admin" })">จัดการผู้ใช้</a></li>
                                         </ul>
                                     </li>
                                     @*<li>

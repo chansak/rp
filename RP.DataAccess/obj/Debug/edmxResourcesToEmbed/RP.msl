@@ -205,6 +205,7 @@
     <EntitySetMapping Name="DocumentProductItems">
       <EntityTypeMapping TypeName="RP.Model.DocumentProductItem">
         <MappingFragment StoreEntitySet="DocumentProductItems">
+          <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
           <ScalarProperty Name="FromWarehouseId" ColumnName="FromWarehouseId" />
