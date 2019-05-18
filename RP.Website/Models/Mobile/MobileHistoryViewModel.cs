@@ -13,5 +13,6 @@ namespace RP.Website.Models
         public string UserId { get; set; }
         public string Text { get; set; }
         public string CreatedDate { get; set; }
+        public string DisplayName { get; set; }
     }
 }

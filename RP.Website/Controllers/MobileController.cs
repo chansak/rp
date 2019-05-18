@@ -891,14 +891,15 @@ namespace RP.Website.Controllers
             try
             {
                 var comments = GenericFactory.Business.GetHistoryByType(id, 2);
-                var result = comments.Select(i => new MobileHistoryViewModel
+                var result = comments.OrderByDescending(o => o.CreatedDate).Select(i => new MobileHistoryViewModel
                 {
                     Id = i.Id.ToString(),
                     Text = i.Text,
                     DocumentId = i.DocumentId.ToString(),
                     HistoryTypeId = i.HistoryTypeId.Value,
                     UserId = i.UserId,
-                    CreatedDate = i.CreatedDate.ToDateString()
+                    DisplayName = i.AspNetUser.DisplayName,
+                    CreatedDate = i.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")
                 });
                 data.Datas = result;
             }

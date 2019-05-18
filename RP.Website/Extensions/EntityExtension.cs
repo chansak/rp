@@ -163,164 +163,164 @@ namespace RP.Website
             document.CustomerId = entity.CustomerId.ToString();
             document.ContactId = entity.ContactId.ToString();
             document.PoNumber = entity.PoNumber;
-            var productItems = new List<ProductItemViewModel>();
-            foreach (var i in entity.DocumentProductItems.Where(i => !i.IsDeleted))
-            {
-                var printOptions = new List<PrintOptionViewModel>();
-                if (i.ProductItemPrintOptionals.Count > 0)
-                {
-                    var o1 = i.ProductItemPrintOptionals.FirstOrDefault();
-                    var printStatus = (ItemOptionStatus)o1.OptionalStatusId;
-                    switch (printStatus)
-                    {
-                        case ItemOptionStatus.ExistingPattern:
-                            {
-                                var p1 = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
-                                var path = string.Format(@"../../../FileUpload/{0}",
-                                            p1.PatternImagePath.Replace(@"\", @"/")
-                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
-                                            .Remove(0, 1));
-                                printOptions.Add(new PrintOptionViewModel
-                                {
-                                    PatternName = p1.PatternName,
-                                    SelectedOption = o1.OptionalStatusId,
-                                    PatternId = o1.PatternId.ToString(),
-                                    PatternImagePath = path
-                                });
-                                break;
-                            }
-                        case ItemOptionStatus.NewPattern:
-                            {
-                                var p1 = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
-                                var color = GenericFactory.Business.GetColorById(o1.ColorCodeId.Value.ToString());
-                                var path = string.Format(@"../../../FileUpload/{0}",
-                                            p1.PatternImagePath.Replace(@"\", @"/")
-                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
-                                            .Remove(0, 1));
-                                printOptions.Add(new PrintOptionViewModel
-                                {
-                                    PatternName = p1.PatternName,
-                                    SelectedOption = o1.OptionalStatusId,
-                                    PatternImagePath = path,
-                                    ColorName = color.ColorName,
-                                    ColorId = color.Id.ToString()
-                                });
-                                break;
-                            }
-                    }
+            //var productItems = new List<ProductItemViewModel>();
+            //foreach (var i in entity.DocumentProductItems.Where(i => !i.IsDeleted))
+            //{
+            //    var printOptions = new List<PrintOptionViewModel>();
+            //    if (i.ProductItemPrintOptionals.Count > 0)
+            //    {
+            //        var o1 = i.ProductItemPrintOptionals.FirstOrDefault();
+            //        var printStatus = (ItemOptionStatus)o1.OptionalStatusId;
+            //        switch (printStatus)
+            //        {
+            //            case ItemOptionStatus.ExistingPattern:
+            //                {
+            //                    var p1 = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
+            //                    var path = string.Format(@"../../../FileUpload/{0}",
+            //                                p1.PatternImagePath.Replace(@"\", @"/")
+            //                                .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+            //                                .Remove(0, 1));
+            //                    printOptions.Add(new PrintOptionViewModel
+            //                    {
+            //                        PatternName = p1.PatternName,
+            //                        SelectedOption = o1.OptionalStatusId,
+            //                        PatternId = o1.PatternId.ToString(),
+            //                        PatternImagePath = path
+            //                    });
+            //                    break;
+            //                }
+            //            case ItemOptionStatus.NewPattern:
+            //                {
+            //                    var p1 = GenericFactory.Business.GetPatternImageById(o1.PatternId.ToString());
+            //                    var color = GenericFactory.Business.GetColorById(o1.ColorCodeId.Value.ToString());
+            //                    var path = string.Format(@"../../../FileUpload/{0}",
+            //                                p1.PatternImagePath.Replace(@"\", @"/")
+            //                                .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+            //                                .Remove(0, 1));
+            //                    printOptions.Add(new PrintOptionViewModel
+            //                    {
+            //                        PatternName = p1.PatternName,
+            //                        SelectedOption = o1.OptionalStatusId,
+            //                        PatternImagePath = path,
+            //                        ColorName = color.ColorName,
+            //                        ColorId = color.Id.ToString()
+            //                    });
+            //                    break;
+            //                }
+            //        }
 
-                }
+            //    }
 
-                var screenOptions = new List<ScreenOptionViewModel>();
-                if (i.ProductItemScreenOptionals.Count > 0)
-                {
-                    var o2 = i.ProductItemScreenOptionals.FirstOrDefault();
-                    var screenStatus = (ItemOptionStatus)o2.OptionalStatusId;
-                    switch (screenStatus)
-                    {
-                        case ItemOptionStatus.ExistingPattern:
-                            {
-                                var p1 = GenericFactory.Business.GetPatternImageById(o2.PatternId.ToString());
-                                var path = string.Format(@"../../../FileUpload/{0}",
-                                            p1.PatternImagePath.Replace(@"\", @"/")
-                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
-                                            .Remove(0, 1));
-                                screenOptions.Add(new ScreenOptionViewModel
-                                {
-                                    PatternName = p1.PatternName,
-                                    SelectedOption = o2.OptionalStatusId,
-                                    PatternId = o2.PatternId.ToString(),
-                                    PatternImagePath = path,
-                                    PositionId = o2.PatternPositionId.ToString(),
-                                });
-                                break;
-                            }
-                        case ItemOptionStatus.NewPattern:
-                            {
-                                var color = GenericFactory.Business.GetColorById(o2.ColorCodeId.Value.ToString());
-                                var position = GenericFactory.Business.GetPositionById(o2.PatternPositionId.Value.ToString());
-                                var p1 = GenericFactory.Business.GetPatternImageById(o2.PatternId.ToString());
-                                var path = string.Format(@"../../../FileUpload/{0}",
-                                            p1.PatternImagePath.Replace(@"\", @"/")
-                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
-                                            .Remove(0, 1));
-                                screenOptions.Add(new ScreenOptionViewModel
-                                {
-                                    PatternName = p1.PatternName,
-                                    SelectedOption = o2.OptionalStatusId,
-                                    PatternImagePath = path,
-                                    PositionId = o2.PatternPositionId.ToString(),
-                                    ColorId = color.Id.ToString(),
-                                    ColorName = color.ColorName,
-                                    PositionName = position.PositionName
-                                });
-                                break;
-                            }
-                    }
-                }
+            //    var screenOptions = new List<ScreenOptionViewModel>();
+            //    if (i.ProductItemScreenOptionals.Count > 0)
+            //    {
+            //        var o2 = i.ProductItemScreenOptionals.FirstOrDefault();
+            //        var screenStatus = (ItemOptionStatus)o2.OptionalStatusId;
+            //        switch (screenStatus)
+            //        {
+            //            case ItemOptionStatus.ExistingPattern:
+            //                {
+            //                    var p1 = GenericFactory.Business.GetPatternImageById(o2.PatternId.ToString());
+            //                    var path = string.Format(@"../../../FileUpload/{0}",
+            //                                p1.PatternImagePath.Replace(@"\", @"/")
+            //                                .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+            //                                .Remove(0, 1));
+            //                    screenOptions.Add(new ScreenOptionViewModel
+            //                    {
+            //                        PatternName = p1.PatternName,
+            //                        SelectedOption = o2.OptionalStatusId,
+            //                        PatternId = o2.PatternId.ToString(),
+            //                        PatternImagePath = path,
+            //                        PositionId = o2.PatternPositionId.ToString(),
+            //                    });
+            //                    break;
+            //                }
+            //            case ItemOptionStatus.NewPattern:
+            //                {
+            //                    var color = GenericFactory.Business.GetColorById(o2.ColorCodeId.Value.ToString());
+            //                    var position = GenericFactory.Business.GetPositionById(o2.PatternPositionId.Value.ToString());
+            //                    var p1 = GenericFactory.Business.GetPatternImageById(o2.PatternId.ToString());
+            //                    var path = string.Format(@"../../../FileUpload/{0}",
+            //                                p1.PatternImagePath.Replace(@"\", @"/")
+            //                                .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+            //                                .Remove(0, 1));
+            //                    screenOptions.Add(new ScreenOptionViewModel
+            //                    {
+            //                        PatternName = p1.PatternName,
+            //                        SelectedOption = o2.OptionalStatusId,
+            //                        PatternImagePath = path,
+            //                        PositionId = o2.PatternPositionId.ToString(),
+            //                        ColorId = color.Id.ToString(),
+            //                        ColorName = color.ColorName,
+            //                        PositionName = position.PositionName
+            //                    });
+            //                    break;
+            //                }
+            //        }
+            //    }
 
-                var sewOptions = new List<SewOptionViewModel>();
-                if (i.ProductItemSewOptionals.Count > 0)
-                {
-                    var o3 = i.ProductItemSewOptionals.FirstOrDefault();
-                    var sewStatus = (ItemOptionStatus)o3.OptionalStatusId;
-                    switch (sewStatus)
-                    {
-                        case ItemOptionStatus.ExistingPattern:
-                            {
-                                var p1 = GenericFactory.Business.GetPatternImageById(o3.PatternId.ToString());
-                                var path = string.Format(@"../../../FileUpload/{0}",
-                                            p1.PatternImagePath.Replace(@"\", @"/")
-                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
-                                            .Remove(0, 1));
-                                sewOptions.Add(new SewOptionViewModel
-                                {
-                                    PatternName = p1.PatternName,
-                                    SelectedOption = o3.OptionalStatusId,
-                                    PatternImagePath = path,
-                                    PatternId = o3.PatternId.ToString()
-                                });
-                                break;
-                            }
-                        case ItemOptionStatus.NewPattern:
-                            {
-                                var position = GenericFactory.Business.GetPositionById(o3.PatternPositionId.Value.ToString());
-                                var p1 = GenericFactory.Business.GetPatternImageById(o3.PatternId.ToString());
-                                var path = string.Format(@"../../../FileUpload/{0}",
-                                            p1.PatternImagePath.Replace(@"\", @"/")
-                                            .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
-                                            .Remove(0, 1));
-                                sewOptions.Add(new SewOptionViewModel
-                                {
-                                    PatternName = p1.PatternName,
-                                    SelectedOption = o3.OptionalStatusId,
-                                    PatternImagePath = path,
-                                    PositionId = o3.PatternPositionId.ToString(),
-                                    PositionName = position.PositionName,
-                                    Remark = o3.Remark
-                                });
-                                break;
-                            }
-                    }
+            //    var sewOptions = new List<SewOptionViewModel>();
+            //    if (i.ProductItemSewOptionals.Count > 0)
+            //    {
+            //        var o3 = i.ProductItemSewOptionals.FirstOrDefault();
+            //        var sewStatus = (ItemOptionStatus)o3.OptionalStatusId;
+            //        switch (sewStatus)
+            //        {
+            //            case ItemOptionStatus.ExistingPattern:
+            //                {
+            //                    var p1 = GenericFactory.Business.GetPatternImageById(o3.PatternId.ToString());
+            //                    var path = string.Format(@"../../../FileUpload/{0}",
+            //                                p1.PatternImagePath.Replace(@"\", @"/")
+            //                                .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+            //                                .Remove(0, 1));
+            //                    sewOptions.Add(new SewOptionViewModel
+            //                    {
+            //                        PatternName = p1.PatternName,
+            //                        SelectedOption = o3.OptionalStatusId,
+            //                        PatternImagePath = path,
+            //                        PatternId = o3.PatternId.ToString()
+            //                    });
+            //                    break;
+            //                }
+            //            case ItemOptionStatus.NewPattern:
+            //                {
+            //                    var position = GenericFactory.Business.GetPositionById(o3.PatternPositionId.Value.ToString());
+            //                    var p1 = GenericFactory.Business.GetPatternImageById(o3.PatternId.ToString());
+            //                    var path = string.Format(@"../../../FileUpload/{0}",
+            //                                p1.PatternImagePath.Replace(@"\", @"/")
+            //                                .Split(new string[] { @"FileUpload" }, StringSplitOptions.None)[1]
+            //                                .Remove(0, 1));
+            //                    sewOptions.Add(new SewOptionViewModel
+            //                    {
+            //                        PatternName = p1.PatternName,
+            //                        SelectedOption = o3.OptionalStatusId,
+            //                        PatternImagePath = path,
+            //                        PositionId = o3.PatternPositionId.ToString(),
+            //                        PositionName = position.PositionName,
+            //                        Remark = o3.Remark
+            //                    });
+            //                    break;
+            //                }
+            //        }
 
-                }
+            //    }
 
-                productItems.Add(new ProductItemViewModel
-                {
-                    ItemId = i.Id.ToString(),
-                    ProductId = i.ProductId.ToString(),
-                    ProductCategoryId = i.Product.ProductCategoryId.ToString(),
-                    ProductName = i.Product.Name,
-                    ProductUnitId = i.ProductUnitId.ToString(),
-                    ProductUnitName = i.Unit.UnitName,
-                    PricePerUnit = i.PricePerUnit,
-                    Amount = i.Amount,
-                    PrintOption = printOptions.FirstOrDefault(),
-                    ScreenOption = screenOptions.FirstOrDefault(),
-                    SewOption = sewOptions.FirstOrDefault()
-                });
-            }
-            document.Items = productItems;
+            //    productItems.Add(new ProductItemViewModel
+            //    {
+            //        ItemId = i.Id.ToString(),
+            //        ProductId = i.ProductId.ToString(),
+            //        ProductCategoryId = i.Product.ProductCategoryId.ToString(),
+            //        ProductName = i.Product.Name,
+            //        ProductUnitId = i.ProductUnitId.ToString(),
+            //        ProductUnitName = i.Unit.UnitName,
+            //        PricePerUnit = i.PricePerUnit,
+            //        Amount = i.Amount,
+            //        PrintOption = printOptions.FirstOrDefault(),
+            //        ScreenOption = screenOptions.FirstOrDefault(),
+            //        SewOption = sewOptions.FirstOrDefault()
+            //    });
+            //}
+            //document.Items = productItems;
             document.DeliveryAddress = entity.DocumentDeliveries.FirstOrDefault().Address1;
             document.DeliveryContactId = entity.DeliveryContactId.ToString();
             document.Remark = string.IsNullOrEmpty(entity.RefPriceAndRemark) ? "" : entity.RefPriceAndRemark;
@@ -349,6 +349,8 @@ namespace RP.Website
             //    });
             //}
             //document.Histories = histories;
+            document.ConfirmPriceDays = entity.ConfirmedPriceDays.HasValue ? entity.ConfirmedPriceDays.Value : 0;
+            document.DeliveryDays = entity.DeliveryDays.HasValue ? entity.DeliveryDays.Value : 0;
             return document;
         }
 

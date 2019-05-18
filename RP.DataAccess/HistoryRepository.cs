@@ -15,5 +15,11 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+        public override IQueryable<Model.History> All()
+        {
+            return ObjectSet.
+                Include(i => i.AspNetUser)
+                .AsQueryable();
+        }
+    }
 }
