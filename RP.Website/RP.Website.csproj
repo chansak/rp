@@ -1668,6 +1668,7 @@
     <Compile Include="Models\ListViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MaterialViewModel.cs" />
+    <Compile Include="Models\Mobile\AdvanceSearchCriteriaViewModel.cs" />
     <Compile Include="Models\Mobile\AuthenticationToken.cs" />
     <Compile Include="Models\Mobile\BaseDocumentViewModel.cs" />
     <Compile Include="Models\Mobile\CustomerAndContactViewModel.cs" />

@@ -135,7 +135,7 @@ namespace RP.Website.Controllers
                         BiddingStatus = (d.BiddingStatusId.HasValue) ? (int)d.BiddingStatusId : 0,
                         BiddingStatusName = biddingStatusName,
                         IssueDate = d.CreatedDate.Value.ToString("dd/MM/yyyy"),
-                        ExpiryDate = d.ExpiryDate.Value.ToString("dd/MM/yyyy"),
+                        ExpiryDate = d.ExpiryDate.HasValue ? d.ExpiryDate.Value.ToString("dd/MM/yyyy") : "",
                         NumberOfComments = numberOfComments
                     };
                     result.Add(document);
@@ -790,7 +790,7 @@ namespace RP.Website.Controllers
             var data = new MobileResponseModel();
             try
             {
-                var patterns = GenericFactory.Business.GetPatternImageByCustomerId(model.CustomerId,model.PatternType);
+                var patterns = GenericFactory.Business.GetPatternImageByCustomerId(model.CustomerId, model.PatternType);
                 var result = new List<PatternImageViewModel>();
                 foreach (var p1 in patterns)
                 {
