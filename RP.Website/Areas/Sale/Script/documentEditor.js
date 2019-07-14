@@ -269,18 +269,19 @@
     };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
-            $("#gotPO").hide();
             if (data.documentStatusId == 6) {
                 $("#gotPO").show();
                 $("#poNumber").val(data.poNumber);
             }
-            var issuedDate = utilities.ConvertToDate(data.issuedDate);
-            var expirationDate = utilities.ConvertToDate(data.expirationDate);
-            var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
+            //var issuedDate = utilities.ConvertToDate(data.issuedDate);
+            //var expirationDate = utilities.ConvertToDate(data.expirationDate);
+            //var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
             $("#documentCode").val(data.documentCode);
-            $("#issuedDate").datepicker('setDate', issuedDate);
-            $("#expirationDate").datepicker('setDate', expirationDate);
-            $("#expectedDeliveryDate").datepicker('setDate', expectedDeliveryDate);
+            //$("#issuedDate").datepicker('setDate', issuedDate);
+            //$("#expirationDate").datepicker('setDate', expirationDate);
+            //$("#expectedDeliveryDate").datepicker('setDate', expectedDeliveryDate);
+            $("#priceValidityDays").val(data.confirmPriceDays);
+            $("#numberOfDeliveryDays").val(data.deliveryDays);
             _getCustomerDetail(data.customerId);
             _getContactDetail(data.contactId);
             _getSaleDetail(data.saleUserId);
@@ -528,8 +529,10 @@
                 poNumber: $("#poNumber").val(),
                 //issuedDate: $("#issuedDate").val(),
                 //createdDate: $("#createdDate").val(),
-                expirationDate: $("#expirationDate").val(),
+                //expirationDate: $("#expirationDate").val(),
                 //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+                confirmPriceDays: $("#priceValidityDays").val(),
+                deliveryDays: $("#numberOfDeliveryDays").val(),
                 saleUserId: $("#auto_saleId").val(),
                 customerId: $("#auto_customerId").val(),
                 contactId: $("#auto_contactId").val(),
@@ -652,8 +655,10 @@
                 poNumber: $("#poNumber").val(),
                 //issuedDate: $("#issuedDate").val(),
                 //createdDate: $("#createdDate").val(),
-                expirationDate: $("#expirationDate").val(),
+                //expirationDate: $("#expirationDate").val(),
                 //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+                confirmPriceDays: $("#priceValidityDays").val(),
+                deliveryDays: $("#numberOfDeliveryDays").val(),
                 saleUserId: $("#auto_saleId").val(),
                 customerId: $("#auto_customerId").val(),
                 contactId: $("#auto_contactId").val(),
@@ -777,8 +782,10 @@
                 poNumber: $("#poNumber").val(),
                 //issuedDate: $("#issuedDate").val(),
                 //createdDate: $("#createdDate").val(),
-                expirationDate: $("#expirationDate").val(),
+                //expirationDate: $("#expirationDate").val(),
                 //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+                confirmPriceDays: $("#priceValidityDays").val(),
+                deliveryDays: $("#numberOfDeliveryDays").val(),
                 saleUserId: $("#auto_saleId").val(),
                 customerId: $("#auto_customerId").val(),
                 contactId: $("#auto_contactId").val(),

@@ -257,19 +257,19 @@
     };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
-            console.log(data);
-            $("#gotPO").hide();
             if (data.documentStatusId == 6) {
                 $("#gotPO").show();
                 $("#poNumber").val(data.poNumber);
             }
-            var issuedDate = utilities.ConvertToDate(data.issuedDate);
-            var expirationDate = utilities.ConvertToDate(data.expirationDate);
-            var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
+            //var issuedDate = utilities.ConvertToDate(data.issuedDate);
+            //var expirationDate = utilities.ConvertToDate(data.expirationDate);
+            //var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
             $("#documentCode").val(data.documentCode);
-            $("#issuedDate").datepicker('setDate', issuedDate);
-            $("#expirationDate").datepicker('setDate', expirationDate);
-            $("#expectedDeliveryDate").datepicker('setDate', expectedDeliveryDate);
+            //$("#issuedDate").datepicker('setDate', issuedDate);
+            //$("#expirationDate").datepicker('setDate', expirationDate);
+            //$("#expectedDeliveryDate").datepicker('setDate', expectedDeliveryDate);
+            $("#priceValidityDays").val(data.confirmPriceDays);
+            $("#numberOfDeliveryDays").val(data.deliveryDays);
             $("#deliveryAddress").val(data.deliveryAddress);
             $("#documentRemark").val(data.remark);
             _getCustomerDetail(data.customerId);

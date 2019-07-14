@@ -10,8 +10,8 @@ namespace RP.Website.Models
     {
         public string Id { get; set; }
         public string DocumentCode { get; set; }
-        public string IssuedDate { get; set; }
-        public string ExpirationDate { get; set; }
+        //public string IssuedDate { get; set; }
+        //public string ExpirationDate { get; set; }
         public string ExpectedDeliveryDate { get; set; }
 
         public int ConfirmPriceDays { get; set; }
