@@ -130,7 +130,6 @@
         $(items).each(function (index, item) {
             var printOptions = item.print;
             var screenOptions = item.screen;
-            console.log(item);
             var sewOptions = item.sew;
 
             //print options
@@ -223,8 +222,10 @@
         var document = {
             //issuedDate: $("#issuedDate").val(),
             //createdDate: $("#createdDate").val(),
-            expirationDate: $("#expirationDate").val(),
+            //expirationDate: $("#expirationDate").val(),
             //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+            confirmPriceDays: $("#priceValidityDays").val(),
+            deliveryDays: $("#numberOfDeliveryDays").val(),
             saleUserId: $("#auto_saleId").val(),
             customerId: $("#auto_customerId").val(),
             contactId: $("#auto_contactId").val(),
@@ -251,7 +252,6 @@
         $(items).each(function (index, item) {
             var printOptions = item.print;
             var screenOptions = item.screen;
-            console.log(item);
             var sewOptions = item.sew;
 
             //print options
@@ -344,8 +344,10 @@
         var document = {
             //issuedDate: $("#issuedDate").val(),
             //createdDate: $("#createdDate").val(),
-            expirationDate: $("#expirationDate").val(),
+            //expirationDate: $("#expirationDate").val(),
             //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
+            confirmPriceDays: $("#priceValidityDays").val(),
+            deliveryDays: $("#numberOfDeliveryDays").val(),
             saleUserId: $("#auto_saleId").val(),
             customerId: $("#auto_customerId").val(),
             contactId: $("#auto_contactId").val(),

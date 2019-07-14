@@ -50,7 +50,7 @@
                                                 <input type="text" id="documentCode" class="form-control" disabled>
                                             </div>
                                         </div>
-                                        <div class="form-group row" id="gotPO">
+                                        <div class="form-group row" id="gotPO" style="display:none">
                                             <label class="col-sm-3 col-form-label">เลขที่ PO</label>
                                             <div class="col-sm-9">
                                                 <input type="text" id="poNumber" class="form-control">
@@ -65,15 +65,15 @@
                                                     <input type="text" id="issuedDate" class="form-control date">
                                                 </div>
                                             </div>*@
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">มีผลถึงวันที่</label>
-                                            <div class="input-group date col-sm-4" style="padding-left: 15px;">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </span>
-                                                <input type="text" id="expirationDate" class="form-control date">
-                                            </div>
-                                        </div>
+                                        @*<div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">มีผลถึงวันที่</label>
+                                                <div class="input-group date col-sm-4" style="padding-left: 15px;">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                    <input type="text" id="expirationDate" class="form-control date">
+                                                </div>
+                                            </div>*@
                                         @*<div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">วันที่ส่งของ</label>
                                                 <div class="input-group date col-sm-4" style="padding-left: 15px;">
@@ -83,6 +83,18 @@
                                                     <input type="text" id="expectedDeliveryDate" class="form-control date">
                                                 </div>
                                             </div>*@
+                                        <div class="form-group row" id="data_2">
+                                            <label class="col-sm-3 col-form-label">จำนวนวันที่ยืนราคา</label>
+                                            <div class="input-group col-sm-4" style="padding-left: 15px;">
+                                                <input type="number" id="priceValidityDays" class="form-control" min="0" onkeypress="return event.charCode != 45">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="data_2">
+                                            <label class="col-sm-3 col-form-label">จำนวนวันที่ส่งสินค้า</label>
+                                            <div class="input-group col-sm-4" style="padding-left: 15px;">
+                                                <input type="number" id="numberOfDeliveryDays" class="form-control" min="0" onkeypress="return event.charCode != 45">
+                                            </div>
+                                        </div>
                                         <h2>ข้อมูลการขาย</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">

@@ -9,10 +9,10 @@
             <h2>รายละเอียดใบขอราคา</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="@Url.Action("Index", "Document",new { area = "Sale" })">หน้าแรก</a>
+                    <a href="@Url.Action("Index", "ApprovalDocument",new { area = "Manager" })">หน้าแรก</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index", "Document",new { area = "Sale" })">รายการใบขอราคา</a>
+                    <a href="@Url.Action("Index", "ApprovalDocument",new { area = "Manager" })">รายการใบขอราคา</a>
                 </li>
                 <li class="active">
                     <strong>รายละเอียดใบขอราคา</strong>
@@ -59,15 +59,15 @@
                                                     <input type="text" id="issuedDate" class="form-control date">
                                                 </div>
                                             </div>*@
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">มีผลถึงวันที่</label>
-                                            <div class="input-group date col-sm-4" style="padding-left: 15px;">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </span>
-                                                <input type="text" id="expirationDate" class="form-control date">
-                                            </div>
-                                        </div>
+                                        @*<div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">มีผลถึงวันที่</label>
+                                                <div class="input-group date col-sm-4" style="padding-left: 15px;">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                    <input type="text" id="expirationDate" class="form-control date">
+                                                </div>
+                                            </div>*@
                                         @*<div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">วันที่ส่งของ</label>
                                                 <div class="input-group date col-sm-4" style="padding-left: 15px;">
@@ -77,6 +77,18 @@
                                                     <input type="text" id="expectedDeliveryDate" class="form-control date">
                                                 </div>
                                             </div>*@
+                                        <div class="form-group row" id="data_2">
+                                            <label class="col-sm-3 col-form-label">จำนวนวันที่ยืนราคา</label>
+                                            <div class="input-group col-sm-4" style="padding-left: 15px;">
+                                                <input type="number" id="priceValidityDays" class="form-control" min="0" onkeypress="return event.charCode != 45">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" id="data_2">
+                                            <label class="col-sm-3 col-form-label">จำนวนวันที่ส่งสินค้า</label>
+                                            <div class="input-group col-sm-4" style="padding-left: 15px;">
+                                                <input type="number" id="numberOfDeliveryDays" class="form-control" min="0" onkeypress="return event.charCode != 45">
+                                            </div>
+                                        </div>
                                         <h2>ข้อมูลการขาย</h2>
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group row">
@@ -199,11 +211,11 @@
                             <div class="panel-body">
                                 <div class="ibox">
                                     @*<div class="ibox-title no-borders">
-                                        <h2>ข้อมูลส่งของ</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="ibox-tools">
-                                        </div>
-                                    </div>*@
+                                            <h2>ข้อมูลส่งของ</h2>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="ibox-tools">
+                                            </div>
+                                        </div>*@
                                     <div class="ibox-content no-borders">
                                         <h2>ข้อมูลจัดส่ง</h2>
                                         <div class="hr-line-dashed"></div>
@@ -216,36 +228,36 @@
                                         </div>
 
                                         @*<h2>ข้อมูลผู้ติดต่อสำหรับจัดส่ง</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">ผู้รับสินค้า</label>
 
-                                            <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
-                                                <input type="hidden" id="auto_deliveryContactId" />
+                                                <div class="col-sm-9">
+                                                    <div class="input-group m-b"><input type="text" id="auto_deliveryContactName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                    <input type="hidden" id="auto_deliveryContactId" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
-                                                <span class="form-text"></span>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">เบอร์ติดต่อ</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactPhone" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">โทรสาร</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
-                                                <span class="form-text"></span>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">โทรสาร</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactFax" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
-                                                <span class="form-text"></span>
-                                            </div>
-                                        </div>*@
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">เบอร์มือถือ</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_deliveryContactMobile" placeholder="" disabled>
+                                                    <span class="form-text"></span>
+                                                </div>
+                                            </div>*@
                                     </div>
                                 </div>
                             </div>
@@ -297,8 +309,8 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                    <button type="button" id="btnApprove" class="btn btn-primary btnApprove">อนุมัติ</button>
-                    <button type="button" id="btnReject" class="btn btn-danger btnReject">ไม่อนุมัติ</button>
+                        <button type="button" id="btnApprove" class="btn btn-primary btnApprove">อนุมัติ</button>
+                        <button type="button" id="btnReject" class="btn btn-danger btnReject">ไม่อนุมัติ</button>
                     </div>
                     <div class="ibox-footer">
                         @*<span class="pull-right">
@@ -714,7 +726,7 @@
                     return;
                 } else {
                     var selectedItemId = $(selectedProductItems[0]).val();
-                    documentEditor.OpenEditor(customerId,selectedItemId);
+                    documentEditor.OpenEditor(customerId, selectedItemId);
                 }
             });
             $("#btnAddNew").unbind("click");
