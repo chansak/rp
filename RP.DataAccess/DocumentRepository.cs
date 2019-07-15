@@ -46,7 +46,9 @@ namespace RP.DataAccess
         {
             var currentYear = DateTime.Now.Year;
             var nextRunningNumber = (ObjectSet.Where(i => i.CreatedDate.Value.Year == currentYear).Count()) + 1;
-            document.FileNumber = string.Format("{0}{1}{2}", customerCode, currentYear, ("0000" + nextRunningNumber).Substring(0, 5));
+            var nexRunningText = ("0000" + nextRunningNumber);
+            var fileNumber = nexRunningText.Substring(nexRunningText.Length - 5, 5);
+            document.FileNumber = string.Format("{0}{1}{2}", customerCode, currentYear, fileNumber );
             document.CreatedDate = DateTime.Now;
             ObjectSet.Add(document);
         }
