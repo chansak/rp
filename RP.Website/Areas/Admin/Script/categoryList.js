@@ -1,5 +1,5 @@
-﻿var userList = new function () {
-    var users = [];
+﻿var categoryList = new function () {
+    var datas = [];
     var message = {
         info: {
             noSelectedItemBeforeEdit: "กรุณาเลือกรายการ",
@@ -8,7 +8,7 @@
     };
     var _edit = function () {
         var itemId = 0;
-        var items = $("input:checkbox[name=userId]:checked");
+        var items = $("input:checkbox[name=id]:checked");
         if (items.length == 1) {
             itemId = $(items[0]).val();
 
@@ -16,20 +16,18 @@
             toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration');
         }
         if (itemId != 0) {
-            window.location.href = '../../Admin/common/EditUser/' + itemId;
+            window.location.href = '../../Admin/Product/EditCategory/' + itemId;
         }
     };
     var _render = function () {
         var html = '';
-        $(users).each(function (index, user) {
+        $(datas).each(function (index, data) {
             html += '<tr>';
-            html += '   <td><div class="checkbox i-checks"><label> <input type="checkbox" name="userId" value=' + user.id + '> <i></i></label></div></td>';
-            html += '   <td>' + user.userName + '</td>';
-            html += '   <td>' + user.displayName + '</td>';
-            html += '   <td>' + user.roleName + '</td>';
+            html += '   <td><div class="checkbox i-checks"><label> <input type="checkbox" name="id" value=' + data.id + '> <i></i></label></div></td>';
+            html += '   <td>' + data.name + '</td>';
             html += '</tr>';
         });
-        $("#table-quotation tbody").empty().html(html);
+        $("#table-data tbody").empty().html(html);
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
@@ -39,18 +37,17 @@
         var searchBy = $("#ddSearch").val();
         var keyword = $("#keyword").val();
         var success = function (response, textStatus, jqXHR) {
-            users = [];
-            $(response.data).each(function (index, document) {
-                users.push(document)
+            datas = [];
+            $(response.data).each(function (index, data) {
+                datas.push(data)
             });
             _render();
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetUsersListBySearch(searchBy, keyword, success, failure);
+        var xhr = RPService.GetCategoriesBySearch(searchBy, keyword, success, failure);
     };
-    
     return {
         init: function () {
             _search();

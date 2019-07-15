@@ -7,6 +7,6 @@ namespace RP.Interfaces
 {
 	public interface IProductCategoryRepository : IRepository<RP.Model.ProductCategory>
 	{
-
-	}
+        void UpdateCategory(ProductCategory category);
+    }
 }

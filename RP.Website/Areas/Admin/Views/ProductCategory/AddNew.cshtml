@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>ประเภทของสินค้า</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("CategoryList", "Product",new { area = "Admin" })">หน้าแรก</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CategoryList", "Product",new { area = "Admin" })">รายการประเภทของสินค้าทั้งหมด</a>
+                </li>
+                <li class="active">
+                    <strong>เพิ่มประเภทของสินค้า</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox">
+                    <div class="ibox-title no-borders">
+                        <h2>เพิ่มประเภทของสินค้า</h2>
+                        <div class="hr-line-dashed"></div>
+                        <div class="ibox-tools">
+                        </div>
+                    </div>
+                    <div class="ibox-content no-borders">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">ชื่อประเภทของสินค้า</label>
+                            <div class="input-group col-sm-4" style="padding-left: 15px;">
+                                <input type="text" id="categoryName" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-footer">
+                        <button type="button" class="btn btn-primary btnSave">บันทึก</button>
+                        <button type="button" class="btn btn-white">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Styles {
+    @Styles.Render("~/plugins/sweetAlertStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/sweetAlert")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".btnSave").click(function () {
+                categoryCreator.Save(function () {
+                    swal({
+                        title: "บันทึกเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("/Admin/Product/CategoryList");
+                    });
+                });
+            });
+        });
+    </script>
+}

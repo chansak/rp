@@ -51,7 +51,7 @@ namespace RP.Interfaces
         #endregion
 
         #region Common
-        IList<ProductCategory> GetProductCategories();
+        
         IList<Product> GetProductsByCategoryId(string id);
         IList<ProductOption> GetOptionsByProductId(string id);
         IList<ProductUnit> GetUnitsByProductId(string id);
@@ -77,6 +77,14 @@ namespace RP.Interfaces
         #region Log
         IList<History> GetHistoryByType(string documentId, int type);
         void AddHistory(History history);
+        #endregion
+
+        #region Master Data
+        IList<ProductCategory> GetProductCategories();
+        IList<ProductCategory> GetAllProductCategories(string searchBy, string keyword);
+        void CreateCategory(ProductCategory category);
+        ProductCategory GetCategoryById(string id);
+        void UpdateCategory(ProductCategory category);
         #endregion
     }
 }

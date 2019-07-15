@@ -9,11 +9,16 @@ using RP.Interfaces;
 
 namespace RP.DataAccess
 {
-	public class ProductCategoryRepository : EFRepository<RP.Model.ProductCategory>, IProductCategoryRepository
-	{
-		public ProductCategoryRepository(DbContext context)
+    public class ProductCategoryRepository : EFRepository<RP.Model.ProductCategory>, IProductCategoryRepository
+    {
+        public ProductCategoryRepository(DbContext context)
             : base(context)
-		{
-		}
-	}
+        {
+        }
+        public void UpdateCategory(Model.ProductCategory category)
+        {
+            var existing = this.GetById(category.Id);
+            existing.CategoryName = category.CategoryName;
+        }
+    }
 }

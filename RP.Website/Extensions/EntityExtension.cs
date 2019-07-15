@@ -586,5 +586,22 @@ namespace RP.Website
                 Text = viewModel.Text
             };
         }
+
+        public static ProductCategory ToEntity(this CategoryViewModel viewmodel)
+        {
+            return new ProductCategory
+            {
+                Id = new Guid(viewmodel.Id),
+                CategoryName = viewmodel.Name
+            };
+        }
+        public static CategoryViewModel ToViewModel(this ProductCategory entity)
+        {
+            return new CategoryViewModel
+            {
+                Id = entity.Id.ToString(),
+                Name = entity.CategoryName
+            };
+        }
     }
 }

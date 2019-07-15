@@ -171,7 +171,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Script\categoryCreator.js" />
+    <Content Include="Areas\Admin\Script\categoryEditor.js" />
     <Content Include="Areas\Admin\Script\userEditor.js" />
+    <Content Include="Areas\Admin\Script\categoryList.js" />
     <Content Include="Areas\Admin\Script\userList.js" />
     <Content Include="Areas\Admin\Views\Setting\AddNewCustomer.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\CustomerList.cshtml" />
@@ -1249,6 +1252,9 @@
     <Content Include="Areas\Manager\Views\Document\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\AddNew.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1615,6 +1621,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommonController.cs" />
@@ -1629,6 +1636,7 @@
     <Compile Include="Areas\Sale\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Sale\Models\DocumentListItemViewModel.cs" />
     <Compile Include="Areas\Sale\Models\DocumentViewModel.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\HistoryViewModel.cs" />
     <Compile Include="Areas\Sale\Models\PrintOptionViewModel.cs" />
     <Compile Include="Areas\Sale\Models\ProductItemViewModel.cs" />
