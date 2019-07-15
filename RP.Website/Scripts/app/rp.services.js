@@ -451,7 +451,7 @@
     GetUsersListBySearch: function (searchBy, keyword, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/Admin/users/Search",
+            url: "/Admin/common/searchUser",
             data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -1102,7 +1102,7 @@
     GetUserById: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/Admin/users/GetUserById",
+            url: "/Admin/common/GetUserById",
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",

@@ -1617,7 +1617,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommonController.cs" />
     <Compile Include="Areas\Backoffice\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
     <Compile Include="Areas\Backoffice\Controllers\DocumentController.cs" />
@@ -1736,6 +1736,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Customer\" />
+    <Folder Include="Areas\Admin\Views\Product\" />
     <Folder Include="Areas\Manager\Models\" />
     <Folder Include="Content\preview\" />
     <Folder Include="Filter\" />

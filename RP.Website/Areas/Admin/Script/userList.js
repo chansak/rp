@@ -16,7 +16,7 @@
             toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration');
         }
         if (itemId != 0) {
-            window.location.href = '../../Admin/Users/Edit/' + itemId;
+            window.location.href = '../../Admin/common/EditUser/' + itemId;
         }
     };
     var _render = function () {

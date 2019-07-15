@@ -13,13 +13,13 @@ using System.Web.Routing;
 namespace RP.Website.Areas.Admin.Controllers
 {
     [LoggedOrAuthorized(Roles = Roles.Admin)]
-    public class UsersController : BaseController
+    public class CommonController : BaseController
     {
-        public ActionResult Index(string searchBy, string keyword, string sortBy, string direction, int? page)
+        public ActionResult UserList(string searchBy, string keyword, string sortBy, string direction, int? page)
         {
-            return View();
+            return View("~/Areas/Admin/Views/Users/Index.cshtml");
         }
-        public ActionResult Search(string searchBy, string keyword, string sortBy, string direction, int? page)
+        public ActionResult SearchUser(string searchBy, string keyword, string sortBy, string direction, int? page)
         {
             int pageSize = AppSettingHelper.PageSize;
             if (!string.IsNullOrWhiteSpace(keyword))
@@ -56,7 +56,7 @@ namespace RP.Website.Areas.Admin.Controllers
             };
             return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Edit(string id)
+        public ActionResult EditUser(string id)
         {
             ViewBag.UserId = id;
             return View();
