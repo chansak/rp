@@ -8,9 +8,9 @@
         <ul class="nav" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <span>
-                        <img alt="image" class="img-circle small" src="~/Images/profile/user1.jpg" width="48" height="48" />
-                    </span>
+                    @*<span>
+                            <img alt="image" class="img-circle small" src="~/Images/profile/user1.jpg" width="48" height="48" />
+                        </span>*@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
@@ -20,8 +20,7 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a href="@Url.Action("Profile", "AppViews")">Profile</a></li>
-                        <li><a href="@Url.Action("Contacts", "AppViews")">Contacts</a></li>
-                        <li><a href="@Url.Action("Inbox", "Mailbox")">Mailbox</a></li>
+                        <li><a href="@Url.Action("Settings", "AppViews")">Contacts</a></li>
                         <li class="divider"></li>
                         <li><a href="@Url.Action("Login", "Pages")">Logout</a></li>
                     </ul>
@@ -77,28 +76,22 @@
                             <li>
                                 <a href="#"><i class="fa fa-gears"></i> <span class="nav-label">ตั้งค่า</span><span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Admin", cssClass: "in")">
-                                    <li>
-                                        <a href="#">ตั้งค่าข้อมูลผู้ใช้ <span class="fa arrow"></span></a>
+                                    <li class="@Html.IsSelected(controller: "Product")">
+                                        <a href="#">ข้อมูลสินค้า <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
-                                            <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Users",new { area = "Admin" })">จัดการผู้ใช้</a></li>
-                                        </ul>
-                                    </li>
-                                    @*<li>
-                                        <a href="#">ตั้งค่าข้อมูลสินค้า <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="@Url.Action("CategoryList", "Product",new { area = "Admin" })">ประเภทสินค้า</a>
+                                            </li>
                                             <li>
                                                 <a href="#">รายการสินค้า</a>
                                             </li>
                                             <li>
                                                 <a href="#">หน่วยสินค้า</a>
                                             </li>
-                                            <li>
-                                                <a href="#">หน่วยสินค้า</a>
-                                            </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="#">ตั้งค่าข้อมูลการขาย <span class="fa arrow"></span></a>
+                                        <a href="#">ข้อมูลการขาย <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
                                                 <a href="#">กลุ่มงานขาย</a>
@@ -106,7 +99,7 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="#">ตั้งค่าข้อมูลลูกค้า <span class="fa arrow"></span></a>
+                                        <a href="#">ข้อมูลลูกค้า <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
                                                 <a href="@Url.Action("CustomerList", "Setting",new { area = "Admin" })">รายการลูกค้า</a>
@@ -116,14 +109,14 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a href="#">ตั้งค่าข้อมูลทั่วไป <span class="fa arrow"></span></a>
+                                    <li class="@Html.IsSelected(controller: "Common")">
+                                        <a href="#">ข้อมูลทั่วไป <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
-                                            <li>
-                                                <a href="#">ข้อมูลผู้ใช้</a>
+                                            <li class="@Html.IsSelected(action: "UserList")">
+                                                <a href="@Url.Action("UserList", "Common",new { area = "Admin" })">จัดการผู้ใช้</a>
                                             </li>
                                         </ul>
-                                    </li>*@
+                                    </li>
                                 </ul>
                             </li>
                             break;

@@ -100,5 +100,18 @@ namespace RP.Website.Areas.Admin.Controllers
             }
             return Json(null);
         }
+        [HttpPost]
+        public ActionResult DeleteCategory(string id) {
+            try
+            {
+                GenericFactory.Business.DeleteCategoryById(id);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
     }
 }

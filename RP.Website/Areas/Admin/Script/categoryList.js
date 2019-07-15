@@ -19,6 +19,14 @@
             window.location.href = '../../Admin/Product/EditCategory/' + itemId;
         }
     };
+    var _delete = function (id,callback) {
+        var success = function (response, textStatus, jqXHR) {
+            callback();
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.DeleteCategory(id, success, failure);
+    }
     var _render = function () {
         var html = '';
         $(datas).each(function (index, data) {
@@ -55,8 +63,14 @@
         edit: function () {
             _edit();
         },
+        delete: function (id,callback) {
+            _delete(id, callback);
+        },
         search: function () {
             _search();
         },
+        noSelectedItemBeforeEdit: function () {
+            return message.info.noSelectedItemBeforeEdit;
+        }
     }
 };

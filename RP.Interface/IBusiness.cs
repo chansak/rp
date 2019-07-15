@@ -85,6 +85,7 @@ namespace RP.Interfaces
         void CreateCategory(ProductCategory category);
         ProductCategory GetCategoryById(string id);
         void UpdateCategory(ProductCategory category);
+        void DeleteCategoryById(string id);
         #endregion
     }
 }

@@ -79,5 +79,16 @@ namespace RP.Business
                 }
             }
         }
+        public void DeleteCategoryById(string id) {
+            using (var uow = UnitOfWork.Create())
+            {
+                var categoryId = new Guid(id);
+                var existing = uow.ProductCategoryRepository.GetById(categoryId);
+                if (existing != null) {
+                    uow.ProductCategoryRepository.Delete(existing);
+                    uow.Commit();
+                }
+            }
+        }
     }
 }

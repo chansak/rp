@@ -71,7 +71,7 @@
                 <div class="ibox-content float-e-margins">
                     @Html.ActionLink("สร้าง", "AddNewCategory", null, new { @class = "btn btn-primary btn-xs" })
                     <button type="button" id="btnEdit" class="btn btn-white btn-xs">แก้ไข</button>
-                    <button type="button" class="btn btn-white btn-xs btnDelete">ลบ</button>
+                    <button type="button" id="btnDelete" class="btn btn-white btn-xs">ลบ</button>
                 </div>
             </div>
         </div>
@@ -96,29 +96,68 @@
             $('.scroll_content').slimscroll({
                 height: '500px'
             });
-            $('.btnDelete').click(function () {
-                swal({
-                    title: "ยืนยันการลบข้อมูล?",
-                    text: "คุณจะไม่สามารถกู้รายการนี้หลังจากลบไปแล้ว!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "ลบ!",
-                    cancelButtonText: "ยกเลิก!",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
-                },
-                    function (isConfirm) {
-                        if (isConfirm) {
-                            swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success");
-                        } else {
-                            swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error");
-                        }
-                    });
-            });
+            //$('.btnDelete').click(function () {
+            //    swal({
+            //        title: "ยืนยันการลบข้อมูล?",
+            //        text: "คุณจะไม่สามารถกู้รายการนี้หลังจากลบไปแล้ว!",
+            //        type: "warning",
+            //        showCancelButton: true,
+            //        confirmButtonColor: "#DD6B55",
+            //        confirmButtonText: "ลบ!",
+            //        cancelButtonText: "ยกเลิก!",
+            //        closeOnConfirm: false,
+            //        closeOnCancel: false
+            //    },
+            //        function (isConfirm) {
+            //            if (isConfirm) {
+            //                swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success");
+            //            } else {
+            //                swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error");
+            //            }
+            //        });
+            //});
             $("#btnEdit").unbind("click");
             $("#btnEdit").click(function () {
                 categoryList.edit();
+            });
+            $("#btnDelete").unbind("click");
+            $("#btnDelete").click(function () {
+                var itemId = 0;
+                var items = $("input:checkbox[name=id]:checked");
+                if (items.length == 1) {
+                    itemId = $(items[0]).val();
+
+                } else {
+                    toastr.info(categoryList.noSelectedItemBeforeEdit, 'Infomration');
+                }
+                if (itemId != 0) {
+                    swal({
+                        title: "ยืนยันการลบรายการนี้?",
+                        text: "",
+                        icon: "info",
+                        buttons: true,
+                        dangerMode: true,
+                        buttons: ["ปิด", "ตกลง"]
+                    }).then((isConfirm) => {
+                        if (isConfirm) {
+                            swal.close();
+                            categoryList.delete(itemId,function () {
+                                swal({
+                                    title: "บันทึกเรียบร้อย!",
+                                    text: "กดปุ่ม OK เพื่อปิด!",
+                                    icon: "success"
+                                }).then((value) => {
+                                    utilities.RedirectToAction("/Admin/Product/CategoryList");
+                                });
+                            });
+                            
+                        } else {
+                            swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                                swal.close();
+                            });
+                        }
+                    });
+                }
             });
             $("#btnSearch").click(function () {
                 categoryList.search();
