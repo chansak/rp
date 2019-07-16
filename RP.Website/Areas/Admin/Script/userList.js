@@ -16,7 +16,7 @@
             toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration');
         }
         if (itemId != 0) {
-            window.location.href = '../../Admin/common/EditUser/' + itemId;
+            window.location.href = '../../Admin/UserAccount/EditUser/' + itemId;
         }
     };
     var _render = function () {
@@ -40,15 +40,15 @@
         var keyword = $("#keyword").val();
         var success = function (response, textStatus, jqXHR) {
             users = [];
-            $(response.data).each(function (index, document) {
-                users.push(document)
+            $(response.data).each(function (index, user) {
+                users.push(user)
             });
             _render();
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetUsersListBySearch(searchBy, keyword, success, failure);
+        var xhr = RPService.GetUsersList(searchBy, keyword, success, failure);
     };
     
     return {

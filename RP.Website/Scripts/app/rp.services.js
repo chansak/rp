@@ -1102,10 +1102,10 @@
     //Master Data
 
     //User
-    GetUsersListBySearch: function (searchBy, keyword, successCallback, errorCallback) {
+    GetUsersList: function (searchBy, keyword, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/Admin/common/searchUser",
+            url: "/Admin/UserAccount/searchUser",
             data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -1125,7 +1125,7 @@
     GetUserById: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/Admin/common/GetUserById",
+            url: "/Admin/UserAccount/GetUserById",
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",

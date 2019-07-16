@@ -1621,10 +1621,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommonSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CommonController.cs" />
     <Compile Include="Areas\Backoffice\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Backoffice\BackofficeAreaRegistration.cs" />
     <Compile Include="Areas\Backoffice\Controllers\DocumentController.cs" />

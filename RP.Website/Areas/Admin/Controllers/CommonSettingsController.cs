@@ -13,7 +13,7 @@ using System.Web.Routing;
 namespace RP.Website.Areas.Admin.Controllers
 {
     [LoggedOrAuthorized(Roles = Roles.Admin)]
-    public class CommonController : BaseController
+    public class UserAccountController : BaseController
     {
         public ActionResult UserList(string searchBy, string keyword, string sortBy, string direction, int? page)
         {
