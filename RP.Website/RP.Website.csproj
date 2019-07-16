@@ -171,8 +171,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Script\productMasterEditor.js" />
+    <Content Include="Areas\Admin\Script\productMasterCreator.js" />
     <Content Include="Areas\Admin\Script\categoryCreator.js" />
     <Content Include="Areas\Admin\Script\categoryEditor.js" />
+    <Content Include="Areas\Admin\Script\productList.js" />
     <Content Include="Areas\Admin\Script\userEditor.js" />
     <Content Include="Areas\Admin\Script\categoryList.js" />
     <Content Include="Areas\Admin\Script\userList.js" />
@@ -1255,6 +1258,9 @@
     <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\AddNew.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\AddNew.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1745,7 +1751,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Customer\" />
-    <Folder Include="Areas\Admin\Views\Product\" />
+    <Folder Include="Areas\Admin\Views\ProductOption\" />
     <Folder Include="Areas\Manager\Models\" />
     <Folder Include="Content\preview\" />
     <Folder Include="Filter\" />

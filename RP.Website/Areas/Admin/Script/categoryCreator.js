@@ -1,7 +1,7 @@
 ﻿var categoryCreator = new function () {
     var _save = function (callback) {
         var data = {
-            name: $("#categoryName").val()
+            categoryName: $("#categoryName").val()
         };
         var success = function (data, textStatus, jqXHR) {
             callback();

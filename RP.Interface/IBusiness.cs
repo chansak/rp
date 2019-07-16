@@ -86,6 +86,11 @@ namespace RP.Interfaces
         ProductCategory GetCategoryById(string id);
         void UpdateCategory(ProductCategory category);
         void DeleteCategoryById(string id);
+
+        IList<Product> GetAllProducts(string searchBy, string keyword);
+        void CreateProduct(Product product);
+        void UpdateProduct(Product product);
+        void DeleteProductById(string id);
         #endregion
     }
 }

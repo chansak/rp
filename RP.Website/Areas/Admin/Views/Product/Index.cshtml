@@ -1,0 +1,148 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>สินค้า</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("ProductList", "Product",new { area = "Admin" })">หน้าแรก</a>
+            </li>
+            <li class="active">
+                <strong>รายการสินค้าทั้งหมด</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <span class="text-muted small pull-right">Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014</span>
+                    <h2>&nbsp;</h2>
+                    <div class="row">                       
+                        <div class="col-sm-4">
+                            <select class="form-control m-b" id="ddSearch">
+                                <option value="Name">ชื่อ</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" id="keyword" placeholder="ค้นหา" class="input form-control">
+                                <span class="input-group-btn">
+                                    <button type="button" id="btnSearch" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clients-list">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="full-height-scroll">
+                                <div class="table-responsive">
+                                    <table id="table-data" class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></th>
+                                                <th>ประเภท</th>
+                                                <th>ชื่อ</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                    <div id="pager_data"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>จัดการ</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content float-e-margins">
+                    @Html.ActionLink("สร้าง", "AddNewProduct", null, new { @class = "btn btn-primary btn-xs" })
+                    <button type="button" id="btnEdit" class="btn btn-white btn-xs">แก้ไข</button>
+                    <button type="button" id="btnDelete" class="btn btn-white btn-xs">ลบ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+    @Styles.Render("~/Content/plugins/jqGrid/jqGridStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/jqGrid")
+    @Scripts.Render("~/plugins/toastr")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            productList.init();
+            $('.scroll_content').slimscroll({
+                height: '500px'
+            });
+            $("#btnEdit").unbind("click");
+            $("#btnEdit").click(function () {
+                productList.edit();
+            });
+            $("#btnDelete").unbind("click");
+            $("#btnDelete").click(function () {
+                var itemId = 0;
+                var items = $("input:checkbox[name=id]:checked");
+                if (items.length == 1) {
+                    itemId = $(items[0]).val();
+
+                } else {
+                    toastr.info(categoryList.noSelectedItemBeforeEdit, 'Infomration');
+                }
+                if (itemId != 0) {
+                    swal({
+                        title: "ยืนยันการลบรายการนี้?",
+                        text: "",
+                        icon: "info",
+                        buttons: true,
+                        dangerMode: true,
+                        buttons: ["ปิด", "ตกลง"]
+                    }).then((isConfirm) => {
+                        if (isConfirm) {
+                            swal.close();
+                            categoryList.delete(itemId,function () {
+                                swal({
+                                    title: "บันทึกเรียบร้อย!",
+                                    text: "กดปุ่ม OK เพื่อปิด!",
+                                    icon: "success"
+                                }).then((value) => {
+                                    utilities.RedirectToAction("/Admin/Product/ProductList");
+                                });
+                            });
+                            
+                        } else {
+                            swal("ยกเลิก", "ยกเลิกการทำรายการแล้ว", "error").then((result) => {
+                                swal.close();
+                            });
+                        }
+                    });
+                }
+            });
+            $("#btnSearch").click(function () {
+                productList.search();
+            });
+        });
+    </script>
+}

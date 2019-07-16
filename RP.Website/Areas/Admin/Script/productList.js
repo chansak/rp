@@ -1,4 +1,4 @@
-﻿var categoryList = new function () {
+﻿var productList = new function () {
     var datas = [];
     var message = {
         info: {
@@ -16,7 +16,7 @@
             toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration');
         }
         if (itemId != 0) {
-            window.location.href = '../../Admin/Product/EditCategory/' + itemId;
+            window.location.href = '../../Admin/Product/EditProduct/' + itemId;
         }
     };
     var _delete = function (id,callback) {
@@ -32,7 +32,8 @@
         $(datas).each(function (index, data) {
             html += '<tr>';
             html += '   <td><div class="checkbox i-checks"><label> <input type="checkbox" name="id" value=' + data.id + '> <i></i></label></div></td>';
-            html += '   <td>' + data.categoryName + '</td>';
+            html += '   <td>' + data.productCategoryName + '</td>';
+            html += '   <td>' + data.productName + '</td>';
             html += '</tr>';
         });
         $("#table-data tbody").empty().html(html);
@@ -54,7 +55,7 @@
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetCategoriesBySearch(searchBy, keyword, success, failure);
+        var xhr = RPService.GetProductsBySearch(searchBy, keyword, success, failure);
     };
     return {
         init: function () {

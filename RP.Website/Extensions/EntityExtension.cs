@@ -587,20 +587,40 @@ namespace RP.Website
             };
         }
 
-        public static ProductCategory ToEntity(this CategoryViewModel viewmodel)
+        public static ProductCategory ToEntity(this ProductCategoryViewModel viewmodel)
         {
             return new ProductCategory
             {
                 Id = new Guid(viewmodel.Id),
-                CategoryName = viewmodel.Name
+                CategoryName = viewmodel.CategoryName
             };
         }
-        public static CategoryViewModel ToViewModel(this ProductCategory entity)
+        public static ProductCategoryViewModel ToViewModel(this ProductCategory entity)
         {
-            return new CategoryViewModel
+            return new ProductCategoryViewModel
             {
                 Id = entity.Id.ToString(),
-                Name = entity.CategoryName
+                CategoryName = entity.CategoryName
+            };
+        }
+        public static Product ToEntity(this ProductViewModel viewmodel)
+        {
+            return new Product
+            {
+                Id = new Guid(viewmodel.Id),
+                Name = viewmodel.ProductName,
+                ProductCategoryId = new Guid(viewmodel.ProductCategoryId),
+
+            };
+        }
+        public static ProductViewModel ToViewModel(this Product entity)
+        {
+            return new ProductViewModel
+            {
+                Id = entity.Id.ToString(),
+                ProductName = entity.Name,
+                ProductCategoryId = entity.ProductCategoryId.ToString(),
+                ProductCategoryName = entity.ProductCategory.CategoryName
             };
         }
     }

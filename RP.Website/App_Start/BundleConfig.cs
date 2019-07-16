@@ -63,7 +63,10 @@ namespace RP.Website
                       "~/Areas/Admin/Script/userEditor.js",
                       "~/Areas/Admin/Script/categoryList.js",
                       "~/Areas/Admin/Script/categoryEditor.js",
-                      "~/Areas/Admin/Script/categoryCreator.js"
+                      "~/Areas/Admin/Script/categoryCreator.js",
+                      "~/Areas/Admin/Script/productList.js",
+                      "~/Areas/Admin/Script/productMasterCreator.js",
+                      "~/Areas/Admin/Script/productMasterEditor.js"
                       ));
 
             // Inspinia skin config script

@@ -2,7 +2,7 @@
     var _save = function (callback) {
         var data = {
             id:$("#id").val(),
-            name: $("#categoryName").val()
+            categoryName: $("#categoryName").val()
         };
         var success = function (data, textStatus, jqXHR) {
             callback();
@@ -13,7 +13,7 @@
     };
     var _getDetail = function (id) {
         var success = function (response, textStatus, jqXHR) {
-            $("#categoryName").val(response.name);
+            $("#categoryName").val(response.categoryName);
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
