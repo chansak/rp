@@ -1338,4 +1338,103 @@
         });
         return XHR;
     },
+
+
+    //Product Option
+    GetProductOptionsBySearch: function (searchBy, keyword, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/SearchProductOption",
+            data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    CreateProductOption: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/CreateProductOption",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    GetProductOptionById: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/GetProductOptionById",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    UpdateProductOption: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/UpdateProductOption",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    DeleteProductOption: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/DeleteProductOption",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
 }

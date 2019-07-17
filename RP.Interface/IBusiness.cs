@@ -91,6 +91,12 @@ namespace RP.Interfaces
         void CreateProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProductById(string id);
+
+        ProductOption GetProductOptionById(string id);
+        IList<ProductOption> GetAllProductOptions(string searchBy, string keyword);
+        void CreateProductOption(ProductOption product);
+        void UpdateProductOption(ProductOption product);
+        void DeleteProductOptionById(string id);
         #endregion
     }
 }

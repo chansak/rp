@@ -623,5 +623,26 @@ namespace RP.Website
                 ProductCategoryName = entity.ProductCategory.CategoryName
             };
         }
+        public static ProductOption ToEntity(this ProductOptionViewModel viewmodel)
+        {
+            return new ProductOption
+            {
+                Id = new Guid(viewmodel.Id),
+                OptionName = viewmodel.OptionName,
+                ProductId = new Guid(viewmodel.ProductId),
+            };
+        }
+        public static ProductOptionViewModel ToViewModel(this ProductOption entity)
+        {
+            return new ProductOptionViewModel
+            {
+                Id = entity.Id.ToString(),
+                OptionName = entity.OptionName,
+                ProductId = entity.ProductId.ToString(),
+                ProductName = entity.Product.Name,
+                ProductCategoryId = entity.Product.ProductCategoryId.ToString(),
+                ProductCategoryName = entity.Product.ProductCategory.CategoryName
+            };
+        }
     }
 }

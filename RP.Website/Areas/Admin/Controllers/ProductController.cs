@@ -221,5 +221,112 @@ namespace RP.Website.Areas.Admin.Controllers
             return Json(null);
         }
         #endregion
+
+        #region Product Option
+        public ActionResult ProductOptionList(string searchBy, string keyword, string sortBy, string direction, int? page)
+        {
+            return View("~/Areas/Admin/Views/ProductOption/Index.cshtml");
+        }
+        public ActionResult SearchProductOption(string searchBy, string keyword, string sortBy, string direction, int? page)
+        {
+            int pageSize = AppSettingHelper.PageSize;
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                keyword = keyword.Trim();
+            }
+
+            var data = GenericFactory.Business.GetAllProductOptions(searchBy, keyword)
+                .ToList();
+
+            int totalCount = data.Count;
+            var result = data.Select(d => new ProductOptionViewModel
+            {
+                Id = d.Id.ToString(),
+                OptionName = d.OptionName,
+                ProductId = d.ProductId.ToString(),
+                ProductName = d.Product.Name,
+                ProductCategoryId = d.Product.ProductCategoryId.ToString(),
+                ProductCategoryName = d.Product.ProductCategory.CategoryName
+            }).OrderBy(o => o.ProductCategoryName).ThenBy(o => o.ProductName).ThenBy(o=>o.OptionName).ToList();
+
+
+            RouteValueDictionary routeValues = new RouteValueDictionary();
+            routeValues.Add("searchBy", searchBy ?? "");
+            routeValues.Add("keyword", keyword ?? "");
+            routeValues.Add("sortBy", sortBy ?? "");
+            routeValues.Add("direction", direction);
+            var list = new PaginatedList<ProductOptionViewModel>(result, page ?? 0, pageSize, totalCount, true, routeValues);
+            var viewModel = new ListViewModel<ProductOptionViewModel>()
+            {
+                SearchBy = searchBy,
+                Keyword = keyword,
+                Direction = direction,
+                SortBy = sortBy,
+                Data = list
+            };
+            return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult AddNewProductOption()
+        {
+            return View("~/Areas/Admin/Views/ProductOption/AddNew.cshtml");
+        }
+        [HttpPost]
+        public JsonResult CreateProductOption(ProductOptionViewModel model)
+        {
+            try
+            {
+                model.Id = Guid.NewGuid().ToString();
+                var option = model.ToEntity();
+                GenericFactory.Business.CreateProductOption(option);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        public ActionResult EditProductOption(string id)
+        {
+            ViewBag.Id = id;
+            return View("~/Areas/Admin/Views/ProductOption/Edit.cshtml");
+        }
+        [HttpPost]
+        public ActionResult GetProductOptionById(string id)
+        {
+            var data = GenericFactory.Business.GetProductOptionById(id);
+            var option = data.ToViewModel();
+            return new JsonCamelCaseResult(option, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult UpdateProductOption(ProductOptionViewModel model)
+        {
+            try
+            {
+                var option = model.ToEntity();
+                GenericFactory.Business.UpdateProductOption(option);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        [HttpPost]
+        public ActionResult DeleteProductOption(string id)
+        {
+            try
+            {
+                GenericFactory.Business.DeleteProductOptionById(id);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        #endregion
     }
 }

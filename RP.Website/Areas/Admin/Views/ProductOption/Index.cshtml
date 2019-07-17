@@ -7,10 +7,10 @@
         <h2>สินค้า</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="@Url.Action("ProductList", "Product",new { area = "Admin" })">หน้าแรก</a>
+                <a href="@Url.Action("ProductOptionList", "Product",new { area = "Admin" })">หน้าแรก</a>
             </li>
             <li class="active">
-                <strong>รายการสินค้าทั้งหมด</strong>
+                <strong>รายการรายละเอียดสินค้าทั้งหมด</strong>
             </li>
         </ol>
     </div>
@@ -45,8 +45,9 @@
                                         <thead>
                                             <tr>
                                                 <th><div class="checkbox i-checks"><label> <input type="checkbox" value=""> <i></i></label></div></th>
-                                                <th>ประเภท</th>
-                                                <th>ชื่อ</th>
+                                                <th>ประเภทสินค้า</th>
+                                                <th>สินค้า</th>
+                                                <th>รายละเอียด</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -70,7 +71,7 @@
                     </div>
                 </div>
                 <div class="ibox-content float-e-margins">
-                    @Html.ActionLink("สร้าง", "AddNewProduct", null, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("สร้าง", "AddNewProductOption", null, new { @class = "btn btn-primary btn-xs" })
                     <button type="button" id="btnEdit" class="btn btn-white btn-xs">แก้ไข</button>
                     <button type="button" id="btnDelete" class="btn btn-white btn-xs">ลบ</button>
                 </div>
@@ -93,13 +94,13 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            productList.init();
+            productOptionList.init();
             $('.scroll_content').slimscroll({
                 height: '500px'
             });
             $("#btnEdit").unbind("click");
             $("#btnEdit").click(function () {
-                productList.edit();
+                productOptionList.edit();
             });
             $("#btnDelete").unbind("click");
             $("#btnDelete").click(function () {
@@ -109,7 +110,7 @@
                     itemId = $(items[0]).val();
 
                 } else {
-                    toastr.info(productList.noSelectedItemBeforeEdit, 'Infomration');
+                    toastr.info(productOptionList.noSelectedItemBeforeEdit, 'Infomration');
                 }
                 if (itemId != 0) {
                     swal({
@@ -122,13 +123,13 @@
                     }).then((isConfirm) => {
                         if (isConfirm) {
                             swal.close();
-                            productList.delete(itemId,function () {
+                            productOptionList.delete(itemId,function () {
                                 swal({
                                     title: "บันทึกเรียบร้อย!",
                                     text: "กดปุ่ม OK เพื่อปิด!",
                                     icon: "success"
                                 }).then((value) => {
-                                    utilities.RedirectToAction("/Admin/Product/ProductList");
+                                    utilities.RedirectToAction("/Admin/Product/ProductOptionList");
                                 });
                             });
                             
@@ -141,7 +142,7 @@
                 }
             });
             $("#btnSearch").click(function () {
-                productList.search();
+                productOptionList.search();
             });
         });
     </script>

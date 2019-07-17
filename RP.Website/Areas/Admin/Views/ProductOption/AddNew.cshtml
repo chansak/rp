@@ -38,15 +38,21 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">ชื่อสินค้า</label>
+                            <label class="col-sm-3 col-form-label">สินค้า</label>
                             <div class="input-group col-sm-4">
-                                <input type="text" id="productName" class="form-control">
+                                <select class="form-control m-b" id="products"></select>
                             </div>
                         </div>
-                    </div>
-                    <div class="ibox-footer">
-                        <button type="button" class="btn btn-primary btnSave">บันทึก</button>
-                        <button type="button" class="btn btn-white btnCancel">ยกเลิก</button>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">รายละเอียดสินค้า</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" id="optionName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="ibox-footer">
+                            <button type="button" class="btn btn-primary btnSave">บันทึก</button>
+                            <button type="button" class="btn btn-white btnCancel">ยกเลิก</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -61,20 +67,20 @@
     @Scripts.Render("~/plugins/sweetAlert")
     <script type="text/javascript">
         $(document).ready(function () {
-            productMasterCreator.init();
+            productOptionMasterCreator.init();
             $(".btnSave").click(function () {
-                productMasterCreator.Save(function () {
+                productOptionMasterCreator.Save(function () {
                     swal({
                         title: "บันทึกเรียบร้อย!",
                         text: "กดปุ่ม OK เพื่อปิด!",
                         icon: "success"
                     }).then((value) => {
-                        utilities.RedirectToAction("/Admin/Product/ProductList");
+                        utilities.RedirectToAction("/Admin/Product/ProductOptionList");
                     });
                 });
             });
             $(".btnCancel").click(function () {
-                utilities.RedirectToAction("/Admin/Product/ProductList");
+                utilities.RedirectToAction("/Admin/Product/ProductOptionList");
             });
         });
     </script>

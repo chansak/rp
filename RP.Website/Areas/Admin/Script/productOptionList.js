@@ -1,4 +1,4 @@
-﻿var productList = new function () {
+﻿var productOptionList = new function () {
     var datas = [];
     var message = {
         info: {
@@ -16,7 +16,7 @@
             toastr.info(message.info.noSelectedItemBeforeEdit, 'Infomration');
         }
         if (itemId != 0) {
-            window.location.href = '../../Admin/Product/EditProduct/' + itemId;
+            window.location.href = '../../Admin/Product/EditProductOption/' + itemId;
         }
     };
     var _delete = function (id,callback) {
@@ -25,7 +25,7 @@
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
-        var xhr = RPService.DeleteProduct(id, success, failure);
+        var xhr = RPService.DeleteProductOption(id, success, failure);
     }
     var _render = function () {
         var html = '';
@@ -34,6 +34,7 @@
             html += '   <td><div class="checkbox i-checks"><label> <input type="checkbox" name="id" value=' + data.id + '> <i></i></label></div></td>';
             html += '   <td>' + data.productCategoryName + '</td>';
             html += '   <td>' + data.productName + '</td>';
+            html += '   <td>' + data.optionName + '</td>';
             html += '</tr>';
         });
         $("#table-data tbody").empty().html(html);
@@ -55,7 +56,7 @@
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetProductsBySearch(searchBy, keyword, success, failure);
+        var xhr = RPService.GetProductOptionsBySearch(searchBy, keyword, success, failure);
     };
     return {
         init: function () {
