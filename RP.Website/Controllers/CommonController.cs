@@ -31,6 +31,7 @@ namespace RP.Website.Controllers
                     {
                         Id = user.Id.ToString(),
                         Name = user.DisplayName,
+                        Code = user.Code
                     });
                 }
             }

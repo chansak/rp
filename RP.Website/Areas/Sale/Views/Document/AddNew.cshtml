@@ -1,7 +1,7 @@
 ﻿@{
-                /**/
+    /**/
 
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using (Html.BeginForm())
 {
@@ -44,52 +44,40 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content no-borders">
+                                        <div class="row">
+                                            <div class="form-group row col-sm-6">
+                                                <label class="col-sm-3 col-form-label">ผู้รับผิดชอบ</label>
+
+                                                <div class="col-sm-9">
+                                                    <div class="input-group m-b"><input type="text" id="auto_saleName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
+                                                    <input type="hidden" id="auto_saleId" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row col-sm-6">
+                                                <label class="col-sm-3 col-form-label">รหัสพนักงาน</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="auto_saleCode" disabled="" placeholder="" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group row" id="data_2">
                                             <label class="col-sm-3 col-form-label">จำนวนวันที่ยืนราคา</label>
                                             <div class="input-group col-sm-4" style="padding-left: 15px;">
                                                 <input type="number" id="priceValidityDays" class="form-control" value="@Html.Raw(RP.Utilities.AppSettingHelper.DefaultPriceValidityDays)" min="0" onkeypress="return event.charCode != 45">
                                             </div>
                                         </div>
-                                        @*<div class="form-group row" id="data_2">
-                                                <label class="col-sm-3 col-form-label">มีผลถึงวันที่</label>
-                                                <div class="input-group date col-sm-4" style="padding-left: 15px;">
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </span>
-                                                    <input type="text" id="expirationDate" class="form-control date" disabled>
-                                                </div>
-                                            </div>*@
                                         <div class="form-group row" id="data_2">
                                             <label class="col-sm-3 col-form-label">จำนวนวันที่ส่งสินค้า</label>
                                             <div class="input-group col-sm-4" style="padding-left: 15px;">
                                                 <input type="number" id="numberOfDeliveryDays" class="form-control" value="@Html.Raw(RP.Utilities.AppSettingHelper.DefaultDeliveryDays)" min="0" onkeypress="return event.charCode != 45">
                                             </div>
                                         </div>
-                                        <h2>ข้อมูลการขาย</h2>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ผู้รับผิดชอบ</label>
-
-                                            <div class="col-sm-9">
-                                                <div class="input-group m-b"><input type="text" id="auto_saleName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
-                                                <input type="hidden" id="auto_saleId" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">รหัสพนักงาน</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_saleCode" disabled="" placeholder="" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">หน่วยงาน</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="auto_saleBranch" disabled="" placeholder="" disabled>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            @*<div class="tabs-right">
+                                    <a class="btn btn-primary next">Next</a>
+                                </div>*@
                         </div>
                         <div id="tab-2" class="tab-pane">
                             <div class="panel-body">
@@ -151,6 +139,10 @@
                                     </div>
                                 </div>
                             </div>
+                            @*<div class="tabs-right">
+                                    <a class="btn btn-primary prev">Previos</a>
+                                    <a class="btn btn-primary next">Next</a>
+                                </div>*@
                         </div>
                         <div id="tab-3" class="tab-pane">
                             <div class="panel-body">
@@ -183,6 +175,10 @@
                                     </div>
                                 </div>
                             </div>
+                            @*<div class="tabs-right">
+                                    <a class="btn btn-primary prev">Previos</a>
+                                    <a class="btn btn-primary next">Next</a>
+                                </div>*@
                         </div>
                         <div id="tab-4" class="tab-pane">
                             <div class="panel-body">
@@ -204,6 +200,10 @@
                                     </div>
                                 </div>
                             </div>
+                            @*<div class="tabs-right">
+                                    <a class="btn btn-primary prev">Previos</a>
+                                    <a class="btn btn-primary next">Next</a>
+                                </div>*@
                         </div>
                         <div id="tab-5" class="tab-pane">
                             <div class="panel-body">
@@ -223,6 +223,14 @@
                                     </div>
                                 </div>
                             </div>
+                            @*<div class="tabs-right">
+                                    <a class="btn btn-primary prev">Previos</a>
+                                </div>*@
+                        </div>
+                        <div class="tabs-right">
+                            <a class="btn btn-primary prev">Previos</a>
+                            <a class="btn btn-primary next">Next</a>
+
                         </div>
                     </div>
                 </div>
@@ -238,23 +246,23 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <button type="button" class="btn btn-primary btnSave">บันทึก</button>
-                        <button type="button" class="btn btn-primary btnSaveDraft">บันทึกแบบร่าง</button>
+                        <button type="button" class="btn btn-primary btn-xs  btnSave">บันทึก</button>
+                        <button type="button" class="btn btn-primary btn-xs  btnSaveDraft">บันทึกแบบร่าง</button>
                         <button type="button" class="btn btn-white">ยกเลิก</button>
                     </div>
-                    <div class="ibox-footer">
-                        <h5>ข้อมูลที่เกี่ยวข้อง </h5>
-                        <p>
-                            <ul>
-                                <li>ลูกค้า</li>
-                                <li>ผู้ติดต่อ</li>
-                                <li>เงื่อนไขการชำระเงิน</li>
-                                <li>กระบวนการจัดซื้อ</li>
-                                <li>วิธีการขนส่ง</li>
-                                <li>เงื่อนไขการขนส่ง</li>
-                            </ul>
-                        </p>
-                    </div>
+                    @*<div class="ibox-footer">
+                            <h5>ข้อมูลที่เกี่ยวข้อง </h5>
+                            <p>
+                                <ul>
+                                    <li>ลูกค้า</li>
+                                    <li>ผู้ติดต่อ</li>
+                                    <li>เงื่อนไขการชำระเงิน</li>
+                                    <li>กระบวนการจัดซื้อ</li>
+                                    <li>วิธีการขนส่ง</li>
+                                    <li>เงื่อนไขการขนส่ง</li>
+                                </ul>
+                            </p>
+                        </div>*@
                 </div>
             </div>
         </div>
@@ -540,7 +548,29 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            //green checkbox
+            $(".next").show();
+            $(".prev").hide();
+            // Handling data-toggle manually
+            $('.nav-tabs a').click(function () {
+                $(this).tab('show');
+            });
+            // The on tab shown event
+            $('.nav-tabs a').on('shown.bs.tab', function (e) {
+                $(".next").show();
+                $(".prev").show();
+                var current_tab = e.target;
+                var previous_tab = e.relatedTarget;
+                var tabName = ($('.nav-tabs > .active').find('a').attr('href'));
+                console.log(tabName);
+                if (tabName == '#tab-1') {
+                    $(".prev").hide();
+                    $(".next").show();
+                }
+                if (tabName == '#tab-5') {
+                    $(".prev").show();
+                    $(".next").hide();
+                }
+            });
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
@@ -674,6 +704,23 @@
             $("#priceValidityDays").change(function () {
                 documentCreator.ExpirationCalculation();
             });
+            $('.next').click(function () {
+                $('.nav-tabs > .active').next('li').find('a').trigger('click');
+                var tabName = ($('.nav-tabs > .active').find('a').attr('href'));
+                if (tabName == '#tab-5') {
+                    $(".next").hide();
+                }
+                $(".prev").show();
+            });
+            $('.prev').click(function () {
+                $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+                var tabName = ($('.nav-tabs > .active').find('a').attr('href'));
+                if (tabName == '#tab-1') {
+                    $(".prev").hide();
+                }
+                $(".next").show();
+            });
+
             documentCreator.init();
         });
     </script>

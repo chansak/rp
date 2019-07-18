@@ -17,7 +17,7 @@ using System.Web.Routing;
 
 namespace RP.Website.Areas.Sale.Controllers
 {
-    [LoggedOrAuthorized(Roles = Roles.Sale)]
+    //[LoggedOrAuthorized(Roles = Roles.Sale)]
     public class DocumentController : BaseController
     {
         public const string PRINT_NEWPATTERN = "printFile";

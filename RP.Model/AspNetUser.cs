@@ -37,6 +37,7 @@ namespace RP.Model
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
         public string DisplayName { get; set; }
+        public string Code { get; set; }
     
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
