@@ -46,7 +46,7 @@
                                     <div class="ibox-content no-borders">
                                         <div class="row">
                                             <div class="form-group row col-sm-6">
-                                                <label class="col-sm-3 col-form-label">ผู้รับผิดชอบ</label>
+                                                <label class="col-sm-3 col-form-label">ชื่อผู้ขอราคา</label>
 
                                                 <div class="col-sm-9">
                                                     <div class="input-group m-b"><input type="text" id="auto_saleName" class="form-control"> <span class="input-group-addon"><i class="fa fa-user-o"></i></span></div>
@@ -75,9 +75,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @*<div class="tabs-right">
-                                    <a class="btn btn-primary next">Next</a>
-                                </div>*@
                         </div>
                         <div id="tab-2" class="tab-pane">
                             <div class="panel-body">
@@ -139,10 +136,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @*<div class="tabs-right">
-                                    <a class="btn btn-primary prev">Previos</a>
-                                    <a class="btn btn-primary next">Next</a>
-                                </div>*@
                         </div>
                         <div id="tab-3" class="tab-pane">
                             <div class="panel-body">
@@ -175,10 +168,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @*<div class="tabs-right">
-                                    <a class="btn btn-primary prev">Previos</a>
-                                    <a class="btn btn-primary next">Next</a>
-                                </div>*@
                         </div>
                         <div id="tab-4" class="tab-pane">
                             <div class="panel-body">
@@ -200,10 +189,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @*<div class="tabs-right">
-                                    <a class="btn btn-primary prev">Previos</a>
-                                    <a class="btn btn-primary next">Next</a>
-                                </div>*@
                         </div>
                         <div id="tab-5" class="tab-pane">
                             <div class="panel-body">
@@ -223,9 +208,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @*<div class="tabs-right">
-                                    <a class="btn btn-primary prev">Previos</a>
-                                </div>*@
                         </div>
                         <div class="tabs-right">
                             <a class="btn btn-primary prev">Previos</a>
@@ -318,15 +300,15 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">ผ้า</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control m-b" id="materials"></select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">ราคาต่อหน่วย</label>
                                             <div class="col-sm-3">
                                                 <input type="text" class="form-control" id="productPricePerUnit" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">ผ้า</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control m-b" id="materials"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -571,6 +553,22 @@
                     $(".next").hide();
                 }
             });
+            $('.next').click(function () {
+                $('.nav-tabs > .active').next('li').find('a').trigger('click');
+                var tabName = ($('.nav-tabs > .active').find('a').attr('href'));
+                if (tabName == '#tab-5') {
+                    $(".next").hide();
+                }
+                $(".prev").show();
+            });
+            $('.prev').click(function () {
+                $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+                var tabName = ($('.nav-tabs > .active').find('a').attr('href'));
+                if (tabName == '#tab-1') {
+                    $(".prev").hide();
+                }
+                $(".next").show();
+            });
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
@@ -703,22 +701,6 @@
             });
             $("#priceValidityDays").change(function () {
                 documentCreator.ExpirationCalculation();
-            });
-            $('.next').click(function () {
-                $('.nav-tabs > .active').next('li').find('a').trigger('click');
-                var tabName = ($('.nav-tabs > .active').find('a').attr('href'));
-                if (tabName == '#tab-5') {
-                    $(".next").hide();
-                }
-                $(".prev").show();
-            });
-            $('.prev').click(function () {
-                $('.nav-tabs > .active').prev('li').find('a').trigger('click');
-                var tabName = ($('.nav-tabs > .active').find('a').attr('href'));
-                if (tabName == '#tab-1') {
-                    $(".prev").hide();
-                }
-                $(".next").show();
             });
 
             documentCreator.init();

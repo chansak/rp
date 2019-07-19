@@ -47,5 +47,6 @@ namespace RP.Website.Models
         public string ContactEmail { get; set; }
 
         //public List<HistoryViewModel> Histories { get; set; }
+        public string WorkFlowName { get; set; }
     }
 }

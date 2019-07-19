@@ -11,7 +11,7 @@ namespace RP.Model
     {
         //For Sale 
         //-------------------------------
-        [Description("Draft")]
+        [Description("แบบร่าง")]
         Draft = 0,
         [Description("ขอข้อมุลเพิ่ม")]
         RequestForMoreInfoForSale =10,

@@ -127,6 +127,7 @@
     };
     var _getSaleDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
+            console.log(data);
             $("#auto_saleId").val(data.id);
             $("#auto_saleName").val(data.name);
             $("#auto_saleCode").val(data.code);
@@ -269,6 +270,7 @@
     };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
+            console.log(data);
             if (data.documentStatusId == 6) {
                 $("#gotPO").show();
                 $("#poNumber").val(data.poNumber);

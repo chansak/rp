@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using RP.Interfaces;
+using RP.Website.Extensions;
 
 namespace RP.Website
 {
@@ -353,6 +354,8 @@ namespace RP.Website
             //document.Histories = histories;
             document.ConfirmPriceDays = entity.ConfirmedPriceDays.HasValue ? entity.ConfirmedPriceDays.Value : 0;
             document.DeliveryDays = entity.DeliveryDays.HasValue ? entity.DeliveryDays.Value : 0;
+            var WorkflowStatus = (WorkflowStatus)entity.DocumentStatusId;
+            document.WorkFlowName = WorkflowStatus.ToWorkFlowStatusName();
             return document;
         }
 
@@ -381,6 +384,7 @@ namespace RP.Website
             var user = new SaleUserViewModel();
             user.Id = entity.Id.ToString();
             user.Name = entity.DisplayName;
+            user.Code = entity.Code;
             return user;
         }
 
