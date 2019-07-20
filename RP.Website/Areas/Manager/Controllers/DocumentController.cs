@@ -44,6 +44,8 @@ namespace RP.Website.Areas.Manager.Controllers
             {
                 var documentStatus = (WorkflowStatus)d.DocumentStatusId;
                 var statusName = documentStatus.ToWorkFlowStatusName();
+                var biddingStatus = (d.BiddingStatusId.HasValue) ? (BiddingStatus)d.BiddingStatusId : BiddingStatus.undefined;
+                var biddingStatusName = biddingStatus.ToBiddingStatusName();
                 var document = new DocumentListItemViewModel
                 {
                     Id = d.Id.ToString(),
@@ -53,8 +55,8 @@ namespace RP.Website.Areas.Manager.Controllers
                     SaleUserName = d.AspNetUser.DisplayName,
                     WorkflowStatus = (int)d.DocumentStatusId,
                     WorkflowStatusName = statusName,
-                    BiddingStatus = (int)d.BiddingStatusId,
-                    BiddingStatusName = "รอยืนยัน",
+                    BiddingStatus = (d.BiddingStatusId.HasValue) ? (int)d.BiddingStatusId : 0,
+                    BiddingStatusName = biddingStatusName,
                 };
                 result.Add(document);
             }
