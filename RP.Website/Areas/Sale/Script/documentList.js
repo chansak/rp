@@ -32,6 +32,16 @@
             html += '   <td>' + document.saleUserName + '</td>';
             html += '   <td>' + document.workflowStatusName + '</td>';
             html += '   <td><span class="badge badge-primary">' + document.biddingStatusName + '</span></td>';
+            html += '   <td>';
+            html += '       <div class="btn-group">';
+            html += '           <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" aria-expanded="false">เปลี่ยนสถานะ</button>';
+            html += '               <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 24px; left: 0px; will-change: top, left;">';
+            html += '               <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>';
+            html += '               <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>';
+            html += '               <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>';
+            html += '               <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>';
+
+            html += '   </td>';
             html += '</tr>';
         });
         $("#table-quotation tbody").empty().html(html);
