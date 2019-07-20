@@ -577,9 +577,12 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .top-navigation .wrapper.wrapper-content {
   padding: 40px;
 }
+.no-padding-bottom {
+    padding-bottom: 0px !important;
+}
 .top-navigation.body-small .wrapper.wrapper-content,
 .body-small .top-navigation .wrapper.wrapper-content {
-  padding: 40px 0 40px 0;
+    padding: 40px 0 40px 0;
 }
 .navbar-toggle {
   background-color: #1ab394;
