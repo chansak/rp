@@ -174,16 +174,16 @@ var productEditor = new function () {
     };
     var _bindingPatternPosition = function (callback) {
         var success = function (data, textStatus, jqXHR) {
-            $('#print-position').empty();
-            $('#screen-position').empty();
+            $('#editPrintposition').empty();
+            $('#editScreen-position').empty();
             $('#sew-position').empty();
             $(data).each(function (index, item) {
                 positions.push(item);
-                $('#print-position').append($('<option>', {
+                $('#editPrintposition').append($('<option>', {
                     value: item.id,
                     text: item.positionName
                 }));
-                $('#screen-position').append($('<option>', {
+                $('#editScreen-position').append($('<option>', {
                     value: item.id,
                     text: item.positionName
                 }));
@@ -192,8 +192,8 @@ var productEditor = new function () {
                     text: item.positionName
                 }));
             });
-            $("#print-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
-            $("#screen-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
+            $("#editPrintposition").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
+            $("#editScreen-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
             $("#sew-position").prepend("<option value='' selected='selected'>เลือกตำแหน่ง</option>");
             if (callback != null) {
                 callback();
@@ -206,15 +206,15 @@ var productEditor = new function () {
     };
     var _bindingPatternColor = function (callback) {
         var success = function (data, textStatus, jqXHR) {
-            $('#print-color').empty();
-            $('#screen-color').empty();
+            $('#editPrintcolor').empty();
+            $('#editScreen-color').empty();
             $('#sew-color').empty();
             $(data).each(function (index, item) {
-                $('#print-color').append($('<option>', {
+                $('#editPrintcolor').append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
-                $('#screen-color').append($('<option>', {
+                $('#editScreen-color').append($('<option>', {
                     value: item.id,
                     text: item.colorName
                 }));
@@ -223,8 +223,8 @@ var productEditor = new function () {
                     text: item.colorName
                 }));
             });
-            $("#print-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
-            $("#screen-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
+            $("#editPrintcolor").prepend("<option value='' selected='selected'>เลือกสี</option>");
+            $("#editScreen-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
             $("#sew-color").prepend("<option value='' selected='selected'>เลือกสี</option>");
             if (callback != null) {
                 callback();
@@ -418,7 +418,7 @@ var productEditor = new function () {
                         $("#editPrint-optional3").parent().removeClass("iradio_square-green checked").addClass("iradio_square-green");
 
 
-                        $("#print-pattern").val($("#print-pattern option:first").val());
+                        $("#editPrintpattern").val($("#editPrintpattern option:first").val());
                         $("#editPrint-patternImage").html("");
                         break;
                     }
@@ -518,43 +518,43 @@ var productEditor = new function () {
     };
     var _init = function () {
         _setDefault();
-        $("#productCategories").find('option').remove().end();
-        $("#products").find('option').remove().end();
-        $("#productOptions").find('option').remove().end();
-        $("#productsUnit").find('option').remove().end();
-        $("#materials").find('option').remove().end();
+        $("#editProductCategories").find('option').remove().end();
+        $("#editProducts").find('option').remove().end();
+        $("#editProductOptions").find('option').remove().end();
+        $("#editProductsUnit").find('option').remove().end();
+        $("#editMaterials").find('option').remove().end();
 
-        $("#print-pattern").find('option').remove().end();
-        $("#screen-pattern").find('option').remove().end();
-        $("#sew-pattern").find('option').remove().end();
+        $("#editPrint-pattern").find('option').remove().end();
+        $("#editScreen-pattern").find('option').remove().end();
+        $("#editSew-pattern").find('option').remove().end();
 
-        $("#print-color").find('option').remove().end();
-        $("#screen-color").find('option').remove().end();
-        $("#screen-position").find('option').remove().end();
-        $("#sew-position").find('option').remove().end();
+        $("#editPrint-color").find('option').remove().end();
+        $("#editScreen-color").find('option').remove().end();
+        $("#editScreen-position").find('option').remove().end();
+        $("#editSew-position").find('option').remove().end();
 
-        $("#print-optional2").iCheck('check');
-        $("#screen-optional2").iCheck('check');
-        $("#sew-optional2").iCheck('check');
+        $("#editPrint-optional2").iCheck('check');
+        $("#editScreen-optional2").iCheck('check');
+        $("#editSew-optional2").iCheck('check');
 
-        $("#print-option1-section").hide();
-        $("#print-option2-section").show();
-        $("#print-option3-section").hide();
-        $("#print-patternImage").html("");
-        $("#screen-option1-section").hide();
-        $("#screen-option2-section").show();
-        $("#screen-option3-section").hide();
-        $("#screen-patternImage").html("");
-        $("#sew-option1-section").hide();
-        $("#sew-option2-section").show();
-        $("#sew-option3-section").hide();
+        $("#editPrintoption1-section").hide();
+        $("#editPrintoption2-section").show();
+        $("#editPrintoption3-section").hide();
+        $("#editPrintpatternImage").html("");
+        $("#editScreen-option1-section").hide();
+        $("#editScreen-option2-section").show();
+        $("#editScreen-option3-section").hide();
+        $("#editScreen-patternImage").html("");
+        $("#editSew-option1-section").hide();
+        $("#editSew-option2-section").show();
+        $("#editSew-option3-section").hide();
         $("#sew-patternImage").html("");
 
-        $("#print-file").val('');
-        $("#screen-file").val('');
-        $("#sew-file").val('');
+        $("#editPrintfile").val('');
+        $("#editScreen-file").val('');
+        $("#editSew-file").val('');
         $(".fileinput-filename").empty()
-        $("#sew-remark").val('');
+        $("#editSew-remark").val('');
     };
     var _setDefault = function () {
         items = [];
@@ -572,6 +572,9 @@ var productEditor = new function () {
         $("#editScreen-color").find('option').remove().end();
         $("#editScreen-position").find('option').remove().end();
         $("#editSew-position").find('option').remove().end();
+
+        $("#editProductNumberOfProducts").val('0');
+        $("#editProductPricePerUnit").val('0');
     };
     return {
         init: function (cid) {

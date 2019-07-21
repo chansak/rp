@@ -512,43 +512,43 @@
     };
     var _init = function () {
         _setDefault();
-        $("#productCategories").find('option').remove().end();
-        $("#products").find('option').remove().end();
-        $("#productOptions").find('option').remove().end();
-        $("#productsUnit").find('option').remove().end();
-        $("#materials").find('option').remove().end();
+        $("#editProductCategories").find('option').remove().end();
+        $("#editProducts").find('option').remove().end();
+        $("#editProductOptions").find('option').remove().end();
+        $("#editProductsUnit").find('option').remove().end();
+        $("#editMaterials").find('option').remove().end();
 
-        $("#print-pattern").find('option').remove().end();
-        $("#screen-pattern").find('option').remove().end();
-        $("#sew-pattern").find('option').remove().end();
+        $("#editPrint-pattern").find('option').remove().end();
+        $("#editScreen-pattern").find('option').remove().end();
+        $("#editSew-pattern").find('option').remove().end();
 
-        $("#print-color").find('option').remove().end();
-        $("#screen-color").find('option').remove().end();
-        $("#screen-position").find('option').remove().end();
-        $("#sew-position").find('option').remove().end();
+        $("#editPrint-color").find('option').remove().end();
+        $("#editScreen-color").find('option').remove().end();
+        $("#editScreen-position").find('option').remove().end();
+        $("#editSew-position").find('option').remove().end();
 
-        $("#print-optional2").iCheck('check');
-        $("#screen-optional2").iCheck('check');
-        $("#sew-optional2").iCheck('check');
+        $("#editPrint-optional2").iCheck('check');
+        $("#editScreen-optional2").iCheck('check');
+        $("#editSew-optional2").iCheck('check');
 
-        $("#print-option1-section").hide();
-        $("#print-option2-section").show();
-        $("#print-option3-section").hide();
-        $("#print-patternImage").html("");
-        $("#screen-option1-section").hide();
-        $("#screen-option2-section").show();
-        $("#screen-option3-section").hide();
-        $("#screen-patternImage").html("");
-        $("#sew-option1-section").hide();
-        $("#sew-option2-section").show();
-        $("#sew-option3-section").hide();
+        $("#editPrintoption1-section").hide();
+        $("#editPrintoption2-section").show();
+        $("#editPrintoption3-section").hide();
+        $("#editPrintpatternImage").html("");
+        $("#editScreen-option1-section").hide();
+        $("#editScreen-option2-section").show();
+        $("#editScreen-option3-section").hide();
+        $("#editScreen-patternImage").html("");
+        $("#editSew-option1-section").hide();
+        $("#editSew-option2-section").show();
+        $("#editSew-option3-section").hide();
         $("#sew-patternImage").html("");
 
-        $("#print-file").val('');
-        $("#screen-file").val('');
-        $("#sew-file").val('');
+        $("#editPrintfile").val('');
+        $("#editScreen-file").val('');
+        $("#editSew-file").val('');
         $(".fileinput-filename").empty()
-        $("#sew-remark").val('');
+        $("#editSew-remark").val('');
     };
     var _setDefault = function () {
         items = [];
@@ -566,6 +566,9 @@
         $("#editScreen-color").find('option').remove().end();
         $("#editScreen-position").find('option').remove().end();
         $("#editSew-position").find('option').remove().end();
+
+        $("#editProductNumberOfProducts").val('0');
+        $("#editProductPricePerUnit").val('0');
     };
     return {
         init: function (cid) {

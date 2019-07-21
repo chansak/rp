@@ -10,5 +10,6 @@ namespace RP.Model
     public class ApplicationUser : IdentityUser
     {
         public string DisplayName { get; set; }
+        public string Code { get; set; }
     }
 }
