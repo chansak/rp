@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RP.Interfaces;
+using RP.Model;
 using RP.Utilities;
 using RP.Website.Enum;
 using RP.Website.Models;
@@ -262,6 +263,18 @@ namespace RP.Website.Controllers
                 var msg = ex.Message;
             }
             return new JsonCamelCaseResult(null, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult GetDefaultUser()
+        {
+            var user = Session["CurrentUser"] as ApplicationUser;
+            var data = new SaleUserViewModel
+            {
+                Id = user.Id.ToString(),
+                Name = user.DisplayName,
+                Code = user.Code
+            };
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
     }
 }

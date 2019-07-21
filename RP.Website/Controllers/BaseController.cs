@@ -11,17 +11,21 @@ namespace RP.Website
 {
     public class BaseController : Controller
     {
-        private RoleManager<IdentityRole> RoleManager {
-            get {
+        private RoleManager<IdentityRole> RoleManager
+        {
+            get
+            {
                 return new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(RP.DataAccess.ApplicationDbContext.Create()));
             }
         }
         public ApplicationUser CurrentUser
         {
-            get {
+            get
+            {
                 return Session["CurrentUser"] as ApplicationUser;
             }
-            set {
+            set
+            {
                 Session["CurrentUser"] = value;
                 Session["CurrentRoleName"] = CurrentUserRoleName;
             }
@@ -34,6 +38,17 @@ namespace RP.Website
                 var role = RoleManager.FindById(user.Roles.FirstOrDefault().RoleId);
                 return role.Name;
             }
+        }
+        public ActionResult GetCurrentSaleUsers()
+        {
+            var user = (ApplicationUser)this.CurrentUser;
+            var data = new SaleUserViewModel
+            {
+                Id = user.Id.ToString(),
+                Name = user.DisplayName,
+                Code = user.Code
+            };
+            return new JsonCamelCaseResult(data, JsonRequestBehavior.AllowGet);
         }
     }
 }

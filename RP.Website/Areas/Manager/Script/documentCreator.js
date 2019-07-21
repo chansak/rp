@@ -25,6 +25,7 @@
                     return item;
                 }
             });
+            //_getDefaultUser();
         }
 
         var failure = function (jqXHR, textStatus, errorThrown) {
@@ -534,7 +535,20 @@
         $("#productItems").empty().html(html);
         _renderPreviewImage();
     };
+    var _getDefaultUser = function () {
+        var success = function (data, textStatus, jqXHR) {
+            $("#auto_saleName").val(data.name);
+            $("#auto_saleId").val(data.id);
+            $("#auto_saleCode").val(data.code);
+            $("#auto_saleBranch").val(data.branch);
 
+        }
+
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetDefaultUser(success, failure);
+    };
     return {
         init: function () {
             _bindingSale();
