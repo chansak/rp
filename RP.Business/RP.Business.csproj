@@ -73,6 +73,7 @@
     <Compile Include="ProductItemPrintOptionalBusiness.cs" />
     <Compile Include="ProductMaterialUsageBusiness.cs" />
     <Compile Include="ProductOptionBusiness.cs" />
+    <Compile Include="ProductUnitBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockBusiness.cs" />
     <Compile Include="UnitBusiness.cs" />

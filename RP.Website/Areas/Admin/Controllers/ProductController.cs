@@ -1,4 +1,5 @@
 ﻿using RP.Interfaces;
+using RP.Model;
 using RP.Utilities;
 using RP.Website.Attributes;
 using RP.Website.Helpers;
@@ -247,7 +248,7 @@ namespace RP.Website.Areas.Admin.Controllers
                 ProductName = d.Product.Name,
                 ProductCategoryId = d.Product.ProductCategoryId.ToString(),
                 ProductCategoryName = d.Product.ProductCategory.CategoryName
-            }).OrderBy(o => o.ProductCategoryName).ThenBy(o => o.ProductName).ThenBy(o=>o.OptionName).ToList();
+            }).OrderBy(o => o.ProductCategoryName).ThenBy(o => o.ProductName).ThenBy(o => o.OptionName).ToList();
 
 
             RouteValueDictionary routeValues = new RouteValueDictionary();
@@ -315,6 +316,143 @@ namespace RP.Website.Areas.Admin.Controllers
         }
         [HttpPost]
         public ActionResult DeleteProductOption(string id)
+        {
+            try
+            {
+                GenericFactory.Business.DeleteProductOptionById(id);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        #endregion
+
+        #region Product Unit
+        public ActionResult ProductUnitList(string searchBy, string keyword, string sortBy, string direction, int? page)
+        {
+            return View("~/Areas/Admin/Views/ProductUnit/Index.cshtml");
+        }
+        public ActionResult SearchProductUnit(string searchBy, string keyword, string sortBy, string direction, int? page)
+        {
+            int pageSize = AppSettingHelper.PageSize;
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                keyword = keyword.Trim();
+            }
+
+            var data = GenericFactory.Business.GetAllProductUnit(searchBy, keyword)
+                .ToList();
+
+            int totalCount = data.Count;
+            var result = data.Select(d => new UnitViewModel
+            {
+                Id = d.Id.ToString(),
+                UnitId = d.UnitId.ToString(),
+                UnitName = d.Unit.UnitName,
+                ProductName = d.Product.Name,
+                ProductId = d.ProductId.ToString(),
+            }).OrderBy(o => o.UnitName).ToList();
+
+
+            RouteValueDictionary routeValues = new RouteValueDictionary();
+            routeValues.Add("searchBy", searchBy ?? "");
+            routeValues.Add("keyword", keyword ?? "");
+            routeValues.Add("sortBy", sortBy ?? "");
+            routeValues.Add("direction", direction);
+            var list = new PaginatedList<UnitViewModel>(result, page ?? 0, pageSize, totalCount, true, routeValues);
+            var viewModel = new ListViewModel<UnitViewModel>()
+            {
+                SearchBy = searchBy,
+                Keyword = keyword,
+                Direction = direction,
+                SortBy = sortBy,
+                Data = list
+            };
+            return new JsonCamelCaseResult(viewModel, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult AddNewProductUnit()
+        {
+            return View("~/Areas/Admin/Views/ProductUnit/AddNew.cshtml");
+        }
+        [HttpPost]
+        public JsonResult CreateProductUnit(UnitViewModel model)
+        {
+            try
+            {
+                model.Id = Guid.NewGuid().ToString();
+                var unitId = Guid.NewGuid();
+                var unit = new Unit
+                {
+                    Id = unitId,
+                    UnitName = model.UnitName
+                };
+                var productUnit = new ProductUnit
+                {
+                    Id = Guid.NewGuid(),
+                    ProductId = new Guid(model.ProductId),
+                    UnitId = unitId
+                };
+                GenericFactory.Business.CreateProductUnit(unit, productUnit);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        public ActionResult EditProductUnit(string id)
+        {
+            ViewBag.Id = id;
+            return View("~/Areas/Admin/Views/ProductUnit/Edit.cshtml");
+        }
+        [HttpPost]
+        public ActionResult GetProductUnitById(string id)
+        {
+            var unit = GenericFactory.Business.GetProductUnitById(id);
+            var category = GenericFactory.Business.GetProductCategories().FirstOrDefault(c => c.Id == unit.Product.ProductCategoryId);
+            var option = new UnitViewModel
+            {
+                Id = unit.Id.ToString(),
+                UnitId = unit.UnitId.ToString(),
+                UnitName = unit.Unit.UnitName,
+                ProductCategoryId = category.Id.ToString(),
+                ProductCategoryName = category.CategoryName,
+                ProductId = unit.ProductId.ToString(),
+                ProductName = unit.Product.Name
+            };
+            return new JsonCamelCaseResult(option, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult UpdateProductUnit(UnitViewModel model)
+        {
+            try
+            {
+                var unit = new Unit
+                {
+                    Id = new Guid(model.UnitId),
+                    UnitName = model.UnitName
+                };
+                var productUnit = new ProductUnit
+                {
+                    Id = new Guid(model.Id),
+                    ProductId = new Guid(model.ProductId),
+                    UnitId = new Guid(model.UnitId)
+                };
+                GenericFactory.Business.UpdateProductUnit(unit, productUnit);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        [HttpPost]
+        public ActionResult DeleteProductUnit(string id)
         {
             try
             {

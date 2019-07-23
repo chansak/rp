@@ -1,4 +1,4 @@
-﻿var productOptionMasterEditor = new function () {
+﻿var productUnitEditor = new function () {
     var _bindingProductCategories = function () {
         var selectedCategoryId = $("#productCategoryId").val();
         var success = function (data, textStatus, jqXHR) {
@@ -41,7 +41,8 @@
     var _save = function (callback) {
         var data = {
             id: $("#id").val(),
-            optionName: $("#optionName").val(),
+            unitId: $("#unitId").val(),
+            unitName: $("#unitName").val(),
             productId: $("#products").val()
         };
         var success = function (data, textStatus, jqXHR) {
@@ -49,19 +50,19 @@
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
-        var xhr = RPService.UpdateProductOption(data, success, failure);
+        var xhr = RPService.UpdateProductUnit(data, success, failure);
     };
     var _getDetail = function (id) {
         var success = function (response, textStatus, jqXHR) {
-            console.log(response);
             $("#productCategoryId").val(response.productCategoryId);
+            $("#unitId").val(response.unitId);
             $("#productId").val(response.productId);
-            $("#optionName").val(response.optionName);
+            $("#unitName").val(response.unitName);
             _bindingProductCategories();
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
-        var xhr = RPService.GetProductOptionById(id, success, failure);
+        var xhr = RPService.GetProductUnitById(id, success, failure);
     };
     return {
         init: function () {

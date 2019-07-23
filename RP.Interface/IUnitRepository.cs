@@ -7,6 +7,7 @@ namespace RP.Interfaces
 {
 	public interface IUnitRepository : IRepository<RP.Model.Unit>
 	{
+        void UpdateUnit(Model.Unit unit);
 
-	}
+    }
 }

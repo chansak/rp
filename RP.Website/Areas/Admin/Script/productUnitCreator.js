@@ -1,6 +1,5 @@
-﻿var productOptionMasterEditor = new function () {
+﻿var productUnitCreator = new function () {
     var _bindingProductCategories = function () {
-        var selectedCategoryId = $("#productCategoryId").val();
         var success = function (data, textStatus, jqXHR) {
             $('#productCategories').empty();
             $(data).each(function (index, item) {
@@ -11,8 +10,16 @@
             });
             $("#productCategories").prepend("<option value='' selected='selected'>เลือกประเภทสินค้า</option>");
             $("#productCategories").unbind();
-            $("#productCategories").val(selectedCategoryId);
-            _bindingProducts(selectedCategoryId);
+            $("#productCategories").change(function () {
+                var selectedCategoryId = '';
+                selectedCategoryId = $('#productCategories').val();
+                if (selectedCategoryId != '') {
+                    _bindingProducts(selectedCategoryId);
+                } else {
+                    $("#products").find('option').remove().end();
+                    $("#productOptions").find('option').remove().end();
+                }
+            });
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -20,7 +27,6 @@
         var xhr = RPService.GetProductCategories(success, failure);
     };
     var _bindingProducts = function (id) {
-        var selectedProductId = $("#productId").val();
         var success = function (data, textStatus, jqXHR) {
             $('#products').empty();
             $(data).each(function (index, item) {
@@ -31,7 +37,6 @@
             });
             $("#products").prepend("<option value='' selected='selected'>เลือกสินค้า</option>");
             $("#products").unbind();
-            $("#products").val(selectedProductId);
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
@@ -40,8 +45,7 @@
     };
     var _save = function (callback) {
         var data = {
-            id: $("#id").val(),
-            optionName: $("#optionName").val(),
+            unitName: $("#unitName").val(),
             productId: $("#products").val()
         };
         var success = function (data, textStatus, jqXHR) {
@@ -49,29 +53,15 @@
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
         }
-        var xhr = RPService.UpdateProductOption(data, success, failure);
-    };
-    var _getDetail = function (id) {
-        var success = function (response, textStatus, jqXHR) {
-            console.log(response);
-            $("#productCategoryId").val(response.productCategoryId);
-            $("#productId").val(response.productId);
-            $("#optionName").val(response.optionName);
-            _bindingProductCategories();
-        }
-        var failure = function (jqXHR, textStatus, errorThrown) {
-        }
-        var xhr = RPService.GetProductOptionById(id, success, failure);
+        var xhr = RPService.CreateProductUnit(data, success, failure);
     };
     return {
         init: function () {
-            var id = $("#id").val();
-            _getDetail(id);
+            _bindingProductCategories();
         },
 
         Save: function (callback) {
             _save(callback);
         }
     }
-
 };

@@ -25,6 +25,7 @@ namespace RP.Model
     
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
         public virtual Unit Unit { get; set; }
+        public virtual Product Product { get; set; }
     }
     
 }

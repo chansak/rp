@@ -534,6 +534,10 @@
       <End Role="Document" EntitySet="Documents" />
       <End Role="History" EntitySet="Histories" />
     </AssociationSet>
+    <AssociationSet Name="FK_ProductUnit_Product" Association="RP.Model.FK_ProductUnit_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductUnit" EntitySet="ProductUnits" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AspNetRole">
     <Key>
@@ -772,6 +776,7 @@
     <NavigationProperty Name="ProductMaterialUsages" Relationship="RP.Model.FK_ProductMaterialUsage_Product" FromRole="Product" ToRole="ProductMaterialUsage" />
     <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
     <NavigationProperty Name="ProductPreviewImages" Relationship="RP.Model.FK_ProductPreviewImages_Product" FromRole="Product" ToRole="ProductPreviewImage" />
+    <NavigationProperty Name="ProductUnits" Relationship="RP.Model.FK_ProductUnit_Product" FromRole="Product" ToRole="ProductUnit" />
   </EntityType>
   <EntityType Name="ProductCategory">
     <Key>
@@ -871,6 +876,7 @@
     <Property Name="UnitId" Type="Guid" />
     <NavigationProperty Name="ProductPrices" Relationship="RP.Model.FK_ProductPrice_ProductUnit" FromRole="ProductUnit" ToRole="ProductPrice" />
     <NavigationProperty Name="Unit" Relationship="RP.Model.FK_ProductUnit_Unit" FromRole="ProductUnit" ToRole="Unit" />
+    <NavigationProperty Name="Product" Relationship="RP.Model.FK_ProductUnit_Product" FromRole="ProductUnit" ToRole="Product" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -1512,6 +1518,18 @@
       </Principal>
       <Dependent Role="History">
         <PropertyRef Name="DocumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductUnit_Product">
+    <End Type="RP.Model.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="RP.Model.ProductUnit" Role="ProductUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductUnit">
+        <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -555,6 +555,7 @@ var productEditor = new function () {
         $("#editSew-file").val('');
         $(".fileinput-filename").empty()
         $("#editSew-remark").val('');
+        $("#editProductRemark").val('');
     };
     var _setDefault = function () {
         items = [];

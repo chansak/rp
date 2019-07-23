@@ -1457,4 +1457,101 @@
         });
         return XHR;
     },
+
+    GetProductUnitBySearch: function (searchBy, keyword, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/SearchProductUnit",
+            data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    CreateProductUnit: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/CreateProductUnit",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    GetProductUnitById: function (id, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/GetProductUnitById",
+            data: JSON.stringify({ id: id }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    UpdateProductUnit: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Admin/product/UpdateProductUnit",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    //DeleteCategory: function (id, successCallback, errorCallback) {
+    //    var XHR = $.ajax({
+    //        type: "POST",
+    //        url: "/Admin/product/DeleteCategory",
+    //        data: JSON.stringify({ id: id }),
+    //        contentType: "application/json; charset=utf-8",
+    //        dataType: "json",
+    //        success: function (data, textStatus, jqXHR) {
+    //            successCallback(data, textStatus, jqXHR);
+    //        },
+    //        error: function (jqXHR, textStatus, errorThrown) {
+    //            if (jqXHR.status == 401) {
+    //                Logout();
+    //            } else {
+    //                errorCallback(jqXHR, textStatus, errorThrown);
+    //            }
+    //        }
+    //    });
+    //    return XHR;
+    //},
 }

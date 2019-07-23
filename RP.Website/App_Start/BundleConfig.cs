@@ -69,7 +69,10 @@ namespace RP.Website
                       "~/Areas/Admin/Script/productMasterEditor.js",
                       "~/Areas/Admin/Script/productOptionList.js",
                       "~/Areas/Admin/Script/productOptionMasterCreator.js",
-                      "~/Areas/Admin/Script/productOptionMasterEditor.js"
+                      "~/Areas/Admin/Script/productOptionMasterEditor.js",
+                      "~/Areas/Admin/Script/productUnitList.js",
+                      "~/Areas/Admin/Script/productUnitCreator.js",
+                      "~/Areas/Admin/Script/productUnitEditor.js"
                       ));
 
             // Inspinia skin config script
@@ -95,7 +98,7 @@ namespace RP.Website
             // Lightbox gallery
             bundles.Add(new ScriptBundle("~/plugins/lightboxGallery").Include(
                       "~/Scripts/plugins/blueimp/jquery.blueimp-gallery.min.js"));
-            
+
             // Sparkline
             bundles.Add(new ScriptBundle("~/plugins/sparkline").Include(
                       "~/Scripts/plugins/sparkline/jquery.sparkline.min.js"));
@@ -290,7 +293,7 @@ namespace RP.Website
             // image cropper styles
             bundles.Add(new StyleBundle("~/plugins/imagecropperStyles").Include(
                       "~/Content/plugins/cropper/cropper.min.css"));
-            
+
             // jsTree
             bundles.Add(new ScriptBundle("~/plugins/jsTree").Include(
                       "~/Scripts/plugins/jsTree/jstree.min.js"));

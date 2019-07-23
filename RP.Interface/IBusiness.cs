@@ -97,6 +97,11 @@ namespace RP.Interfaces
         void CreateProductOption(ProductOption product);
         void UpdateProductOption(ProductOption product);
         void DeleteProductOptionById(string id);
+
+        IList<RP.Model.ProductUnit> GetAllProductUnit(string searchBy, string keyword);
+        void CreateProductUnit(Unit unit, ProductUnit productUnit);
+        RP.Model.ProductUnit GetProductUnitById(string id);
+        void UpdateProductUnit(Unit unit, ProductUnit productUnit);
         #endregion
     }
 }

@@ -87,6 +87,7 @@
         <EntityTypeShape EntityType="RP.Model.History" Width="1.5" PointX="15.25" PointY="0.75" />
         <AssociationConnector Association="RP.Model.FK_History_AspNetUsers" />
         <AssociationConnector Association="RP.Model.FK_History_Document" />
+        <AssociationConnector Association="RP.Model.FK_ProductUnit_Product" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

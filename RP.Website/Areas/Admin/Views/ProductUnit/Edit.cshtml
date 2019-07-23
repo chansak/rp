@@ -1,0 +1,91 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>หน่วยนับสินค้า</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="@Url.Action("ProductUnitList", "Product",new { area = "Admin" })">หน้าแรก</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ProductUnitList", "Product",new { area = "Admin" })">รายการสินค้าทั้งหมด</a>
+                </li>
+                <li class="active">
+                    <strong>แก้ไขสินค้า</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <input type="hidden" id="id" value="@ViewBag.Id" />
+    <input type="hidden" id="unitId" />
+    <input type="hidden" id="productCategoryId" />
+    <input type="hidden" id="productId" />
+    <div class="wrapper wrapper-content  animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox">
+                    <div class="ibox-title no-borders">
+                        <h2>แก้ไขหน่วยนับสินค้า</h2>
+                        <div class="hr-line-dashed"></div>
+                        <div class="ibox-tools">
+                        </div>
+                    </div>
+                    <div class="ibox-content no-borders">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">ประเภทสินค้า</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b" id="productCategories"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">สินค้า</label>
+                            <div class="input-group col-sm-4">
+                                <select class="form-control m-b" id="products"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">หน่วยนับสินค้า</label>
+                            <div class="input-group col-sm-4">
+                                <input type="text" id="unitName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="ibox-footer">
+                            <button type="button" class="btn btn-primary btnSave">บันทึก</button>
+                            <button type="button" class="btn btn-white btnCancel">ยกเลิก</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Styles {
+    @Styles.Render("~/plugins/sweetAlertStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/sweetAlert")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            productUnitEditor.init();
+            $(".btnSave").click(function () {
+                productUnitEditor.Save(function () {
+                    swal({
+                        title: "บันทึกเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("/Admin/Product/ProductUnitList");
+                    });
+                });
+            });
+            $(".btnCancel").click(function () {
+                utilities.RedirectToAction("/Admin/Product/ProductUnitList");
+            });
+        });
+    </script>
+}

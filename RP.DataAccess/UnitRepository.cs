@@ -15,5 +15,10 @@ namespace RP.DataAccess
             : base(context)
 		{
 		}
-	}
+        public void UpdateUnit(Model.Unit unit)
+        {
+            var existing = this.GetById(unit.Id);
+            existing.UnitName = unit.UnitName;
+        }
+    }
 }

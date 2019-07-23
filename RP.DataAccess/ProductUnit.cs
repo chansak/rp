@@ -27,5 +27,6 @@ namespace RP.DataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
         public virtual Unit Unit { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -302,6 +302,7 @@
         $("#screen-color").find('option').remove().end();
         $("#screen-position").find('option').remove().end();
         $("#sew-position").find('option').remove().end();
+        $("#productRemark").val('');
     };
     var _init = function () {
         _setDefault();

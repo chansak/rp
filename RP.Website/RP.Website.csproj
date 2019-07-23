@@ -171,6 +171,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Script\productUnitCreator.js" />
+    <Content Include="Areas\Admin\Script\productUnitEditor.js" />
+    <Content Include="Areas\Admin\Script\productUnitList.js" />
     <Content Include="Areas\Admin\Script\productOptionMasterEditor.js" />
     <Content Include="Areas\Admin\Script\productOptionMasterCreator.js" />
     <Content Include="Areas\Admin\Script\productOptionList.js" />
@@ -1267,6 +1270,9 @@
     <Content Include="Areas\Admin\Views\ProductOption\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductOption\AddNew.cshtml" />
     <Content Include="Areas\Admin\Views\ProductOption\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductUnit\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductUnit\AddNew.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductUnit\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\RP Deployment package.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
