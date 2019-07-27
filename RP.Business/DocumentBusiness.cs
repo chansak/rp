@@ -15,13 +15,14 @@ namespace RP.Business
                 return uow.DocumentRepository.All().ToList();
             }
         }
-        public IList<Document> GetDocumentsListBySearch(string searchBy, string keyword,string userId =null)
+        public IList<Document> GetDocumentsListBySearch(string searchBy, string keyword, string userId = null)
         {
             using (var uow = UnitOfWork.Create())
             {
                 var documents = uow.DocumentRepository.All().AsEnumerable();
-                if (userId != null) {
-                    documents = documents.Where(i =>  i.UserId.ToLower() == userId.ToLower());
+                if (userId != null)
+                {
+                    documents = documents.Where(i => i.UserId.ToLower() == userId.ToLower());
                 }
                 if (!string.IsNullOrWhiteSpace(searchBy) && !string.IsNullOrWhiteSpace(keyword))
                 {
@@ -43,7 +44,7 @@ namespace RP.Business
                             }
                     }
                 }
-                var d =  documents.ToList();
+                var d = documents.ToList();
                 return d.Where(i => !i.IsDelete).ToList();
             }
         }
@@ -69,7 +70,8 @@ namespace RP.Business
                 }
             }
         }
-        public void DeleteProductItemsByDocumentId(string documentId) {
+        public void DeleteProductItemsByDocumentId(string documentId)
+        {
             using (var uow = UnitOfWork.Create())
             {
                 try
@@ -137,7 +139,7 @@ namespace RP.Business
         {
             using (var uow = UnitOfWork.Create())
             {
-                var documents = uow.DocumentRepository.All().Where(i=>i.DocumentStatusId == (int)WorkflowStatus.RequestedForApproval).AsEnumerable();
+                var documents = uow.DocumentRepository.All().Where(i => i.DocumentStatusId == (int)WorkflowStatus.RequestedForApproval).AsEnumerable();
                 if (!string.IsNullOrWhiteSpace(searchBy) && !string.IsNullOrWhiteSpace(keyword))
                 {
                     switch (searchBy)
@@ -159,6 +161,33 @@ namespace RP.Business
                     }
                 }
                 return documents.ToList();
+            }
+        }
+        public IList<Document> AlreadyGotPODocumentsList()
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                var data = uow.DocumentRepository.PODocuments().ToList();
+                return uow.DocumentRepository.PODocuments()
+                    .Where(d => d.DocumentStatusId == (int)WorkflowStatus.PurchaseOrder
+                    && d.PoNumber != null
+                    && d.PoDate != null).ToList();
+            }
+        }
+        public void UpdateDocumentWeightPoint(Document document)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                try
+                {
+                    uow.DocumentRepository.UpdateDocumentWeightPoint(document);
+                    uow.Commit();
+                }
+                catch (Exception ex)
+                {
+                    uow.Rollback();
+                    var msg = ex.Message;
+                }
             }
         }
     }

@@ -114,5 +114,13 @@ namespace RP.Utilities
                 return domain;
             }
         }
+        public static string DailyJobTime {
+            get {
+                string jobTime = "";
+                if (ConfigurationManager.AppSettings["DailyJobTime"] != null)
+                    jobTime = ConfigurationManager.AppSettings["DailyJobTime"];
+                return jobTime;
+            }
+        }
     }
 }

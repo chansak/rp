@@ -23,6 +23,13 @@ namespace RP.DataAccess
                 Include(i => i.AspNetUser)
                 .AsQueryable();
         }
+        public IQueryable<Model.Document> PODocuments()
+        {
+            return ObjectSet.
+                Include(i=>i.DocumentProductItems).
+                Include(i=>i.Customer)
+                .AsQueryable();
+        }
         public override Model.Document GetById(string id)
         {
             return ObjectSet.Where(i => i.Id.ToString() == id && !i.IsDelete).
@@ -65,6 +72,7 @@ namespace RP.DataAccess
             existingDocument.IsDelete = document.IsDelete;
             existingDocument.ConfirmedPriceDays = document.ConfirmedPriceDays;
             existingDocument.DeliveryDays = document.DeliveryDays;
+            existingDocument.WeightPoint = document.WeightPoint;
             if (document.DocumentProductItems.Count > 0)
             {
                 foreach (var item in document.DocumentProductItems.Where(i => !i.IsDeleted))
@@ -83,6 +91,12 @@ namespace RP.DataAccess
         {
             var existingDocument = this.GetById(document.Id);
             existingDocument.DocumentStatusId = document.DocumentStatusId;
+            existingDocument.UpdatedDate = DateTime.Now;
+        }
+        public void UpdateDocumentWeightPoint(Model.Document document)
+        {
+            var existingDocument = this.GetById(document.Id);
+            existingDocument.WeightPoint = document.WeightPoint;
             existingDocument.UpdatedDate = DateTime.Now;
         }
     }

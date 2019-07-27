@@ -31,6 +31,7 @@ namespace RP.Model
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public string CustomerCode { get; set; }
+        public Nullable<int> CustomerLevel { get; set; }
     
         public virtual CustomerType CustomerType { get; set; }
         public virtual ICollection<CustomerContact> CustomerContacts { get; set; }

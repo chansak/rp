@@ -57,6 +57,7 @@ namespace RP.Website.Areas.Backoffice.Controllers
                     WorkflowStatusName = statusName,
                     BiddingStatus = (d.BiddingStatusId.HasValue) ? (int)d.BiddingStatusId : 0,
                     BiddingStatusName = biddingStatusName,
+                    WeightPoint = d.WeightPoint ?? 0
                 };
                 result.Add(document);
             }
@@ -67,7 +68,13 @@ namespace RP.Website.Areas.Backoffice.Controllers
             routeValues.Add("keyword", keyword ?? "");
             routeValues.Add("sortBy", sortBy ?? "");
             routeValues.Add("direction", direction);
-            var list = new PaginatedList<DocumentListItemViewModel>(result, page ?? 0, pageSize, totalCount, true, routeValues);
+            var list = new PaginatedList<DocumentListItemViewModel>(
+                result.OrderByDescending(d => d.WeightPoint).ThenByDescending(o=>o.WorkflowStatus).ToList(), 
+                page ?? 0, 
+                pageSize, 
+                totalCount, 
+                true, 
+                routeValues);
             var viewModel = new ListViewModel<DocumentListItemViewModel>()
             {
                 SearchBy = searchBy,
@@ -120,7 +127,8 @@ namespace RP.Website.Areas.Backoffice.Controllers
             }
             return Json(null);
         }
-        private void Create(Document document,string customerCode) {
+        private void Create(Document document, string customerCode)
+        {
             if (document.DocumentProductItems.Count > 0)
             {
                 foreach (var item in document.DocumentProductItems)

@@ -25,8 +25,16 @@
         $(documents).each(function (index, document) {
             html += '<tr>';
             html += '   <td><div class="checkbox i-checks"><label> <input type="checkbox" name="documentId" value='+ document.id +'> <i></i></label></div></td>';
-            html += '   <td><button type="button" class="btn btn-primary btn-circle"></button></td>';
-            html += '   <td>' + document.customerType +'</td>';
+            if (document.weightPoint > 0 && document.weightPoint <= 49) {
+                html += '   <td><button type="button" class="btn btn-primary btn-circle"></button></td>';
+            } else if (document.weightPoint >= 50 && document.weightPoint <= 69) {
+                html += '   <td><button type="button" class="btn btn-warning btn-circle"></button></td>';
+            } else if (document.weightPoint >= 70) {
+                html += '   <td><button type="button" class="btn btn-danger btn-circle"></button></td>';
+            } else {
+                html += '   <td></td>';
+            }
+            html += '   <td>' + document.customerType + '</td>';
             html += '   <td>' + document.customerName + '</td>';
             html += '   <td>' + document.documentCode + '</td>';
             html += '   <td>' + document.saleUserName + '</td>';

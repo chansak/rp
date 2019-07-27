@@ -79,6 +79,7 @@
           <Property Name="UpdatedDate" Type="date" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="CustomerCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerLevel" Type="int" />
         </EntityType>
         <EntityType Name="CustomerAddress">
           <Key>
@@ -173,6 +174,8 @@
           <Property Name="CustomerBranchId" Type="uniqueidentifier" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="DeliveryDays" Type="int" />
+          <Property Name="WeightPoint" Type="int" />
+          <Property Name="PoDate" Type="datetime" />
         </EntityType>
         <EntityType Name="DocumentAttachment">
           <Key>
@@ -2091,6 +2094,7 @@
           <NavigationProperty Name="PatternImages" Relationship="RP.Model.FK_PatternImage_Customer" FromRole="Customer" ToRole="PatternImage" />
           <NavigationProperty Name="CustomerBranches" Relationship="RP.Model.FK_CustomerBranch_Customer" FromRole="Customer" ToRole="CustomerBranch" />
           <NavigationProperty Name="Documents" Relationship="RP.Model.FK_Document_Customer" FromRole="Customer" ToRole="Document" />
+          <Property Name="CustomerLevel" Type="Int32" />
         </EntityType>
         <EntityType Name="CustomerAddress">
           <Key>
@@ -2794,6 +2798,8 @@
           <NavigationProperty Name="AspNetUser" Relationship="RP.Model.FK_Document_AspNetUsers" FromRole="Document" ToRole="AspNetUser" />
           <Property Name="DeliveryDays" Type="Int32" />
           <NavigationProperty Name="Histories" Relationship="RP.Model.FK_History_Document" FromRole="Document" ToRole="History" />
+          <Property Name="WeightPoint" Type="Int32" />
+          <Property Name="PoDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_Document_Customer">
           <End Type="RP.Model.Customer" Role="Customer" Multiplicity="0..1" />
@@ -3130,6 +3136,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="RP.Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerLevel" ColumnName="CustomerLevel" />
                 <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
@@ -3477,6 +3484,8 @@
           <EntitySetMapping Name="Documents">
             <EntityTypeMapping TypeName="RP.Model.Document">
               <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="PoDate" ColumnName="PoDate" />
+                <ScalarProperty Name="WeightPoint" ColumnName="WeightPoint" />
                 <ScalarProperty Name="DeliveryDays" ColumnName="DeliveryDays" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CustomerBranchId" ColumnName="CustomerBranchId" />

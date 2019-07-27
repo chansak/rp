@@ -74,6 +74,7 @@
     <Property Name="UpdatedDate" Type="date" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="CustomerCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerLevel" Type="int" />
   </EntityType>
   <EntityType Name="CustomerAddress">
     <Key>
@@ -168,6 +169,8 @@
     <Property Name="CustomerBranchId" Type="uniqueidentifier" />
     <Property Name="UserId" Type="nvarchar" MaxLength="128" />
     <Property Name="DeliveryDays" Type="int" />
+    <Property Name="WeightPoint" Type="int" />
+    <Property Name="PoDate" Type="datetime" />
   </EntityType>
   <EntityType Name="DocumentAttachment">
     <Key>

@@ -12,5 +12,7 @@ namespace RP.Interfaces
         void AddNewDocument(Model.Document document, string customerCode);
         void UpdateDocument(Model.Document document);
         void UpdateDocumentStatus(Model.Document document);
+        void UpdateDocumentWeightPoint(Model.Document document);
+        IQueryable<Model.Document> PODocuments();
     }
 }

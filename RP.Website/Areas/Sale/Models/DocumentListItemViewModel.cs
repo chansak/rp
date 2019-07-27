@@ -20,5 +20,6 @@ namespace RP.Website.Models
         public string IssueDate { get; set; }
         public string ExpiryDate { get; set; }
         public int NumberOfComments { get; set; }
+        public int WeightPoint { get; set; }
     }
 }

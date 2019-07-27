@@ -107,9 +107,11 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Enum\BiddingStatus.cs" />
+    <Compile Include="Enum\CustomerLevel.cs" />
     <Compile Include="Enum\DocumentType.cs" />
     <Compile Include="Enum\ItemOptionStatus.cs" />
     <Compile Include="Enum\WorkflowStatus.cs" />
+    <Compile Include="Extensions\DateJobsExtension.cs" />
     <Compile Include="History.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -194,7 +196,9 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Shared\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

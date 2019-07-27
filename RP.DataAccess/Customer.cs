@@ -32,6 +32,7 @@ namespace RP.DataAccess
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public string CustomerCode { get; set; }
+        public Nullable<int> CustomerLevel { get; set; }
     
         public virtual CustomerType CustomerType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -23,6 +23,7 @@ namespace RP.Interfaces
         void UpdateDocumentWithMarkDeleteItems(Document document);
         void UpdateDocument(Document document);
         void UpdateDocumentStatus(Document document);
+        void UpdateDocumentWeightPoint(Document document);
         DocumentProductItem GetProductItemByItemId(string id);
         ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
         ProductItemScreenOptional GetProductItemScreenOptionalByItemId(string id);
@@ -31,7 +32,7 @@ namespace RP.Interfaces
         void DeleteProductItemsByDocument(Document document);
         IList<Document> GetApprovalDocumentsListBySearch(string searchBy, string keyword);
         void MarkDeleteProductItemByItemId(string itemId);
-
+        IList<Document> AlreadyGotPODocumentsList();
         #endregion
 
         #region User
