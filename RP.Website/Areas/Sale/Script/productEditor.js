@@ -576,6 +576,7 @@ var productEditor = new function () {
 
         $("#editProductNumberOfProducts").val('0');
         $("#editProductPricePerUnit").val('0');
+        $("#editProductRemark").val('');
     };
     return {
         init: function (cid) {

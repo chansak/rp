@@ -154,7 +154,7 @@ namespace RP.Website
             document.DocumentCode = entity.FileNumber;
             document.CreatedDate = entity.CreatedDate.HasValue ? entity.CreatedDate.Value.ToDateString() : "";
             //document.IssuedDate = entity.IssueDate.HasValue ? entity.IssueDate.Value.ToDateString() : "";
-            //document.ExpirationDate = entity.ExpiryDate.HasValue ? entity.ExpiryDate.Value.ToDateString() : "";
+            document.ExpirationDate = entity.ExpiryDate.HasValue ? entity.ExpiryDate.Value.ToDateString() : "";
             document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate.HasValue ? entity.ExpectedDeliveryDate.Value.ToDateString() : "";
             //document.ExpirationDate = entity.ExpiryDate.Value;
             //document.ExpectedDeliveryDate = entity.ExpectedDeliveryDate.Value;
@@ -166,6 +166,7 @@ namespace RP.Website
             document.CustomerId = entity.CustomerId.ToString();
             document.ContactId = entity.ContactId.ToString();
             document.PoNumber = entity.PoNumber;
+            document.PoDate = entity.PoDate.HasValue ? entity.PoDate.Value.ToDateString() : "";
             var productItems = new List<ProductItemViewModel>();
             foreach (var i in entity.DocumentProductItems.Where(i => !i.IsDeleted))
             {

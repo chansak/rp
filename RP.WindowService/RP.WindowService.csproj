@@ -85,7 +85,7 @@
     <Compile Include="JobSchedulerService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Job\WeightCalculation.cs" />
+    <Compile Include="Job\WeightCalculator.cs" />
     <Compile Include="Job\WeightFormula.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">

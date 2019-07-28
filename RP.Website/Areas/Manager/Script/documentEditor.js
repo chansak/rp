@@ -257,17 +257,18 @@
     };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
-            if (data.documentStatusId == 6) {
-                $("#gotPO").show();
-                $("#poNumber").val(data.poNumber);
-            }
-            //var issuedDate = utilities.ConvertToDate(data.issuedDate);
-            //var expirationDate = utilities.ConvertToDate(data.expirationDate);
-            //var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);
+            $("#workFlowName").text(data.workFlowName);
+            _actionValidation(data);
             $("#documentCode").val(data.documentCode);
-            //$("#issuedDate").datepicker('setDate', issuedDate);
-            //$("#expirationDate").datepicker('setDate', expirationDate);
-            //$("#expectedDeliveryDate").datepicker('setDate', expectedDeliveryDate);
+            if (data.poNumber != '' && data.poNumber != undefined) {
+                $("#gotPOSection").show();
+                $("#txtPoNumber").val(data.poNumber);
+                $("#txtPoDate").val(data.poDate);
+
+                $("#txtExpirationDate").val(data.expirationDate);
+                $("#txtExpectedDeliveryDate").val(data.expectedDeliveryDate);
+            }
+            $("#documentCode").val(data.documentCode);
             $("#priceValidityDays").val(data.confirmPriceDays);
             $("#numberOfDeliveryDays").val(data.deliveryDays);
             _getCustomerDetail(data.customerId);
@@ -667,6 +668,31 @@
             }
             var xhr = RPService.UpdateDocumentWithCommentsForManager(formData, success, failure);
         });
+    };
+    var _actionValidation = function (document) {
+        //Draft
+        if (document.documentStatusId == 0) {
+            $(".btnShowHistory").show();
+            $(".btnSaveDraft").show();
+        }
+        //RequestForPrice
+        if (document.documentStatusId == 20) {
+            $(".btnShowHistory").show();
+            $("#btnRequestForApprove").show();
+        }
+        //Approved
+        if (document.documentStatusId == 50) {
+            $("#btnPrintDocument").show();
+        }
+        //Quotation
+        if (document.documentStatusId == 51) {
+            $("#btnPrintDocument").show();
+            $("#btnGotPO").show();
+        }
+        //PurchaseOrder
+        if (document.documentStatusId == 52) {
+            $("#btnPrintDocument").show();
+        }
     };
     return {
         init: function () {

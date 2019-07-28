@@ -89,7 +89,7 @@
         var success = function (result, textStatus, jqXHR) {
             //Approved =3,
             var documentStatusId = parseInt(result);
-            if (documentStatusId == 3) {
+            if (documentStatusId == 50) {
                 callback();
             } else {
                 toastr.info(message.info.notApprovedYet, 'Infomration');

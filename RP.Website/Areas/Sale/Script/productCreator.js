@@ -302,6 +302,9 @@
         $("#screen-color").find('option').remove().end();
         $("#screen-position").find('option').remove().end();
         $("#sew-position").find('option').remove().end();
+
+        $("#productNumberOfProducts").val('0');
+        $("#productPricePerUnit").val('0');
         $("#productRemark").val('');
     };
     var _init = function () {

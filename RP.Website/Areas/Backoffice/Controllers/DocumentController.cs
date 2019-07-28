@@ -361,11 +361,24 @@ namespace RP.Website.Areas.Backoffice.Controllers
             return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public ActionResult GotPO(string id)
+        public ActionResult PrintQuotation(string id)
         {
             var result = false;
             var document = GenericFactory.Business.GetDocument(id);
+            document.DocumentStatusId = (int)WorkflowStatus.Quotation;
+            GenericFactory.Business.UpdateDocumentStatus(document);
+            return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult GotPO(PurchaseOrderViewModel model)
+        {
+            var result = false;
+            var document = GenericFactory.Business.GetDocument(model.DocumentId);
             document.DocumentStatusId = (int)WorkflowStatus.PurchaseOrder;
+            document.PoNumber = model.PoNumber;
+            document.PoDate = model.PoDate;
+            document.ExpiryDate = model.PoDate.AddDays(document.ConfirmedPriceDays.Value);
+            document.ExpectedDeliveryDate = model.PoDate.AddDays(document.DeliveryDays.Value);
             GenericFactory.Business.UpdateDocumentStatus(document);
             return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
         }
@@ -376,6 +389,67 @@ namespace RP.Website.Areas.Backoffice.Controllers
             var document = GenericFactory.Business.GetDocument(id);
             var workflowStatusId = document.DocumentStatusId;
             return new JsonCamelCaseResult(workflowStatusId, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult UpdateDraftDocumentWithComments(FormCollection formCollection)
+        {
+            try
+            {
+                var json = formCollection["document"].ToString().Replace(@"\", "");
+                var model = JsonConvert.DeserializeObject<DocumentViewModel>(json, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                var document = model.ToEntity();
+                document.DocumentStatusId = (int)WorkflowStatus.Draft;
+                var customerCode = GenericFactory.Business.GetCustomerById(model.CustomerId).CustomerCode;
+                if (document.DocumentProductItems.Count > 0)
+                {
+                    foreach (var item in document.DocumentProductItems)
+                    {
+                        if (item.ProductItemPrintOptionals.Count > 0)
+                        {
+                            var printOption = item.ProductItemPrintOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)printOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                printOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[PRINT_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                        if (item.ProductItemScreenOptionals.Count > 0)
+                        {
+                            var screenOption = item.ProductItemScreenOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)screenOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                screenOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[SCREEN_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                        if (item.ProductItemSewOptionals.Count > 0)
+                        {
+                            var sewOption = item.ProductItemSewOptionals.FirstOrDefault();
+                            var status = (ItemOptionStatus)sewOption.OptionalStatusId;
+                            if (status == ItemOptionStatus.NewPattern)
+                            {
+                                var newPatternId = Guid.NewGuid();
+                                sewOption.PatternId = newPatternId;
+                                HttpPostedFileBase file = Request.Files[SEW_NEWPATTERN];
+                                this.SaveAttachFiles(document.CustomerId.ToString(), newPatternId.ToString(), file);
+                            }
+                        }
+                    }
+                }
+                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document);
+
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
         }
     }
 }

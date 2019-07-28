@@ -793,6 +793,27 @@
         });
         return XHR;
     },
+    UpdateDraftDocumentWithCommentsForBackoffice: function (formData, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/UpdateDraftDocumentWithComments",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
     GetDocumentDetailForBackoffice: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
@@ -873,13 +894,31 @@
         });
         return XHR;
     },
-    GotPOForBackoffice: function (id, successCallback, errorCallback) {
+    PrintQuotationForBackoffice: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
-            url: "/Backoffice/Document/GotPO",
+            url: "/Backoffice/Document/PrintQuotation",
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    GotPOForBackoffice: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/Document/GotPO",
+            data: data,
             success: function (data, textStatus, jqXHR) {
                 successCallback(data, textStatus, jqXHR);
             },

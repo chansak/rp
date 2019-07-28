@@ -260,19 +260,41 @@
         $(histories).each(function (index, data) {
             html += '<div class="log-message left">';
             html += '   <div class="log">';
-            html += '       <span class="log-date">'+ data.createdDate +'</span>';
+            html += '       <span class="log-date">' + data.createdDate + '</span>';
             html += '       <span class="log-content">' + data.text + '</span>';
             html += '   </div>';
             html += '</div>';
         });
         $("#comments").html(html);
     };
+    var _actionValidation = function (document) {
+        //Draft
+        if (document.documentStatusId == 0) {
+            $(".btnShowHistory").show();
+            $(".btnSaveDraft").show();
+        }
+        //RequestForPrice
+        if (document.documentStatusId == 20) {
+            $(".btnShowHistory").show();
+            $("#btnRequestForApprove").show();
+        }
+        //Approved
+        if (document.documentStatusId == 50) {
+            $("#btnPrintDocument").show();
+        }
+        //Quotation
+        if (document.documentStatusId == 51) {
+            $("#btnPrintDocument").show();
+            $("#btnGotPO").show();
+        }
+        //PurchaseOrder
+        if (document.documentStatusId == 52) {
+            $("#btnPrintDocument").show();
+        }
+    };
     var _getDocumentDetail = function (id) {
         var success = function (data, textStatus, jqXHR) {
-            if (data.documentStatusId == 6) {
-                $("#gotPO").show();
-                $("#poNumber").val(data.poNumber);
-            }
+            _actionValidation(data);
             //var issuedDate = utilities.ConvertToDate(data.issuedDate);
             //var expirationDate = utilities.ConvertToDate(data.expirationDate);
             //var expectedDeliveryDate = utilities.ConvertToDate(data.expectedDeliveryDate);

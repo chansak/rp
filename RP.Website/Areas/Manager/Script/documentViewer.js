@@ -139,14 +139,14 @@
                 console.log(item.itemId);
                 if (item.itemId != null) {
                     html += '<tr onclick="documentViewer.showItemDetail(' + id + ')">';
-                    html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
+                    //html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
                 } else {
                     html += '<tr>';
-                    html += '<td></td>';
+                    //html += '<td></td>';
                 }
             } else {
                 html += '<tr>';
-                html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
+                //html += '   <td style="width:5%;" id="icon_' + item.itemId + '"><div class="checkbox i-checks"><label> <input type="checkbox" name="productItemId" value="' + item.itemId + '" > <i></i></label></div></td>';
             }
             html += '   <td style="width:25%;line-height:40px">' + item.productName + '</td>';
             html += '   <td style="width:15%;line-height:40px">' + item.productUnitName + '</td>';

@@ -25,7 +25,7 @@
                     return item;
                 }
             });
-            //_getDefaultUser();
+            _getDefaultUser();
         }
 
         var failure = function (jqXHR, textStatus, errorThrown) {
@@ -221,10 +221,6 @@
             );
         });
         var document = {
-            //issuedDate: $("#issuedDate").val(),
-            //createdDate: $("#createdDate").val(),
-            //expirationDate: $("#expirationDate").val(),
-            //expectedDeliveryDate: $("#expectedDeliveryDate").val(),
             confirmPriceDays: $("#priceValidityDays").val(),
             deliveryDays: $("#numberOfDeliveryDays").val(),
             saleUserId: $("#auto_saleId").val(),

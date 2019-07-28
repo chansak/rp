@@ -136,11 +136,11 @@
                     </div>
                 </div>
                 <div class="ibox-content float-e-margins">
-                    @Html.ActionLink("สร้างใบขอราคา", "AddNew", null, new { @class = "btn btn-primary " })
-                    <button type="button" id="btnEdit" class="btn btn-white ">แก้ไข</button>
+                    <a class="btn btn-primary " href="/Backoffice/Document/AddNew"><i class="fa fa-plus-circle"></i> สร้างใบขอราคา</a>
+                    <button type="button" id="btnEdit" class="btn btn-white ">แก้ไข/ดูรายละเอียด</button>
                     <button type="button" class="btn btn-white  btnDelete">ลบ</button>
-                    <button type="button" id="btnRequestForApprove" class="btn btn-white ">ยื่นขออนุมัติ</button>
-                    <button type="button" id="btnGotPO" class="btn btn-white ">ได้รับ PO แล้ว</button>
+                    @*<button type="button" id="btnRequestForApprove" class="btn btn-white ">ยื่นขออนุมัติ</button>
+        <button type="button" id="btnGotPO" class="btn btn-white ">ได้รับ PO แล้ว</button>*@
                 </div>
             </div>
         </div>
@@ -166,24 +166,32 @@
                 height: '500px'
             });
             $('.btnDelete').click(function () {
-                swal({
-                    title: "ยืนยันการลบข้อมูล?",
-                    text: "คุณจะไม่สามารถกู้รายการนี้หลังจากลบไปแล้ว!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "ลบ!",
-                    cancelButtonText: "ยกเลิก!",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
-                },
-                    function (isConfirm) {
+                var itemId = 0;
+                var items = $("input:checkbox[name=documentId]:checked");
+                if (items.length == 1) {
+                    itemId = $(items[0]).val();
+
+                    swal({
+                        title: "ยืนยันการลบข้อมูล?",
+                        text: "คุณจะไม่สามารถกู้รายการนี้หลังจากลบไปแล้ว!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                        buttons: ["ปิด", "ตกลง"]
+                    }).then((isConfirm) => {
                         if (isConfirm) {
-                            swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success");
+                            swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success").then((result) => {
+                                utilities.RedirectToAction("/Backoffice/Document/Index");
+                            });
                         } else {
-                            swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error");
+                            swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error").then((result) => {
+                                //utilities.RedirectToAction("/Sale/Document/Index");
+                            });
                         }
                     });
+                } else {
+                    toastr.info('กรุณาเลือกรายการ', 'Infomration');
+                }
             });
             $("#btnEdit").unbind("click");
             $("#btnEdit").click(function () {

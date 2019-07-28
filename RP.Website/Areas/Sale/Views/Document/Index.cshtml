@@ -138,22 +138,23 @@
                     </div>
                 </div>
                 <div class="ibox-content float-e-margins">
-                    <a class="btn btn-primary " href="/Sale/Document/AddNew">สร้างใบขอราคา</a>
-                    <button type="button" id="btnEdit" class="btn btn-white ">แก้ไข</button>
-                    <button type="button" class="btn btn-white  btnDelete">ลบ</button>
-                    <button type="button" id="btnRequestForApprove" class="btn btn-white ">ยื่นขออนุมัติ</button>
-                    <button type="button" id="btnGotPO" class="btn btn-white ">ได้รับ PO แล้ว</button>
+                    <a class="btn btn-primary " href="/Sale/Document/AddNew"><i class="fa fa-plus-circle"></i> สร้างใบขอราคา</a>
+                    <button type="button" id="btnEdit" class="btn btn-white ">แก้ไข/ดูรายละเอียด</button>
+                    <button type="button" class="btn btn-white  btnDelete">ลบรายการ</button>
                     <button type="button" class="btn btn-white ">คัดลอก</button>
-                    <button type="button" class="btn btn-white ">มอบหมาย</button>
-                    <div class="btn-group">
-                        <button data-toggle="dropdown" class="btn btn-default  dropdown-toggle" aria-expanded="false">เปลี่ยนสถานะ</button>
-                        <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 24px; left: 0px; will-change: top, left;">
-                            <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>
-                            <li><a class="dropdown-item" href="#">ปิดใช้งานใบขอราคา</a></li>
-                            <li><a class="dropdown-item" href="#">พักใบขอราคา</a></li>
-                            <li><a class="dropdown-item" href="#">ยกเลิกใบขอราคา</a></li>
-                        </ul>
-                    </div>
+                    @*<button type="button" id="btnRequestForApprove" class="btn btn-white ">ยื่นขออนุมัติ</button>
+                        <button type="button" id="btnGotPO" class="btn btn-white ">ได้รับ PO แล้ว</button>
+                        <button type="button" class="btn btn-white ">คัดลอก</button>
+                        <button type="button" class="btn btn-white ">มอบหมาย</button>
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-default  dropdown-toggle" aria-expanded="false">เปลี่ยนสถานะ</button>
+                            <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; top: 24px; left: 0px; will-change: top, left;">
+                                <li><a class="dropdown-item" href="#">เปิดใช้งานใบขอราคา</a></li>
+                                <li><a class="dropdown-item" href="#">ปิดใช้งานใบขอราคา</a></li>
+                                <li><a class="dropdown-item" href="#">พักใบขอราคา</a></li>
+                                <li><a class="dropdown-item" href="#">ยกเลิกใบขอราคา</a></li>
+                            </ul>
+                        </div>*@
                 </div>
             </div>
         </div>
@@ -179,24 +180,32 @@
                 height: '500px'
             });
             $('.btnDelete').click(function () {
-                swal({
-                    title: "ยืนยันการลบข้อมูล?",
-                    text: "คุณจะไม่สามารถกู้รายการนี้หลังจากลบไปแล้ว!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "ลบ!",
-                    cancelButtonText: "ยกเลิก!",
-                    closeOnConfirm: false,
-                    closeOnCancel: false
-                },
-                    function (isConfirm) {
+                var itemId = 0;
+                var items = $("input:checkbox[name=documentId]:checked");
+                if (items.length == 1) {
+                    itemId = $(items[0]).val();
+
+                    swal({
+                        title: "ยืนยันการลบข้อมูล?",
+                        text: "คุณจะไม่สามารถกู้รายการนี้หลังจากลบไปแล้ว!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                        buttons: ["ปิด", "ตกลง"]
+                    }).then((isConfirm) => {
                         if (isConfirm) {
-                            swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success");
+                            swal("ลบรายการเรียบร้อย!", "รายการนี้ถูกลบแล้ว", "success").then((result) => {
+                                utilities.RedirectToAction("/Sale/Document/Index");
+                            });
                         } else {
-                            swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error");
+                            swal("ยกเลิกการลบแล้ว", "รายการนี้ถูกยกเลิกการลบ", "error").then((result) => {
+                                //utilities.RedirectToAction("/Sale/Document/Index");
+                            });
                         }
                     });
+                } else {
+                    toastr.info('กรุณาเลือกรายการ', 'Infomration');
+                }
             });
             $("#btnEdit").unbind("click");
             $("#btnEdit").click(function () {

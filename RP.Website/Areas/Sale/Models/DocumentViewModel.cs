@@ -11,7 +11,7 @@ namespace RP.Website.Models
         public string Id { get; set; }
         public string DocumentCode { get; set; }
         //public string IssuedDate { get; set; }
-        //public string ExpirationDate { get; set; }
+        public string ExpirationDate { get; set; }
         public string ExpectedDeliveryDate { get; set; }
 
         public int ConfirmPriceDays { get; set; }
@@ -28,6 +28,7 @@ namespace RP.Website.Models
         public string CreatedDate { get; set; }
         public int DocumentStatusId { get; set; }
         public string PoNumber { get; set; }
+        public string PoDate { get; set; }
         //public string CustomerBranchId { get; set; }
         public string CreatedBy { get; set; }
         public bool IsDraft { get; set; }

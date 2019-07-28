@@ -33,7 +33,6 @@ namespace RP.WindowService
             set { _totalPrice = value; }
         }
         private int _level;
-
         public int CustomerLevel
         {
             get { return _level; }

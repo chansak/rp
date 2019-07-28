@@ -36,6 +36,8 @@ namespace RP.Website.Areas.Manager.Controllers
             {
                 var documentStatus = (WorkflowStatus)d.DocumentStatusId;
                 var statusName = documentStatus.ToWorkFlowStatusName();
+                var biddingStatus = (d.BiddingStatusId.HasValue) ? (BiddingStatus)d.BiddingStatusId : BiddingStatus.undefined;
+                var biddingStatusName = biddingStatus.ToBiddingStatusName();
                 var document = new DocumentListItemViewModel
                 {
                     Id = d.Id.ToString(),
@@ -45,8 +47,9 @@ namespace RP.Website.Areas.Manager.Controllers
                     SaleUserName = d.AspNetUser.DisplayName,
                     WorkflowStatus = (int)d.DocumentStatusId,
                     WorkflowStatusName = statusName,
-                    BiddingStatus = (int)d.BiddingStatusId,
-                    BiddingStatusName = "รอยืนยัน",
+                    BiddingStatus = (d.BiddingStatusId.HasValue) ? (int)d.BiddingStatusId : 0,
+                    BiddingStatusName = biddingStatusName,
+                    WeightPoint = d.WeightPoint ?? 0
                 };
                 result.Add(document);
             }
@@ -57,8 +60,13 @@ namespace RP.Website.Areas.Manager.Controllers
             routeValues.Add("keyword", keyword ?? "");
             routeValues.Add("sortBy", sortBy ?? "");
             routeValues.Add("direction", direction);
-            var list = new PaginatedList<DocumentListItemViewModel>(result, page ?? 0, pageSize, totalCount, true, routeValues);
-            var viewModel = new ListViewModel<DocumentListItemViewModel>()
+            var list = new PaginatedList<DocumentListItemViewModel>(
+                result.OrderByDescending(d => d.WeightPoint).ThenByDescending(o => o.WorkflowStatus).ToList(),
+                page ?? 0,
+                pageSize,
+                totalCount,
+                true,
+                routeValues); var viewModel = new ListViewModel<DocumentListItemViewModel>()
             {
                 SearchBy = searchBy,
                 Keyword = keyword,

@@ -26,8 +26,8 @@ namespace RP.DataAccess
         public IQueryable<Model.Document> PODocuments()
         {
             return ObjectSet.
-                Include(i=>i.DocumentProductItems).
-                Include(i=>i.Customer)
+                Include(i => i.DocumentProductItems).
+                Include(i => i.Customer)
                 .AsQueryable();
         }
         public override Model.Document GetById(string id)
@@ -51,16 +51,27 @@ namespace RP.DataAccess
         }
         public void AddNewDocument(Model.Document document, string customerCode)
         {
-            var currentYear = DateTime.Now.Year;
+            var currentDate = DateTime.Now;
+            var currentYear = currentDate.Year;
             var nextRunningNumber = (ObjectSet.Where(i => i.CreatedDate.Value.Year == currentYear).Count()) + 1;
             var nexRunningText = ("0000" + nextRunningNumber);
             var fileNumber = nexRunningText.Substring(nexRunningText.Length - 5, 5);
-            document.FileNumber = string.Format("{0}{1}{2}", customerCode, currentYear, fileNumber );
-            document.CreatedDate = DateTime.Now;
+            document.FileNumber = string.Format("{0}{1}{2}", customerCode, currentYear, fileNumber);
+            var documentStatus = (WorkflowStatus)document.DocumentStatusId;
+            switch (documentStatus)
+            {
+                case WorkflowStatus.RequestForPrice:
+                    {
+                        document.IssueDate = currentDate;
+                        break;
+                    }
+            }
+            document.CreatedDate = currentDate;
             ObjectSet.Add(document);
         }
         public void UpdateDocument(Model.Document document)
         {
+            var currentDate = DateTime.Now;
             var existingDocument = this.GetById(document.Id);
             existingDocument.DocumentStatusId = document.DocumentStatusId;
             existingDocument.CustomerId = document.CustomerId;
@@ -73,6 +84,15 @@ namespace RP.DataAccess
             existingDocument.ConfirmedPriceDays = document.ConfirmedPriceDays;
             existingDocument.DeliveryDays = document.DeliveryDays;
             existingDocument.WeightPoint = document.WeightPoint;
+            var documentStatus = (WorkflowStatus)document.DocumentStatusId;
+            switch (documentStatus)
+            {
+                case WorkflowStatus.RequestForPrice:
+                    {
+                        existingDocument.IssueDate = currentDate;
+                        break;
+                    }
+            }
             if (document.DocumentProductItems.Count > 0)
             {
                 foreach (var item in document.DocumentProductItems.Where(i => !i.IsDeleted))
@@ -85,13 +105,35 @@ namespace RP.DataAccess
                 }
             }
             existingDocument.DocumentDeliveries.FirstOrDefault().Address1 = document.DocumentDeliveries.FirstOrDefault().Address1;
-            existingDocument.UpdatedDate = DateTime.Now;
+            existingDocument.UpdatedDate = currentDate;
         }
         public void UpdateDocumentStatus(Model.Document document)
         {
+            var currentDate = DateTime.Now;
             var existingDocument = this.GetById(document.Id);
             existingDocument.DocumentStatusId = document.DocumentStatusId;
-            existingDocument.UpdatedDate = DateTime.Now;
+            var documentStatus = (WorkflowStatus)document.DocumentStatusId;
+            switch (documentStatus)
+            {
+                case WorkflowStatus.RequestForPrice:
+                    {
+                        existingDocument.IssueDate = currentDate;
+                        break;
+                    }
+                case WorkflowStatus.Quotation:
+                    {
+                        break;
+                    }
+                case WorkflowStatus.PurchaseOrder:
+                    {
+                        existingDocument.PoDate = currentDate;
+                        existingDocument.PoNumber = document.PoNumber;
+                        existingDocument.ExpiryDate = document.ExpiryDate;
+                        existingDocument.ExpectedDeliveryDate = document.ExpectedDeliveryDate;
+                        break;
+                    }
+            }
+            existingDocument.UpdatedDate = currentDate;
         }
         public void UpdateDocumentWeightPoint(Model.Document document)
         {
