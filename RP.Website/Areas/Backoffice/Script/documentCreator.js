@@ -555,6 +555,24 @@
         init: function () {
             _bindingSale();
             _bindingCustomer();
+            $("form[name='form']").validate({
+                ignore: "",
+                rules: {
+                    auto_customerName: { required: true },
+                    auto_contactName: { required: true },
+                },
+                messages: {
+                    auto_customerName: {
+                        required: "กรุณาเลือกโรงพยาบาล",
+                    },
+                    auto_contactName: {
+                        required: "กรุณาเลือกผู้ติดต่อ",
+                    }
+                },
+                submitHandler: function (form) {
+                    //form.submit();
+                }
+            });
         },
         RenderProducts: function () {
             items = [];

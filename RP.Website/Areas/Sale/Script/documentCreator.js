@@ -87,7 +87,7 @@
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetCustomerBranchByCustomerId(id,success, failure);
+        var xhr = RPService.GetCustomerBranchByCustomerId(id, success, failure);
     };
     var _bindingContact = function (id) {
         console.log(id);
@@ -543,7 +543,7 @@
             $("#auto_saleId").val(data.id);
             $("#auto_saleCode").val(data.code);
             $("#auto_saleBranch").val(data.branch);
-            
+
         }
 
         var failure = function (jqXHR, textStatus, errorThrown) {
@@ -555,6 +555,24 @@
         init: function () {
             _bindingSale();
             _bindingCustomer();
+            $("form[name='form']").validate({
+                ignore: "",
+                rules: {
+                    auto_customerName: { required: true },
+                    auto_contactName: { required: true },
+                },
+                messages: {
+                    auto_customerName: {
+                        required: "กรุณาเลือกโรงพยาบาล",
+                    },
+                    auto_contactName: {
+                        required: "กรุณาเลือกผู้ติดต่อ",
+                    }
+                },
+                submitHandler: function (form) {
+                    //form.submit();
+                }
+            });
         },
         RenderProducts: function () {
             items = [];
