@@ -287,28 +287,19 @@
         }
         var xhr = RPService.GetMaterials(success, failure);
     };
-    var _setDefault = function () {
+    var _init = function () {
         $("#productCategories").find('option').remove().end();
         $("#products").find('option').remove().end();
         $("#productOptions").find('option').remove().end();
         $("#productsUnit").find('option').remove().end();
         $("#materials").find('option').remove().end();
-
         $("#print-pattern").find('option').remove().end();
         $("#screen-pattern").find('option').remove().end();
         $("#sew-pattern").find('option').remove().end();
-
         $("#print-color").find('option').remove().end();
         $("#screen-color").find('option').remove().end();
         $("#screen-position").find('option').remove().end();
         $("#sew-position").find('option').remove().end();
-
-        $("#productNumberOfProducts").val('0');
-        $("#productPricePerUnit").val('0');
-        $("#productRemark").val('');
-    };
-    var _init = function () {
-        _setDefault();
 
         $("#print-optional2").iCheck('check');
         $("#screen-optional2").iCheck('check');
@@ -327,11 +318,11 @@
         $("#sew-option3-section").hide();
         $("#sew-patternImage").html("");
 
-        $("#print-file").val('');
-        $("#screen-file").val('');
-        $("#sew-file").val('');
-        $(".fileinput-filename").empty()
+        $("#productNumberOfProducts").val('0');
+        $("#productPricePerUnit").val('0');
+        $("#productRemark").val('');
         $("#sew-remark").val('');
+        $(".fileinput").fileinput("clear");
     };
     return {
         init: function (cid) {

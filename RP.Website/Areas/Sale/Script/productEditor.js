@@ -517,17 +517,15 @@ var productEditor = new function () {
         });
     };
     var _init = function () {
-        _setDefault();
+        items = [];
         $("#editProductCategories").find('option').remove().end();
         $("#editProducts").find('option').remove().end();
         $("#editProductOptions").find('option').remove().end();
         $("#editProductsUnit").find('option').remove().end();
         $("#editMaterials").find('option').remove().end();
-
         $("#editPrint-pattern").find('option').remove().end();
         $("#editScreen-pattern").find('option').remove().end();
         $("#editSew-pattern").find('option').remove().end();
-
         $("#editPrint-color").find('option').remove().end();
         $("#editScreen-color").find('option').remove().end();
         $("#editScreen-position").find('option').remove().end();
@@ -550,33 +548,11 @@ var productEditor = new function () {
         $("#editSew-option3-section").hide();
         $("#sew-patternImage").html("");
 
-        $("#editPrintfile").val('');
-        $("#editScreen-file").val('');
-        $("#editSew-file").val('');
-        $(".fileinput-filename").empty()
-        $("#editSew-remark").val('');
-        $("#editProductRemark").val('');
-    };
-    var _setDefault = function () {
-        items = [];
-        $("#editProductCategories").find('option').remove().end();
-        $("#editPoducts").find('option').remove().end();
-        $("#editProductOptions").find('option').remove().end();
-        $("#editProductsUnit").find('option').remove().end();
-        $("#editMaterials").find('option').remove().end();
-
-        $("#editPrint-pattern").find('option').remove().end();
-        $("#editScreen-pattern").find('option').remove().end();
-        $("#editSew-pattern").find('option').remove().end();
-
-        $("#editPrint-color").find('option').remove().end();
-        $("#editScreen-color").find('option').remove().end();
-        $("#editScreen-position").find('option').remove().end();
-        $("#editSew-position").find('option').remove().end();
-
         $("#editProductNumberOfProducts").val('0');
         $("#editProductPricePerUnit").val('0');
         $("#editProductRemark").val('');
+        $("#editSew-remark").val('');
+        $(".fileinput").fileinput("clear");
     };
     return {
         init: function (cid) {

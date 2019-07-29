@@ -32,7 +32,7 @@
             } else if (document.weightPoint >= 70) {
                 html += '   <td><button type="button" class="btn btn-danger btn-circle"></button></td>';
             } else {
-                html += '   <td></td>';
+                html += '   <td><button type="button" class="btn btn-primary btn-circle"></button></td>';
             }
             html += '   <td>' + document.customerType + '</td>';
             html += '   <td>' + document.customerName + '</td>';
