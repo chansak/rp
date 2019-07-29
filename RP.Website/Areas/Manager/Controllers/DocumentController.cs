@@ -367,5 +367,27 @@ namespace RP.Website.Areas.Manager.Controllers
             var workflowStatusId = document.DocumentStatusId;
             return new JsonCamelCaseResult(workflowStatusId, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult AddChat(HistoryViewModel model)
+        {
+            try
+            {
+                var history = new History
+                {
+                    Id = Guid.NewGuid(),
+                    HistoryTypeId = 2,
+                    DocumentId = new Guid(model.DocumentId),
+                    Text = model.Text,
+                    UserId = this.CurrentUser.Id
+                };
+                GenericFactory.Business.AddHistory(history);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
     }
 }

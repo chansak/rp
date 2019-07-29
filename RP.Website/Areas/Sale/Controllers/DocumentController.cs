@@ -30,7 +30,7 @@ namespace RP.Website.Areas.Sale.Controllers
         public ActionResult Search(DocumentSearchCriteria criteria, string sortBy, string direction, int? page)
         {
             int pageSize = AppSettingHelper.PageSize;
-            var documents = GenericFactory.Business.GetDocumentsListBySearch(criteria,this.CurrentUser.Id)
+            var documents = GenericFactory.Business.GetDocumentsListBySearch(criteria, this.CurrentUser.Id)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToList();
             int totalCount = documents.Count;
@@ -120,7 +120,8 @@ namespace RP.Website.Areas.Sale.Controllers
             }
             return Json(null);
         }
-        private void Create(Document document,string customerCode) {
+        private void Create(Document document, string customerCode)
+        {
             if (document.DocumentProductItems.Count > 0)
             {
                 foreach (var item in document.DocumentProductItems)
@@ -332,7 +333,7 @@ namespace RP.Website.Areas.Sale.Controllers
                         }
                     }
                 }
-                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document);
+                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document, model.Comments);
 
                 return Json("");
             }
@@ -393,7 +394,7 @@ namespace RP.Website.Areas.Sale.Controllers
                         }
                     }
                 }
-                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document);
+                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document, model.Comments);
 
                 return Json("");
             }
@@ -428,6 +429,29 @@ namespace RP.Website.Areas.Sale.Controllers
             var document = GenericFactory.Business.GetDocument(id);
             var workflowStatusId = document.DocumentStatusId;
             return new JsonCamelCaseResult(workflowStatusId, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult AddChat(HistoryViewModel model)
+        {
+            try
+            {
+                var history = new History
+                {
+                    Id = Guid.NewGuid(),
+                    HistoryTypeId = 2,
+                    DocumentId = new Guid(model.DocumentId),
+                    Text = model.Text,
+                    UserId = this.CurrentUser.Id
+                };
+                GenericFactory.Business.AddHistory(history);
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
         }
     }
 }

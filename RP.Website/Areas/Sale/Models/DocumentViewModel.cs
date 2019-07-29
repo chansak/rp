@@ -24,7 +24,7 @@ namespace RP.Website.Models
         public string DeliveryAddress { get; set; }
         public string DeliveryContactId { get; set; }
         public string Remark { get; set; }
-        //public string Comments { get; set; }
+        public string Comments { get; set; }
         public string CreatedDate { get; set; }
         public int DocumentStatusId { get; set; }
         public string PoNumber { get; set; }
@@ -47,7 +47,7 @@ namespace RP.Website.Models
         public string ContactMobile { get; set; }
         public string ContactEmail { get; set; }
 
-        //public List<HistoryViewModel> Histories { get; set; }
+        public List<HistoryViewModel> Histories { get; set; }
         public string WorkFlowName { get; set; }
     }
 }

@@ -128,7 +128,7 @@ namespace RP.Business
                 }
             }
         }
-        public void UpdateDocumentWithMarkDeleteItems(Document document)
+        public void UpdateDocumentWithMarkDeleteItems(Document document, string comment = "")
         {
             using (var uow = UnitOfWork.Create())
             {
@@ -136,6 +136,15 @@ namespace RP.Business
                 {
                     this.MarkDeleteProductItemsByDocumentId(uow, document.Id.ToString());
                     uow.DocumentRepository.UpdateDocument(document);
+                    uow.HistoryRepository.Add(new History
+                    {
+                        Id = Guid.NewGuid(),
+                        DocumentId = document.Id,
+                        HistoryTypeId = 1,
+                        Text = comment,
+                        UserId = document.UserId,
+                        CreatedDate = DateTime.Now
+                    });
                     uow.Commit();
                 }
                 catch (Exception ex)

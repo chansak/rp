@@ -256,16 +256,29 @@
         });
     };
     var _renderComments = function (histories) {
-        var html = '';
+        var chat = '';
+        var log = '';
+        $("#commentList").empty();
+        $("#logList").empty();
         $(histories).each(function (index, data) {
-            html += '<div class="log-message left">';
-            html += '   <div class="log">';
-            html += '       <span class="log-date">' + data.createdDate + '</span>';
-            html += '       <span class="log-content">' + data.text + '</span>';
-            html += '   </div>';
-            html += '</div>';
+            if (data.type == 1) {
+                log += '<div class="log-message left">';
+                log += '   <div class="log">';
+                log += '       <span class="log-date">' + data.createdDate + '</span>';
+                log += '       <span class="log-content">' + data.text + '</span>';
+                log += '   </div>';
+                log += '</div>';
+            } else if (data.type == 2) {
+                chat += '<div class="log-message left">';
+                chat += '   <div class="log">';
+                chat += '       <span class="log-date">' + data.createdDate + '</span>';
+                chat += '       <span class="log-content">' + data.text + '</span>';
+                chat += '   </div>';
+                chat += '</div>';
+            } else { }
         });
-        $("#comments").html(html);
+        $("#commentList").html(chat);
+        $("#logList").html(log);
     };
     var _actionValidation = function (document) {
         //Draft
@@ -829,6 +842,21 @@
             var xhr = RPService.UpdateDraftDocumentWithComments(formData, success, failure);
         });
     };
+    var _addChat = function (callback) {
+        var documentId = $("#documentId").val();
+        var data = {
+            documentId: documentId,
+            text: $("#message").val(),
+        };
+        var success = function (data, textStatus, jqXHR) {
+            $("#message").val('');
+            _getDocumentDetail(documentId);
+            callback();
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.AddChat(data, success, failure);
+    };
     return {
         init: function () {
             var id = $("#documentId").val();
@@ -879,5 +907,8 @@
         SaveDraftDocument: function (callback) {
             _saveDraftWithComments(callback);
         },
+        addChat: function (callback) {
+            _addChat(callback);
+        }
     }
 };

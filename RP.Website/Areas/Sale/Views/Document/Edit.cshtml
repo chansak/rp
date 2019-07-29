@@ -208,65 +208,50 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div id="tab-11" class="tab-pane active">
-                                            @*<div class="ibox-content no-borders">*@
-
                                             <div class="row">
                                                 <div class="col-md-12 ">
                                                     <div class="log-discussion">
                                                         <div class="full-height-scroll">
-                                                            <div class="log-box">
-                                                                <div id="comments"></div>
+                                                            <div class="log-box" style="min-height:350px">
+                                                                <div id="commentList"></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            @*</div>*@
+                                            <div class="row">
+                                                <div class="col-lg-11">
+                                                    <div class="chat-message-form">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" id="message" name="message" placeholder="Enter message text"></textarea>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <div class="chat-message-form">
+                                                        <div class="form-group">
+                                                            <button type="button" id="btnAddChat" class="btn btn-primary btn-block">เพิ่ม</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div id="tab-12" class="tab-pane">
-                                            @*<div class="ibox-content no-borders">*@
                                             <div class="row">
                                                 <div class="col-md-12 ">
                                                     <div class="log-discussion">
                                                         <div class="full-height-scroll">
                                                             <div class="table-responsive">
-                                                                <div class="log-box">
-
-                                                                    <div class="log-message left">
-                                                                        <div class="log">
-                                                                            <span class="log-date"> Mon Jan 26 2015 - 18:39:23 </span>
-                                                                            <span class="log-content">
-                                                                                สร้างแบบร่างใบขอราคา
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="log-message left">
-                                                                        <div class="log">
-                                                                            <span class="log-date"> Mon Jan 26 2015 - 18:39:23 </span>
-                                                                            <span class="log-content">
-                                                                                สร้างแบบร่างใบขอราคา
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
+                                                                <div class="log-box" style="min-height:350px">
+                                                                    <div id="logList"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="chat-message-form">
-
-                                                        <div class="form-group">
-
-                                                            <textarea class="form-control message-input" name="message" placeholder="Enter message text"></textarea>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @*</div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -751,6 +736,9 @@
             });
             $("#editMaterials").change(function () {
                 productEditor.MaterialStockCheck();
+            });
+            $("#btnAddChat").click(function () {
+                documentEditor.addChat(function () { });
             });
             documentEditor.init();
         });

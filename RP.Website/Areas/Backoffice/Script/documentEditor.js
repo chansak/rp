@@ -255,6 +255,31 @@
             radioClass: 'iradio_square-green',
         });
     };
+    var _renderComments = function (histories) {
+        var chat = '';
+        var log = '';
+        $("#commentList").empty();
+        $("#logList").empty();
+        $(histories).each(function (index, data) {
+            if (data.type == 1) {
+                log += '<div class="log-message left">';
+                log += '   <div class="log">';
+                log += '       <span class="log-date">' + data.createdDate + '</span>';
+                log += '       <span class="log-content">' + data.text + '</span>';
+                log += '   </div>';
+                log += '</div>';
+            } else if (data.type == 2) {
+                chat += '<div class="log-message left">';
+                chat += '   <div class="log">';
+                chat += '       <span class="log-date">' + data.createdDate + '</span>';
+                chat += '       <span class="log-content">' + data.text + '</span>';
+                chat += '   </div>';
+                chat += '</div>';
+            } else { }
+        });
+        $("#commentList").html(chat);
+        $("#logList").html(log);
+    };
     var _actionValidation = function (document) {
         //Draft
         if (document.documentStatusId == 0) {
@@ -379,6 +404,7 @@
                 items.push(item);
             });
             _render(items);
+            _renderComments(data.histories)
 
         }
         var failure = function (jqXHR, textStatus, errorThrown) {
@@ -858,6 +884,21 @@
         }
         var xhr = RPService.RequestApprovalForBackoffice(id, success, failure);
     };
+    var _addChat = function (callback) {
+        var documentId = $("#documentId").val();
+        var data = {
+            documentId: documentId,
+            text: $("#message").val(),
+        };
+        var success = function (data, textStatus, jqXHR) {
+            $("#message").val('');
+            _getDocumentDetail(documentId);
+            callback();
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.AddChatForBackoffice(data, success, failure);
+    };
     return {
         init: function () {
             var id = $("#documentId").val();
@@ -917,5 +958,8 @@
         SaveDraftDocument: function (callback) {
             _saveDraftWithComments(callback);
         },
+        addChat: function (callback) {
+            _addChat(callback);
+        }
     }
 };

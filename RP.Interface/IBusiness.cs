@@ -21,7 +21,7 @@ namespace RP.Interfaces
         IList<Document> GetDocumentsListBySearch(DocumentSearchCriteria criteria, string userId = null);
         Document GetDocument(string id);
         void CreateDocument(Document document, string customerCode);
-        void UpdateDocumentWithMarkDeleteItems(Document document);
+        void UpdateDocumentWithMarkDeleteItems(Document document,string comment = "");
         void UpdateDocument(Document document);
         void UpdateDocumentStatus(Document document);
         void UpdateDocumentWeightPoint(Document document);

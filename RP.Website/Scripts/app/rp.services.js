@@ -728,6 +728,24 @@
         });
         return XHR;
     },
+    AddChat: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Sale/document/AddChat",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
 
     CreateDocumentForBackoffice: function (formData, successCallback, errorCallback) {
         var XHR = $.ajax({
@@ -992,6 +1010,24 @@
         });
         return XHR;
     },
+    AddChatForBackoffice: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/AddChat",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
 
     CreateDocumentForManager: function (formData, successCallback, errorCallback) {
         var XHR = $.ajax({
@@ -1204,6 +1240,24 @@
             data: JSON.stringify({ id: id }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    AddChatForManager: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Manager/document/AddChat",
+            data: data,
             success: function (data, textStatus, jqXHR) {
                 successCallback(data, textStatus, jqXHR);
             },

@@ -344,15 +344,17 @@ namespace RP.Website
             document.ContactMobile = entity.CustomerContact == null ? "" : (string.IsNullOrEmpty(entity.CustomerContact.Mobile) ? "" : entity.CustomerContact.Mobile);
             document.ContactEmail = entity.CustomerContact == null ? "" : entity.CustomerContact.Email;
 
-            //var histories = new List<HistoryViewModel>();
-            //foreach (var history in entity.Histories) {
-            //    histories.Add(new HistoryViewModel
-            //    {
-            //        Text = history.Text,
-            //        CreatedDate = history.CreatedDate
-            //    });
-            //}
-            //document.Histories = histories;
+            var histories = new List<HistoryViewModel>();
+            foreach (var history in entity.Histories)
+            {
+                histories.Add(new HistoryViewModel
+                {
+                    Text = history.Text,
+                    Type =history.HistoryTypeId.Value,
+                    CreatedDate = history.CreatedDate
+                });
+            }
+            document.Histories = histories;
             document.ConfirmPriceDays = entity.ConfirmedPriceDays.HasValue ? entity.ConfirmedPriceDays.Value : 0;
             document.DeliveryDays = entity.DeliveryDays.HasValue ? entity.DeliveryDays.Value : 0;
             var WorkflowStatus = (WorkflowStatus)entity.DocumentStatusId;

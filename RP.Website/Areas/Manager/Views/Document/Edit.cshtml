@@ -266,18 +266,57 @@
                         </div>
                         <div id="tab-5" class="tab-pane">
                             <div class="panel-body">
-                                <div class="ibox-title no-borders">
-                                    <h2>คำอธิบาย</h2>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="ibox-tools">
-                                    </div>
-                                </div>
-                                <div class="ibox-content no-borders">
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">หมายเหตุ</label>
-                                        <div class="col-sm-9">
-                                            <textarea class="form-control" id="documentRemark" rows="3"></textarea>
-                                            <span class="form-text">ราคาที่อ้างอิงราคาเดิมหรือใบที่ขายล่าสุด โดยระบุวันที่และราคา (กรอกข้อมูลได้สูงสุด 200 ตัวอักษร)</span>
+                                <div class="tabs-container">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#tab-11">Chat</a></li>
+                                        <li class=""><a data-toggle="tab" href="#tab-12">Log</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="tab-11" class="tab-pane active">
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <div class="log-discussion">
+                                                        <div class="full-height-scroll">
+                                                            <div class="log-box" style="min-height:350px">
+                                                                <div id="commentList"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-11">
+                                                    <div class="chat-message-form">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" id="message" name="message" placeholder="Enter message text"></textarea>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <div class="chat-message-form">
+                                                        <div class="form-group">
+                                                            <button type="button" id="btnAddChat" class="btn btn-primary btn-block">เพิ่ม</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="tab-12" class="tab-pane">
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <div class="log-discussion">
+                                                        <div class="full-height-scroll">
+                                                            <div class="table-responsive">
+                                                                <div class="log-box" style="min-height:350px">
+                                                                    <div id="logList"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -768,6 +807,9 @@
             });
             $("#editMaterials").change(function () {
                 documentEditorForManager.MaterialStockCheck();
+            });
+            $("#btnAddChat").click(function () {
+                documentEditorForManager.addChat(function () { });
             });
             documentEditorForManager.init();
         });

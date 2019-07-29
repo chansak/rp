@@ -62,11 +62,11 @@ namespace RP.Website.Areas.Backoffice.Controllers
             routeValues.Add("sortBy", sortBy ?? "");
             routeValues.Add("direction", direction);
             var list = new PaginatedList<DocumentListItemViewModel>(
-                result.OrderByDescending(d => d.WeightPoint).ThenByDescending(o=>o.WorkflowStatus).ToList(), 
-                page ?? 0, 
-                pageSize, 
-                totalCount, 
-                true, 
+                result.OrderByDescending(d => d.WeightPoint).ThenByDescending(o => o.WorkflowStatus).ToList(),
+                page ?? 0,
+                pageSize,
+                totalCount,
+                true,
                 routeValues);
             var viewModel = new ListViewModel<DocumentListItemViewModel>()
             {
@@ -332,7 +332,7 @@ namespace RP.Website.Areas.Backoffice.Controllers
                         }
                     }
                 }
-                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document);
+                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document, model.Comments);
 
                 return Json("");
             }
@@ -432,8 +432,30 @@ namespace RP.Website.Areas.Backoffice.Controllers
                         }
                     }
                 }
-                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document);
+                GenericFactory.Business.UpdateDocumentWithMarkDeleteItems(document,model.Comments);
 
+                return Json("");
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            return Json(null);
+        }
+        [HttpPost]
+        public ActionResult AddChat(HistoryViewModel model)
+        {
+            try
+            {
+                var history = new History
+                {
+                    Id = Guid.NewGuid(),
+                    HistoryTypeId = 2,
+                    DocumentId = new Guid(model.DocumentId),
+                    Text = model.Text,
+                    UserId = this.CurrentUser.Id
+                };
+                GenericFactory.Business.AddHistory(history);
                 return Json("");
             }
             catch (Exception ex)
