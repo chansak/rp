@@ -180,6 +180,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Shared\DocumentSearchCriteria.cs" />
     <Compile Include="Stock.cs">
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
@@ -196,9 +197,7 @@
       <DependentUpon>RPModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shared\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

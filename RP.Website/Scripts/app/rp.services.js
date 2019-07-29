@@ -468,6 +468,26 @@
         });
         return XHR;
     },
+    GetDocumentsListBySearch: function (criteria, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Sale/document/Search",
+            data: JSON.stringify(criteria),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
     GetUsersListBySearch: function (searchBy, keyword, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
@@ -854,6 +874,26 @@
         });
         return XHR;
     },
+    GetDocumentsListBySearchForBackoffice: function (criteria, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/document/Search",
+            data: JSON.stringify(criteria),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
     IsExistingItemForBackoffice: function (itemId, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",
@@ -1062,6 +1102,26 @@
             type: "POST",
             url: "/Manager/document/Search",
             data: JSON.stringify({ searchBy: searchBy, keyword: keyword }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
+    GetDocumentsListBySearchForManager: function (criteria, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Manager/document/Search",
+            data: JSON.stringify(criteria),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data, textStatus, jqXHR) {

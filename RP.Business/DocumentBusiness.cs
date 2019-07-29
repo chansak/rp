@@ -48,6 +48,48 @@ namespace RP.Business
                 return d.Where(i => !i.IsDelete).ToList();
             }
         }
+        public IList<Document> GetDocumentsListBySearch(DocumentSearchCriteria criteria, string userId = null)
+        {
+            using (var uow = UnitOfWork.Create())
+            {
+                var documents = uow.DocumentRepository.All().AsEnumerable();
+                if (userId != null)
+                {
+                    documents = documents.Where(i => i.UserId.ToLower() == userId.ToLower());
+                }
+                if (!string.IsNullOrWhiteSpace(criteria.CustomerName))
+                {
+                    documents = documents.Where(i => i.Customer.Name.ToLower().Contains(criteria.CustomerName.ToLower()));
+                }
+                if (!string.IsNullOrWhiteSpace(criteria.DocumentCode))
+                {
+                    documents = documents.Where(i => i.FileNumber.ToLower().Contains(criteria.DocumentCode.ToLower()));
+                }
+
+                if (criteria.CustomerType != 0)
+                {
+                    documents = documents.Where(i => i.Customer.CustomerTypeId == criteria.CustomerType);
+                }
+                if (criteria.DocumentYear != 0)
+                {
+                    documents = documents.Where(i => i.IssueDate.Value.Year == criteria.DocumentYear);
+                }
+                if (!string.IsNullOrWhiteSpace(criteria.ContactName))
+                {
+                    documents = documents.Where(i => i.CustomerContact.Name.ToLower().Contains(criteria.ContactName.ToLower()));
+                }
+                if (!string.IsNullOrWhiteSpace(criteria.ProductCategoryId))
+                {
+                    documents = documents.Where(doc => doc.DocumentProductItems.Any(i => i.Product.ProductCategoryId.ToString().Contains(criteria.ProductCategoryId)));
+                }
+                if (criteria.QuotedPrice != 0)
+                {
+                    documents = documents.Where(doc => doc.DocumentProductItems.Any(i => (i.Amount * i.PricePerUnit) == criteria.QuotedPrice));
+                }
+                var d = documents.ToList();
+                return d.Where(i => !i.IsDelete).ToList();
+            }
+        }
         public Document GetDocument(string id)
         {
             using (var uow = UnitOfWork.Create())

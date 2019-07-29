@@ -27,15 +27,10 @@ namespace RP.Website.Areas.Manager.Controllers
         {
             return View();
         }
-        public ActionResult Search(string searchBy, string keyword, string sortBy, string direction, int? page)
+        public ActionResult Search(DocumentSearchCriteria criteria, string sortBy, string direction, int? page)
         {
             int pageSize = AppSettingHelper.PageSize;
-            if (!string.IsNullOrWhiteSpace(keyword))
-            {
-                keyword = keyword.Trim();
-            }
-
-            var documents = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword)
+            var documents = GenericFactory.Business.GetDocumentsListBySearch(criteria)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToList();
             int totalCount = documents.Count;
@@ -64,8 +59,6 @@ namespace RP.Website.Areas.Manager.Controllers
 
 
             RouteValueDictionary routeValues = new RouteValueDictionary();
-            routeValues.Add("searchBy", searchBy ?? "");
-            routeValues.Add("keyword", keyword ?? "");
             routeValues.Add("sortBy", sortBy ?? "");
             routeValues.Add("direction", direction);
             var list = new PaginatedList<DocumentListItemViewModel>(
@@ -77,8 +70,6 @@ namespace RP.Website.Areas.Manager.Controllers
                 routeValues);
             var viewModel = new ListViewModel<DocumentListItemViewModel>()
             {
-                SearchBy = searchBy,
-                Keyword = keyword,
                 Direction = direction,
                 SortBy = sortBy,
                 Data = list

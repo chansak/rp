@@ -27,21 +27,12 @@ namespace RP.Website.Areas.Sale.Controllers
         {
             return View();
         }
-        public ActionResult Search(string searchBy, string keyword, string sortBy, string direction, int? page)
+        public ActionResult Search(DocumentSearchCriteria criteria, string sortBy, string direction, int? page)
         {
             int pageSize = AppSettingHelper.PageSize;
-            if (!string.IsNullOrWhiteSpace(keyword))
-            {
-                keyword = keyword.Trim();
-            }
-
-            var items = GenericFactory.Business.GetDocumentsListBySearch(searchBy, keyword,this.CurrentUser.Id)
+            var documents = GenericFactory.Business.GetDocumentsListBySearch(criteria,this.CurrentUser.Id)
                 .OrderByDescending(i => i.CreatedDate)
                 .ToList();
-            var allowedStatus = new List<int>();
-            allowedStatus.Add((int)WorkflowStatus.Draft);
-            allowedStatus.Add((int)WorkflowStatus.RequestForMoreInfoForSale);
-            var documents = items.Where(i => allowedStatus.Contains(i.DocumentStatusId.Value)).ToList();
             int totalCount = documents.Count;
             var result = new List<DocumentListItemViewModel>();
             foreach (var d in documents)
@@ -50,7 +41,6 @@ namespace RP.Website.Areas.Sale.Controllers
                 var statusName = documentStatus.ToWorkFlowStatusName();
                 var biddingStatus = (d.BiddingStatusId.HasValue) ? (BiddingStatus)d.BiddingStatusId : BiddingStatus.undefined;
                 var biddingStatusName = biddingStatus.ToBiddingStatusName();
-
                 var document = new DocumentListItemViewModel
                 {
                     Id = d.Id.ToString(),
@@ -62,15 +52,13 @@ namespace RP.Website.Areas.Sale.Controllers
                     WorkflowStatusName = statusName,
                     BiddingStatus = (d.BiddingStatusId.HasValue) ? (int)d.BiddingStatusId : 0,
                     BiddingStatusName = biddingStatusName,
-                    WeightPoint = d.WeightPoint??0
+                    WeightPoint = d.WeightPoint ?? 0
                 };
                 result.Add(document);
             }
 
 
             RouteValueDictionary routeValues = new RouteValueDictionary();
-            routeValues.Add("searchBy", searchBy ?? "");
-            routeValues.Add("keyword", keyword ?? "");
             routeValues.Add("sortBy", sortBy ?? "");
             routeValues.Add("direction", direction);
             var list = new PaginatedList<DocumentListItemViewModel>(
@@ -79,10 +67,9 @@ namespace RP.Website.Areas.Sale.Controllers
                 pageSize,
                 totalCount,
                 true,
-                routeValues); var viewModel = new ListViewModel<DocumentListItemViewModel>()
+                routeValues);
+            var viewModel = new ListViewModel<DocumentListItemViewModel>()
             {
-                SearchBy = searchBy,
-                Keyword = keyword,
                 Direction = direction,
                 SortBy = sortBy,
                 Data = list

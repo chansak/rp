@@ -7,6 +7,38 @@
         },
         error: {}
     };
+    var _bindingYear = function () {
+        var currentYear = new Date().getFullYear();
+        min = currentYear - 5;
+        max = currentYear + 5;
+
+        $('#documentYear').empty();
+        for (var i = min; i <= max; i++) {
+            $('#documentYear').append($('<option>', {
+                value: i,
+                text: i
+            }));
+        }
+        $("#documentYear").prepend("<option value='' selected='selected'>เลือกปี</option>");
+        //$("#documentYear").val(currentYear);
+    };
+    var _bindingProductCategories = function () {
+        var success = function (data, textStatus, jqXHR) {
+            $('#productCategories').empty();
+            $(data).each(function (index, item) {
+                $('#productCategories').append($('<option>', {
+                    value: item.id,
+                    text: item.categoryName
+                }));
+            });
+            $("#productCategories").prepend("<option value='' selected='selected'>เลือกประเภทสินค้า</option>");
+            $("#productCategories").unbind();
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+            //alert(errorThrown);
+        }
+        var xhr = RPService.GetProductCategories(success, failure);
+    };
     var _edit = function () {
         var itemId = 0;
         var items = $("input:checkbox[name=documentId]:checked");
@@ -49,8 +81,29 @@
         });
     };
     var _search = function () {
-        var searchBy = $("#ddSearch").val();
-        var keyword = $("#keyword").val();
+        var criteria = {
+            documentCode: "",
+            customerName: "",
+            customerType: $("#customerType").val(),
+            documentYear: $("#documentYear").val(),
+            contactName: $("#contactName").val(),
+            productCategoryId: $("#productCategories").val(),
+            quotedPrice: $("#quotedPrice").val()
+        };
+        var quickSearch = $("#ddSearch").val();
+        if (quickSearch != null && quickSearch != undefined) {
+            if ($("customerName").val() != '') {
+                criteria.customerName = $("#customerName").val();
+            } else {
+                if (quickSearch == "CustomerName") {
+                    criteria.customerName = $("#keyword").val();
+                } else if (quickSearch == "DocumentCode") {
+                    criteria.documentCode = $("#keyword").val();
+                } else { }
+            }
+        } else {
+            criteria.customerName = $("#customerName").val();
+        }
         var success = function (response, textStatus, jqXHR) {
             documents = [];
             $(response.data).each(function (index, document) {
@@ -61,7 +114,7 @@
         var failure = function (jqXHR, textStatus, errorThrown) {
             //alert(errorThrown);
         }
-        var xhr = RPService.GetDocumentsListBySearchForManager(searchBy, keyword, success, failure);
+        var xhr = RPService.GetDocumentsListBySearchForManager(criteria, success, failure);
     };
     var _request = function (callback) {
         var id = 0;
@@ -120,6 +173,8 @@
     };
     return {
         init: function () {
+            _bindingYear();
+            _bindingProductCategories();
             _search();
         },
         edit: function () {
