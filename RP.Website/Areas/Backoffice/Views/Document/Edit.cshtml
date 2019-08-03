@@ -339,6 +339,7 @@
                     <button type="button" id="btnRequestForApprove" class="btn btn-white " style="display:none">ยื่นขออนุมัติ</button>
                     <button type="button" id="btnPrintDocument" class="btn btn-white " style="display:none">พิมพ์ใบเสนอราคา</button>
                     <button type="button" id="btnGotPO" class="btn btn-white " style="display:none">ได้รับ PO แล้ว</button>
+                    <button type="button" id="btnWinLoss" class="btn btn-white " style="display:none">อัพเดทสถานะ Win/Loss</button>
                     <button type="button" class="btn btn-white btnCancel">ยกเลิก</button>
                 </div>
                 <div class="col-sm-1 text-right">
@@ -671,6 +672,38 @@
         </div>
     </div>
 </div>
+
+@*Modal Dialog*@
+<div class="modal inmodal fade" id="updateWinLossModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">อัพเดทสถานะ Win/Loss</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">สถานะ</label>
+
+                            <div class="col-sm-10">
+                                <label class="checkbox-inline i-checks"> <input type="radio" value="2" name="WinLoss"> Win </label>
+                                <label class="checkbox-inline i-checks"> <input type="radio" value="1" name="WinLoss"> รอยืนยัน </label>
+                                <label class="checkbox-inline i-checks"> <input type="radio" value="3" name="WinLoss"> Loss </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary btnUpdateWinLoss">บันทึก</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Styles {
     @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
     @Styles.Render("~/plugins/sweetAlertStyles")
@@ -905,7 +938,7 @@
             $("#btnGotPO").click(function () {
                 $("#gotPOModal").modal("show");
             });
-            $('.btnGotPO').click(function () {
+            $(".btnGotPO").click(function () {
                 $('#gotPOModal').modal('toggle');
                 documentEditorForBackoffice.GotPO(function () {
                     swal({
@@ -913,10 +946,25 @@
                         text: "กดปุ่ม OK เพื่อปิด!",
                         icon: "success"
                     }).then((value) => {
-                        utilities.RedirectToAction("../");
+                        utilities.RedirectToAction("/Backoffice/Document/Index");
                     });
                 });
 
+            });
+            $("#btnWinLoss").click(function () {
+                $("#updateWinLossModal").modal("show");
+            });
+            $(".btnUpdateWinLoss").click(function () {
+                $('#updateWinLossModal').modal('toggle');
+                documentEditorForBackoffice.UpdateWinLoss(function () {
+                    swal({
+                        title: "บันทึกเรียบร้อย!",
+                        text: "กดปุ่ม OK เพื่อปิด!",
+                        icon: "success"
+                    }).then((value) => {
+                        utilities.RedirectToAction("/Backoffice/Document/Index");
+                    });
+                });
             });
             $("#btnAddChat").click(function () {
                 documentEditorForBackoffice.addChat(function () { });

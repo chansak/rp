@@ -302,6 +302,7 @@
         }
         //PurchaseOrder
         if (document.documentStatusId == 52) {
+            $("#btnWinLoss").show();
             $("#btnPrintDocument").show();
         }
     };
@@ -899,6 +900,21 @@
         }
         var xhr = RPService.AddChatForBackoffice(data, success, failure);
     };
+    var _updateWinLoss = function (callback) {
+        var documentId = $("#documentId").val();
+        var data = {
+            documentId: documentId,
+            biddingStatus: $('input[name=WinLoss]:checked').val() 
+        };
+        console.log(data);
+        var success = function (data, textStatus, jqXHR) {
+            callback();
+        }
+        var failure = function (jqXHR, textStatus, errorThrown) {
+        }
+        var xhr = RPService.UpdateWinLoseForBackoffice(data, success, failure);
+
+    };
     return {
         init: function () {
             var id = $("#documentId").val();
@@ -960,6 +976,9 @@
         },
         addChat: function (callback) {
             _addChat(callback);
+        },
+        UpdateWinLoss: function (callback) {
+            _updateWinLoss(callback);
         }
     }
 };

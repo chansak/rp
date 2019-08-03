@@ -990,6 +990,24 @@
         });
         return XHR;
     },
+    UpdateWinLoseForBackoffice: function (data, successCallback, errorCallback) {
+        var XHR = $.ajax({
+            type: "POST",
+            url: "/Backoffice/Document/UpdateWinLoss",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                successCallback(data, textStatus, jqXHR);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status == 401) {
+                    Logout();
+                } else {
+                    errorCallback(jqXHR, textStatus, errorThrown);
+                }
+            }
+        });
+        return XHR;
+    },
     GetCurrentWorkflowStatusForBackoffice: function (id, successCallback, errorCallback) {
         var XHR = $.ajax({
             type: "POST",

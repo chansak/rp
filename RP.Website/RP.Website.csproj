@@ -1724,6 +1724,7 @@
     <Compile Include="Models\TestViewModel.cs" />
     <Compile Include="Models\UnitViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\WinLossViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

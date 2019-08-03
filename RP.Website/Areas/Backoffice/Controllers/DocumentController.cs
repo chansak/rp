@@ -373,7 +373,15 @@ namespace RP.Website.Areas.Backoffice.Controllers
             GenericFactory.Business.UpdateDocumentStatus(document);
             return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
         }
-
+        [HttpPost]
+        public ActionResult UpdateWinLoss(WinLossViewModel model)
+        {
+            var result = false;
+            var document = GenericFactory.Business.GetDocument(model.DocumentId);
+            document.BiddingStatusId = model.BiddingStatus;
+            GenericFactory.Business.UpdateWinLoss(document);
+            return new JsonCamelCaseResult(result, JsonRequestBehavior.AllowGet);
+        }
         [HttpPost]
         public ActionResult GetCurrentWorkflowStatus(string id)
         {
