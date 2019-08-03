@@ -38,7 +38,7 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.DisplayName = "Weight Calculation service";
+            this.serviceInstaller1.DisplayName = "RP Routine services";
             this.serviceInstaller1.ServiceName = "JobSchedulerService";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 

@@ -130,6 +130,7 @@ namespace RP.DataAccess
                         existingDocument.PoNumber = document.PoNumber;
                         existingDocument.ExpiryDate = document.ExpiryDate;
                         existingDocument.ExpectedDeliveryDate = document.ExpectedDeliveryDate;
+                        existingDocument.BiddingStatusId = (int)BiddingStatus.undefined;
                         break;
                     }
             }
@@ -139,6 +140,12 @@ namespace RP.DataAccess
         {
             var existingDocument = this.GetById(document.Id);
             existingDocument.WeightPoint = document.WeightPoint;
+            existingDocument.UpdatedDate = DateTime.Now;
+        }
+        public void UpdateWinLoss(Model.Document document)
+        {
+            var existingDocument = this.GetById(document.Id);
+            existingDocument.BiddingStatusId = document.BiddingStatusId;
             existingDocument.UpdatedDate = DateTime.Now;
         }
     }

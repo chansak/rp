@@ -9,9 +9,9 @@ namespace RP.Model
 {
     public enum BiddingStatus
     {
-        [Description("")]
+        [Description("รออัพสถานะ")]
         undefined =0,
-        [Description("Waiting")]
+        [Description("รอยืนยัน")]
         Waiting=1,
         [Description("Win")]
         Win=2,

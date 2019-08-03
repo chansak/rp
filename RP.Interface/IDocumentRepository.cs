@@ -14,5 +14,6 @@ namespace RP.Interfaces
         void UpdateDocumentStatus(Model.Document document);
         void UpdateDocumentWeightPoint(Model.Document document);
         IQueryable<Model.Document> PODocuments();
+        void UpdateWinLoss(Model.Document document);
     }
 }

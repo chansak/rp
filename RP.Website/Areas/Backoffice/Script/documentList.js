@@ -59,13 +59,13 @@
             html += '   <td><div class="checkbox i-checks"><label> <input type="checkbox" name="documentId" value=' + document.id + '> <i></i></label></div></td>';
 
             if (document.weightPoint > 0 && document.weightPoint <= 49) {
-                html += '   <td><button type="button" class="btn btn-primary btn-circle"></button></td>';
+                html += '   <td><button type="button" class="btn btn-primary btn-circle">' + document.weightPoint +'</button></td>';
             } else if (document.weightPoint >= 50 && document.weightPoint <= 69) {
-                html += '   <td><button type="button" class="btn btn-warning btn-circle"></button></td>';
+                html += '   <td><button type="button" class="btn btn-warning btn-circle">' + document.weightPoint +'</button></td>';
             } else if (document.weightPoint >= 70) {
-                html += '   <td><button type="button" class="btn btn-danger btn-circle"></button></td>';
+                html += '   <td><button type="button" class="btn btn-danger btn-circle">' + document.weightPoint +'</button></td>';
             } else {
-                html += '   <td><button type="button" class="btn btn-primary btn-circle"></button></td>';
+                html += '   <td><button type="button" class="btn btn-primary btn-circle">' + document.weightPoint +'</button></td>';
             }
 
             html += '   <td>' + document.customerType + '</td>';

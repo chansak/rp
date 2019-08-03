@@ -25,6 +25,7 @@ namespace RP.Interfaces
         void UpdateDocument(Document document);
         void UpdateDocumentStatus(Document document);
         void UpdateDocumentWeightPoint(Document document);
+        void UpdateWinLoss(Document document);
         DocumentProductItem GetProductItemByItemId(string id);
         ProductItemPrintOptional GetProductItemPrintOptionalByItemId(string id);
         ProductItemScreenOptional GetProductItemScreenOptionalByItemId(string id);

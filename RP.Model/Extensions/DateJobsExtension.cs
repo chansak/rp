@@ -11,5 +11,8 @@ namespace RP.Model
         public static bool HasWeightCalculationJob(this DateTime date) {
             return true;
         }
+        public static bool HasWinLossAutoDicisionJob(this DateTime date) {
+            return true;
+        }
     }
 }
