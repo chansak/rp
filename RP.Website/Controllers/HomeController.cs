@@ -4,6 +4,7 @@ using RP.Interfaces;
 using RP.Model;
 using RP.Website.Models;
 using System;
+using System.Globalization;
 using System.Web.Mvc;
 
 
@@ -14,6 +15,7 @@ namespace RP.Website.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            
             return View();
         }
         [HttpPost]

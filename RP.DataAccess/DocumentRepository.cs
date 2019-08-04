@@ -6,6 +6,7 @@ using System.Text;
 
 using RP.Model;
 using RP.Interfaces;
+using System.Globalization;
 
 namespace RP.DataAccess
 {
@@ -53,10 +54,16 @@ namespace RP.DataAccess
         {
             var currentDate = DateTime.Now;
             var currentYear = currentDate.Year;
-            var nextRunningNumber = (ObjectSet.Where(i => i.CreatedDate.Value.Year == currentYear).Count()) + 1;
-            var nexRunningText = ("0000" + nextRunningNumber);
-            var fileNumber = nexRunningText.Substring(nexRunningText.Length - 5, 5);
-            document.FileNumber = string.Format("{0}{1}{2}", customerCode, currentYear, fileNumber);
+            var currentTH = DateTime.Now.ToString("dd/MM/yyyy", new CultureInfo("th-TH"));
+            var currentYearTH = currentTH.Split('/').Last().Replace("/", "");
+            var currentMonth = currentDate.Month.ToString("d2");
+            var nextRunningNumber = (ObjectSet.Where(i => i.CreatedDate.Value.Year == currentDate.Year).Count()) + 1;
+            var nexRunningText = ("000000" + nextRunningNumber);
+            var fileNumber = nexRunningText.Substring(nexRunningText.Length - 6, 6);
+            var sub1 = fileNumber.Substring(0, 3);
+            var sub2 = fileNumber.Substring(3, 3);
+
+            document.FileNumber = string.Format("{0}{1}-{2}-{3}", currentYearTH, currentMonth, sub1, sub2);
             var documentStatus = (WorkflowStatus)document.DocumentStatusId;
             switch (documentStatus)
             {
